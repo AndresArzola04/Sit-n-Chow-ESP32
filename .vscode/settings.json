@@ -1,0 +1,17 @@
+{
+  "idf.openOcdConfigs": [
+    "board/esp32s3-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32s3"
+  },
+  "clangd.path": "c:\\Users\\Lapatopa\\.espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=c:\\Users\\Lapatopa\\.espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20241119\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe",
+    "--compile-commands-dir=c:\\Users\\Lapatopa\\Documents\\SCHOOL_WORK\\Senior Design\\ESP32\\Peripheral_Demo\\OV5640\\dvp_spi_lcd\\build"
+  ],
+  "idf.flashType": "UART",
+  "idf.portWin": "COM5",
+  "idf.currentSetup": "C:\\Users\\Lapatopa\\esp\\v5.5.1\\esp-idf"
+}
