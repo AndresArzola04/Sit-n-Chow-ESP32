@@ -2,19 +2,19 @@ menu "Example Connection Configuration"
 
     config ESP_WIFI_SSID
         string "WiFi STA SSID"
-        default ""
+        default "Quad"
         help
         WiFi SSID (network name) to connect to or empty for Off.
 
     config ESP_WIFI_PASSWORD
         string "WiFi STA Password"
-        default ""
+        default "onmyhonor"
         help
         WiFi Password if WEP/WPA/WPA2 or empty if Open.
 
     config ESP_WIFI_AP_SSID
         string "WiFi AP SSID"
-        default "ESP32-Camera"
+        default ""
         help
         AP SSID (network name) to create or empty for Off.
 

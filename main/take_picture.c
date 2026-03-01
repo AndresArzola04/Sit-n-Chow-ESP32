@@ -17,6 +17,7 @@
 #include "camera_pin.h"
 #include "app_wifi.h"
 #include "esp_camera.h"
+#include "esp_websocket_client.h"
 
 #define CAMERA_PIN_PWDN 0
 
@@ -28,7 +29,15 @@ static QueueHandle_t xQueueIFrame = NULL;
 
 static const char *TAG = "video s_server";
 
-esp_err_t start_stream_server(const QueueHandle_t frame_i, const bool return_fb);
+static esp_websocket_client_handle_t ws_client = NULL;
+
+void ws_client_init(const char *uri) {
+    esp_websocket_client_config_t ws_cfg = {
+        .uri = uri,  // e.g. "ws://192.168.1.100:8765"
+    };
+    ws_client = esp_websocket_client_init(&ws_cfg);
+    esp_websocket_client_start(ws_client);
+}
 
 static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, framesize_t frame_size, uint8_t fb_count)
 {
@@ -69,18 +78,12 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, fr
     esp_err_t ret = esp_camera_init(&camera_config);
 
     sensor_t *s = esp_camera_sensor_get();
-    s->set_vflip(s, 1);//flip it back
-    //initial sensors are flipped vertically and colors are a bit saturated
-    if (s->id.PID == OV3660_PID) {
-        s->set_saturation(s, -2);//lower the saturation
-    }
 
-    if (s->id.PID == OV3660_PID || s->id.PID == OV2640_PID) {
-        s->set_vflip(s, 1); //flip it back
-    } else if (s->id.PID == GC0308_PID) {
-        s->set_hmirror(s, 0);
-    } else if (s->id.PID == GC032A_PID) {
+    if (s->id.PID == OV5640_PID) {
         s->set_vflip(s, 1);
+        s->set_hmirror(s, 0);
+        // Optionally boost quality:
+        s->set_quality(s, 10);  // 0-63, lower = better
     }
 
     camera_sensor_info_t *s_info = esp_camera_sensor_get_info(&(s->id));
@@ -96,14 +99,12 @@ void app_main()
 {
     app_wifi_main();
 
-    camera_fb_t *frame;
-
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
 
     /* It is recommended to use a camera sensor with JPEG compression to maximize the speed */
-    TEST_ESP_OK(init_camera(10000000, PIXFORMAT_JPEG, FRAMESIZE_QVGA, 2));
+    TEST_ESP_OK(init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_VGA, 2));
 
-    TEST_ESP_OK(start_stream_server(xQueueIFrame, true));
+    TEST_ESP_OK(ws_client_init("ws://YOUR_SERVER_IP:YOUR_PORT"););
 
     ESP_LOGI(TAG, "Begin capture frame");
 
@@ -111,7 +112,8 @@ void app_main()
         camera_fb_t *frame = esp_camera_fb_get();
         if (frame) {
             // Non-blocking send; if no one is listening, just drop frame
-            if (xQueueSend(xQueueIFrame, &frame, 0) == pdTRUE) {
+            if (esp_websocket_client_is_connected(ws_client)) {
+                esp_websocket_client_send_bin(ws_client, (const char *)frame->buf, frame->len, portMAX_DELAY);
                 ESP_LOGI(TAG, "Frame captured and queued");
             } else {
                 ESP_LOGW(TAG, "Frame queue full, dropping frame");
@@ -122,6 +124,6 @@ void app_main()
         } else {
             ESP_LOGW(TAG, "Failed to get frame");
         }
-        vTaskDelay(pdMS_TO_TICKS(50));  // small delay so we don't hammer it
+        vTaskDelay(pdMS_TO_TICKS(33));  // ~30fps cap
     }
 }
