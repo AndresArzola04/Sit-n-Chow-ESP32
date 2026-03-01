@@ -33,7 +33,8 @@ static esp_websocket_client_handle_t ws_client = NULL;
 
 void ws_client_init(const char *uri) {
     esp_websocket_client_config_t ws_cfg = {
-        .uri = uri,  // e.g. "ws://192.168.1.100:8765"
+        .uri = "wss://sit-n-chow-ws-96817124249.us-central1.run.app/ingest",
+        .transport = WEBSOCKET_TRANSPORT_OVER_SSL,
     };
     ws_client = esp_websocket_client_init(&ws_cfg);
     esp_websocket_client_start(ws_client);
