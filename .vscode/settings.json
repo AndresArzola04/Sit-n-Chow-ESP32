@@ -12,6 +12,6 @@
     "--compile-commands-dir=c:\\Users\\Lapatopa\\Documents\\SCHOOL_WORK\\Senior Design\\ESP32\\Peripheral_Demo\\OV5640\\dvp_spi_lcd\\build"
   ],
   "idf.flashType": "UART",
-  "idf.portWin": "COM5",
+  "idf.portWin": "COM3",
   "idf.currentSetup": "C:\\Users\\Lapatopa\\esp\\v5.5.1\\esp-idf"
 }

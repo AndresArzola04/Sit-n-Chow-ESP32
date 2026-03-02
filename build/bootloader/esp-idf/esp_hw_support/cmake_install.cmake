@@ -39,16 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
+  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esp_hw_support/port/esp32s3/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader/esp-idf/esp_hw_support/mspi_timing_tuning/port/esp32s3/cmake_install.cmake")
+  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esp_hw_support/mspi_timing_tuning/port/esp32s3/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
+  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
 endif()
 

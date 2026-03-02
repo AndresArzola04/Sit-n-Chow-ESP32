@@ -19,8 +19,6 @@
 #include "esp_camera.h"
 #include "esp_websocket_client.h"
 
-#define CAMERA_PIN_PWDN 0
-
 #define TEST_ESP_OK(ret) assert(ret == ESP_OK)
 #define TEST_ASSERT_NOT_NULL(ret) assert(ret != NULL)
 
@@ -33,11 +31,32 @@ static esp_websocket_client_handle_t ws_client = NULL;
 
 void ws_client_init(const char *uri) {
     esp_websocket_client_config_t ws_cfg = {
-        .uri = "wss://sit-n-chow-ws-96817124249.us-central1.run.app/ingest",
+        .uri = uri,
         .transport = WEBSOCKET_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .cert_pem = NULL,
+        .disable_auto_reconnect = false,
+        .buffer_size = 1024 * 32,
+        .network_timeout_ms = 10000,
+        .reconnect_timeout_ms = 5000,
     };
     ws_client = esp_websocket_client_init(&ws_cfg);
     esp_websocket_client_start(ws_client);
+}
+
+void ws_send_task(void *arg) {
+    camera_fb_t *frame;
+    while (true) {
+        if (xQueueReceive(xQueueIFrame, &frame, portMAX_DELAY)) {
+            if (esp_websocket_client_is_connected(ws_client)) {
+                esp_websocket_client_send_bin(ws_client,
+                    (const char *)frame->buf,
+                    frame->len,
+                    pdMS_TO_TICKS(5000));
+            }
+            esp_camera_fb_return(frame);
+        }
+    }
 }
 
 static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, framesize_t frame_size, uint8_t fb_count)
@@ -69,9 +88,9 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, fr
         .pixel_format = pixel_format, //YUV422,GRAYSCALE,RGB565,JPEG
         .frame_size = frame_size,    //QQVGA-UXGA, sizes above QVGA are not been recommended when not JPEG format.
 
-        .jpeg_quality = 10, //0-63
+        .jpeg_quality = 25, //0-63
         .fb_count = fb_count,       // For ESP32/ESP32-S2, if more than one, i2s runs in continuous mode. Use only with JPEG.
-        .grab_mode = CAMERA_GRAB_LATEST,
+        .grab_mode = CAMERA_GRAB_WHEN_EMPTY,
         .fb_location = CAMERA_FB_IN_PSRAM
     };
 
@@ -96,35 +115,61 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, fr
     return ret;
 }
 
+static esp_err_t reinit_camera() {
+    ESP_LOGW(TAG, "Reinitializing camera...");
+    esp_camera_deinit();
+    vTaskDelay(pdMS_TO_TICKS(500));
+    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 3);
+    ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
+    return err;
+}
+
 void app_main()
 {
+    ESP_LOGI(TAG, "Starting app_main");
     app_wifi_main();
+    ESP_LOGI(TAG, "WiFi done");
 
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
 
-    /* It is recommended to use a camera sensor with JPEG compression to maximize the speed */
-    TEST_ESP_OK(init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_VGA, 2));
+    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 2);
+    ESP_LOGI(TAG, "Camera init returned: %s", esp_err_to_name(err));
 
-    TEST_ESP_OK(ws_client_init("ws://YOUR_SERVER_IP:YOUR_PORT"););
+    ws_client_init("wss://sit-n-chow-ws-96817124249.us-central1.run.app/ingest");
+    ESP_LOGI(TAG, "Connected to websocket server");
+
+    xTaskCreate(ws_send_task, "ws_send", 16384, NULL, 5, NULL);
 
     ESP_LOGI(TAG, "Begin capture frame");
+
+    int consecutive_failures = 0;
+    const int MAX_FAILURES = 3;
 
     while (true) {
         camera_fb_t *frame = esp_camera_fb_get();
         if (frame) {
-            // Non-blocking send; if no one is listening, just drop frame
-            if (esp_websocket_client_is_connected(ws_client)) {
-                esp_websocket_client_send_bin(ws_client, (const char *)frame->buf, frame->len, portMAX_DELAY);
-                ESP_LOGI(TAG, "Frame captured and queued");
-            } else {
-                ESP_LOGW(TAG, "Frame queue full, dropping frame");
+            consecutive_failures = 0;
+
+            // Discard corrupt frames before queuing
+            if (frame->len < 100 || frame->buf[0] != 0xFF || frame->buf[1] != 0xD8) {
+                ESP_LOGW(TAG, "Corrupt frame discarded");
+                esp_camera_fb_return(frame);
+                continue;
             }
 
-            // Producer always returns frame when done with it
-            esp_camera_fb_return(frame);
+            if (xQueueSend(xQueueIFrame, &frame, 0) != pdTRUE) {
+                esp_camera_fb_return(frame);
+            }
         } else {
-            ESP_LOGW(TAG, "Failed to get frame");
+            consecutive_failures++;
+            ESP_LOGW(TAG, "Failed to get frame (%d/%d)", consecutive_failures, MAX_FAILURES);
+
+            if (consecutive_failures >= MAX_FAILURES) {
+                consecutive_failures = 0;
+                reinit_camera();
+            }
+
+            vTaskDelay(pdMS_TO_TICKS(100));
         }
-        vTaskDelay(pdMS_TO_TICKS(33));  // ~30fps cap
     }
 }

@@ -10,18 +10,18 @@ if(NOT EXISTS "C:/Espressif/frameworks/esp-idf-v5.5.1/components/bootloader/subp
   file(MAKE_DIRECTORY "C:/Espressif/frameworks/esp-idf-v5.5.1/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader"
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix"
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/tmp"
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/src"
-  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/tmp"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/src"
+  "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

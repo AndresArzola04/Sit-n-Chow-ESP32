@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/bootloader/bootloader.elf
+file C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/bootloader.elf

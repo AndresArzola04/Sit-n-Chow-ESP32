@@ -598,7 +598,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Example Connection Configuration
 #
-CONFIG_ESP_WIFI_SSID="Quad"
+CONFIG_ESP_WIFI_SSID="Quad_legacy"
 CONFIG_ESP_WIFI_PASSWORD="onmyhonor"
 CONFIG_ESP_WIFI_AP_SSID="ESP32-Camera"
 CONFIG_ESP_WIFI_AP_PASSWORD=""
@@ -2323,6 +2323,13 @@ CONFIG_CAMERA_JPEG_MODE_FRAME_SIZE_AUTO=y
 #
 CONFIG_JD_USE_ROM=y
 # end of JPEG Decoder
+
+#
+# ESP WebSocket client
+#
+# CONFIG_ESP_WS_CLIENT_ENABLE_DYNAMIC_BUFFER is not set
+# CONFIG_ESP_WS_CLIENT_SEPARATE_TX_LOCK is not set
+# end of ESP WebSocket client
 # end of Component config
 
 # CONFIG_IDF_EXPERIMENTAL_FEATURES is not set

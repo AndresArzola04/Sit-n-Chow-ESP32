@@ -164,5 +164,7 @@ $<TARGET_FILE:__idf_json>
 $<TARGET_FILE:idf::espressif__esp_jpeg>
 $<TARGET_FILE:idf::espressif__esp32-camera>
 $<TARGET_FILE:__idf_espressif__esp_jpeg>
+$<TARGET_FILE:idf::espressif__esp_websocket_client>
 $<TARGET_FILE:idf::main>
 $<TARGET_FILE:__idf_espressif__esp32-camera>
+$<TARGET_FILE:__idf_espressif__esp_websocket_client>

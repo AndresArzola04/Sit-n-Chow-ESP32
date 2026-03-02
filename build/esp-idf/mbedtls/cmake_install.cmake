@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Peripheral_Demo/OV5640/dvp_spi_lcd/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
+  include("C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
 endif()
 
