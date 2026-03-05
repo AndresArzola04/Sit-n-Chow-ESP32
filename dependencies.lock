@@ -41,6 +41,6 @@ direct_dependencies:
 - espressif/esp32-camera
 - espressif/esp_websocket_client
 - idf
-manifest_hash: cd6b8e0c6041556b2656381e79a41e6f239759582ad49063218184d565fce629
+manifest_hash: dc407aa4d368d17260a9b32a6372ff33ea2bfe8599051c36f7656d80e39e1000
 target: esp32s3
 version: 2.0.0

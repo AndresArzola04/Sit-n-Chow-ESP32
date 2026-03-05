@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-void app_wifi_main();
+void app_wifi_main(void);
 
 #ifdef __cplusplus
 }

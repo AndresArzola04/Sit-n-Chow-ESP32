@@ -98,6 +98,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz, pixformat_t pixel_format, fr
     esp_err_t ret = esp_camera_init(&camera_config);
 
     sensor_t *s = esp_camera_sensor_get();
+    s->set_reg(s, 0x3035, 0xff, 0x21); // increase PLL clock divider
 
     if (s->id.PID == OV5640_PID) {
         s->set_vflip(s, 1);
@@ -119,7 +120,7 @@ static esp_err_t reinit_camera() {
     ESP_LOGW(TAG, "Reinitializing camera...");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 3);
+    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 2);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -151,7 +152,11 @@ void app_main()
             consecutive_failures = 0;
 
             // Discard corrupt frames before queuing
-            if (frame->len < 100 || frame->buf[0] != 0xFF || frame->buf[1] != 0xD8) {
+            if (frame->len < 100 || 
+                frame->buf[0] != 0xFF || 
+                frame->buf[1] != 0xD8 ||
+                frame->buf[frame->len - 2] != 0xFF ||
+                frame->buf[frame->len - 1] != 0xD9) {
                 ESP_LOGW(TAG, "Corrupt frame discarded");
                 esp_camera_fb_return(frame);
                 continue;
