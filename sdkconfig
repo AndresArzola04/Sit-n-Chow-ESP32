@@ -609,6 +609,26 @@ CONFIG_ESP_MAXIMUM_RETRY=5
 # end of Example Connection Configuration
 
 #
+# Firebase Configuration
+#
+CONFIG_FIREBASE_DATABASE_URL="https://sit-n-chow-v1-default-rtdb.firebaseio.com"
+CONFIG_FIREBASE_DB_SECRET=""
+CONFIG_FIREBASE_DEVICE_ID=""
+CONFIG_CLOUD_RUN_URL="https://sit-n-chow-ws-5jph4zpsja-uc.a.run.app"
+CONFIG_CLOUD_RUN_DEVICE_SECRET=""
+# end of Firebase Configuration
+
+#
+# Feeder Hardware Configuration
+#
+CONFIG_TOF_THRESHOLD_MM=400
+CONFIG_LOW_FOOD_THRESHOLD_CM=20
+CONFIG_FEED_DISPENSE_TIMEOUT_MS=5000
+CONFIG_PET_APPROACH_TIMEOUT_S=60
+CONFIG_SITTING_DETECT_TIMEOUT_S=180
+# end of Feeder Hardware Configuration
+
+#
 # Compiler options
 #
 CONFIG_COMPILER_OPTIMIZATION_DEBUG=y

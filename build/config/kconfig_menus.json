@@ -6876,7 +6876,7 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "IP address that the ESP will assign to it's AP interface. You can use this IP to connect to the camera after flashing.",
+                "help": "IP address that the ESP will assign to its AP interface.",
                 "id": "SERVER_IP",
                 "name": "SERVER_IP",
                 "range": null,
@@ -6886,7 +6886,7 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.",
+                "help": "Set the Maximum retry to avoid station reconnecting to the AP\nunlimited when the AP is really inexistent.",
                 "id": "ESP_MAXIMUM_RETRY",
                 "name": "ESP_MAXIMUM_RETRY",
                 "range": null,
@@ -6897,6 +6897,122 @@
         "depends_on": null,
         "id": "example-connection-configuration",
         "title": "Example Connection Configuration",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Hostname only \u2014 no https:// prefix and no trailing slash.\nExample: my-project-default-rtdb.firebaseio.com",
+                "id": "FIREBASE_DATABASE_URL",
+                "name": "FIREBASE_DATABASE_URL",
+                "range": null,
+                "title": "Firebase RTDB hostname",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Legacy database secret for REST API authentication.\nFind it in Firebase Console \u2192 Project Settings \u2192\nService accounts \u2192 Database secrets.\nKeep this value private \u2014 do not commit to source control.",
+                "id": "FIREBASE_DB_SECRET",
+                "name": "FIREBASE_DB_SECRET",
+                "range": null,
+                "title": "Firebase database secret",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Unique identifier for this feeder unit.\nMust match the device ID registered in Firebase by the mobile app\nduring BLE provisioning (the BLE service name, e.g. SIT_N_CHOW_AABBCC).",
+                "id": "FIREBASE_DEVICE_ID",
+                "name": "FIREBASE_DEVICE_ID",
+                "range": null,
+                "title": "Device ID",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Base URL of your Cloud Run service \u2014 no trailing slash.\nExample: https://sit-n-chow-ws-96817124249-uc.a.run.app",
+                "id": "CLOUD_RUN_URL",
+                "name": "CLOUD_RUN_URL",
+                "range": null,
+                "title": "Cloud Run base URL",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Optional shared secret sent as X-Device-Secret header when\nfetching tokens. Set the same value as the DEVICE_SECRET\nenvironment variable on your Cloud Run service.\nLeave blank to disable the check during development.",
+                "id": "CLOUD_RUN_DEVICE_SECRET",
+                "name": "CLOUD_RUN_DEVICE_SECRET",
+                "range": null,
+                "title": "Cloud Run device shared secret",
+                "type": "string"
+            }
+        ],
+        "depends_on": null,
+        "id": "firebase-configuration",
+        "title": "Firebase Configuration",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "If the ToF sensor reads a distance below this value the feeder\nconsiders a pet to be present at the bowl.",
+                "id": "TOF_THRESHOLD_MM",
+                "name": "TOF_THRESHOLD_MM",
+                "range": null,
+                "title": "ToF presence threshold (mm)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "If the ultrasonic sensor reads a distance above this value the\nhopper is considered low and a push notification is sent.",
+                "id": "LOW_FOOD_THRESHOLD_CM",
+                "name": "LOW_FOOD_THRESHOLD_CM",
+                "range": null,
+                "title": "Ultrasonic low-food threshold (cm)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Safety cut-off for the dispense motor in milliseconds.",
+                "id": "FEED_DISPENSE_TIMEOUT_MS",
+                "name": "FEED_DISPENSE_TIMEOUT_MS",
+                "range": null,
+                "title": "Max dispense motor run time (ms)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "How long the feeder waits for a pet to approach before aborting.",
+                "id": "PET_APPROACH_TIMEOUT_S",
+                "name": "PET_APPROACH_TIMEOUT_S",
+                "range": null,
+                "title": "ToF pet approach timeout (seconds)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "How long the sitting detector runs before dispensing regardless\nof whether the pet is confirmed sitting (3 minutes default).",
+                "id": "SITTING_DETECT_TIMEOUT_S",
+                "name": "SITTING_DETECT_TIMEOUT_S",
+                "range": null,
+                "title": "Sitting detection timeout (seconds)",
+                "type": "int"
+            }
+        ],
+        "depends_on": null,
+        "id": "feeder-hardware-configuration",
+        "title": "Feeder Hardware Configuration",
         "type": "menu"
     },
     {

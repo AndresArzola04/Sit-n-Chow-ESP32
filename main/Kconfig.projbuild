@@ -4,47 +4,130 @@ menu "Example Connection Configuration"
         string "WiFi STA SSID"
         default "Quad"
         help
-        WiFi SSID (network name) to connect to or empty for Off.
+            WiFi SSID (network name) to connect to or empty for Off.
 
     config ESP_WIFI_PASSWORD
         string "WiFi STA Password"
         default "onmyhonor"
         help
-        WiFi Password if WEP/WPA/WPA2 or empty if Open.
+            WiFi Password if WEP/WPA/WPA2 or empty if Open.
 
     config ESP_WIFI_AP_SSID
         string "WiFi AP SSID"
         default ""
         help
-        AP SSID (network name) to create or empty for Off.
+            AP SSID (network name) to create or empty for Off.
 
     config ESP_WIFI_AP_PASSWORD
         string "WiFi AP Password"
         default ""
         help
-        AP password for WPA2 or empty for Open.
+            AP password for WPA2 or empty for Open.
 
     config MAX_STA_CONN
         int "Maximal STA connections"
         default 1
         help
-        Max number of the STA connects to AP.
+            Max number of the STA connects to AP.
 
     config ESP_WIFI_AP_CHANNEL
         string "WiFi AP Channel"
         default ""
         help
-        AP channel for better connection performance.
+            AP channel for better connection performance.
 
     config SERVER_IP
         string "WiFi AP IP Address"
         default "192.168.4.1"
         help
-            IP address that the ESP will assign to it's AP interface. You can use this IP to connect to the camera after flashing.
+            IP address that the ESP will assign to its AP interface.
 
     config ESP_MAXIMUM_RETRY
         int "Maximum retry"
         default 5
         help
-        Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+            Set the Maximum retry to avoid station reconnecting to the AP
+            unlimited when the AP is really inexistent.
+
+endmenu
+
+menu "Firebase Configuration"
+
+    config FIREBASE_DATABASE_URL
+        string "Firebase RTDB hostname"
+        default "https://sit-n-chow-v1-default-rtdb.firebaseio.com"
+        help
+            Hostname only — no https:// prefix and no trailing slash.
+            Example: my-project-default-rtdb.firebaseio.com
+
+    config FIREBASE_DB_SECRET
+        string "Firebase database secret"
+        default ""
+        help
+            Legacy database secret for REST API authentication.
+            Find it in Firebase Console → Project Settings →
+            Service accounts → Database secrets.
+            Keep this value private — do not commit to source control.
+
+    config FIREBASE_DEVICE_ID
+        string "Device ID"
+        default "SIT_N_CHOW_3533EC"
+        help
+            Unique identifier for this feeder unit.
+            Must match the device ID registered in Firebase by the mobile app
+            during BLE provisioning (the BLE service name, e.g. SIT_N_CHOW_AABBCC).
+
+    config CLOUD_RUN_URL
+        string "Cloud Run base URL"
+        default "https://sit-n-chow-ws-5jph4zpsja-uc.a.run.app"
+        help
+            Base URL of your Cloud Run service — no trailing slash.
+            Example: https://sit-n-chow-ws-96817124249-uc.a.run.app
+
+    config CLOUD_RUN_DEVICE_SECRET
+        string "Cloud Run device shared secret"
+        default ""
+        help
+            Optional shared secret sent as X-Device-Secret header when
+            fetching tokens. Set the same value as the DEVICE_SECRET
+            environment variable on your Cloud Run service.
+            Leave blank to disable the check during development.
+
+endmenu
+
+menu "Feeder Hardware Configuration"
+
+    config TOF_THRESHOLD_MM
+        int "ToF presence threshold (mm)"
+        default 400
+        help
+            If the ToF sensor reads a distance below this value the feeder
+            considers a pet to be present at the bowl.
+
+    config LOW_FOOD_THRESHOLD_CM
+        int "Ultrasonic low-food threshold (cm)"
+        default 20
+        help
+            If the ultrasonic sensor reads a distance above this value the
+            hopper is considered low and a push notification is sent.
+
+    config FEED_DISPENSE_TIMEOUT_MS
+        int "Max dispense motor run time (ms)"
+        default 5000
+        help
+            Safety cut-off for the dispense motor in milliseconds.
+
+    config PET_APPROACH_TIMEOUT_S
+        int "ToF pet approach timeout (seconds)"
+        default 60
+        help
+            How long the feeder waits for a pet to approach before aborting.
+
+    config SITTING_DETECT_TIMEOUT_S
+        int "Sitting detection timeout (seconds)"
+        default 180
+        help
+            How long the sitting detector runs before dispensing regardless
+            of whether the pet is confirmed sitting (3 minutes default).
+
 endmenu
