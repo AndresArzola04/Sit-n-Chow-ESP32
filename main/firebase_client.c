@@ -32,9 +32,9 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 #define TAG            "firebase"
-#define URL_BUF_SIZE   640
+#define URL_BUF_SIZE   2048  /* ID tokens are ~900 chars + URL overhead */
 #define BODY_BUF_SIZE  4096
-#define TOKEN_MAX_LEN  1024   /* custom tokens are ~900 chars */
+#define TOKEN_MAX_LEN  1536  /* ID tokens can be up to ~1200 chars */
 
 static char               s_auth_token[TOKEN_MAX_LEN] = {0};
 static SemaphoreHandle_t  s_token_mutex               = NULL;
@@ -133,8 +133,9 @@ static esp_err_t do_request(const char *method,
 
 static esp_err_t fetch_token(void)
 {
-    char url[URL_BUF_SIZE];
-    snprintf(url, sizeof(url),
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    snprintf(url, URL_BUF_SIZE,
              "%s/esp-token?device=%s",
              CONFIG_CLOUD_RUN_URL,
              CONFIG_FIREBASE_DEVICE_ID);
@@ -153,6 +154,7 @@ static esp_err_t fetch_token(void)
     esp_err_t err = do_request("GET", url, NULL,
                                 secret_name, secret_value,
                                 &body);
+    free(url);
 
     if (err != ESP_OK || !body) {
         free(body);
@@ -239,11 +241,13 @@ esp_err_t firebase_client_init(void)
 
 esp_err_t firebase_get(const char *path, cJSON **out_json)
 {
-    char url[URL_BUF_SIZE];
-    build_url(url, sizeof(url), path);
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
 
     char *body = NULL;
     esp_err_t err = do_request("GET", url, NULL, NULL, NULL, &body);
+    free(url);
 
     if (out_json) *out_json = NULL;
 
@@ -263,40 +267,49 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
 
 esp_err_t firebase_patch(const char *path, cJSON *json)
 {
-    char url[URL_BUF_SIZE];
-    build_url(url, sizeof(url), path);
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) return ESP_ERR_NO_MEM;
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
     esp_err_t err = do_request("PATCH", url, body, NULL, NULL, NULL);
+    free(url);
     free(body);
     return err;
 }
 
 esp_err_t firebase_put(const char *path, cJSON *json)
 {
-    char url[URL_BUF_SIZE];
-    build_url(url, sizeof(url), path);
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) return ESP_ERR_NO_MEM;
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
     esp_err_t err = do_request("PUT", url, body, NULL, NULL, NULL);
+    free(url);
     free(body);
     return err;
 }
 
 esp_err_t firebase_push(const char *path, cJSON *json)
 {
-    char url[URL_BUF_SIZE];
-    build_url(url, sizeof(url), path);
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) return ESP_ERR_NO_MEM;
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
     esp_err_t err = do_request("POST", url, body, NULL, NULL, NULL);
+    free(url);
     free(body);
     return err;
 }
 
 esp_err_t firebase_delete(const char *path)
 {
-    char url[URL_BUF_SIZE];
-    build_url(url, sizeof(url), path);
-    return do_request("DELETE", url, NULL, NULL, NULL, NULL);
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
+    esp_err_t err = do_request("DELETE", url, NULL, NULL, NULL, NULL);
+    free(url);
+    return err;
 }

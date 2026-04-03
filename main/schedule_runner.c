@@ -31,8 +31,8 @@
 #include "cJSON.h"
 
 #define TAG              "sched"
-#define REFRESH_INTERVAL_S  300    /* re-fetch schedules from Firebase every 5 min */
-#define CHECK_INTERVAL_MS   30000  /* check time every 30 s */
+#define REFRESH_INTERVAL_S  60    /* re-fetch schedules from Firebase every 5 min */
+#define CHECK_INTERVAL_MS   20000  /* check time every 30 s */
 #define MAX_SCHEDULES       32
 
 #define UID_MAX_LEN         64
@@ -179,6 +179,8 @@ static void check_and_fire(void)
              local_tm.tm_hour, local_tm.tm_min);
 
     int iso_day_idx = tm_wday_to_iso_index(local_tm.tm_wday);
+
+    ESP_LOGI(TAG, "Current time: %s day_idx=%d", current_hhmm, iso_day_idx);
 
     /* Already fired this minute on this weekday? Skip. */
     if (strcmp(current_hhmm, s_last_fired_hhmm) == 0 &&

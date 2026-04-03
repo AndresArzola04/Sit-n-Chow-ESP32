@@ -1,0 +1,157 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM6 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr  2 2026 19:42:41[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (83) esp_image: segment 0: paddr=00010020 vaddr=3c0f0020 size=33574h (210292) map[0m
+[0;32mI (122) esp_image: segment 1: paddr=0004359c vaddr=3fca7e00 size=07a6ch ( 31340) load[0m
+[0;32mI (128) esp_image: segment 2: paddr=0004b010 vaddr=40378000 size=05008h ( 20488) load[0m
+[0;32mI (132) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=eaa9ch (961180) map[0m
+[0;32mI (276) esp_image: segment 4: paddr=0013aac4 vaddr=4037d008 size=1ad58h (109912) load[0m
+[0;32mI (297) esp_image: segment 5: paddr=00155824 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (310) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (310) boot: Disabling RNG early entropy source...[0m
+[0;32mI (320) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (320) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (321) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (323) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (327) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (331) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (335) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (340) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (345) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (350) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (355) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (360) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (363) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (367) esp_psram: Speed: 80MHz[0m
+[0;32mI (370) cpu_start: Multicore app[0m
+[0;32mI (385) cpu_start: Pro cpu start user code[0m
+[0;32mI (385) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (385) app_init: Application information:[0m
+[0;32mI (385) app_init: Project name:     video_stream_server[0m
+[0;32mI (390) app_init: App version:      4997667-dirty[0m
+[0;32mI (394) app_init: Compile time:     Apr  2 2026 19:42:15[0m
+[0;32mI (399) app_init: ELF file SHA256:  efa820e6f...[0m
+[0;32mI (404) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (408) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (411) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (415) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (419) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (425) heap_init: At 3FCB6E98 len 00032878 (202 KiB): RAM[0m
+[0;32mI (431) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (436) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (441) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (446) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (453) spi_flash: detected chip: generic[0m
+[0;32mI (456) spi_flash: flash io: qio[0m
+[0;32mI (460) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (466) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (472) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (496) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (498) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (500) main_task: Calling app_main()[0m
+[0;32mI (504) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (521) pp: pp rom version: e7ae62f[0m
+[0;32mI (522) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (523) wifi:wifi driver task: 3fceda88, prio:23, stack:6656, core=0[0m
+[0;32mI (531) wifi:wifi firmware version: 14da9b7[0m
+[0;32mI (531) wifi:wifi certification version: v7.0[0m
+[0;32mI (532) wifi:config NVS flash: enabled[0m
+[0;32mI (535) wifi:config nano formatting: disabled[0m
+[0;32mI (540) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (544) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (548) wifi:Init management short buffer num: 32[0m
+[0;32mI (553) wifi:Init dynamic tx buffer num: 64[0m
+[0;32mI (557) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (561) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (565) wifi:Init static rx buffer num: 16[0m
+[0;32mI (569) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (573) wifi_init: rx ba win: 32[0m
+[0;32mI (576) wifi_init: accept mbox: 6[0m
+[0;32mI (579) wifi_init: tcpip mbox: 64[0m
+[0;32mI (582) wifi_init: udp mbox: 64[0m
+[0;32mI (584) wifi_init: tcp mbox: 64[0m
+[0;32mI (587) wifi_init: tcp tx win: 65535[0m
+[0;32mI (591) wifi_init: tcp rx win: 65535[0m
+[0;32mI (594) wifi_init: tcp mss: 1440[0m
+[0;32mI (597) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (600) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (604) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (608) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (612) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (618) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (623) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (662) wifi:mode : sta (90:70:69:35:33:ec)[0m
+[0;32mI (662) wifi:enable tsf[0m
+[0;32mI (3068) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3069) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (3074) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (3076) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (3104) wifi:connected with Quad_legacy, aid = 56, channel 11, BW20, bssid = d4:20:b0:a6:ed:21[0m
+[0;32mI (3104) wifi:security: WPA2-PSK, phy: bgn, rssi: -51[0m
+[0;32mI (3108) wifi:pm start, type: 1[0m
+
+[0;32mI (3109) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (3117) wifi:set rx beacon pti, rx_bcn_pti: 14, bcn_timeout: 25000, mt_pti: 14, mt_time: 10000[0m
+[0;32mI (3126) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (3133) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (3321) wifi:<ba-add>idx:0 (ifx:0, d4:20:b0:a6:ed:21), tid:0, ssn:0, winSize:64[0m
+[0;32mI (4343) esp_netif_handlers: sta ip: 10.0.81.93, mask: 255.255.254.0, gw: 10.0.80.1[0m
+[0;32mI (4343) camera wifi: Got IP: 10.0.81.93[0m
+[0;32mI (4343) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (4347) feeder: WiFi connected[0m
+[0;32mI (4351) feeder: Waiting for SNTP sync…[0m
+[0;32mI (5945) wifi:<ba-add>idx:1 (ifx:0, d4:20:b0:a6:ed:21), tid:1, ssn:0, winSize:64[0m
+[0;32mI (6354) feeder: Clock synced: 2026-04-02 20:05:45[0m
+[0;32mI (7009) firebase: Auth token refreshed[0m
+[0;32mI (7010) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (7425) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (7839) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (7839) cam_hal: cam init ok[0m
+[0;32mI (7839) sccb-ng: pin_sda 5 pin_scl 6[0m
+[0;32mI (7839) sccb-ng: sccb_i2c_port=1[0m
+[1;31mE (7852) camera: Detected camera not supported.[0m
+[1;31mE (7852) camera: Camera probe failed with error 0x106(ESP_ERR_NOT_SUPPORTED)[0m
+[1;31mE (7852) feeder: Camera init failed: ESP_ERR_NOT_SUPPORTED[0m
+[0;32mI (7857) feeder: Camera init: ESP_ERR_NOT_SUPPORTED[0m
+[0;33mW (7862) feeder: Camera not available — skipping WebSocket stream[0m
+[0;32mI (7870) sched: Schedule runner started (device=SIT_N_CHOW_3533EC uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (7880) feeder: All tasks started[0m
+[0;32mI (7880) main_task: Returned from app_main()[0m
+[0;32mI (8396) sched: Loaded 2 active schedule(s) for this device[0m
+[0;32mI (28397) sched: Current time: 20:06 day_idx=3[0m
+[0;32mI (48397) sched: Current time: 20:06 day_idx=3[0m
+[0;32mI (68848) sched: Loaded 2 active schedule(s) for this device[0m
+[0;32mI (68848) sched: Current time: 20:06 day_idx=3[0m
+[0;32mI (88848) sched: Current time: 20:07 day_idx=3[0m
+[0;32mI (88848) sched: Schedule '-OpFau_AhUJ_Jl68evpk' fired at 20:07 — dispensing 60 g[0m
+[0;32mI (88848) feeder: === Feed workflow START (60 g, source=schedule) ===[0m
+[0;32mI (88855) feeder: [1] Beep speaker[0m
+[0;32mI (88858) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (88863) feeder: [3] Running sitting detector…[0m
+[0;32mI (88868) feeder: [4] Dispensing 60 g…[0m
+[0;32mI (90871) feeder: [5] Checking food level…[0m
+[0;32mI (91843) feeder: === Feed workflow DONE ===[0m

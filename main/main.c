@@ -135,8 +135,17 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
     };
 
     esp_err_t ret = esp_camera_init(&camera_config);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Camera init failed: %s", esp_err_to_name(ret));
+        return ret;
+    }
 
     sensor_t *s = esp_camera_sensor_get();
+    if (s == NULL) {
+        ESP_LOGE(TAG, "Camera sensor get returned NULL");
+        return ESP_FAIL;
+    }
+
     s->set_reg(s, 0x3035, 0xff, 0x21);
 
     if (s->id.PID == OV5640_PID) {
@@ -146,7 +155,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
     }
 
     camera_sensor_info_t *s_info = esp_camera_sensor_get_info(&(s->id));
-    if (ret == ESP_OK && pixel_format == PIXFORMAT_JPEG && s_info->support_jpeg) {
+    if (s_info && pixel_format == PIXFORMAT_JPEG && s_info->support_jpeg) {
         auto_jpeg_support = true;
     }
 
@@ -477,7 +486,7 @@ void app_main(void)
     ESP_LOGI(TAG, "WiFi connected");
 
     /* 2. Time sync (needed for schedule matching) */
-    setenv("TZ", "UTC0", 1);   /* Change to your timezone, e.g. "EST5EDT" */
+    setenv("TZ", "EST5EDT", 1);   /* Change to your timezone, e.g. "EST5EDT" */
     tzset();
     sntp_sync_wait();
 
@@ -504,8 +513,13 @@ void app_main(void)
     esp_err_t cam_err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
-    /* 7. WebSocket stream */
-    ws_client_init("wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/ingest");
+    /* 7. WebSocket stream (only if camera working) */
+    const bool camera_ok = (cam_err == ESP_OK);
+    if (camera_ok) {
+        ws_client_init("wss://sit-n-chow-ws-96817124249.us-central1.run.app/ingest");
+    } else {
+        ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
+    }
 
     /* 8. Feed mutex */
     s_feed_mutex = xSemaphoreCreateMutex();
@@ -521,10 +535,12 @@ void app_main(void)
     }
 
     /* 10. Background tasks */
-    xTaskCreate(heartbeat_task,      "heartbeat",  4096, NULL, 3, NULL);
-    xTaskCreate(command_poll_task,   "cmd_poll",   8192, NULL, 4, NULL);
-    xTaskCreate(ws_send_task,        "ws_send",   16384, NULL, 5, NULL);
-    xTaskCreate(camera_capture_task, "cam_cap",    4096, NULL, 5, NULL);
+    xTaskCreate(heartbeat_task,    "heartbeat",  4096, NULL, 3, NULL);
+    xTaskCreate(command_poll_task, "cmd_poll",   8192, NULL, 4, NULL);
+    if (camera_ok) {
+        xTaskCreate(ws_send_task,        "ws_send",   16384, NULL, 5, NULL);
+        xTaskCreate(camera_capture_task, "cam_cap",    4096, NULL, 5, NULL);
+    }
 
     ESP_LOGI(TAG, "All tasks started");
     /* app_main returns; FreeRTOS scheduler keeps everything running */
