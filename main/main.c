@@ -33,7 +33,7 @@
 #include "esp_sntp.h"
 #include "nvs_flash.h"
 
-#include "camera_pin.h"
+#include "pins.h"
 #include "app_wifi.h"
 #include "esp_camera.h"
 #include "esp_websocket_client.h"
@@ -44,6 +44,7 @@
 #include "dispenser.h"
 #include "tof.h"
 #include "speaker.h"
+#include "manual_button.h"
 #include "cJSON.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
@@ -284,12 +285,12 @@ static void push_notification(const char *title, const char *body)
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  Steps:
- *   1. Beep speaker            (TODO: wire GPIO/DAC)
- *   2. Activate ToF sensor     (TODO: wire I²C ToF)
- *   3. Wait for pet approach   (TODO: threshold logic)
+ *   1. Beep speaker            
+ *   2. Activate ToF sensor     
+ *   3. Wait for pet approach   
  *   4. Run sitting detector    (TODO: ML inference)
- *   5. Dispense food           (TODO: stepper/servo GPIO)
- *   6. Ultrasonic capacity check (TODO: wire HC-SR04)
+ *   5. Dispense food           
+ *   6. Ultrasonic capacity check 
  *   7. Log event + notify user
  */
 
@@ -537,6 +538,9 @@ void app_main(void)
     } else {
         ESP_LOGW(TAG, "Identity not ready — schedule runner skipped");
     }
+
+    /* 9b. Manual override button */
+    manual_button_start();
 
     /* 10. Background tasks */
     xTaskCreate(heartbeat_task,    "heartbeat",  4096, NULL, 3, NULL);

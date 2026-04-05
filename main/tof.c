@@ -19,13 +19,14 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "tmf8701_c_api.h"
+#include "pins.h"
 
 #define TAG "tof"
 
 /* ── I2C config ──────────────────────────────────────────────────────────── */
 #define I2C_PORT          I2C_NUM_0
-#define I2C_SDA_PIN       GPIO_NUM_37
-#define I2C_SCL_PIN       GPIO_NUM_36
+#define I2C_SDA_PIN       PIN_TOF_SDA
+#define I2C_SCL_PIN       PIN_TOF_SCL
 #define I2C_FREQ_HZ       400000      /* 400 kHz fast mode */
 #define TMF8701_ADDR      0x41
 

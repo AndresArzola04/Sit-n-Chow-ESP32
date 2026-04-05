@@ -14,10 +14,11 @@
 #include "driver/gpio.h"
 #include "esp_timer.h"
 #include "esp_log.h"
+#include "pins.h"
 
 #define TAG              "ultrasonic"
-#define TRIG_PIN         GPIO_NUM_45
-#define ECHO_PIN         GPIO_NUM_35
+#define TRIG_PIN         PIN_ULTRASONIC_TRIG
+#define ECHO_PIN         PIN_ULTRASONIC_ECHO
 
 /* Speed of sound at ~20°C in cm/µs */
 #define SOUND_SPEED_CM_PER_US  0.034f

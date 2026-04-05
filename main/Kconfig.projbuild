@@ -99,7 +99,7 @@ menu "Feeder Hardware Configuration"
 
     config TOF_THRESHOLD_MM
         int "ToF presence threshold (mm)"
-        default 1000
+        default 400
 
     config TOF_SAMPLES_TO_CONFIRM
         int "ToF consecutive readings to confirm presence"
@@ -145,6 +145,15 @@ menu "Feeder Hardware Configuration"
         default 60
         help
             How long the feeder waits for a pet to approach before aborting.
+
+    config MANUAL_BUTTON_FINISH_GRAMS
+        int "Manual button finish dispense amount (grams)"
+        default 10
+        help
+            When the manual override button is released, the motor completes
+            one clean finishing revolution dispensing this many grams.
+            Set to match your CONFIG_DISPENSER_GRAMS_PER_REV value so the
+            auger always stops at a consistent position.
 
     config SITTING_DETECT_TIMEOUT_S
         int "Sitting detection timeout (seconds)"

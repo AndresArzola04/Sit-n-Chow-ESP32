@@ -13,6 +13,7 @@
 
 #include "speaker.h"
 #include "audio_player.h"
+#include "pins.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -23,7 +24,7 @@
 #include "freertos/task.h"
 
 #define TAG            "speaker"
-#define SPEAKER_GPIO   13
+#define SPEAKER_GPIO   PIN_SPEAKER
 #define PWM_FREQ_HZ    20000
 #define SAMPLE_RATE_HZ 16000
 

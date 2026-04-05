@@ -7032,6 +7032,16 @@
             {
                 "children": [],
                 "depends_on": null,
+                "help": "When the manual override button is released, the motor completes\none clean finishing revolution dispensing this many grams.\nSet to match your CONFIG_DISPENSER_GRAMS_PER_REV value so the\nauger always stops at a consistent position.",
+                "id": "MANUAL_BUTTON_FINISH_GRAMS",
+                "name": "MANUAL_BUTTON_FINISH_GRAMS",
+                "range": null,
+                "title": "Manual button finish dispense amount (grams)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
                 "help": "How long the sitting detector runs before dispensing regardless\nof whether the pet is confirmed sitting (3 minutes default).",
                 "id": "SITTING_DETECT_TIMEOUT_S",
                 "name": "SITTING_DETECT_TIMEOUT_S",

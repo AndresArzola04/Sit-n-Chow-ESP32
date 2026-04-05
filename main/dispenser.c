@@ -16,6 +16,7 @@
 
 #include "driver/gpio.h"
 #include "esp_log.h"
+#include "pins.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "rom/ets_sys.h"
@@ -28,14 +29,14 @@
 #define TAG "dispenser"
 
 /* ── Pin definitions (matching tested hardware) ──────────────────────────── */
-#define STEP_PIN    GPIO_NUM_1
-#define DIR_PIN     GPIO_NUM_39
-#define EN_PIN      GPIO_NUM_48   /* active low */
-#define SLP_PIN     GPIO_NUM_2
-#define RST_PIN     GPIO_NUM_42
-#define M0_PIN      GPIO_NUM_14
-#define M1_PIN      GPIO_NUM_38
-#define M2_PIN      GPIO_NUM_41
+#define STEP_PIN    PIN_STEPPER_STEP
+#define DIR_PIN     PIN_STEPPER_DIR
+#define EN_PIN      PIN_STEPPER_EN   /* active low */
+#define SLP_PIN     PIN_STEPPER_SLP
+#define RST_PIN     PIN_STEPPER_RST
+#define M0_PIN      PIN_STEPPER_M0
+#define M1_PIN      PIN_STEPPER_M1
+#define M2_PIN      PIN_STEPPER_M2
 
 /* ── Motor constants ─────────────────────────────────────────────────────── */
 #define STEPS_PER_REV      200    /* NEMA 17: 1.8° per step */
