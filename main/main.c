@@ -42,6 +42,8 @@
 #include "schedule_runner.h"
 #include "ultrasonic.h"
 #include "dispenser.h"
+#include "tof.h"
+#include "speaker.h"
 #include "cJSON.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
@@ -303,22 +305,12 @@ static void do_feed_workflow(int grams, const char *source)
 
     /* ── Step 1: Beep ────────────────────────────────────────────────────── */
     ESP_LOGI(TAG, "[1] Beep speaker");
-    // TODO: gpio_set_level(SPEAKER_GPIO, 1);
-    // vTaskDelay(pdMS_TO_TICKS(500));
-    // gpio_set_level(SPEAKER_GPIO, 0);
+    speaker_beep();
 
     /* ── Step 2 & 3: ToF — wait for pet to approach ─────────────────────── */
     ESP_LOGI(TAG, "[2] Activating ToF sensor, waiting for pet…");
-    bool pet_detected = false;
-    // TODO: tof_start();
-    // TickType_t tof_deadline = xTaskGetTickCount() + pdMS_TO_TICKS(60000);
-    // while (xTaskGetTickCount() < tof_deadline) {
-    //     int dist_mm = tof_read_mm();
-    //     if (dist_mm > 0 && dist_mm < TOF_THRESHOLD_MM) { pet_detected = true; break; }
-    //     vTaskDelay(pdMS_TO_TICKS(100));
-    // }
-    // tof_stop();
-    pet_detected = true;  /* placeholder until hardware is wired */
+    uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
+    bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
 
     if (!pet_detected) {
         ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
@@ -530,6 +522,8 @@ void app_main(void)
     /* 7b. Sensors & actuators */
     ultrasonic_init();
     dispenser_init();
+    tof_init();
+    speaker_init();
 
     /* 8. Feed mutex */
     s_feed_mutex = xSemaphoreCreateMutex();
