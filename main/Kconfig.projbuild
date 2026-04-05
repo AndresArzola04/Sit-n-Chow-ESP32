@@ -55,7 +55,7 @@ menu "Firebase Configuration"
 
     config FIREBASE_DATABASE_URL
         string "Firebase RTDB hostname"
-        default "https://sit-n-chow-v1-default-rtdb.firebaseio.com"
+        default ""
         help
             Hostname only — no https:// prefix and no trailing slash.
             Example: my-project-default-rtdb.firebaseio.com
@@ -71,7 +71,7 @@ menu "Firebase Configuration"
 
     config FIREBASE_DEVICE_ID
         string "Device ID"
-        default "SIT_N_CHOW_3533EC"
+        default ""
         help
             Unique identifier for this feeder unit.
             Must match the device ID registered in Firebase by the mobile app
@@ -79,7 +79,7 @@ menu "Firebase Configuration"
 
     config CLOUD_RUN_URL
         string "Cloud Run base URL"
-        default "https://sit-n-chow-ws-5jph4zpsja-uc.a.run.app"
+        default ""
         help
             Base URL of your Cloud Run service — no trailing slash.
             Example: https://sit-n-chow-ws-96817124249-uc.a.run.app
@@ -103,6 +103,21 @@ menu "Feeder Hardware Configuration"
         help
             If the ToF sensor reads a distance below this value the feeder
             considers a pet to be present at the bowl.
+
+    config DISPENSER_GRAMS_PER_REV
+        int "Grams dispensed per full motor revolution"
+        default 10
+        help
+            How many grams of food one full revolution of the auger dispenses.
+            Calibrate by running dispenser_run(100) and weighing the output,
+            then adjust until the dispensed amount matches the requested amount.
+
+    config DISPENSER_RPM
+        int "Dispenser motor speed (RPM)"
+        default 20
+        help
+            Motor speed in RPM. Keep this low (15-30) for controlled steady
+            food flow. Higher values risk jamming or inaccurate dispensing.
 
     config LOW_FOOD_THRESHOLD_CM
         int "Ultrasonic low-food threshold (cm)"

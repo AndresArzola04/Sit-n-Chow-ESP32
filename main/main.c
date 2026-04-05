@@ -41,6 +41,7 @@
 #include "firebase_client.h"
 #include "schedule_runner.h"
 #include "ultrasonic.h"
+#include "dispenser.h"
 #include "cJSON.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
@@ -337,8 +338,7 @@ static void do_feed_workflow(int grams, const char *source)
 
     /* ── Step 5: Dispense ────────────────────────────────────────────────── */
     ESP_LOGI(TAG, "[4] Dispensing %d g…", grams);
-    // TODO: dispenser_run(grams);
-    vTaskDelay(pdMS_TO_TICKS(2000));  /* placeholder dispense delay */
+    dispenser_run(grams);
 
     /* ── Step 6: Ultrasonic food level check ─────────────────────────────── */
     ESP_LOGI(TAG, "[5] Checking food level…");
@@ -527,8 +527,9 @@ void app_main(void)
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
     }
 
-    /* 7b. Ultrasonic sensor */
+    /* 7b. Sensors & actuators */
     ultrasonic_init();
+    dispenser_init();
 
     /* 8. Feed mutex */
     s_feed_mutex = xSemaphoreCreateMutex();

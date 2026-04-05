@@ -6972,6 +6972,26 @@
             {
                 "children": [],
                 "depends_on": null,
+                "help": "How many grams of food one full revolution of the auger dispenses.\nCalibrate by running dispenser_run(100) and weighing the output,\nthen adjust until the dispensed amount matches the requested amount.",
+                "id": "DISPENSER_GRAMS_PER_REV",
+                "name": "DISPENSER_GRAMS_PER_REV",
+                "range": null,
+                "title": "Grams dispensed per full motor revolution",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Motor speed in RPM. Keep this low (15-30) for controlled steady\nfood flow. Higher values risk jamming or inaccurate dispensing.",
+                "id": "DISPENSER_RPM",
+                "name": "DISPENSER_RPM",
+                "range": null,
+                "title": "Dispenser motor speed (RPM)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
                 "help": "If the ultrasonic sensor reads a distance above this value the\nhopper is considered low and a push notification is sent.",
                 "id": "LOW_FOOD_THRESHOLD_CM",
                 "name": "LOW_FOOD_THRESHOLD_CM",
