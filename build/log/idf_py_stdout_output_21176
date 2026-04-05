@@ -1,0 +1,17 @@
+Command: ninja all
+[0/1] Re-running CMake...
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32s3
+NOTICE: 
+Following dependencies have new versions available:
+Dependency "espressif/esp32-camera": "2.1.4" -> "2.1.6"
+Consider running "idf.py update-dependencies" to update your lock file.
+NOTICE: Processing 4 dependencies:
+NOTICE: [1/4] espressif/esp32-camera (2.1.4)
+NOTICE: [2/4] espressif/esp_jpeg (1.3.1)
+NOTICE: [3/4] espressif/esp_websocket_client (1.6.1)
+NOTICE: [4/4] idf (5.5.1)
+-- Configuring incomplete, errors occurred!
+FAILED: build.ninja 
+C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe --regenerate-during-build -S"C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main" -B"C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build"

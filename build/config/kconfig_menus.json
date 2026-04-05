@@ -6962,11 +6962,21 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "If the ToF sensor reads a distance below this value the feeder\nconsiders a pet to be present at the bowl.",
+                "help": null,
                 "id": "TOF_THRESHOLD_MM",
                 "name": "TOF_THRESHOLD_MM",
                 "range": null,
                 "title": "ToF presence threshold (mm)",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "If the ToF sensor reads a distance below this value the feeder\nconsiders a pet to be present at the bowl.",
+                "id": "TOF_SAMPLES_TO_CONFIRM",
+                "name": "TOF_SAMPLES_TO_CONFIRM",
+                "range": null,
+                "title": "ToF consecutive readings to confirm presence",
                 "type": "int"
             },
             {

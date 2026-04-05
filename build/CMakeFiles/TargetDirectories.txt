@@ -869,6 +869,13 @@ C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/buil
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/wifi_provisioning/CMakeFiles/install.dir
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/wifi_provisioning/CMakeFiles/install/local.dir
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/wifi_provisioning/CMakeFiles/install/strip.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/__idf_DFRobot_TMF8701.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/edit_cache.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/rebuild_cache.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/list_install_components.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/install.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/install/local.dir
+C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/DFRobot_TMF8701/CMakeFiles/install/strip.dir
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/espressif__esp_jpeg/CMakeFiles/__idf_espressif__esp_jpeg.dir
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/espressif__esp_jpeg/CMakeFiles/edit_cache.dir
 C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/espressif__esp_jpeg/CMakeFiles/rebuild_cache.dir

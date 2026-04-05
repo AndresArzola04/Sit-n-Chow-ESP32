@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/managed_components/espressif__esp_websocket_client
+# Install script for directory: C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/components/espressif__esp_websocket_client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

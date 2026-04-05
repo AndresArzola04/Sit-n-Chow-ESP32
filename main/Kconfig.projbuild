@@ -55,7 +55,7 @@ menu "Firebase Configuration"
 
     config FIREBASE_DATABASE_URL
         string "Firebase RTDB hostname"
-        default ""
+        default "sit-n-chow-5eeae-default-rtdb.firebaseio.com"
         help
             Hostname only — no https:// prefix and no trailing slash.
             Example: my-project-default-rtdb.firebaseio.com
@@ -79,7 +79,7 @@ menu "Firebase Configuration"
 
     config CLOUD_RUN_URL
         string "Cloud Run base URL"
-        default ""
+        default "https://your-service-url.run.app"
         help
             Base URL of your Cloud Run service — no trailing slash.
             Example: https://sit-n-chow-ws-96817124249-uc.a.run.app
@@ -99,7 +99,15 @@ menu "Feeder Hardware Configuration"
 
     config TOF_THRESHOLD_MM
         int "ToF presence threshold (mm)"
-        default 400
+        default 1000
+
+    config TOF_SAMPLES_TO_CONFIRM
+        int "ToF consecutive readings to confirm presence"
+        default 3
+        help
+            Number of consecutive sub-threshold readings required before
+            the pet is considered present. Higher values reduce false triggers
+            at the cost of slightly slower response.
         help
             If the ToF sensor reads a distance below this value the feeder
             considers a pet to be present at the bowl.
