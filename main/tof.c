@@ -24,7 +24,7 @@
 #define TAG "tof"
 
 /* ── I2C config ──────────────────────────────────────────────────────────── */
-#define I2C_PORT          I2C_NUM_0
+#define I2C_PORT          I2C_NUM_1
 #define I2C_SDA_PIN       PIN_TOF_SDA
 #define I2C_SCL_PIN       PIN_TOF_SCL
 #define I2C_FREQ_HZ       400000      /* 400 kHz fast mode */
@@ -50,6 +50,15 @@ static bool               s_ready = false;
 
 static void i2c_init(void)
 {
+    // Check if driver already installed on this port
+    esp_err_t probe = i2c_driver_install(I2C_PORT, I2C_MODE_MASTER, 0, 0, 0);
+    if (probe == ESP_ERR_INVALID_STATE) {
+        ESP_LOGW(TAG, "I2C port %d already installed — skipping init", I2C_PORT);
+        return;
+    }
+    // If we got here, driver wasn't installed — delete the partial install and do it properly
+    i2c_driver_delete(I2C_PORT);
+
     i2c_config_t conf = {
         .mode             = I2C_MODE_MASTER,
         .sda_io_num       = I2C_SDA_PIN,
@@ -60,14 +69,14 @@ static void i2c_init(void)
     };
     ESP_ERROR_CHECK(i2c_param_config(I2C_PORT, &conf));
     ESP_ERROR_CHECK(i2c_driver_install(I2C_PORT, conf.mode, 0, 0, 0));
-    ESP_LOGI(TAG, "I2C initialised (SDA=%d SCL=%d @ %d Hz)",
-             I2C_SDA_PIN, I2C_SCL_PIN, I2C_FREQ_HZ);
+    ESP_LOGI(TAG, "I2C initialised on port %d (SDA=%d SCL=%d)",
+             I2C_PORT, I2C_SDA_PIN, I2C_SCL_PIN);
 }
-
 /* ── Public API ──────────────────────────────────────────────────────────── */
 
 esp_err_t tof_init(void)
 {
+    ESP_LOGI(TAG, "About to install I2C driver on port %d", I2C_PORT);
     i2c_init();
 
     s_tof = tmf8701_create(GPIO_NUM_NC, GPIO_NUM_NC, I2C_PORT, TMF8701_ADDR);

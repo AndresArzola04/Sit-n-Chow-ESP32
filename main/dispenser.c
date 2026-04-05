@@ -188,7 +188,7 @@ esp_err_t dispenser_run(int grams)
     gpio_set_level(EN_PIN, 0);
     vTaskDelay(pdMS_TO_TICKS(100));  /* let driver wake up */
 
-    stepper_rotate(revolutions, CONFIG_DISPENSER_RPM, DISPENSE_CW);
+    stepper_rotate(revolutions/4, CONFIG_DISPENSER_RPM, DISPENSE_CW);
 
     /* Disable driver to cut idle current and prevent motor heating */
     gpio_set_level(EN_PIN, 1);
