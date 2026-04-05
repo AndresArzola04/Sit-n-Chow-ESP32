@@ -40,6 +40,7 @@
 
 #include "firebase_client.h"
 #include "schedule_runner.h"
+#include "ultrasonic.h"
 #include "cJSON.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
@@ -341,10 +342,15 @@ static void do_feed_workflow(int grams, const char *source)
 
     /* ── Step 6: Ultrasonic food level check ─────────────────────────────── */
     ESP_LOGI(TAG, "[5] Checking food level…");
+    float distance_cm = ultrasonic_read_cm();
     bool food_low = false;
-    // TODO: int distance_cm = ultrasonic_read_cm();
-    // food_low = (distance_cm > LOW_FOOD_THRESHOLD_CM);
-    food_low = false;   /* placeholder */
+    if (distance_cm < 0) {
+        ESP_LOGW(TAG, "Ultrasonic read failed — skipping low food check");
+    } else {
+        ESP_LOGI(TAG, "Food level distance: %.1f cm (threshold: %d cm)",
+                 distance_cm, CONFIG_LOW_FOOD_THRESHOLD_CM);
+        food_low = (distance_cm > (float)CONFIG_LOW_FOOD_THRESHOLD_CM);
+    }
 
     /* ── Step 7: Log event + notifications ───────────────────────────────── */
     log_feed_event(grams, source);
@@ -486,7 +492,7 @@ void app_main(void)
     ESP_LOGI(TAG, "WiFi connected");
 
     /* 2. Time sync (needed for schedule matching) */
-    setenv("TZ", "EST5EDT", 1);   /* Change to your timezone, e.g. "EST5EDT" */
+    setenv("TZ", "UTC0", 1);   /* Change to your timezone, e.g. "EST5EDT" */
     tzset();
     sntp_sync_wait();
 
@@ -520,6 +526,9 @@ void app_main(void)
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
     }
+
+    /* 7b. Ultrasonic sensor */
+    ultrasonic_init();
 
     /* 8. Feed mutex */
     s_feed_mutex = xSemaphoreCreateMutex();

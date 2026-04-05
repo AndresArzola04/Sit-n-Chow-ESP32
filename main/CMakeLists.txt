@@ -1,4 +1,4 @@
-idf_component_register(SRCS "main.c" "app_wifi.c"
+idf_component_register(SRCS "ultrasonic.c" "main.c" "app_wifi.c"
                             "firebase_client.c"
                             "schedule_runner.c"
                        PRIV_REQUIRES esp_wifi nvs_flash wifi_provisioning bt protocomm
