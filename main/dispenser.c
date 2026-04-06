@@ -12,6 +12,29 @@
  * 20 RPM) to avoid jamming and keep food flow controlled.
  */
 
+ /*
+        Barrel Jack Polarities
+
+                FRONT
+
+                
+                GND
+
+                    SWITCH
+
+                V+
+
+
+        Motor Connections
+
+            B1 Red
+            B2 Blue
+            A1 Black
+            A2 Green
+
+        SLP & RST Set HIGH 
+*/
+
 #include "dispenser.h"
 
 #include "driver/gpio.h"

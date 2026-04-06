@@ -50,13 +50,11 @@ static bool               s_ready = false;
 
 static void i2c_init(void)
 {
-    // Check if driver already installed on this port
     esp_err_t probe = i2c_driver_install(I2C_PORT, I2C_MODE_MASTER, 0, 0, 0);
     if (probe == ESP_ERR_INVALID_STATE) {
         ESP_LOGW(TAG, "I2C port %d already installed — skipping init", I2C_PORT);
         return;
     }
-    // If we got here, driver wasn't installed — delete the partial install and do it properly
     i2c_driver_delete(I2C_PORT);
 
     i2c_config_t conf = {
@@ -79,23 +77,41 @@ esp_err_t tof_init(void)
     ESP_LOGI(TAG, "About to install I2C driver on port %d", I2C_PORT);
     i2c_init();
 
+    // Quick probe before trying full init — avoids hanging on missing sensor
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, (TMF8701_ADDR << 1) | I2C_MASTER_WRITE, true);
+    i2c_master_stop(cmd);
+    esp_err_t probe = i2c_master_cmd_begin(I2C_PORT, cmd, pdMS_TO_TICKS(50));
+    i2c_cmd_link_delete(cmd);
+
+    if (probe != ESP_OK) {
+        ESP_LOGW(TAG, "No I2C device at 0x%02X — ToF disabled", TMF8701_ADDR);
+        i2c_driver_delete(I2C_PORT);
+        return ESP_FAIL;
+    }
+
     s_tof = tmf8701_create(GPIO_NUM_NC, GPIO_NUM_NC, I2C_PORT, TMF8701_ADDR);
     if (s_tof == NULL) {
         ESP_LOGE(TAG, "Failed to create TMF8701 instance");
         return ESP_FAIL;
     }
 
-    /* Retry begin() up to 5 times — sensor can be slow to wake */
+    bool found = false;
     for (int i = 0; i < 5; i++) {
-        if (tmf8701_begin(s_tof) == 0) break;
-        ESP_LOGW(TAG, "TMF8701 begin attempt %d/5 failed", i + 1);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        if (i == 4) {
-            ESP_LOGE(TAG, "TMF8701 init failed after 5 attempts");
-            tmf8701_destroy(s_tof);
-            s_tof = NULL;
-            return ESP_FAIL;
+        if (tmf8701_begin(s_tof) == 0) {
+            found = true;
+            break;
         }
+        ESP_LOGW(TAG, "TMF8701 begin attempt %d/5 failed", i + 1);
+        if (i < 4) vTaskDelay(pdMS_TO_TICKS(200));  // shorter delay, no point waiting 1s for a missing sensor
+    }
+
+    if (!found) {
+        ESP_LOGE(TAG, "TMF8701 not found — ToF disabled");
+        tmf8701_destroy(s_tof);
+        s_tof = NULL;
+        return ESP_FAIL;
     }
 
     /* Load known-good calibration data */

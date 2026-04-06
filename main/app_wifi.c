@@ -18,7 +18,7 @@ static const char *TAG = "camera wifi";
 static EventGroupHandle_t s_wifi_event_group = NULL;
 #define WIFI_CONNECTED_BIT BIT0
 
-static void event_handler(void *arg, esp_event_base_t event_base,
+static void IRAM_ATTR event_handler(void *arg, esp_event_base_t event_base,
                           int32_t event_id, void *event_data)
 {
     if (event_base == WIFI_PROV_EVENT) {
@@ -79,6 +79,11 @@ static void get_device_service_name(char *service_name, size_t max)
 
 void app_wifi_main()
 {
+    // Suppress WiFi driver logs to prevent logging from interrupt context
+    esp_log_level_set("wifi", ESP_LOG_WARN);
+    esp_log_level_set("wpa", ESP_LOG_WARN);
+    esp_log_level_set("wpa2", ESP_LOG_WARN);
+
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());

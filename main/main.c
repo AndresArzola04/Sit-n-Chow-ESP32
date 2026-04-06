@@ -485,7 +485,7 @@ void app_main(void)
     ESP_LOGI(TAG, "WiFi connected");
 
     /* 2. Time sync (needed for schedule matching) */
-    setenv("TZ", "UTC0", 1);   /* Change to your timezone, e.g. "EST5EDT" */
+    setenv("TZ", "EST5EDT", 1);   /* Change to your timezone, e.g. "EST5EDT" */
     tzset();
     sntp_sync_wait();
 
@@ -521,10 +521,16 @@ void app_main(void)
     }
 
     /* 7b. Sensors & actuators */
+    speaker_init();
     ultrasonic_init();
     dispenser_init();
-    tof_init();
-    speaker_init();
+
+    esp_err_t tof_err = tof_init();
+    if (tof_err != ESP_OK) {
+        ESP_LOGW(TAG, "ToF sensor not detected — presence detection disabled");
+    }
+
+    
 
     /* 8. Feed mutex */
     s_feed_mutex = xSemaphoreCreateMutex();

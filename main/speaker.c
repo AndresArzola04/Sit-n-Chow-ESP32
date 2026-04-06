@@ -1,16 +1,3 @@
-/*
- * speaker.c
- *
- * Speaker module for Sit-N-Chow feeder.
- * Wraps audio_player (LEDC PWM) and generates tones programmatically.
- *
- * Beep tone is synthesised at runtime into a small stack buffer — no
- * audio header file needed for the attention beep.
- *
- * For future app-to-speaker streaming, speaker_play_pcm() passes
- * directly through to audio_player_start().
- */
-
 #include "speaker.h"
 #include "audio_player.h"
 #include "pins.h"
@@ -20,6 +7,7 @@
 #include <string.h>
 
 #include "esp_log.h"
+#include "esp_heap_caps.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -28,68 +16,73 @@
 #define PWM_FREQ_HZ    20000
 #define SAMPLE_RATE_HZ 16000
 
-/* ── Beep parameters ─────────────────────────────────────────────────────── *
- * Two-tone pattern: 880 Hz for 250 ms, silence 100 ms, 880 Hz for 250 ms.
- * 880 Hz is in the dog hearing sweet spot and cuts through ambient noise.
- * ─────────────────────────────────────────────────────────────────────────── */
 #define BEEP_FREQ_HZ       880
 #define BEEP_DURATION_MS   250
 #define BEEP_GAP_MS        100
-#define BEEP_AMPLITUDE     28000    /* out of 32767 — loud but not clipping */
+#define BEEP_AMPLITUDE     32000
 
-/* ── Public API ──────────────────────────────────────────────────────────── */
+static int16_t  *s_beep_buf   = NULL;
+static uint32_t  s_beep_total = 0;
 
 void speaker_init(void)
 {
     audio_player_init(SPEAKER_GPIO, PWM_FREQ_HZ, SAMPLE_RATE_HZ);
-    ESP_LOGI(TAG, "Speaker initialised (GPIO%d, %d Hz PWM, %d Hz sample rate)",
-             SPEAKER_GPIO, PWM_FREQ_HZ, SAMPLE_RATE_HZ);
+
+    uint32_t tone_samples = (SAMPLE_RATE_HZ * BEEP_DURATION_MS) / 1000;
+    uint32_t gap_samples  = (SAMPLE_RATE_HZ * BEEP_GAP_MS)      / 1000;
+    s_beep_total          = tone_samples + gap_samples + tone_samples;
+    size_t buf_bytes      = s_beep_total * sizeof(int16_t);
+
+    // Try internal RAM first, then PSRAM
+    s_beep_buf = heap_caps_malloc(buf_bytes, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+    if (!s_beep_buf) {
+        ESP_LOGW(TAG, "Internal alloc failed (%u bytes), trying PSRAM", buf_bytes);
+        s_beep_buf = heap_caps_malloc(buf_bytes, MALLOC_CAP_SPIRAM);
+    }
+
+    // Only fill buffer if allocation succeeded
+    if (!s_beep_buf) {
+        ESP_LOGE(TAG, "Failed to allocate beep buffer (%u bytes) — speaker disabled", buf_bytes);
+        s_beep_total = 0;  // prevent speaker_beep from trying to play
+        return;
+    }
+
+    // First tone
+    for (uint32_t i = 0; i < tone_samples; i++) {
+        s_beep_buf[i] = (int16_t)(BEEP_AMPLITUDE *
+            sinf(2.0f * (float)M_PI * BEEP_FREQ_HZ * i / SAMPLE_RATE_HZ));
+    }
+    // Silence gap
+    memset(s_beep_buf + tone_samples, 0, gap_samples * sizeof(int16_t));
+    // Second tone
+    for (uint32_t i = 0; i < tone_samples; i++) {
+        s_beep_buf[tone_samples + gap_samples + i] = (int16_t)(BEEP_AMPLITUDE *
+            sinf(2.0f * (float)M_PI * BEEP_FREQ_HZ * i / SAMPLE_RATE_HZ));
+    }
+
+    ESP_LOGI(TAG, "Speaker initialised (GPIO%d, %u bytes, %s)",
+             SPEAKER_GPIO, (unsigned)buf_bytes,
+             heap_caps_check_integrity_addr((intptr_t)s_beep_buf, false) ? "PSRAM" : "IRAM");
 }
 
 void speaker_beep(void)
 {
-    /* Number of samples for one beep tone */
-    uint32_t tone_samples = (SAMPLE_RATE_HZ * BEEP_DURATION_MS) / 1000;  /* 4000 */
-    uint32_t gap_samples  = (SAMPLE_RATE_HZ * BEEP_GAP_MS)      / 1000;  /* 1600 */
-    uint32_t total        = tone_samples + gap_samples + tone_samples;    /* 9600 */
-
-    int16_t *buf = malloc(total * sizeof(int16_t));
-    if (!buf) {
-        ESP_LOGE(TAG, "speaker_beep: malloc failed");
+    if (!s_beep_buf || s_beep_total == 0) {
+        ESP_LOGE(TAG, "speaker_beep: buffer not allocated");
         return;
     }
-
-    /* First tone */
-    for (uint32_t i = 0; i < tone_samples; i++) {
-        buf[i] = (int16_t)(BEEP_AMPLITUDE *
-                 sinf(2.0f * (float)M_PI * BEEP_FREQ_HZ * i / SAMPLE_RATE_HZ));
-    }
-
-    /* Silence gap */
-    memset(buf + tone_samples, 0, gap_samples * sizeof(int16_t));
-
-    /* Second tone */
-    for (uint32_t i = 0; i < tone_samples; i++) {
-        buf[tone_samples + gap_samples + i] = (int16_t)(BEEP_AMPLITUDE *
-                 sinf(2.0f * (float)M_PI * BEEP_FREQ_HZ * i / SAMPLE_RATE_HZ));
-    }
-
     ESP_LOGI(TAG, "Playing beep (%d Hz, 2x %d ms)", BEEP_FREQ_HZ, BEEP_DURATION_MS);
-
-    /* audio_player_start is non-blocking — we block here until done
-     * so the feed workflow waits for the beep before activating the ToF */
-    audio_player_start(buf, total);
+    audio_player_start(s_beep_buf, s_beep_total);
+    vTaskDelay(pdMS_TO_TICKS(10));  // yield so playback task gets scheduled
     while (audio_player_is_playing()) {
         vTaskDelay(pdMS_TO_TICKS(20));
     }
-
-    free(buf);
+    audio_player_stop();
     ESP_LOGI(TAG, "Beep complete");
 }
 
 void speaker_play_pcm(const int16_t *samples, uint32_t sample_count)
 {
-    /* Non-blocking — caller manages the buffer lifetime */
     audio_player_start(samples, sample_count);
 }
 
