@@ -33,12 +33,13 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 #define TAG            "firebase"
-#define URL_BUF_SIZE   2048  /* ID tokens are ~900 chars + URL overhead */
-#define BODY_BUF_SIZE  4096
+#define URL_BUF_SIZE   3072  /* ID tokens are ~900 chars + URL overhead */
+#define BODY_BUF_SIZE  8192
 #define TOKEN_MAX_LEN  1536  /* ID tokens can be up to ~1200 chars */
 
 static char               s_auth_token[TOKEN_MAX_LEN] = {0};
 static SemaphoreHandle_t  s_token_mutex               = NULL;
+static SemaphoreHandle_t  s_http_mutex                = NULL;  /* ← NEW: serialise all HTTP requests */
 static esp_timer_handle_t s_refresh_timer             = NULL;
 
 /* ── Response accumulator used by the HTTP event handler ─────────────────── */
@@ -85,7 +86,7 @@ static esp_err_t do_request(const char *method,
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
         .buffer_size                 = 2048,
-        .buffer_size_tx              = 2048,
+        .buffer_size_tx              = 1024,
         .timeout_ms                  = 15000,
     };
 
@@ -213,6 +214,9 @@ esp_err_t firebase_client_init(void)
     s_token_mutex = xSemaphoreCreateMutex();
     configASSERT(s_token_mutex);
 
+    s_http_mutex = xSemaphoreCreateMutex();   /* ← NEW */
+    configASSERT(s_http_mutex);
+
     /* Fetch initial token — retry up to 5 times */
     esp_err_t err = ESP_FAIL;
     for (int i = 0; i < 5; i++) {
@@ -246,9 +250,13 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
 
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+
     char *body = NULL;
     esp_err_t err = do_request("GET", url, NULL, NULL, NULL, &body);
     free(url);
+
+    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
 
     if (out_json) *out_json = NULL;
 
@@ -273,51 +281,105 @@ esp_err_t firebase_get_large(const char *path, cJSON **out_json,
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
 
-    char *resp_buf = heap_caps_malloc(max_response_bytes, MALLOC_CAP_SPIRAM);
-    if (!resp_buf) resp_buf = malloc(max_response_bytes);
-    if (!resp_buf) {
-        ESP_LOGE(TAG, "firebase_get_large: failed to alloc %u bytes",
-                 max_response_bytes);
-        free(url);
-        return ESP_ERR_NO_MEM;
-    }
-    memset(resp_buf, 0, max_response_bytes);
-
-    resp_ctx_t ctx = { .buf = resp_buf, .len = 0, .cap = (int)max_response_bytes };
+    ESP_LOGI(TAG, "Free internal heap: %d bytes", 
+             heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+    ESP_LOGI(TAG, "Free PSRAM: %d bytes", 
+             heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
     esp_http_client_config_t cfg = {
         .url                         = url,
-        .event_handler               = http_event_handler,
-        .user_data                   = &ctx,
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
         .buffer_size                 = 4096,
-        .buffer_size_tx              = 2048,
+        .buffer_size_tx              = 512,
         .timeout_ms                  = 20000,
     };
 
     esp_http_client_handle_t client = esp_http_client_init(&cfg);
-    if (!client) { free(resp_buf); free(url); return ESP_FAIL; }
+    if (!client) { free(url); return ESP_ERR_NO_MEM; }
 
     esp_http_client_set_method(client, HTTP_METHOD_GET);
-    esp_err_t err = esp_http_client_perform(client);
 
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
+
+    esp_err_t err = esp_http_client_open(client, 0);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "firebase_get_large failed: %s", esp_err_to_name(err));
-    } else {
-        int status = esp_http_client_get_status_code(client);
-        if (status < 200 || status >= 300) {
-            ESP_LOGW(TAG, "firebase_get_large HTTP %d", status);
-            err = ESP_FAIL;
-        }
+        ESP_LOGE(TAG, "firebase_get_large open failed: %s", esp_err_to_name(err));
+        esp_http_client_cleanup(client);
+        free(url);
+        xSemaphoreGive(s_http_mutex);
+        return err;
     }
 
+    // Fetch and discard headers, get content length
+    int content_length = esp_http_client_fetch_headers(client);
+    int status = esp_http_client_get_status_code(client);
+
+    if (status < 200 || status >= 300) {
+        ESP_LOGW(TAG, "firebase_get_large HTTP %d", status);
+        esp_http_client_close(client);
+        esp_http_client_cleanup(client);
+        free(url);
+        xSemaphoreGive(s_http_mutex);
+        return ESP_FAIL;
+    }
+
+    // Grow buffer as we read
+    size_t cap = 8192;
+    char *resp_buf = malloc(cap);
+    if (!resp_buf) {
+        esp_http_client_close(client);
+        esp_http_client_cleanup(client);
+        free(url);
+        xSemaphoreGive(s_http_mutex);
+        return ESP_ERR_NO_MEM;
+    }
+
+    int total_read = 0;
+    char read_buf[512];  // small stack buffer for each read
+
+    while (1) {
+        int rlen = esp_http_client_read(client, read_buf, sizeof(read_buf));
+        if (rlen < 0) {
+            ESP_LOGE(TAG, "firebase_get_large read error: %d", rlen);
+            err = ESP_FAIL;
+            break;
+        }
+        if (rlen == 0) break;  // done
+
+        // Grow resp_buf if needed
+        if (total_read + rlen + 1 > (int)cap) {
+            int new_cap = cap * 2;
+            if (new_cap > 122880) {
+                ESP_LOGE(TAG, "firebase_get_large: response too large");
+                err = ESP_FAIL;
+                break;
+            }
+            char *new_buf = realloc(resp_buf, new_cap);
+            if (!new_buf) {
+                ESP_LOGE(TAG, "firebase_get_large: realloc failed at %d", new_cap);
+                err = ESP_FAIL;
+                break;
+            }
+            resp_buf = new_buf;
+            cap = new_cap;
+        }
+
+        memcpy(resp_buf + total_read, read_buf, rlen);
+        total_read += rlen;
+        resp_buf[total_read] = '\0';
+    }
+
+    ESP_LOGI(TAG, "grow_handler: received %d bytes total", total_read);
+
+    esp_http_client_close(client);
     esp_http_client_cleanup(client);
     free(url);
+    xSemaphoreGive(s_http_mutex);
 
     if (out_json) *out_json = NULL;
 
-    if (err == ESP_OK && strcmp(resp_buf, "null") != 0 && out_json) {
+    if (err == ESP_OK && total_read > 0 && strcmp(resp_buf, "null") != 0 && out_json) {
         cJSON *parsed = cJSON_Parse(resp_buf);
         if (!parsed) {
             ESP_LOGW(TAG, "firebase_get_large: JSON parse error");
@@ -336,9 +398,17 @@ esp_err_t firebase_patch(const char *path, cJSON *json)
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
+
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) { free(url); return ESP_ERR_NO_MEM; }
+    if (!body) {
+        free(url);
+        return ESP_ERR_NO_MEM;
+    }
+
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
     esp_err_t err = do_request("PATCH", url, body, NULL, NULL, NULL);
+    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+
     free(url);
     free(body);
     return err;
@@ -349,9 +419,17 @@ esp_err_t firebase_put(const char *path, cJSON *json)
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
+
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) { free(url); return ESP_ERR_NO_MEM; }
+    if (!body) {
+        free(url);
+        return ESP_ERR_NO_MEM;
+    }
+
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
     esp_err_t err = do_request("PUT", url, body, NULL, NULL, NULL);
+    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+
     free(url);
     free(body);
     return err;
@@ -362,9 +440,17 @@ esp_err_t firebase_push(const char *path, cJSON *json)
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
+
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) { free(url); return ESP_ERR_NO_MEM; }
+    if (!body) {
+        free(url);
+        return ESP_ERR_NO_MEM;
+    }
+
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
     esp_err_t err = do_request("POST", url, body, NULL, NULL, NULL);
+    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+
     free(url);
     free(body);
     return err;
@@ -375,7 +461,11 @@ esp_err_t firebase_delete(const char *path)
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
+
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
     esp_err_t err = do_request("DELETE", url, NULL, NULL, NULL, NULL);
+    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+
     free(url);
     return err;
 }

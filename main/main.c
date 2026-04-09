@@ -1,5 +1,5 @@
 /*
- * take_picture.c  —  main application entry point
+ * main.c  —  main application entry point
  *
  * Responsibilities:
  *   1. Connect WiFi (BLE provisioning via app_wifi_main)
@@ -17,6 +17,10 @@
  *
  * Hardware not yet wired: speaker, ToF, ultrasonic.
  * Those sections are marked TODO and will be filled in subsequent PRs.
+ */
+
+/*  Device IDs:     ESP Dev Board   SIT_N_CHOW_3533EC
+ *                  Project Board   SIT_N_CHOW_D1191C
  */
 
 #include <stdio.h>
@@ -523,8 +527,11 @@ void app_main(void)
 
     /* 7b. Sensors & actuators */
     speaker_init();
+    vTaskDelay(pdMS_TO_TICKS(2000));   // let WiFi/Firebase settle
     audio_intercom_start(CONFIG_FIREBASE_DEVICE_ID);
+    vTaskDelay(pdMS_TO_TICKS(500));
     ultrasonic_init();
+    vTaskDelay(pdMS_TO_TICKS(500));
     dispenser_init();
 
     esp_err_t tof_err = tof_init();

@@ -23226,10 +23226,7 @@
                         "help": "Set the number of WiFi cache TX buffer number.\n\nFor each TX packet from uplayer, such as LWIP etc, WiFi driver needs to allocate a static TX\nbuffer and makes a copy of uplayer packet. If WiFi driver fails to allocate the static TX buffer,\nit caches the uplayer packets to a dedicated buffer queue, this option is used to configure the\nsize of the cached TX queue.",
                         "id": "ESP_WIFI_CACHE_TX_BUFFER_NUM",
                         "name": "ESP_WIFI_CACHE_TX_BUFFER_NUM",
-                        "range": [
-                            0,
-                            128
-                        ],
+                        "range": null,
                         "title": "Max number of WiFi cache TX buffers",
                         "type": "int"
                     },

@@ -29,7 +29,7 @@
 #include "mbedtls/base64.h"
 
 #define TAG               "intercom"
-#define POLL_INTERVAL_MS  1000
+#define POLL_INTERVAL_MS  5000
 #define DEVICE_ID_MAX_LEN 64
 
 /* Path buffer: "devices/<id>/audio" */
@@ -91,9 +91,7 @@ static void intercom_task(void *arg)
         vTaskDelay(pdMS_TO_TICKS(POLL_INTERVAL_MS));
 
         cJSON *json = NULL;
-        /* Audio node contains ~85 KB of base64 PCM — use large buffer GET.
-         * 150 KB gives comfortable headroom for the JSON wrapper overhead. */
-        esp_err_t err = firebase_get_large(path, &json, 150 * 1024);
+        esp_err_t err = firebase_get_large(path, &json, 0);  // size ignored, grows dynamically
 
         /* Node deleted (mic toggled off) or read error — nothing to do */
         if (err != ESP_OK || json == NULL) {
