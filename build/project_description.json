@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "video_stream_server",
-    "project_version":    "61e7a1a-dirty",
+    "project_version":    "1df1fc2-dirty",
     "project_path":       "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.1",
     "build_dir":          "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build",
@@ -1281,11 +1281,11 @@
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "esp_wifi", "nvs_flash", "wifi_provisioning", "bt", "protocomm", "esp_http_client", "json", "esp_timer", "driver", "DFRobot_TMF8701", "espressif__esp32-camera", "espressif__esp_websocket_client" ],
+            "priv_reqs": [ "esp_wifi", "nvs_flash", "wifi_provisioning", "bt", "protocomm", "esp_http_client", "json", "esp_timer", "driver", "DFRobot_TMF8701", "mbedtls", "espressif__esp32-camera", "espressif__esp_websocket_client" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__esp32-camera", "espressif__esp_websocket_client" ],
             "file": "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/manual_button.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/audio_player.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/speaker.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/tof.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/dispenser.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/ultrasonic.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/main.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/app_wifi.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/firebase_client.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/schedule_runner.c" ],
+            "sources": [ "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/audio_intercom.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/manual_button.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/audio_player.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/speaker.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/tof.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/dispenser.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/ultrasonic.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/main.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/app_wifi.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/firebase_client.c", "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/schedule_runner.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
@@ -2983,7 +2983,7 @@
             "dir": "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "esp_wifi", "nvs_flash", "wifi_provisioning", "bt", "protocomm", "esp_http_client", "json", "esp_timer", "driver", "DFRobot_TMF8701", "espressif__esp32-camera", "espressif__esp_websocket_client" ],
+            "priv_reqs": [ "esp_wifi", "nvs_flash", "wifi_provisioning", "bt", "protocomm", "esp_http_client", "json", "esp_timer", "driver", "DFRobot_TMF8701", "mbedtls", "espressif__esp32-camera", "espressif__esp_websocket_client" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__esp32-camera", "espressif__esp_websocket_client" ],
             "include_dirs": [ "." ]

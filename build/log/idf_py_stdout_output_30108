@@ -1,4 +1,4 @@
-Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 -DCCACHE_ENABLE=1 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main
 -- IDF_TARGET is not set, guessed 'esp32s3' from sdkconfig 'C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/sdkconfig'
 -- Found Git: C:/Espressif/tools/idf-git/2.44.0/cmd/git.exe (found version "2.44.0.windows.1")
 -- Minimal build - OFF
@@ -64,7 +64,7 @@ warning: unknown kconfig symbol 'LWIP_ETHARP_TRUST_IP_MAC' assigned to 'n' in C:
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
 -- USING O3
--- App "video_stream_server" version: 61e7a1a-dirty
+-- App "video_stream_server" version: 1df1fc2-dirty
 -- Adding linker script C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/esp_system/ld/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ld

@@ -46,6 +46,7 @@
 #include "speaker.h"
 #include "manual_button.h"
 #include "cJSON.h"
+#include "audio_intercom.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
 // CONFIG_FIREBASE_DEVICE_ID   — unique string that identifies this feeder
@@ -522,6 +523,7 @@ void app_main(void)
 
     /* 7b. Sensors & actuators */
     speaker_init();
+    audio_intercom_start(CONFIG_FIREBASE_DEVICE_ID);
     ultrasonic_init();
     dispenser_init();
 

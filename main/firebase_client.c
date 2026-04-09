@@ -20,6 +20,7 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "esp_http_client.h"
+#include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "cJSON.h"
@@ -262,6 +263,71 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
     }
 
     free(body);
+    return err;
+}
+
+esp_err_t firebase_get_large(const char *path, cJSON **out_json,
+                              size_t max_response_bytes)
+{
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
+
+    char *resp_buf = heap_caps_malloc(max_response_bytes, MALLOC_CAP_SPIRAM);
+    if (!resp_buf) resp_buf = malloc(max_response_bytes);
+    if (!resp_buf) {
+        ESP_LOGE(TAG, "firebase_get_large: failed to alloc %u bytes",
+                 max_response_bytes);
+        free(url);
+        return ESP_ERR_NO_MEM;
+    }
+    memset(resp_buf, 0, max_response_bytes);
+
+    resp_ctx_t ctx = { .buf = resp_buf, .len = 0, .cap = (int)max_response_bytes };
+
+    esp_http_client_config_t cfg = {
+        .url                         = url,
+        .event_handler               = http_event_handler,
+        .user_data                   = &ctx,
+        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .buffer_size                 = 4096,
+        .buffer_size_tx              = 2048,
+        .timeout_ms                  = 20000,
+    };
+
+    esp_http_client_handle_t client = esp_http_client_init(&cfg);
+    if (!client) { free(resp_buf); free(url); return ESP_FAIL; }
+
+    esp_http_client_set_method(client, HTTP_METHOD_GET);
+    esp_err_t err = esp_http_client_perform(client);
+
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "firebase_get_large failed: %s", esp_err_to_name(err));
+    } else {
+        int status = esp_http_client_get_status_code(client);
+        if (status < 200 || status >= 300) {
+            ESP_LOGW(TAG, "firebase_get_large HTTP %d", status);
+            err = ESP_FAIL;
+        }
+    }
+
+    esp_http_client_cleanup(client);
+    free(url);
+
+    if (out_json) *out_json = NULL;
+
+    if (err == ESP_OK && strcmp(resp_buf, "null") != 0 && out_json) {
+        cJSON *parsed = cJSON_Parse(resp_buf);
+        if (!parsed) {
+            ESP_LOGW(TAG, "firebase_get_large: JSON parse error");
+            err = ESP_FAIL;
+        } else {
+            *out_json = parsed;
+        }
+    }
+
+    free(resp_buf);
     return err;
 }
 
