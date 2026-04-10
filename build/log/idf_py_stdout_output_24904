@@ -1,0 +1,678 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr  9 2026 20:12:24[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c0f0020 size=37708h (227080) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00047730 vaddr=3fca8500 size=07984h ( 31108) load[0m
+[0;32mI (130) esp_image: segment 2: paddr=0004f0bc vaddr=40378000 size=00f5ch (  3932) load[0m
+[0;32mI (132) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=ef784h (980868) map[0m
+[0;32mI (282) esp_image: segment 4: paddr=0013f7ac vaddr=40378f5c size=1f524h (128292) load[0m
+[0;32mI (306) esp_image: segment 5: paddr=0015ecd8 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (319) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (319) boot: Disabling RNG early entropy source...[0m
+[0;32mI (329) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (330) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (340) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (344) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (349) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (354) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (368) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (372) esp_psram: Speed: 40MHz[0m
+[0;32mI (375) cpu_start: Multicore app[0m
+[0;32mI (389) cpu_start: Pro cpu start user code[0m
+[0;32mI (390) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (390) app_init: Application information:[0m
+[0;32mI (390) app_init: Project name:     video_stream_server[0m
+[0;32mI (395) app_init: App version:      7137d65-dirty[0m
+[0;32mI (399) app_init: Compile time:     Apr  9 2026 20:12:15[0m
+[0;32mI (404) app_init: ELF file SHA256:  9140ef5fd...[0m
+[0;32mI (408) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (412) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (430) heap_init: At 3FCB6D08 len 00032A08 (202 KiB): RAM[0m
+[0;32mI (435) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (440) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (446) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (458) spi_flash: detected chip: generic[0m
+[0;32mI (461) spi_flash: flash io: qio[0m
+[0;33mW (464) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (480) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (501) coexist: coexist rom version e7ae62f[0m
+[0;32mI (501) main_task: Started on CPU0[0m
+[0;32mI (502) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (505) main_task: Calling app_main()[0m
+[0;32mI (509) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (513) camera wifi: app_wifi_main start[0m
+[0;32mI (517) camera wifi: nvs_flash_init...[0m
+[0;32mI (533) camera wifi: nvs_flash_init done[0m
+[0;32mI (533) camera wifi: esp_netif_init...[0m
+[0;32mI (534) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (534) camera wifi: wifi init...[0m
+[0;32mI (537) pp: pp rom version: e7ae62f[0m
+[0;32mI (540) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (554) wifi_init: rx ba win: 32[0m
+[0;32mI (554) wifi_init: accept mbox: 6[0m
+[0;32mI (554) wifi_init: tcpip mbox: 64[0m
+[0;32mI (554) wifi_init: udp mbox: 64[0m
+[0;32mI (556) wifi_init: tcp mbox: 64[0m
+[0;32mI (559) wifi_init: tcp tx win: 65535[0m
+[0;32mI (562) wifi_init: tcp rx win: 65535[0m
+[0;32mI (566) wifi_init: tcp mss: 1440[0m
+[0;32mI (569) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (572) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (576) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (580) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (584) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (589) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (594) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3039) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (6701) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (6701) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (6701) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (6706) feeder: WiFi connected[0m
+[0;32mI (6709) feeder: Waiting for SNTP sync…[0m
+[0;32mI (25713) feeder: Clock synced: 1969-12-31 19:00:25[0m
+[0;32mI (27000) firebase: Auth token refreshed[0m
+[0;32mI (27001) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (28228) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (29456) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (29456) cam_hal: cam init ok[0m
+[0;32mI (29456) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (29456) sccb: sccb_i2c_port=1[0m
+[0;32mI (29468) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (29470) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (29470) camera: Detected OV5640 camera[0m
+[0;32mI (29470) camera: Detected camera at address=0x3c[0m
+[0;32mI (30171) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (30171) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (30174) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (30179) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (30185) cam_hal: cam config ok[0m
+[0;32mI (30202) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (30203) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (30247) feeder: Camera init: ESP_OK[0m
+[0;32mI (30249) websocket_client: Started[0m
+[0;32mI (30250) audio_player: Initialized: GPIO13, PWM 20000Hz, Sample rate 16000Hz[0m
+[0;32mI (30335) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (32335) intercom: Intercom task started, polling: devices/SIT_N_CHOW_D1191C/audio[0m
+[0;32mI (32335) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (32839) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (33339) dispenser: Dispenser initialised (10.0 g/rev, 20 RPM)[0m
+[0;32mI (33339) tof: About to install I2C driver on port 1[0m
+[1;31mE (33339) i2c: i2c driver install error[0m
+[0;32mI (33342) tof: I2C initialised on port 1 (SDA=14 SCL=38)[0m
+[0;32mI (33347) TMF8701: begin(): probing addr=0x41 on port=1[0m
+[0;32mI (33352) TMF8701: isI2CAddress: device responded at 0x41, val=0x41[0m
+[0;32mI (33358) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (33370) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (33370) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (33374) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (33380) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (33386) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (33841) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (33846) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (33846) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (33847) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (33865) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (33866) TMF8701: begin(): APP0 is running[0m
+[0;32mI (33866) TMF8701: begin(): initialization OK[0m
+[0;32mI (33867) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (33873) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (35237) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (35240) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (35241) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (35247) manual_btn: Manual button task started[0m
+[0;32mI (36523) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (38254) feeder: All tasks started[0m
+[0;32mI (38254) main_task: Returned from app_main()[0m
+[0;32mI (39335) firebase: Free internal heap: 10091 bytes[0m
+[0;32mI (39335) firebase: Free PSRAM: 8258708 bytes[0m
+[0;32mI (40733) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (42254) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (42254) feeder: Failed to get frame (1/3)[0m
+[0;33mW (46354) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (46354) feeder: Failed to get frame (2/3)[0m
+[0;32mI (47735) firebase: Free internal heap: 41059 bytes[0m
+[0;32mI (47735) firebase: Free PSRAM: 8258904 bytes[0m
+[0;32mI (49335) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (50454) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (50454) feeder: Failed to get frame (3/3)[0m
+[0;33mW (50454) feeder: Reinitialising camera…[0m
+[0;32mI (50955) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (50955) cam_hal: cam init ok[0m
+[0;32mI (50955) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (50955) sccb: sccb_i2c_port=1[0m
+[0;32mI (50968) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (50969) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (50969) camera: Detected OV5640 camera[0m
+[0;32mI (50970) camera: Detected camera at address=0x3c[0m
+[0;32mI (51673) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (51673) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (51676) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (51681) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (51687) cam_hal: cam config ok[0m
+[0;32mI (51705) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (51706) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (51752) feeder: Camera reinit: ESP_OK[0m
+[0;33mW (55852) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (55852) feeder: Failed to get frame (1/3)[0m
+[0;32mI (56336) firebase: Free internal heap: 40459 bytes[0m
+[0;32mI (56336) firebase: Free PSRAM: 8259048 bytes[0m
+[0;32mI (56524) sched: Current time: 19:00 day_idx=2[0m
+[0;32mI (57736) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (59952) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (59952) feeder: Failed to get frame (2/3)[0m
+[0;33mW (64052) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (64052) feeder: Failed to get frame (3/3)[0m
+[0;33mW (64052) feeder: Reinitialising camera…[0m
+[0;32mI (64553) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (64553) cam_hal: cam init ok[0m
+[0;32mI (64553) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (64553) sccb: sccb_i2c_port=1[0m
+[0;32mI (64566) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (64567) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (64568) camera: Detected OV5640 camera[0m
+[0;32mI (64568) camera: Detected camera at address=0x3c[0m
+[0;32mI (64738) firebase: Free internal heap: 42251 bytes[0m
+[0;32mI (64738) firebase: Free PSRAM: 8320328 bytes[0m
+[0;32mI (65277) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (65277) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (65280) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (65285) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[1;31mE (65291) cam_hal: cam_dma_config(524): DMA buffer 16384 Byte malloc failed, the current largest free block:6400 Byte[0m
+[1;31mE (65301) cam_hal: cam_config(599): cam_dma_config failed[0m
+[1;31mE (65306) camera: Camera config failed with error 0xffffffff[0m
+[1;31mE (65312) feeder: Camera init failed: ESP_FAIL[0m
+[0;32mI (65316) feeder: Camera reinit: ESP_FAIL[0m
+[0;33mW (65419) feeder: Failed to get frame (1/3)[0m
+[0;33mW (65519) feeder: Failed to get frame (2/3)[0m
+[0;33mW (65619) feeder: Failed to get frame (3/3)[0m
+[0;33mW (65619) feeder: Reinitialising camera…[0m
+[0;32mI (66119) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (66119) cam_hal: cam init ok[0m
+[0;32mI (66119) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (66119) sccb: sccb_i2c_port=1[0m
+[0;32mI (66132) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (66133) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (66133) camera: Detected OV5640 camera[0m
+[0;32mI (66134) camera: Detected camera at address=0x3c[0m
+[0;32mI (66843) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (66843) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (66846) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (66851) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[1;31mE (66857) cam_hal: cam_dma_config(524): DMA buffer 16384 Byte malloc failed, the current largest free block:11776 Byte[0m
+[1;31mE (66867) cam_hal: cam_config(599): cam_dma_config failed[0m
+[1;31mE (66872) camera: Camera config failed with error 0xffffffff[0m
+[1;31mE (66878) feeder: Camera init failed: ESP_FAIL[0m
+[0;32mI (66882) feeder: Camera reinit: ESP_FAIL[0m
+[0;33mW (66985) feeder: Failed to get frame (1/3)[0m
+[0;32mI (67046) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (67085) feeder: Failed to get frame (2/3)[0m
+[0;33mW (67185) feeder: Failed to get frame (3/3)[0m
+[0;33mW (67185) feeder: Reinitialising camera…[0m
+[0;32mI (67685) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (67685) cam_hal: cam init ok[0m
+[0;32mI (67685) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (67685) sccb: sccb_i2c_port=1[0m
+[0;32mI (67698) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (67699) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (67700) camera: Detected OV5640 camera[0m
+[0;32mI (67700) camera: Detected camera at address=0x3c[0m
+[0;32mI (68403) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (68403) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (68406) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (68411) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (68417) cam_hal: cam config ok[0m
+[0;32mI (68435) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (68436) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (68482) feeder: Camera reinit: ESP_OK[0m
+[0;33mW (72582) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (72582) feeder: Failed to get frame (1/3)[0m
+[0;32mI (74047) firebase: Free internal heap: 39223 bytes[0m
+[0;32mI (74047) firebase: Free PSRAM: 8259048 bytes[0m
+[0;32mI (75438) firebase: grow_handler: received 4 bytes total[0m
+[0;32mI (76524) sched: Current time: 19:01 day_idx=2[0m
+[0;33mW (76682) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (76682) feeder: Failed to get frame (2/3)[0m
+[0;32mI (78820) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (79943) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (79943) feeder: [1] Beep speaker[0m
+[0;32mI (79943) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;32mI (80541) audio_player: Playback complete.[0m
+[0;32mI (80556) audio_player: Playback stopped.[0m
+[0;32mI (80556) speaker: Beep complete[0m
+[0;32mI (80556) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (80557) tof: Waiting for presence (threshold=400 mm, timeout=60000ms)[0m
+[0;33mW (80783) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (80783) feeder: Failed to get frame (3/3)[0m
+[0;33mW (80783) feeder: Reinitialising camera…[0m
+[1;31mE (80793) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80807) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80817) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80827) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80837) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80847) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80857) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80868) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80879) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80889) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80899) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80910) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80920) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80930) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80941) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80952) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80962) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80972) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80982) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (80992) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81002) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81013) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81024) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81034) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81044) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81054) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81064) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81074) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81085) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81095) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81105) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81115) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81125) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81136) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81146) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81157) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81168) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81178) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81188) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81198) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81208) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81218) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81229) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81239) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81249) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81259) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81269) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (81279) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (81284) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (81284) cam_hal: cam init ok[0m
+[0;32mI (81284) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (81284) sccb: sccb_i2c_port=1[0m
+[0;32mI (81298) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (81299) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (81299) camera: Detected OV5640 camera[0m
+[0;32mI (81300) camera: Detected camera at address=0x3c[0m
+[0;32mI (82003) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (82003) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (82006) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (82011) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (82017) cam_hal: cam config ok[0m
+[0;32mI (82035) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (82036) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (82085) feeder: Camera reinit: ESP_OK[0m
+[0;32mI (82439) firebase: Free internal heap: 38715 bytes[0m
+[0;32mI (82439) firebase: Free PSRAM: 8259048 bytes[0m
+[0;32mI (84039) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (86185) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (86185) feeder: Failed to get frame (1/3)[0m
+[0;33mW (90285) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (90285) feeder: Failed to get frame (2/3)[0m
+[0;32mI (91040) firebase: Free internal heap: 38899 bytes[0m
+[0;32mI (91040) firebase: Free PSRAM: 8258904 bytes[0m
+[0;32mI (92381) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (94385) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (94385) feeder: Failed to get frame (3/3)[0m
+[0;33mW (94385) feeder: Reinitialising camera…[0m
+[1;31mE (94389) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94402) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94412) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94422) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94434) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94444) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94454) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94464) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94474) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94485) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94495) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94506) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94516) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94526) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94536) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94548) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94558) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94568) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94578) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94589) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94599) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94609) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94620) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94630) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94640) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94650) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94660) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94670) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94680) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94692) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94702) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94712) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94722) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94734) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94744) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94754) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94764) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94774) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94784) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94795) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94806) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94816) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94826) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94836) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94846) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94856) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94867) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (94877) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (94886) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (94886) cam_hal: cam init ok[0m
+[0;32mI (94886) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (94886) sccb: sccb_i2c_port=1[0m
+[0;32mI (94899) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (94900) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (94900) camera: Detected OV5640 camera[0m
+[0;32mI (94901) camera: Detected camera at address=0x3c[0m
+[0;32mI (95604) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (95604) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (95607) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (95612) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (95618) cam_hal: cam config ok[0m
+[0;32mI (95636) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (95637) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (95684) feeder: Camera reinit: ESP_OK[0m
+[0;32mI (97774) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (97775) sched: Current time: 19:01 day_idx=2[0m
+[0;32mI (99383) firebase: Free internal heap: 38723 bytes[0m
+[0;32mI (99383) firebase: Free PSRAM: 8259048 bytes[0m
+[0;33mW (99784) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (99784) feeder: Failed to get frame (1/3)[0m
+[0;32mI (101155) firebase: grow_handler: received 4 bytes total[0m
+[0;33mW (103884) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (103884) feeder: Failed to get frame (2/3)[0m
+[0;33mW (107984) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (107984) feeder: Failed to get frame (3/3)[0m
+[0;33mW (107984) feeder: Reinitialising camera…[0m
+[1;31mE (107987) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108001) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108011) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108021) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108031) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108041) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108051) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108061) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108071) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108081) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108091) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108101) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108111) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108121) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108131) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108142) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108152) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (108156) firebase: Free internal heap: 61027 bytes[0m
+[0;32mI (108156) firebase: Free PSRAM: 8320496 bytes[0m
+[1;31mE (108162) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108172) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108182) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108192) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108202) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108212) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108222) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108232) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108242) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108252) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108262) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108272) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108282) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108292) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108302) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108312) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108323) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108333) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108343) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108353) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108363) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108373) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108383) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108393) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108403) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108413) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108423) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108433) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108443) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108453) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108463) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108473) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (108483) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (108485) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (108485) cam_hal: cam init ok[0m
+[0;32mI (108485) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (108487) sccb: sccb_i2c_port=1[0m
+[0;32mI (108502) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (108504) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (108504) camera: Detected OV5640 camera[0m
+[0;32mI (108504) camera: Detected camera at address=0x3c[0m
+[0;32mI (109213) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (109213) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (109216) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (109221) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[1;31mE (109227) cam_hal: cam_dma_config(524): DMA buffer 16384 Byte malloc failed, the current largest free block:11776 Byte[0m
+[1;31mE (109238) cam_hal: cam_config(599): cam_dma_config failed[0m
+[1;31mE (109243) camera: Camera config failed with error 0xffffffff[0m
+[1;31mE (109248) feeder: Camera init failed: ESP_FAIL[0m
+[0;32mI (109252) feeder: Camera reinit: ESP_FAIL[0m
+[1;31mE (109253) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109272) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109282) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109292) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109302) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109312) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109322) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109332) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109342) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109352) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;33mW (109356) feeder: Failed to get frame (1/3)[0m
+[1;31mE (109362) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109372) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109382) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109392) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109402) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109412) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109422) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109432) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109442) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109452) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;33mW (109456) feeder: Failed to get frame (2/3)[0m
+[1;31mE (109462) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109472) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109482) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109492) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109502) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109512) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109522) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109532) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109542) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109552) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;33mW (109556) feeder: Failed to get frame (3/3)[0m
+[0;33mW (109556) feeder: Reinitialising camera…[0m
+[1;31mE (109562) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109572) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109582) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109592) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109602) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109612) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109622) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109632) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109642) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109652) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109662) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109672) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109682) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109692) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109702) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109712) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109722) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109732) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109742) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109752) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109762) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109772) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109782) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109792) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109802) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109812) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109822) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109832) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109842) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109852) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109862) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109872) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109882) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109892) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109902) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109912) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109922) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109932) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109942) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109952) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109962) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (109970) firebase: grow_handler: received 4 bytes total[0m
+[1;31mE (109972) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109982) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (109992) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110002) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110012) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110022) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110032) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110042) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (110052) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (110056) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (110056) cam_hal: cam init ok[0m
+[0;32mI (110056) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (110057) sccb: sccb_i2c_port=1[0m
+[0;32mI (110072) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (110073) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (110074) camera: Detected OV5640 camera[0m
+[0;32mI (110074) camera: Detected camera at address=0x3c[0m
+[0;32mI (110777) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (110777) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (110780) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (110785) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (110791) cam_hal: cam config ok[0m
+[0;32mI (110810) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (110842) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (110880) feeder: Camera reinit: ESP_OK[0m
+[0;33mW (114980) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (114980) feeder: Failed to get frame (1/3)[0m
+[0;32mI (116971) firebase: Free internal heap: 38723 bytes[0m
+[0;32mI (116971) firebase: Free PSRAM: 8259048 bytes[0m
+[0;32mI (117775) sched: Current time: 19:01 day_idx=2[0m
+[1;31mE (118373) esp-tls-mbedtls: read error :-0x7100[0m
+[1;31mE (118373) transport_base: esp_tls_conn_read error, errno=Success[0m
+[0;33mW (118373) firebase: firebase_get_large HTTP -1[0m
+[0;33mW (119080) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (119080) feeder: Failed to get frame (2/3)[0m
+[0;33mW (123180) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (123180) feeder: Failed to get frame (3/3)[0m
+[0;33mW (123180) feeder: Reinitialising camera…[0m
+[1;31mE (123182) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123197) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123211) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123221) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123232) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123242) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123252) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123262) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123272) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123282) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123292) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123302) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123312) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123322) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123332) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123345) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123355) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123365) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123376) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123386) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123396) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123406) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123416) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123426) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123436) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123446) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123463) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123473) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123495) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123505) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123515) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123525) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123535) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123545) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123556) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123566) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123576) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123586) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123596) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123606) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123616) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123626) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123636) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123646) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123656) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[1;31mE (123680) i2c: i2c_master_cmd_begin(1552): i2c driver not installed[0m
+[0;32mI (123681) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (123681) cam_hal: cam init ok[0m
+[0;32mI (123681) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (123684) sccb: sccb_i2c_port=1[0m
+[0;32mI (123699) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (123700) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (123700) camera: Detected OV5640 camera[0m
+[0;32mI (123701) camera: Detected camera at address=0x3c[0m
+[0;32mI (124404) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (124404) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
+[0;32mI (124407) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (124412) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
+[0;32mI (124418) cam_hal: cam config ok[0m
+[0;32mI (124436) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (124437) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (124484) feeder: Camera reinit: ESP_OK[0m

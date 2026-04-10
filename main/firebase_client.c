@@ -290,8 +290,8 @@ esp_err_t firebase_get_large(const char *path, cJSON **out_json,
         .url                         = url,
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
-        .buffer_size                 = 4096,
-        .buffer_size_tx              = 512,
+        .buffer_size                 = 8192,
+        .buffer_size_tx              = 2048,
         .timeout_ms                  = 20000,
     };
 
@@ -325,8 +325,8 @@ esp_err_t firebase_get_large(const char *path, cJSON **out_json,
     }
 
     // Grow buffer as we read
-    size_t cap = 8192;
-    char *resp_buf = malloc(cap);
+    size_t cap = 65536;
+    char *resp_buf = heap_caps_malloc(cap, MALLOC_CAP_SPIRAM);
     if (!resp_buf) {
         esp_http_client_close(client);
         esp_http_client_cleanup(client);
@@ -341,6 +341,10 @@ esp_err_t firebase_get_large(const char *path, cJSON **out_json,
     while (1) {
         int rlen = esp_http_client_read(client, read_buf, sizeof(read_buf));
         if (rlen < 0) {
+            if (total_read > 0) {
+                // Peer close notify after data — treat as normal EOF
+                break;
+            }
             ESP_LOGE(TAG, "firebase_get_large read error: %d", rlen);
             err = ESP_FAIL;
             break;
@@ -350,7 +354,7 @@ esp_err_t firebase_get_large(const char *path, cJSON **out_json,
         // Grow resp_buf if needed
         if (total_read + rlen + 1 > (int)cap) {
             int new_cap = cap * 2;
-            if (new_cap > 122880) {
+            if (new_cap > 524288) {
                 ESP_LOGE(TAG, "firebase_get_large: response too large");
                 err = ESP_FAIL;
                 break;

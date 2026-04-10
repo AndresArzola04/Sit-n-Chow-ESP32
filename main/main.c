@@ -140,7 +140,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         .frame_size    = frame_size,
         .jpeg_quality  = 25,
         .fb_count      = fb_count,
-        .grab_mode     = CAMERA_GRAB_WHEN_EMPTY,
+        .grab_mode     = CAMERA_GRAB_LATEST,
         .fb_location   = CAMERA_FB_IN_PSRAM,
     };
 
@@ -156,7 +156,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         return ESP_FAIL;
     }
 
-    s->set_reg(s, 0x3035, 0xff, 0x21);
+    s->set_reg(s, 0x3035, 0xff, 0x11);
 
     if (s->id.PID == OV5640_PID) {
         s->set_vflip(s, 1);
@@ -405,7 +405,9 @@ static void handle_pending_command(cJSON *cmd)
 }
 
 static void command_poll_task(void *arg)
-{
+{   
+    vTaskDelay(pdMS_TO_TICKS(2500));
+    
     char path[128];
     snprintf(path, sizeof(path), "commands/%s/pending",
              CONFIG_FIREBASE_DEVICE_ID);
@@ -520,7 +522,7 @@ void app_main(void)
     /* 7. WebSocket stream (only if camera working) */
     const bool camera_ok = (cam_err == ESP_OK);
     if (camera_ok) {
-        ws_client_init("wss://sit-n-chow-ws-96817124249.us-central1.run.app/ingest");
+        ws_client_init("wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/ingest");
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
     }
@@ -558,6 +560,7 @@ void app_main(void)
     manual_button_start();
 
     /* 10. Background tasks */
+    vTaskDelay(pdMS_TO_TICKS(3000));  // give BLE time to release BTDM memory
     xTaskCreate(heartbeat_task,    "heartbeat",  4096, NULL, 3, NULL);
     xTaskCreate(command_poll_task, "cmd_poll",   8192, NULL, 4, NULL);
     if (camera_ok) {

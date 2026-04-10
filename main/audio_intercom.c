@@ -29,7 +29,7 @@
 #include "mbedtls/base64.h"
 
 #define TAG               "intercom"
-#define POLL_INTERVAL_MS  5000
+#define POLL_INTERVAL_MS  7000
 #define DEVICE_ID_MAX_LEN 64
 
 /* Path buffer: "devices/<id>/audio" */

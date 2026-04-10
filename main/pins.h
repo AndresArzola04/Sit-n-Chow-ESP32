@@ -23,21 +23,19 @@
 
 /* ── Ultrasonic (HC-SR04) ────────────────────────────────────────────────── */
 #define PIN_ULTRASONIC_TRIG     GPIO_NUM_45
-#define PIN_ULTRASONIC_ECHO     GPIO_NUM_35
- 
+#define PIN_ULTRASONIC_ECHO     GPIO_NUM_41   // was 35 (PSRAM), now M2 pin
+
 /* ── Stepper motor (DRV8825) ─────────────────────────────────────────────── */
 #define PIN_STEPPER_STEP        GPIO_NUM_1
 #define PIN_STEPPER_DIR         GPIO_NUM_39
 #define PIN_STEPPER_EN          GPIO_NUM_48
 #define PIN_STEPPER_SLP         GPIO_NUM_2
 #define PIN_STEPPER_RST         GPIO_NUM_42
-#define PIN_STEPPER_M0          GPIO_NUM_14
-#define PIN_STEPPER_M1          GPIO_NUM_38
-#define PIN_STEPPER_M2          GPIO_NUM_41
- 
+// M0, M1, M2 removed — motor hardwired to full step
+
 /* ── ToF sensor (TMF8701) ────────────────────────────────────────────────── */
-#define PIN_TOF_SDA             GPIO_NUM_37
-#define PIN_TOF_SCL             GPIO_NUM_36
+#define PIN_TOF_SDA             GPIO_NUM_14   // was 37 (PSRAM), now M0 pin
+#define PIN_TOF_SCL             GPIO_NUM_38   // was 36 (PSRAM), now M1 pin
  
 /* ── Speaker (LM386 via LEDC PWM) ───────────────────────────────────────── */
 #define PIN_SPEAKER             GPIO_NUM_13

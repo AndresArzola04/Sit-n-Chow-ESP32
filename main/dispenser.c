@@ -57,9 +57,6 @@
 #define EN_PIN      PIN_STEPPER_EN   /* active low */
 #define SLP_PIN     PIN_STEPPER_SLP
 #define RST_PIN     PIN_STEPPER_RST
-#define M0_PIN      PIN_STEPPER_M0
-#define M1_PIN      PIN_STEPPER_M1
-#define M2_PIN      PIN_STEPPER_M2
 
 /* ── Motor constants ─────────────────────────────────────────────────────── */
 #define STEPS_PER_REV      200    /* NEMA 17: 1.8° per step */
@@ -174,21 +171,12 @@ void dispenser_init(void)
     cfg.pin_bit_mask = (1ULL << RST_PIN);
     gpio_config(&cfg);
 
-    /* M0, M1, M2 */
-    cfg.pin_bit_mask = (1ULL << M0_PIN) | (1ULL << M1_PIN) | (1ULL << M2_PIN);
-    gpio_config(&cfg);
-
     /* Initial pin states */
     gpio_set_level(STEP_PIN, 0);
     gpio_set_level(DIR_PIN,  0);
     gpio_set_level(EN_PIN,   1);   /* disabled (active low) */
     gpio_set_level(SLP_PIN,  1);   /* not sleeping */
     gpio_set_level(RST_PIN,  1);   /* not in reset */
-
-    /* 1/8 microstepping: M0=H M1=H M2=L */
-    gpio_set_level(M0_PIN, 1);
-    gpio_set_level(M1_PIN, 1);
-    gpio_set_level(M2_PIN, 0);
 
     ESP_LOGI(TAG, "Dispenser initialised (%.1f g/rev, %d RPM)",
              (float)CONFIG_DISPENSER_GRAMS_PER_REV,
