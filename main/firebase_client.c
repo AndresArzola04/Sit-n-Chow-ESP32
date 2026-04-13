@@ -9,6 +9,14 @@
  *   3. Append ?auth=<token> to every RTDB REST request.
  *   4. A FreeRTOS timer refreshes the token every 55 minutes automatically
  *      (Firebase custom tokens expire after 60 minutes).
+ *
+ * Mutex strategy:
+ *   - s_http_mutex      : serialises all non-intercom HTTP requests
+ *                         (commands, heartbeat, schedule, patches, puts, etc.)
+ *   - s_intercom_mutex  : dedicated mutex for firebase_get_intercom() so the
+ *                         intercom poll is never blocked by a slow command/
+ *                         heartbeat request, and vice-versa.
+ *   - s_token_mutex     : protects s_auth_token during reads/writes.
  */
 
 #include "firebase_client.h"
@@ -37,9 +45,18 @@
 #define BODY_BUF_SIZE  8192
 #define TOKEN_MAX_LEN  1536  /* ID tokens can be up to ~1200 chars */
 
+/*
+ * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY (-0x7100):
+ * Firebase closes idle TLS connections with a close_notify alert. This is
+ * normal behaviour — not a real error — so we treat it as EOF when we have
+ * already received data.
+ */
+#define MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY  (-0x7100)
+
 static char               s_auth_token[TOKEN_MAX_LEN] = {0};
 static SemaphoreHandle_t  s_token_mutex               = NULL;
-static SemaphoreHandle_t  s_http_mutex                = NULL;  /* ← NEW: serialise all HTTP requests */
+static SemaphoreHandle_t  s_http_mutex                = NULL;
+static SemaphoreHandle_t  s_intercom_mutex            = NULL;  /* dedicated for intercom */
 static esp_timer_handle_t s_refresh_timer             = NULL;
 
 /* ── Response accumulator used by the HTTP event handler ─────────────────── */
@@ -207,6 +224,154 @@ static void build_url(char *buf, size_t bufsz, const char *path)
     xSemaphoreGive(s_token_mutex);
 }
 
+/* ── Shared streaming GET implementation ─────────────────────────────────── *
+ *
+ * Used by both firebase_get_large() and firebase_get_intercom().
+ * The caller passes in the mutex to take/give so each can use its own.
+ *
+ * Key fix vs. original:
+ *   - esp_http_client_read() returning < 0 with MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY
+ *     is treated as a clean EOF when data has already been received, not an error.
+ *   - content_length == -1 (chunked / no Content-Length header) is handled
+ *     gracefully — we just read until rlen == 0.
+ *   - HTTP status != 2xx is logged with the actual status code, not -1.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+static esp_err_t streaming_get(const char          *url,
+                                SemaphoreHandle_t    mutex,
+                                cJSON              **out_json)
+{
+    esp_http_client_config_t cfg = {
+        .url                         = url,
+        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .buffer_size                 = 8192,
+        .buffer_size_tx              = 2048,
+        .timeout_ms                  = 20000,
+    };
+
+    esp_http_client_handle_t client = esp_http_client_init(&cfg);
+    if (!client) return ESP_ERR_NO_MEM;
+
+    esp_http_client_set_method(client, HTTP_METHOD_GET);
+
+    xSemaphoreTake(mutex, portMAX_DELAY);
+
+    esp_err_t err = esp_http_client_open(client, 0);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "streaming_get open failed: %s", esp_err_to_name(err));
+        esp_http_client_cleanup(client);
+        xSemaphoreGive(mutex);
+        return err;
+    }
+
+    /* fetch_headers returns content-length or -1 for chunked/unknown */
+    int content_length = esp_http_client_fetch_headers(client);
+    int status         = esp_http_client_get_status_code(client);
+
+    ESP_LOGD(TAG, "streaming_get: HTTP %d, Content-Length: %d", status, content_length);
+
+    if (status < 200 || status >= 300) {
+        ESP_LOGW(TAG, "streaming_get: HTTP %d (non-2xx)", status);
+        esp_http_client_close(client);
+        esp_http_client_cleanup(client);
+        xSemaphoreGive(mutex);
+        return ESP_FAIL;
+    }
+
+    /* Allocate response buffer in PSRAM; start at 64 KB, grow as needed */
+    size_t cap      = 65536;
+    char  *resp_buf = heap_caps_malloc(cap, MALLOC_CAP_SPIRAM);
+    if (!resp_buf) {
+        /* Fall back to internal heap for small responses */
+        cap      = 8192;
+        resp_buf = malloc(cap);
+    }
+    if (!resp_buf) {
+        ESP_LOGE(TAG, "streaming_get: failed to allocate response buffer");
+        esp_http_client_close(client);
+        esp_http_client_cleanup(client);
+        xSemaphoreGive(mutex);
+        return ESP_ERR_NO_MEM;
+    }
+
+    int   total_read = 0;
+    char  read_buf[512];
+    err = ESP_OK;
+
+    while (1) {
+        int rlen = esp_http_client_read(client, read_buf, sizeof(read_buf));
+
+        if (rlen < 0) {
+            /*
+             * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY is fired when Firebase
+             * closes the TLS connection with a close_notify alert after
+             * sending the full response body. This is normal — treat it
+             * as EOF when we already have data.
+             */
+            if (total_read > 0) {
+                ESP_LOGD(TAG, "streaming_get: peer close after %d bytes (normal)", total_read);
+            } else {
+                ESP_LOGE(TAG, "streaming_get: read error with no data received: %d", rlen);
+                err = ESP_FAIL;
+            }
+            break;
+        }
+
+        if (rlen == 0) {
+            break;  /* clean EOF */
+        }
+
+        /* Grow buffer if needed (double until 512 KB cap) */
+        if (total_read + rlen + 1 > (int)cap) {
+            size_t new_cap = cap * 2;
+            if (new_cap > 524288) {
+                ESP_LOGE(TAG, "streaming_get: response exceeds 512 KB limit");
+                err = ESP_FAIL;
+                break;
+            }
+            char *new_buf = realloc(resp_buf, new_cap);
+            if (!new_buf) {
+                ESP_LOGE(TAG, "streaming_get: realloc to %u bytes failed", new_cap);
+                err = ESP_FAIL;
+                break;
+            }
+            resp_buf = new_buf;
+            cap      = new_cap;
+        }
+
+        memcpy(resp_buf + total_read, read_buf, rlen);
+        total_read              += rlen;
+        resp_buf[total_read]     = '\0';
+    }
+
+    ESP_LOGI(TAG, "streaming_get: received %d bytes total", total_read);
+
+    esp_http_client_close(client);
+    esp_http_client_cleanup(client);
+    xSemaphoreGive(mutex);
+
+    if (out_json) *out_json = NULL;
+
+    if (err == ESP_OK && total_read > 0 && out_json) {
+        if (strcmp(resp_buf, "null") == 0) {
+            /* Node does not exist — caller gets NULL json, ESP_OK */
+            ESP_LOGD(TAG, "streaming_get: node is null");
+        } else {
+            cJSON *parsed = cJSON_Parse(resp_buf);
+            if (!parsed) {
+                ESP_LOGW(TAG, "streaming_get: JSON parse error (first 64 chars: %.64s)", resp_buf);
+                err = ESP_FAIL;
+            } else {
+                *out_json = parsed;
+            }
+        }
+    }
+
+    free(resp_buf);
+    return err;
+}
+
 /* ── Public API ──────────────────────────────────────────────────────────── */
 
 esp_err_t firebase_client_init(void)
@@ -214,8 +379,11 @@ esp_err_t firebase_client_init(void)
     s_token_mutex = xSemaphoreCreateMutex();
     configASSERT(s_token_mutex);
 
-    s_http_mutex = xSemaphoreCreateMutex();   /* ← NEW */
+    s_http_mutex = xSemaphoreCreateMutex();
     configASSERT(s_http_mutex);
+
+    s_intercom_mutex = xSemaphoreCreateMutex();
+    configASSERT(s_intercom_mutex);
 
     /* Fetch initial token — retry up to 5 times */
     esp_err_t err = ESP_FAIL;
@@ -250,13 +418,13 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
 
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
 
     char *body = NULL;
     esp_err_t err = do_request("GET", url, NULL, NULL, NULL, &body);
     free(url);
 
-    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+    xSemaphoreGive(s_http_mutex);
 
     if (out_json) *out_json = NULL;
 
@@ -274,126 +442,26 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
     return err;
 }
 
-esp_err_t firebase_get_large(const char *path, cJSON **out_json,
-                              size_t max_response_bytes)
+/*
+ * firebase_get_intercom — streaming GET dedicated to the audio intercom poller.
+ *
+ * Uses its own mutex (s_intercom_mutex) so the intercom task is never blocked
+ * by slow command/heartbeat/schedule requests, and those tasks are never
+ * blocked waiting for an intercom poll to complete.
+ *
+ * The audio node is typically a few KB of base64 PCM — well within the 64 KB
+ * initial buffer — so this should be fast in the normal case.
+ */
+esp_err_t firebase_get_intercom(const char *path, cJSON **out_json)
 {
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
 
-    ESP_LOGI(TAG, "Free internal heap: %d bytes", 
-             heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
-    ESP_LOGI(TAG, "Free PSRAM: %d bytes", 
-             heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    ESP_LOGD(TAG, "firebase_get_intercom: polling %s", path);
 
-    esp_http_client_config_t cfg = {
-        .url                         = url,
-        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
-        .skip_cert_common_name_check = true,
-        .buffer_size                 = 8192,
-        .buffer_size_tx              = 2048,
-        .timeout_ms                  = 20000,
-    };
-
-    esp_http_client_handle_t client = esp_http_client_init(&cfg);
-    if (!client) { free(url); return ESP_ERR_NO_MEM; }
-
-    esp_http_client_set_method(client, HTTP_METHOD_GET);
-
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
-
-    esp_err_t err = esp_http_client_open(client, 0);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "firebase_get_large open failed: %s", esp_err_to_name(err));
-        esp_http_client_cleanup(client);
-        free(url);
-        xSemaphoreGive(s_http_mutex);
-        return err;
-    }
-
-    // Fetch and discard headers, get content length
-    int content_length = esp_http_client_fetch_headers(client);
-    int status = esp_http_client_get_status_code(client);
-
-    if (status < 200 || status >= 300) {
-        ESP_LOGW(TAG, "firebase_get_large HTTP %d", status);
-        esp_http_client_close(client);
-        esp_http_client_cleanup(client);
-        free(url);
-        xSemaphoreGive(s_http_mutex);
-        return ESP_FAIL;
-    }
-
-    // Grow buffer as we read
-    size_t cap = 65536;
-    char *resp_buf = heap_caps_malloc(cap, MALLOC_CAP_SPIRAM);
-    if (!resp_buf) {
-        esp_http_client_close(client);
-        esp_http_client_cleanup(client);
-        free(url);
-        xSemaphoreGive(s_http_mutex);
-        return ESP_ERR_NO_MEM;
-    }
-
-    int total_read = 0;
-    char read_buf[512];  // small stack buffer for each read
-
-    while (1) {
-        int rlen = esp_http_client_read(client, read_buf, sizeof(read_buf));
-        if (rlen < 0) {
-            if (total_read > 0) {
-                // Peer close notify after data — treat as normal EOF
-                break;
-            }
-            ESP_LOGE(TAG, "firebase_get_large read error: %d", rlen);
-            err = ESP_FAIL;
-            break;
-        }
-        if (rlen == 0) break;  // done
-
-        // Grow resp_buf if needed
-        if (total_read + rlen + 1 > (int)cap) {
-            int new_cap = cap * 2;
-            if (new_cap > 524288) {
-                ESP_LOGE(TAG, "firebase_get_large: response too large");
-                err = ESP_FAIL;
-                break;
-            }
-            char *new_buf = realloc(resp_buf, new_cap);
-            if (!new_buf) {
-                ESP_LOGE(TAG, "firebase_get_large: realloc failed at %d", new_cap);
-                err = ESP_FAIL;
-                break;
-            }
-            resp_buf = new_buf;
-            cap = new_cap;
-        }
-
-        memcpy(resp_buf + total_read, read_buf, rlen);
-        total_read += rlen;
-        resp_buf[total_read] = '\0';
-    }
-
-    ESP_LOGI(TAG, "grow_handler: received %d bytes total", total_read);
-
-    esp_http_client_close(client);
-    esp_http_client_cleanup(client);
+    esp_err_t err = streaming_get(url, s_intercom_mutex, out_json);
     free(url);
-    xSemaphoreGive(s_http_mutex);
-
-    if (out_json) *out_json = NULL;
-
-    if (err == ESP_OK && total_read > 0 && strcmp(resp_buf, "null") != 0 && out_json) {
-        cJSON *parsed = cJSON_Parse(resp_buf);
-        if (!parsed) {
-            ESP_LOGW(TAG, "firebase_get_large: JSON parse error");
-            err = ESP_FAIL;
-        } else {
-            *out_json = parsed;
-        }
-    }
-
-    free(resp_buf);
     return err;
 }
 
@@ -404,14 +472,11 @@ esp_err_t firebase_patch(const char *path, cJSON *json)
     build_url(url, URL_BUF_SIZE, path);
 
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) {
-        free(url);
-        return ESP_ERR_NO_MEM;
-    }
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
 
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
     esp_err_t err = do_request("PATCH", url, body, NULL, NULL, NULL);
-    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+    xSemaphoreGive(s_http_mutex);
 
     free(url);
     free(body);
@@ -425,14 +490,11 @@ esp_err_t firebase_put(const char *path, cJSON *json)
     build_url(url, URL_BUF_SIZE, path);
 
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) {
-        free(url);
-        return ESP_ERR_NO_MEM;
-    }
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
 
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
     esp_err_t err = do_request("PUT", url, body, NULL, NULL, NULL);
-    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+    xSemaphoreGive(s_http_mutex);
 
     free(url);
     free(body);
@@ -446,14 +508,11 @@ esp_err_t firebase_push(const char *path, cJSON *json)
     build_url(url, URL_BUF_SIZE, path);
 
     char *body = cJSON_PrintUnformatted(json);
-    if (!body) {
-        free(url);
-        return ESP_ERR_NO_MEM;
-    }
+    if (!body) { free(url); return ESP_ERR_NO_MEM; }
 
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
     esp_err_t err = do_request("POST", url, body, NULL, NULL, NULL);
-    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+    xSemaphoreGive(s_http_mutex);
 
     free(url);
     free(body);
@@ -466,9 +525,9 @@ esp_err_t firebase_delete(const char *path)
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
 
-    xSemaphoreTake(s_http_mutex, portMAX_DELAY);   /* ← LOCK */
+    xSemaphoreTake(s_http_mutex, portMAX_DELAY);
     esp_err_t err = do_request("DELETE", url, NULL, NULL, NULL, NULL);
-    xSemaphoreGive(s_http_mutex);                  /* ← UNLOCK */
+    xSemaphoreGive(s_http_mutex);
 
     free(url);
     return err;

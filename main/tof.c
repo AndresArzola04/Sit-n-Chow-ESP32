@@ -27,7 +27,7 @@
 #define I2C_PORT          I2C_NUM_1
 #define I2C_SDA_PIN       PIN_TOF_SDA
 #define I2C_SCL_PIN       PIN_TOF_SCL
-#define I2C_FREQ_HZ       400000      /* 400 kHz fast mode */
+#define I2C_FREQ_HZ       100000      /* 400 kHz fast mode */
 #define TMF8701_ADDR      0x41
 
 /* ── Calibration data from hardware testing ──────────────────────────────── */

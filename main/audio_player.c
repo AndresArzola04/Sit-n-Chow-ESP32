@@ -58,10 +58,10 @@ static void audio_playback_task(void* pvParameters) {
         uint32_t duty = ((int32_t)samples[i] + 32768) >> 8;
         audio_write_duty(duty);
         next_time += period_us;
-        int64_t now = esp_timer_get_time();
-        if (next_time - now > 100) {
-            vTaskDelay(1);
-        }
+        /* Pure busy-wait — do NOT use vTaskDelay() here.
+         * vTaskDelay(1) sleeps for one FreeRTOS tick (10 ms at 100 Hz).
+         * One sample period at 16 kHz is only 62.5 µs — sleeping a tick
+         * stretches every sample by 160×, producing noise instead of audio. */
         while (esp_timer_get_time() < next_time) {}
     }
 
@@ -96,7 +96,6 @@ void audio_player_init(int gpio_pin, uint32_t pwm_freq_hz, uint32_t sample_rate_
     };
     ESP_ERROR_CHECK(ledc_channel_config(&channel_cfg));
 
-    // Start muted — pause timer so pin isn't toggling at 20kHz from boot
     ledc_timer_pause(LEDC_SPEED_MODE, LEDC_TIMER);
 
     ESP_LOGI(TAG, "Initialized: GPIO%d, PWM %luHz, Sample rate %luHz",

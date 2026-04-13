@@ -41,8 +41,6 @@ esp_err_t firebase_client_init(void);
  */
 esp_err_t firebase_get(const char *path, cJSON **out_json);
 
-esp_err_t firebase_get_large(const char *path, cJSON **out_json, size_t max_response_bytes);
-
 /**
  * @brief HTTP PATCH (merge) a JSON object into a RTDB path.
  */
@@ -63,6 +61,8 @@ esp_err_t firebase_push(const char *path, cJSON *json);
  * @brief HTTP DELETE a RTDB path (sets it to null).
  */
 esp_err_t firebase_delete(const char *path);
+
+esp_err_t firebase_get_intercom(const char *path, cJSON **out_json);
 
 #ifdef __cplusplus
 }

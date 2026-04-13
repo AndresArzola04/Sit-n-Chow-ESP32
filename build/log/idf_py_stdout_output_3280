@@ -1,0 +1,225 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr  9 2026 20:12:24[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c0f0020 size=37748h (227144) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00047770 vaddr=3fca8500 size=07984h ( 31108) load[0m
+[0;32mI (130) esp_image: segment 2: paddr=0004f0fc vaddr=40378000 size=00f1ch (  3868) load[0m
+[0;32mI (132) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=ef280h (979584) map[0m
+[0;32mI (281) esp_image: segment 4: paddr=0013f2a8 vaddr=40378f1c size=1f564h (128356) load[0m
+[0;32mI (306) esp_image: segment 5: paddr=0015e814 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (319) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (319) boot: Disabling RNG early entropy source...[0m
+[0;32mI (329) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (329) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (340) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (344) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (349) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (354) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (368) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (372) esp_psram: Speed: 40MHz[0m
+[0;32mI (375) cpu_start: Multicore app[0m
+[0;32mI (389) cpu_start: Pro cpu start user code[0m
+[0;32mI (389) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (389) app_init: Application information:[0m
+[0;32mI (389) app_init: Project name:     video_stream_server[0m
+[0;32mI (394) app_init: App version:      0be113e-dirty[0m
+[0;32mI (399) app_init: Compile time:     Apr 12 2026 18:12:40[0m
+[0;32mI (404) app_init: ELF file SHA256:  1957d5207...[0m
+[0;32mI (408) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (412) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (430) heap_init: At 3FCB6D08 len 00032A08 (202 KiB): RAM[0m
+[0;32mI (435) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (440) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (445) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (458) spi_flash: detected chip: generic[0m
+[0;32mI (461) spi_flash: flash io: qio[0m
+[0;33mW (464) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (480) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (501) coexist: coexist rom version e7ae62f[0m
+[0;32mI (501) main_task: Started on CPU0[0m
+[0;32mI (502) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (505) main_task: Calling app_main()[0m
+[0;32mI (509) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (513) camera wifi: app_wifi_main start[0m
+[0;32mI (517) camera wifi: nvs_flash_init...[0m
+[0;32mI (532) camera wifi: nvs_flash_init done[0m
+[0;32mI (532) camera wifi: esp_netif_init...[0m
+[0;32mI (533) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (533) camera wifi: wifi init...[0m
+[0;32mI (536) pp: pp rom version: e7ae62f[0m
+[0;32mI (539) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (552) wifi_init: rx ba win: 32[0m
+[0;32mI (552) wifi_init: accept mbox: 6[0m
+[0;32mI (552) wifi_init: tcpip mbox: 64[0m
+[0;32mI (553) wifi_init: udp mbox: 64[0m
+[0;32mI (555) wifi_init: tcp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp tx win: 65535[0m
+[0;32mI (561) wifi_init: tcp rx win: 65535[0m
+[0;32mI (565) wifi_init: tcp mss: 1440[0m
+[0;32mI (567) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (571) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (575) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (579) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (583) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (588) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (593) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3035) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (7081) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (7081) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (7081) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (7086) feeder: WiFi connected[0m
+[0;32mI (7089) feeder: Waiting for SNTP sync…[0m
+[0;32mI (12093) feeder: Clock synced: 2026-04-12 20:13:49[0m
+[0;32mI (13720) firebase: Auth token refreshed[0m
+[0;32mI (13720) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (15175) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (16995) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (16995) cam_hal: cam init ok[0m
+[0;32mI (16995) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (16995) sccb: sccb_i2c_port=1[0m
+[1;31mE (17008) camera: Detected camera not supported.[0m
+[1;31mE (17009) camera: Camera probe failed with error 0x106(ESP_ERR_NOT_SUPPORTED)[0m
+[1;31mE (17009) feeder: Camera init failed: ESP_ERR_NOT_SUPPORTED[0m
+[0;32mI (17014) feeder: Camera init: ESP_ERR_NOT_SUPPORTED[0m
+[0;33mW (17019) feeder: Camera not available — skipping WebSocket stream[0m
+[0;32mI (17025) audio_player: Initialized: GPIO13, PWM 20000Hz, Sample rate 16000Hz[0m
+[0;32mI (17117) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (19117) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
+[0;32mI (19118) websocket_client: Started[0m
+[0;32mI (19118) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (19620) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (19962) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (20120) dispenser: Dispenser initialised (10.0 g/rev, 20 RPM)[0m
+[0;32mI (20120) tof: About to install I2C driver on port 1[0m
+[0;32mI (20121) tof: I2C initialised on port 1 (SDA=14 SCL=38)[0m
+[0;33mW (20124) tof: No I2C device at 0x41 — ToF disabled[0m
+[0;33mW (20129) feeder: ToF sensor not detected — presence detection disabled[0m
+[0;32mI (20138) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (20145) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (20150) manual_btn: Manual button task started[0m
+[0;32mI (21827) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (23158) feeder: All tasks started[0m
+[0;32mI (23158) main_task: Returned from app_main()[0m
+[0;32mI (41828) sched: Current time: 20:14 day_idx=6[0m
+[0;32mI (46916) intercom: Received stop signal — mic toggled off[0m
+[0;32mI (46918) intercom: Received stop signal — mic toggled off[0m
+[0;32mI (49123) intercom: Audio WS alive: yes[0m
+[0;33mW (50952) intercom: Partial WS frame (1363/64756 bytes) — skipping[0m
+[0;33mW (50957) intercom: Partial WS frame (2730/64756 bytes) — skipping[0m
+[0;33mW (50962) intercom: Partial WS frame (4092/64756 bytes) — skipping[0m
+[0;33mW (50966) intercom: Partial WS frame (5459/64756 bytes) — skipping[0m
+[0;33mW (50970) intercom: Partial WS frame (6826/64756 bytes) — skipping[0m
+[0;33mW (50976) intercom: Partial WS frame (8193/64756 bytes) — skipping[0m
+[0;33mW (50982) intercom: Partial WS frame (9560/64756 bytes) — skipping[0m
+[0;33mW (50988) intercom: Partial WS frame (10927/64756 bytes) — skipping[0m
+[0;33mW (50996) intercom: Partial WS frame (12284/64756 bytes) — skipping[0m
+[0;33mW (51000) intercom: Partial WS frame (13504/64756 bytes) — skipping[0m
+[0;33mW (51006) intercom: Partial WS frame (14732/64756 bytes) — skipping[0m
+[0;33mW (51019) intercom: Partial WS frame (16099/64756 bytes) — skipping[0m
+[0;33mW (51023) intercom: Partial WS frame (16380/64756 bytes) — skipping[0m
+[0;33mW (51028) intercom: Partial WS frame (17747/64756 bytes) — skipping[0m
+[0;33mW (51032) intercom: Partial WS frame (18829/64756 bytes) — skipping[0m
+[0;33mW (51037) intercom: Partial WS frame (20196/64756 bytes) — skipping[0m
+[0;33mW (51044) intercom: Partial WS frame (21278/64756 bytes) — skipping[0m
+[0;33mW (51050) intercom: Partial WS frame (22645/64756 bytes) — skipping[0m
+[0;33mW (51055) intercom: Partial WS frame (23730/64756 bytes) — skipping[0m
+[0;33mW (51062) intercom: Partial WS frame (25097/64756 bytes) — skipping[0m
+[0;33mW (51068) intercom: Partial WS frame (26179/64756 bytes) — skipping[0m
+[0;33mW (51074) intercom: Partial WS frame (27546/64756 bytes) — skipping[0m
+[0;33mW (51080) intercom: Partial WS frame (28913/64756 bytes) — skipping[0m
+[0;33mW (51087) intercom: Partial WS frame (30280/64756 bytes) — skipping[0m
+[0;33mW (51094) intercom: Partial WS frame (31080/64756 bytes) — skipping[0m
+[0;33mW (51099) intercom: Partial WS frame (32447/64756 bytes) — skipping[0m
+[0;33mW (51105) intercom: Partial WS frame (33529/64756 bytes) — skipping[0m
+[0;33mW (51111) intercom: Partial WS frame (34896/64756 bytes) — skipping[0m
+[0;33mW (51117) intercom: Partial WS frame (35981/64756 bytes) — skipping[0m
+[0;33mW (51123) intercom: Partial WS frame (37348/64756 bytes) — skipping[0m
+[0;33mW (51129) intercom: Partial WS frame (38430/64756 bytes) — skipping[0m
+[0;33mW (51135) intercom: Partial WS frame (39797/64756 bytes) — skipping[0m
+[0;33mW (51142) intercom: Partial WS frame (40882/64756 bytes) — skipping[0m
+[0;33mW (51148) intercom: Partial WS frame (42249/64756 bytes) — skipping[0m
+[0;33mW (51154) intercom: Partial WS frame (43331/64756 bytes) — skipping[0m
+[0;33mW (51160) intercom: Partial WS frame (44698/64756 bytes) — skipping[0m
+[0;33mW (51166) intercom: Partial WS frame (46065/64756 bytes) — skipping[0m
+[0;33mW (51172) intercom: Partial WS frame (47432/64756 bytes) — skipping[0m
+[0;33mW (51178) intercom: Partial WS frame (48232/64756 bytes) — skipping[0m
+[0;33mW (51184) intercom: Partial WS frame (49599/64756 bytes) — skipping[0m
+[0;33mW (51190) intercom: Partial WS frame (50681/64756 bytes) — skipping[0m
+[0;33mW (51196) intercom: Partial WS frame (52048/64756 bytes) — skipping[0m
+[0;33mW (51202) intercom: Partial WS frame (53133/64756 bytes) — skipping[0m
+[0;33mW (51209) intercom: Partial WS frame (54500/64756 bytes) — skipping[0m
+[0;33mW (51215) intercom: Partial WS frame (55582/64756 bytes) — skipping[0m
+[0;33mW (51221) intercom: Partial WS frame (56949/64756 bytes) — skipping[0m
+[0;33mW (51227) intercom: Partial WS frame (58316/64756 bytes) — skipping[0m
+[0;33mW (51233) intercom: Partial WS frame (59683/64756 bytes) — skipping[0m
+[0;33mW (51239) intercom: Partial WS frame (60483/64756 bytes) — skipping[0m
+[0;33mW (51245) intercom: Partial WS frame (61850/64756 bytes) — skipping[0m
+[0;33mW (51251) intercom: Partial WS frame (62932/64756 bytes) — skipping[0m
+[0;33mW (51257) intercom: Partial WS frame (64299/64756 bytes) — skipping[0m
+[0;32mI (51268) intercom: Received PCM frame: 64756 bytes → 32378 samples[0m
+[0;32mI (51268) intercom: Frame first 16 bytes:[0m
+[0;32mI (51271) intercom:   [0] 0x00 (0)[0m
+[0;32mI (51274) intercom:   [1] 0x1D (29)[0m
+[0;32mI (51278) intercom:   [2] 0x00 (0)[0m
+[0;32mI (51281) intercom:   [3] 0x18 (24)[0m
+[0;32mI (51284) intercom:   [4] 0x00 (0)[0m
+[0;32mI (51287) intercom:   [5] 0x16 (22)[0m
+[0;32mI (51290) intercom:   [6] 0x00 (0)[0m
+[0;32mI (51293) intercom:   [7] 0x18 (24)[0m
+[0;32mI (51297) intercom:   [8] 0x00 (0)[0m
+[0;32mI (51300) intercom:   [9] 0x1D (29)[0m
+[0;32mI (51303) intercom:   [10] 0x00 (0)[0m
+[0;32mI (51306) intercom:   [11] 0x20 (32)[0m
+[0;32mI (51309) intercom:   [12] 0x00 (0)[0m
+[0;32mI (51313) intercom:   [13] 0x1D (29)[0m
+[0;32mI (51316) intercom:   [14] 0x00 (0)[0m
+[0;32mI (51319) intercom:   [15] 0x1E (30)[0m
+[0;32mI (51322) intercom: First sample as int16 LE: 7424[0m
+[0;32mI (51327) intercom: First sample as int16 BE: 29[0m
+[0;32mI (51940) intercom: Received stop signal — mic toggled off[0m
+[0;32mI (51940) audio_player: Playback complete.[0m
+[0;32mI (51950) audio_player: Playback stopped.[0m
+[0;32mI (51951) intercom: Received stop signal — mic toggled off[0m
+[0;32mI (61828) sched: Current time: 20:14 day_idx=6[0m
+[0;32mI (72773) intercom: Received stop signal — mic toggled off[0m
+[0;32mI (79123) intercom: Audio WS alive: yes[0m
+[0;32mI (83678) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (83679) sched: Current time: 20:15 day_idx=6[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x21 (DOWNLOAD(USB/UART0))
+waiting for download
