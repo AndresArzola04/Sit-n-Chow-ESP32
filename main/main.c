@@ -88,6 +88,27 @@ static StaticTask_t s_cap_task_tcb;
  *  Camera / WebSocket helpers  (unchanged from original take_picture.c)
  * ════════════════════════════════════════════════════════════════════════════ */
 
+static volatile bool s_camera_streaming = false;
+static SemaphoreHandle_t s_camera_mutex = NULL;
+
+void camera_streaming_start(void)
+{
+    if (xSemaphoreTake(s_camera_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        s_camera_streaming = true;
+        xSemaphoreGive(s_camera_mutex);
+        ESP_LOGI(TAG, "Camera streaming started");
+    }
+}
+
+void camera_streaming_stop(void)
+{
+    if (xSemaphoreTake(s_camera_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        s_camera_streaming = false;
+        xSemaphoreGive(s_camera_mutex);
+        ESP_LOGI(TAG, "Camera streaming stopped");
+    }
+}
+
 static void camera_ws_event_handler(void *handler_args, esp_event_base_t base,
                                      int32_t event_id, void *event_data)
 {
@@ -127,9 +148,6 @@ void ws_send_task(void *arg)
     while (true) {
         if (xQueueReceive(xQueueIFrame, &frame, pdMS_TO_TICKS(2000))) {
 
-            ESP_LOGI(TAG, "Frame received: %u bytes, format=%d, free heap: %lu",
-                     frame->len, frame->format, esp_get_free_heap_size());
-
             uint8_t *jpg_buf = NULL;
             size_t   jpg_len = 0;
             bool converted = false;
@@ -145,7 +163,6 @@ void ws_send_task(void *arg)
                     esp_camera_fb_return(frame);
                     continue;
                 }
-                ESP_LOGI(TAG, "frame2jpg OK: %u bytes", jpg_len);
             }
 
             if (esp_websocket_client_is_connected(ws_client)) {
@@ -155,7 +172,7 @@ void ws_send_task(void *arg)
                 if (result < 0) {
                     ESP_LOGE(TAG, "WebSocket send failed: %d", result);
                 } else {
-                    if (++sent % 10 == 0)
+                    if (++sent % 25 == 0)
                         ESP_LOGI(TAG, "Sent %d frames", sent);
                 }
             } else {
@@ -380,9 +397,11 @@ static void do_feed_workflow(int grams, const char *source)
 
     /* ── Step 4: Camera sitting detection ────────────────────────────────── */
     ESP_LOGI(TAG, "[3] Running sitting detector…");
+    camera_streaming_start();  // turn on for ML
     bool sitting_confirmed = false;
     // TODO: sitting_confirmed = sitting_detector_run(timeout_ms=180000);
     sitting_confirmed = true;  /* placeholder */
+    camera_streaming_stop();   // turn off after ML
 
     if (!sitting_confirmed) {
         ESP_LOGW(TAG, "Pet not sitting after 3 min — dispensing anyway");
@@ -501,13 +520,16 @@ static void camera_capture_task(void *arg)
     const int MAX_FAILURES = 3;
 
     while (true) {
+        if (!s_camera_streaming) {
+            vTaskDelay(pdMS_TO_TICKS(500));
+            continue;
+        }
+
         camera_fb_t *frame = esp_camera_fb_get();
         if (frame) {
             consecutive_failures = 0;
 
-            // No JPEG marker check — we're using RGB565
             if (frame->len < 100) {
-                ESP_LOGW(TAG, "Suspiciously small frame discarded");
                 esp_camera_fb_return(frame);
                 continue;
             }
@@ -517,13 +539,37 @@ static void camera_capture_task(void *arg)
             }
         } else {
             consecutive_failures++;
-            ESP_LOGW(TAG, "Failed to get frame (%d/%d)",
-                     consecutive_failures, MAX_FAILURES);
             if (consecutive_failures >= MAX_FAILURES) {
                 consecutive_failures = 0;
                 reinit_camera();
             }
             vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
+}
+
+static void camera_poll_task(void *arg)
+{
+    char path[128];
+    snprintf(path, sizeof(path), "devices/%s/cameraActive",
+             CONFIG_FIREBASE_DEVICE_ID);
+
+    bool last_state = false;
+
+    while (true) {
+        vTaskDelay(pdMS_TO_TICKS(2000));  // poll every 2s
+
+        cJSON *val = NULL;
+        esp_err_t err = firebase_get(path, &val);
+
+        if (err == ESP_OK && val != NULL) {
+            bool active = cJSON_IsTrue(val);
+            if (active != last_state) {
+                last_state = active;
+                if (active) camera_streaming_start();
+                else        camera_streaming_stop();
+            }
+            cJSON_Delete(val);
         }
     }
 }
@@ -598,6 +644,9 @@ void app_main(void)
     s_feed_mutex = xSemaphoreCreateMutex();
     configASSERT(s_feed_mutex);
 
+    s_camera_mutex = xSemaphoreCreateMutex();
+    configASSERT(s_camera_mutex);
+
     /* 9. Schedule runner */
     if (s_identity_ready) {
         schedule_runner_start(CONFIG_FIREBASE_DEVICE_ID,
@@ -636,6 +685,7 @@ void app_main(void)
             ESP_LOGE(TAG, "camera_capture_task stack alloc failed");
         }
     }
+    xTaskCreate(camera_poll_task, "cam_poll", 4096, NULL, 3, NULL);
 
     ESP_LOGI(TAG, "All tasks started");
     /* app_main returns; FreeRTOS scheduler keeps everything running */
