@@ -123,32 +123,40 @@ static void ws_event_handler(void *handler_args,
 
     case WEBSOCKET_EVENT_DATA:
         if (data->op_code == 0x02) {
-            bool complete = (data->payload_offset + data->data_len
-                             >= (size_t)data->payload_len);
-            if (!complete) break;
 
-            int pcm_bytes = data->payload_len;
-            if (pcm_bytes < 2 || !s_psram_buf) break;
+            if (!s_psram_buf) break;
 
-            if (!s_session_open) {
-                session_reset();   /* clear any leftover from previous session */
+            /* Start a new session on the first fragment of a new message */
+            if (!s_session_open && data->payload_offset == 0) {
+                session_reset();
                 s_session_open = true;
                 ESP_LOGI(TAG, "Session started");
             }
 
-            uint32_t new_samples = (uint32_t)(pcm_bytes / 2);
-            if (s_psram_samples + new_samples > MAX_SESSION_SAMPLES) {
+            /* Bounds check against the session buffer */
+            size_t msg_end_byte = (size_t)(s_psram_samples * 2) + data->payload_len;
+            if (msg_end_byte > MAX_SESSION_BYTES) {
                 ESP_LOGW(TAG, "Session buffer full (%d s max)",
-                         MAX_SESSION_SAMPLES / 16000);
+                        MAX_SESSION_SAMPLES / 16000);
                 break;
             }
 
-            memcpy(s_psram_buf + s_psram_samples, data->data_ptr, pcm_bytes);
-            s_psram_samples += new_samples;
+            /* Copy THIS fragment into its correct position within the message */
+            uint8_t *dst = (uint8_t *)s_psram_buf
+                        + (s_psram_samples * 2)
+                        + data->payload_offset;
+            memcpy(dst, data->data_ptr, data->data_len);
 
-            ESP_LOGI(TAG, "Buffered %lu samples total (%.1f s)",
-                     (unsigned long)s_psram_samples,
-                     (float)s_psram_samples / 16000.0f);
+            /* Only commit the samples once the full message is reassembled */
+            bool complete = (data->payload_offset + data->data_len
+                            >= (size_t)data->payload_len);
+            if (complete) {
+                uint32_t new_samples = (uint32_t)(data->payload_len / 2);
+                s_psram_samples += new_samples;
+                ESP_LOGI(TAG, "Buffered %lu samples total (%.1f s)",
+                        (unsigned long)s_psram_samples,
+                        (float)s_psram_samples / 16000.0f);
+            }
 
         } else if (data->op_code == 0x01) {
             if (data->data_len >= 4 &&
