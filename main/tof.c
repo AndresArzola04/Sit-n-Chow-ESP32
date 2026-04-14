@@ -24,7 +24,7 @@
 #define TAG "tof"
 
 /* ── I2C config ──────────────────────────────────────────────────────────── */
-#define I2C_PORT          I2C_NUM_1
+#define I2C_PORT          I2C_NUM_0
 #define I2C_SDA_PIN       PIN_TOF_SDA
 #define I2C_SCL_PIN       PIN_TOF_SCL
 #define I2C_FREQ_HZ       100000      /* 400 kHz fast mode */

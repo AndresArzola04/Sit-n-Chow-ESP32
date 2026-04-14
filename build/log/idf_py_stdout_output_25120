@@ -1,0 +1,766 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 14 2026 17:47:37[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=38808h (231432) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00048830 vaddr=3fca8600 size=077e8h ( 30696) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f0300h (983808) map[0m
+[0;32mI (277) esp_image: segment 3: paddr=00140328 vaddr=3fcafde8 size=0016ch (   364) load[0m
+[0;32mI (278) esp_image: segment 4: paddr=0014049c vaddr=40378000 size=20528h (132392) load[0m
+[0;32mI (306) esp_image: segment 5: paddr=001609cc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (319) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (319) boot: Disabling RNG early entropy source...[0m
+[0;32mI (329) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (330) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (340) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (344) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (349) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (354) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (368) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (372) esp_psram: Speed: 40MHz[0m
+[0;32mI (375) cpu_start: Multicore app[0m
+[0;32mI (390) cpu_start: Pro cpu start user code[0m
+[0;32mI (390) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (390) app_init: Application information:[0m
+[0;32mI (390) app_init: Project name:     video_stream_server[0m
+[0;32mI (395) app_init: App version:      57fc0be-dirty[0m
+[0;32mI (399) app_init: Compile time:     Apr 14 2026 17:49:40[0m
+[0;32mI (404) app_init: ELF file SHA256:  f9d37df8c...[0m
+[0;32mI (408) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (412) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (430) heap_init: At 3FCB8FD0 len 00030740 (193 KiB): RAM[0m
+[0;32mI (435) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (440) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (446) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (458) spi_flash: detected chip: generic[0m
+[0;32mI (461) spi_flash: flash io: qio[0m
+[0;33mW (464) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (480) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (491) coexist: coexist rom version e7ae62f[0m
+[0;32mI (495) main_task: Started on CPU0[0m
+[0;32mI (498) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (506) main_task: Calling app_main()[0m
+[0;32mI (509) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (513) camera wifi: app_wifi_main start[0m
+[0;32mI (517) camera wifi: nvs_flash_init...[0m
+[0;32mI (537) camera wifi: nvs_flash_init done[0m
+[0;32mI (537) camera wifi: esp_netif_init...[0m
+[0;32mI (538) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (538) camera wifi: wifi init...[0m
+[0;32mI (541) pp: pp rom version: e7ae62f[0m
+[0;32mI (544) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (561) wifi_init: rx ba win: 32[0m
+[0;32mI (561) wifi_init: accept mbox: 6[0m
+[0;32mI (561) wifi_init: tcpip mbox: 64[0m
+[0;32mI (562) wifi_init: udp mbox: 64[0m
+[0;32mI (562) wifi_init: tcp mbox: 64[0m
+[0;32mI (565) wifi_init: tcp tx win: 65535[0m
+[0;32mI (568) wifi_init: tcp rx win: 65535[0m
+[0;32mI (572) wifi_init: tcp mss: 1440[0m
+[0;32mI (575) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (578) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (582) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (586) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (590) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (595) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (600) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (4320) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (4320) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (4320) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (4325) feeder: WiFi connected[0m
+[0;32mI (4328) feeder: Waiting for SNTP sync…[0m
+[0;32mI (8332) feeder: Clock synced: 2026-04-14 18:17:41[0m
+[0;32mI (9356) firebase: Auth token refreshed[0m
+[0;32mI (9356) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (10378) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (11923) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (11923) cam_hal: cam init ok[0m
+[0;32mI (11923) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (11923) sccb: sccb_i2c_port=1[0m
+[0;32mI (11935) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (11937) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (11937) camera: Detected OV5640 camera[0m
+[0;32mI (11937) camera: Detected camera at address=0x3c[0m
+[0;32mI (12638) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (12638) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 12[0m
+[0;32mI (12638) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer:  7680, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (12648) cam_hal: buffer_size: 30720, half_buffer_size: 7680, node_buffer_size: 3840, node_cnt: 8, total_cnt: 5[0m
+[0;32mI (12658) cam_hal: Allocating 38400 Byte frame buffer in PSRAM[0m
+[0;32mI (12664) cam_hal: cam config ok[0m
+[0;32mI (12680) ov5640: Set PLL: bypass: 0, multiplier: 20, sys_div: 1, pre_div: 1, root_2x: 0, pclk_root_div: 1, pclk_manual: 1, pclk_div: 8[0m
+[0;32mI (12681) ov5640: Calculated XVCLK: 16000000 Hz, REFIN: 16000000 Hz, VCO: 320000000 Hz, PLL_CLK: 128000000 Hz, SYSCLK: 32000000 Hz, PCLK: 8000000 Hz[0m
+[0;32mI (12718) feeder: Camera init: ESP_OK[0m
+[0;32mI (12721) websocket_client: Started[0m
+[0;32mI (12722) feeder: Camera WebSocket stream connected[0m
+[0;32mI (12722) audio_player: Initialized: GPIO13, PWM 312500Hz, Sample rate 16000Hz[0m
+[0;32mI (12810) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (14272) feeder: Camera WebSocket connected to /ingest[0m
+[0;33mW (14810) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (14810) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
+[0;32mI (14815) websocket_client: Started[0m
+[0;32mI (14817) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (15317) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (15817) dispenser: Dispenser initialised (10.0 g/rev, 20 RPM)[0m
+[0;32mI (15817) tof: About to install I2C driver on port 0[0m
+[0;32mI (15818) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
+[0;33mW (15822) tof: No I2C device at 0x41 — ToF disabled[0m
+[0;33mW (15826) feeder: ToF sensor not detected — presence detection disabled[0m
+[0;32mI (15833) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (15842) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (15847) manual_btn: Manual button task started[0m
+[0;32mI (16315) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (18856) feeder: ws_send_task started, free heap: 7861976[0m
+[0;32mI (18856) feeder: ws_send_task created[0m
+[0;32mI (18856) feeder: camera_capture_task created[0m
+[0;32mI (18857) feeder: Frame received: 38400 bytes, format=0, free heap: 7861976[0m
+[0;32mI (18858) feeder: All tasks started[0m
+[0;32mI (18867) main_task: Returned from app_main()[0m
+[0;32mI (18889) feeder: frame2jpg OK: 2158 bytes[0m
+[0;32mI (19010) feeder: Frame received: 38400 bytes, format=0, free heap: 7875400[0m
+[0;32mI (19034) feeder: frame2jpg OK: 2624 bytes[0m
+[0;32mI (19137) feeder: Frame received: 38400 bytes, format=0, free heap: 7867676[0m
+[0;32mI (19161) feeder: frame2jpg OK: 2621 bytes[0m
+[0;32mI (19419) feeder: Frame received: 38400 bytes, format=0, free heap: 7862632[0m
+[0;32mI (19447) feeder: frame2jpg OK: 2619 bytes[0m
+[0;32mI (19517) feeder: Frame received: 38400 bytes, format=0, free heap: 7861900[0m
+[0;32mI (19541) feeder: frame2jpg OK: 2623 bytes[0m
+[1;31mE (19544) esp-aes: Failed to allocate memory[0m
+[1;31mE (19544) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (19544) transport_base: esp_tls_conn_write error, errno=Success[0m
+[1;31mE (19549) websocket_client: esp_transport_write() returned -1, transport_error=ESP_ERR_MBEDTLS_SSL_WRITE_FAILED, tls_error_code=1, tls_flags=0, errno=0[0m
+[1;31mE (19562) feeder: Camera WebSocket error[0m
+[1;31mE (19567) transport_base: poll_read select error 0, errno = Success, fd = 54[0m
+[0;32mI (19569) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (19577) feeder: Camera WebSocket disconnected[0m
+[1;31mE (19581) feeder: WebSocket send failed: -1[0m
+[1;31mE (19581) websocket_client: esp_transport_poll_read() returned -1, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=119[0m
+[1;31mE (19596) feeder: Camera WebSocket error[0m
+[0;33mW (19600) websocket_client: Connection already closing/closed, skipping abort[0m
+[0;32mI (19707) feeder: Frame received: 38400 bytes, format=0, free heap: 7883128[0m
+[0;32mI (19731) feeder: frame2jpg OK: 2625 bytes[0m
+[0;33mW (19731) feeder: WS not connected[0m
+[0;32mI (19834) feeder: Frame received: 38400 bytes, format=0, free heap: 7884084[0m
+[0;32mI (19858) feeder: frame2jpg OK: 2626 bytes[0m
+[0;33mW (19858) feeder: WS not connected[0m
+[0;32mI (19960) feeder: Frame received: 38400 bytes, format=0, free heap: 7884120[0m
+[0;32mI (19984) feeder: frame2jpg OK: 2590 bytes[0m
+[0;33mW (19984) feeder: WS not connected[0m
+[0;32mI (20087) feeder: Frame received: 38400 bytes, format=0, free heap: 7884120[0m
+[0;32mI (20111) feeder: frame2jpg OK: 2579 bytes[0m
+[0;33mW (20111) feeder: WS not connected[0m
+[0;32mI (20214) feeder: Frame received: 38400 bytes, format=0, free heap: 7883956[0m
+[0;32mI (20238) feeder: frame2jpg OK: 2624 bytes[0m
+[0;33mW (20238) feeder: WS not connected[0m
+[0;32mI (20340) feeder: Frame received: 38400 bytes, format=0, free heap: 7885688[0m
+[0;32mI (20365) feeder: frame2jpg OK: 2611 bytes[0m
+[0;33mW (20365) feeder: WS not connected[0m
+I (20467) feeder: Frame received: 38400 bytes, format=0, free heap: 7885652
+[0;32mI (20491) feeder: frame2jpg OK: 2619 bytes[0m
+[0;33mW (20491) feeder: WS not connected[0m
+[0;32mI (20594) feeder: Frame received: 38400 bytes, format=0, free heap: 7915708[0m
+[0;32mI (20618) feeder: frame2jpg OK: 2620 bytes[0m
+[0;33mW (20618) feeder: WS not connected[0m
+[0;32mI (20720) feeder: Frame received: 38400 bytes, format=0, free heap: 7915844[0m
+[0;32mI (20744) feeder: frame2jpg OK: 2592 bytes[0m
+[0;33mW (20744) feeder: WS not connected[0m
+[0;32mI (20847) feeder: Frame received: 38400 bytes, format=0, free heap: 7915960[0m
+[0;32mI (20871) feeder: frame2jpg OK: 2610 bytes[0m
+[0;33mW (20871) feeder: WS not connected[0m
+[0;32mI (20974) feeder: Frame received: 38400 bytes, format=0, free heap: 7915996[0m
+[0;32mI (20998) feeder: frame2jpg OK: 2586 bytes[0m
+[0;33mW (20998) feeder: WS not connected[0m
+[0;32mI (21100) feeder: Frame received: 38400 bytes, format=0, free heap: 7915960[0m
+[0;32mI (21124) feeder: frame2jpg OK: 2602 bytes[0m
+[0;33mW (21124) feeder: WS not connected[0m
+[0;32mI (21227) feeder: Frame received: 38400 bytes, format=0, free heap: 7915996[0m
+[0;32mI (21251) feeder: frame2jpg OK: 2595 bytes[0m
+[0;33mW (21251) feeder: WS not connected[0m
+[0;32mI (21354) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (21378) feeder: frame2jpg OK: 2587 bytes[0m
+[0;33mW (21378) feeder: WS not connected[0m
+[0;32mI (21481) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (21504) feeder: frame2jpg OK: 2595 bytes[0m
+[0;33mW (21504) feeder: WS not connected[0m
+[0;32mI (21607) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (21631) feeder: frame2jpg OK: 2580 bytes[0m
+[0;33mW (21631) feeder: WS not connected[0m
+[0;32mI (21734) feeder: Frame received: 38400 bytes, format=0, free heap: 7915972[0m
+[0;32mI (21758) feeder: frame2jpg OK: 2574 bytes[0m
+[0;33mW (21758) feeder: WS not connected[0m
+[0;32mI (21861) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (21884) feeder: frame2jpg OK: 2593 bytes[0m
+[0;33mW (21884) feeder: WS not connected[0m
+[0;32mI (21987) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22011) feeder: frame2jpg OK: 2585 bytes[0m
+[0;33mW (22011) feeder: WS not connected[0m
+[0;32mI (22114) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22138) feeder: frame2jpg OK: 2580 bytes[0m
+[0;33mW (22138) feeder: WS not connected[0m
+[0;32mI (22241) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22264) feeder: frame2jpg OK: 2597 bytes[0m
+[0;33mW (22264) feeder: WS not connected[0m
+[0;32mI (22367) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22391) feeder: frame2jpg OK: 2579 bytes[0m
+[0;33mW (22391) feeder: WS not connected[0m
+[0;32mI (22494) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22518) feeder: frame2jpg OK: 2587 bytes[0m
+[0;33mW (22518) feeder: WS not connected[0m
+[0;32mI (22621) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22645) feeder: frame2jpg OK: 2582 bytes[0m
+[0;33mW (22645) feeder: WS not connected[0m
+[0;32mI (22747) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22771) feeder: frame2jpg OK: 2570 bytes[0m
+[0;33mW (22771) feeder: WS not connected[0m
+[0;32mI (22874) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (22898) feeder: frame2jpg OK: 2568 bytes[0m
+[0;33mW (22898) feeder: WS not connected[0m
+[0;32mI (23001) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23025) feeder: frame2jpg OK: 2576 bytes[0m
+[0;33mW (23025) feeder: WS not connected[0m
+[0;32mI (23128) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23151) feeder: frame2jpg OK: 2582 bytes[0m
+[0;33mW (23151) feeder: WS not connected[0m
+[0;32mI (23254) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23278) feeder: frame2jpg OK: 2580 bytes[0m
+[0;33mW (23278) feeder: WS not connected[0m
+[0;32mI (23381) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23405) feeder: frame2jpg OK: 2577 bytes[0m
+[0;33mW (23405) feeder: WS not connected[0m
+[0;32mI (23508) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23531) feeder: frame2jpg OK: 2578 bytes[0m
+[0;33mW (23531) feeder: WS not connected[0m
+[0;32mI (23634) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (23658) feeder: frame2jpg OK: 2582 bytes[0m
+[0;33mW (23658) feeder: WS not connected[0m
+[0;32mI (23761) feeder: Frame received: 38400 bytes, format=0, free heap: 7915972[0m
+[0;32mI (23785) feeder: frame2jpg OK: 2608 bytes[0m
+[0;33mW (23785) feeder: WS not connected[0m
+[0;32mI (23888) feeder: Frame received: 38400 bytes, format=0, free heap: 7915972[0m
+[0;32mI (23911) feeder: frame2jpg OK: 2580 bytes[0m
+[0;33mW (23911) feeder: WS not connected[0m
+[0;32mI (24014) feeder: Frame received: 38400 bytes, format=0, free heap: 7915972[0m
+[0;32mI (24038) feeder: frame2jpg OK: 2582 bytes[0m
+[0;33mW (24038) feeder: WS not connected[0m
+[0;32mI (24141) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (24165) feeder: frame2jpg OK: 2586 bytes[0m
+[0;33mW (24165) feeder: WS not connected[0m
+[0;32mI (24268) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (24292) feeder: frame2jpg OK: 2570 bytes[0m
+[0;33mW (24292) feeder: WS not connected[0m
+[0;32mI (24394) feeder: Frame received: 38400 bytes, format=0, free heap: 7915972[0m
+[0;32mI (24418) feeder: frame2jpg OK: 2584 bytes[0m
+[0;33mW (24418) feeder: WS not connected[0m
+[0;32mI (24521) feeder: Frame received: 38400 bytes, format=0, free heap: 7916008[0m
+[0;32mI (24545) feeder: frame2jpg OK: 2556 bytes[0m
+[0;33mW (24545) feeder: WS not connected[0m
+[0;32mI (24648) feeder: Frame received: 38400 bytes, format=0, free heap: 7913216[0m
+[0;32mI (24672) feeder: frame2jpg OK: 2583 bytes[0m
+[0;33mW (24672) feeder: WS not connected[0m
+[0;32mI (24774) feeder: Frame received: 38400 bytes, format=0, free heap: 7913252[0m
+[0;32mI (24798) feeder: frame2jpg OK: 2553 bytes[0m
+[0;33mW (24798) feeder: WS not connected[0m
+[0;32mI (24901) feeder: Frame received: 38400 bytes, format=0, free heap: 7905488[0m
+[0;32mI (24925) feeder: frame2jpg OK: 2565 bytes[0m
+[0;33mW (24925) feeder: WS not connected[0m
+[0;32mI (25028) feeder: Frame received: 38400 bytes, format=0, free heap: 7905524[0m
+[0;32mI (25052) feeder: frame2jpg OK: 2551 bytes[0m
+[0;33mW (25052) feeder: WS not connected[0m
+[0;32mI (25328) feeder: Frame received: 38400 bytes, format=0, free heap: 7892664[0m
+[0;32mI (25358) feeder: frame2jpg OK: 2530 bytes[0m
+[0;33mW (25358) feeder: WS not connected[0m
+[0;32mI (25471) feeder: Frame received: 38400 bytes, format=0, free heap: 7895112[0m
+[0;32mI (25497) feeder: frame2jpg OK: 2354 bytes[0m
+[0;33mW (25497) feeder: WS not connected[0m
+[0;32mI (25598) feeder: Frame received: 38400 bytes, format=0, free heap: 7896636[0m
+[0;32mI (25624) feeder: frame2jpg OK: 2494 bytes[0m
+[0;33mW (25624) feeder: WS not connected[0m
+[0;32mI (25725) feeder: Frame received: 38400 bytes, format=0, free heap: 7897624[0m
+[0;32mI (25749) feeder: frame2jpg OK: 2456 bytes[0m
+[0;33mW (25749) feeder: WS not connected[0m
+[0;32mI (25851) feeder: Frame received: 38400 bytes, format=0, free heap: 7897616[0m
+[0;32mI (25875) feeder: frame2jpg OK: 2375 bytes[0m
+[0;33mW (25875) feeder: WS not connected[0m
+[0;32mI (25941) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (25978) feeder: Frame received: 38400 bytes, format=0, free heap: 7897612[0m
+[0;32mI (26002) feeder: frame2jpg OK: 2248 bytes[0m
+[0;32mI (26105) feeder: Frame received: 38400 bytes, format=0, free heap: 7892792[0m
+[0;32mI (26131) feeder: frame2jpg OK: 2199 bytes[0m
+[0;32mI (26231) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (26255) feeder: frame2jpg OK: 2277 bytes[0m
+[0;32mI (26358) feeder: Frame received: 38400 bytes, format=0, free heap: 7896092[0m
+[0;32mI (26382) feeder: frame2jpg OK: 2253 bytes[0m
+[0;32mI (26485) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (26511) feeder: frame2jpg OK: 2310 bytes[0m
+[0;32mI (26611) feeder: Frame received: 38400 bytes, format=0, free heap: 7891356[0m
+[0;32mI (26638) feeder: frame2jpg OK: 2287 bytes[0m
+[0;32mI (26642) feeder: Sent 10 frames[0m
+[0;32mI (26738) feeder: Frame received: 38400 bytes, format=0, free heap: 7894492[0m
+[0;32mI (26764) feeder: frame2jpg OK: 2338 bytes[0m
+[0;32mI (26865) feeder: Frame received: 38400 bytes, format=0, free heap: 7894528[0m
+[0;32mI (26891) feeder: frame2jpg OK: 2454 bytes[0m
+[0;32mI (26992) feeder: Frame received: 38400 bytes, format=0, free heap: 7894536[0m
+[0;32mI (27018) feeder: frame2jpg OK: 2598 bytes[0m
+[0;32mI (27118) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (27145) feeder: frame2jpg OK: 2714 bytes[0m
+[0;32mI (27245) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (27271) feeder: frame2jpg OK: 2667 bytes[0m
+[0;32mI (27372) feeder: Frame received: 38400 bytes, format=0, free heap: 7894484[0m
+[0;32mI (27398) feeder: frame2jpg OK: 2588 bytes[0m
+[0;32mI (27498) feeder: Frame received: 38400 bytes, format=0, free heap: 7891352[0m
+[0;32mI (27524) feeder: frame2jpg OK: 2187 bytes[0m
+[0;32mI (27625) feeder: Frame received: 38400 bytes, format=0, free heap: 7896044[0m
+[0;32mI (27651) feeder: frame2jpg OK: 2528 bytes[0m
+[0;32mI (27752) feeder: Frame received: 38400 bytes, format=0, free heap: 7892968[0m
+[0;32mI (27778) feeder: frame2jpg OK: 2327 bytes[0m
+[0;32mI (27878) feeder: Frame received: 38400 bytes, format=0, free heap: 7894476[0m
+[0;32mI (27902) feeder: frame2jpg OK: 2234 bytes[0m
+[0;32mI (27906) feeder: Sent 20 frames[0m
+[0;32mI (28005) feeder: Frame received: 38400 bytes, format=0, free heap: 7894484[0m
+[0;32mI (28029) feeder: frame2jpg OK: 2603 bytes[0m
+[0;32mI (28132) feeder: Frame received: 38400 bytes, format=0, free heap: 7894532[0m
+[0;32mI (28158) feeder: frame2jpg OK: 2313 bytes[0m
+[0;32mI (28258) feeder: Frame received: 38400 bytes, format=0, free heap: 7894484[0m
+[0;32mI (28283) feeder: frame2jpg OK: 2612 bytes[0m
+[0;32mI (28385) feeder: Frame received: 38400 bytes, format=0, free heap: 7891352[0m
+[0;32mI (28412) feeder: frame2jpg OK: 2637 bytes[0m
+[0;32mI (28512) feeder: Frame received: 38400 bytes, format=0, free heap: 7892792[0m
+[0;32mI (28536) feeder: frame2jpg OK: 2670 bytes[0m
+[0;32mI (28639) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (28663) feeder: frame2jpg OK: 2657 bytes[0m
+[0;32mI (28765) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (28792) feeder: frame2jpg OK: 2654 bytes[0m
+[0;32mI (28892) feeder: Frame received: 38400 bytes, format=0, free heap: 7891352[0m
+[0;32mI (28918) feeder: frame2jpg OK: 2660 bytes[0m
+[0;32mI (29019) feeder: Frame received: 38400 bytes, format=0, free heap: 7888276[0m
+[0;32mI (29043) feeder: frame2jpg OK: 2669 bytes[0m
+[0;32mI (29145) feeder: Frame received: 38400 bytes, format=0, free heap: 7896072[0m
+[0;32mI (29169) feeder: frame2jpg OK: 2669 bytes[0m
+[0;32mI (29174) feeder: Sent 30 frames[0m
+[0;32mI (29272) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (29296) feeder: frame2jpg OK: 2661 bytes[0m
+[0;32mI (29399) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (29425) feeder: frame2jpg OK: 2674 bytes[0m
+[0;32mI (29525) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (29552) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (29652) feeder: Frame received: 38400 bytes, format=0, free heap: 7894540[0m
+[0;32mI (29678) feeder: frame2jpg OK: 2674 bytes[0m
+[0;32mI (29779) feeder: Frame received: 38400 bytes, format=0, free heap: 7894492[0m
+[0;32mI (29805) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (29905) feeder: Frame received: 38400 bytes, format=0, free heap: 7894368[0m
+[0;32mI (29932) feeder: frame2jpg OK: 2655 bytes[0m
+[0;32mI (30032) feeder: Frame received: 38400 bytes, format=0, free heap: 7894352[0m
+[0;32mI (30059) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (30159) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (30185) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (30285) feeder: Frame received: 38400 bytes, format=0, free heap: 7894504[0m
+[0;32mI (30312) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (30412) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (30439) feeder: frame2jpg OK: 2671 bytes[0m
+[0;32mI (30443) feeder: Sent 40 frames[0m
+[0;32mI (30539) feeder: Frame received: 38400 bytes, format=0, free heap: 7897628[0m
+[0;32mI (30563) feeder: frame2jpg OK: 2674 bytes[0m
+[0;32mI (30666) feeder: Frame received: 38400 bytes, format=0, free heap: 7894540[0m
+[0;32mI (30692) feeder: frame2jpg OK: 2666 bytes[0m
+[0;32mI (30792) feeder: Frame received: 38400 bytes, format=0, free heap: 7894352[0m
+[0;32mI (30819) feeder: frame2jpg OK: 2675 bytes[0m
+[0;32mI (30919) feeder: Frame received: 38400 bytes, format=0, free heap: 7891232[0m
+[0;32mI (30945) feeder: frame2jpg OK: 2669 bytes[0m
+[0;32mI (31046) feeder: Frame received: 38400 bytes, format=0, free heap: 7892948[0m
+[0;32mI (31070) feeder: frame2jpg OK: 2671 bytes[0m
+[0;32mI (31172) feeder: Frame received: 38400 bytes, format=0, free heap: 7896064[0m
+[0;32mI (31199) feeder: frame2jpg OK: 2667 bytes[0m
+[0;32mI (31299) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (31325) feeder: frame2jpg OK: 2665 bytes[0m
+[0;32mI (31426) feeder: Frame received: 38400 bytes, format=0, free heap: 7894504[0m
+[0;32mI (31452) feeder: frame2jpg OK: 2670 bytes[0m
+[0;32mI (31552) feeder: Frame received: 38400 bytes, format=0, free heap: 7891404[0m
+[0;32mI (31579) feeder: frame2jpg OK: 2672 bytes[0m
+[0;32mI (31679) feeder: Frame received: 38400 bytes, format=0, free heap: 7891404[0m
+[0;32mI (31705) feeder: frame2jpg OK: 2666 bytes[0m
+[0;32mI (31710) feeder: Sent 50 frames[0m
+[0;32mI (31806) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (31830) feeder: frame2jpg OK: 2665 bytes[0m
+[0;32mI (31932) feeder: Frame received: 38400 bytes, format=0, free heap: 7894360[0m
+[0;32mI (31957) feeder: frame2jpg OK: 2674 bytes[0m
+[0;32mI (32059) feeder: Frame received: 38400 bytes, format=0, free heap: 7891352[0m
+[0;32mI (32084) feeder: frame2jpg OK: 2672 bytes[0m
+[0;32mI (32186) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (32210) feeder: frame2jpg OK: 2684 bytes[0m
+[0;32mI (32313) feeder: Frame received: 38400 bytes, format=0, free heap: 7897632[0m
+[0;32mI (32339) feeder: frame2jpg OK: 2672 bytes[0m
+[0;32mI (32439) feeder: Frame received: 38400 bytes, format=0, free heap: 7894512[0m
+[0;32mI (32466) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (32566) feeder: Frame received: 38400 bytes, format=0, free heap: 7894532[0m
+[0;32mI (32592) feeder: frame2jpg OK: 2674 bytes[0m
+[0;32mI (32693) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (32719) feeder: frame2jpg OK: 2686 bytes[0m
+[0;32mI (32819) feeder: Frame received: 38400 bytes, format=0, free heap: 7891424[0m
+[0;32mI (32844) feeder: frame2jpg OK: 2665 bytes[0m
+[0;32mI (32946) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (32971) feeder: frame2jpg OK: 2673 bytes[0m
+[0;32mI (32975) feeder: Sent 60 frames[0m
+[0;32mI (33073) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (33097) feeder: frame2jpg OK: 2672 bytes[0m
+[0;32mI (33199) feeder: Frame received: 38400 bytes, format=0, free heap: 7892948[0m
+[0;32mI (33224) feeder: frame2jpg OK: 2656 bytes[0m
+[0;32mI (33326) feeder: Frame received: 38400 bytes, format=0, free heap: 7892948[0m
+[0;32mI (33351) feeder: frame2jpg OK: 2556 bytes[0m
+[0;32mI (33453) feeder: Frame received: 38400 bytes, format=0, free heap: 7892952[0m
+[0;32mI (33479) feeder: frame2jpg OK: 2646 bytes[0m
+[0;32mI (33579) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (33604) feeder: frame2jpg OK: 2651 bytes[0m
+[0;32mI (33706) feeder: Frame received: 38400 bytes, format=0, free heap: 7894512[0m
+[0;32mI (33731) feeder: frame2jpg OK: 2670 bytes[0m
+[0;32mI (33833) feeder: Frame received: 38400 bytes, format=0, free heap: 7897632[0m
+[0;32mI (33857) feeder: frame2jpg OK: 2645 bytes[0m
+[0;32mI (33959) feeder: Frame received: 38400 bytes, format=0, free heap: 7894556[0m
+[0;32mI (33986) feeder: frame2jpg OK: 2630 bytes[0m
+[0;32mI (34086) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (34113) feeder: frame2jpg OK: 2584 bytes[0m
+[0;32mI (34213) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (34239) feeder: frame2jpg OK: 2553 bytes[0m
+[0;32mI (34243) feeder: Sent 70 frames[0m
+[0;32mI (34340) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (34366) feeder: frame2jpg OK: 2560 bytes[0m
+[0;32mI (34466) feeder: Frame received: 38400 bytes, format=0, free heap: 7892944[0m
+[0;32mI (34491) feeder: frame2jpg OK: 2624 bytes[0m
+[0;32mI (34593) feeder: Frame received: 38400 bytes, format=0, free heap: 7894520[0m
+[0;32mI (34617) feeder: frame2jpg OK: 2610 bytes[0m
+[0;32mI (34720) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (34746) feeder: frame2jpg OK: 2639 bytes[0m
+[0;32mI (34846) feeder: Frame received: 38400 bytes, format=0, free heap: 7897628[0m
+[0;32mI (34870) feeder: frame2jpg OK: 2622 bytes[0m
+[0;32mI (34973) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (34999) feeder: frame2jpg OK: 2637 bytes[0m
+[0;32mI (35100) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (35126) feeder: frame2jpg OK: 2635 bytes[0m
+[0;32mI (35226) feeder: Frame received: 38400 bytes, format=0, free heap: 7894504[0m
+[0;32mI (35253) feeder: frame2jpg OK: 2636 bytes[0m
+[0;32mI (35353) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (35379) feeder: frame2jpg OK: 2654 bytes[0m
+[0;32mI (35480) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (35506) feeder: frame2jpg OK: 2640 bytes[0m
+[0;32mI (35510) feeder: Sent 80 frames[0m
+[0;32mI (35606) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (35633) feeder: frame2jpg OK: 2654 bytes[0m
+[0;32mI (35733) feeder: Frame received: 38400 bytes, format=0, free heap: 7891248[0m
+[0;32mI (35760) feeder: frame2jpg OK: 2659 bytes[0m
+[0;32mI (35860) feeder: Frame received: 38400 bytes, format=0, free heap: 7894544[0m
+[0;32mI (35884) feeder: frame2jpg OK: 2661 bytes[0m
+[0;32mI (35987) feeder: Frame received: 38400 bytes, format=0, free heap: 7894512[0m
+[0;32mI (36011) feeder: frame2jpg OK: 2653 bytes[0m
+[0;32mI (36113) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (36140) feeder: frame2jpg OK: 2653 bytes[0m
+[0;32mI (36240) feeder: Frame received: 38400 bytes, format=0, free heap: 7891424[0m
+[0;32mI (36266) feeder: frame2jpg OK: 2643 bytes[0m
+[0;32mI (36367) feeder: Frame received: 38400 bytes, format=0, free heap: 7888256[0m
+[0;32mI (36391) feeder: frame2jpg OK: 2655 bytes[0m
+[0;32mI (36493) feeder: Frame received: 38400 bytes, format=0, free heap: 7891376[0m
+[0;32mI (36517) feeder: frame2jpg OK: 2639 bytes[0m
+[0;32mI (36620) feeder: Frame received: 38400 bytes, format=0, free heap: 7891248[0m
+[0;32mI (36645) feeder: frame2jpg OK: 2650 bytes[0m
+[0;32mI (36747) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (36773) feeder: frame2jpg OK: 2643 bytes[0m
+[0;32mI (36778) feeder: Sent 90 frames[0m
+[0;32mI (36873) feeder: Frame received: 38400 bytes, format=0, free heap: 7894352[0m
+[0;32mI (36897) feeder: frame2jpg OK: 2642 bytes[0m
+[0;32mI (37000) feeder: Frame received: 38400 bytes, format=0, free heap: 7894484[0m
+[0;32mI (37026) feeder: frame2jpg OK: 2638 bytes[0m
+[0;32mI (37127) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (37153) feeder: frame2jpg OK: 2629 bytes[0m
+[0;32mI (37253) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (37280) feeder: frame2jpg OK: 2626 bytes[0m
+[0;32mI (37380) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (37407) feeder: frame2jpg OK: 2633 bytes[0m
+[0;32mI (37507) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (37533) feeder: frame2jpg OK: 2641 bytes[0m
+[0;32mI (37633) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (37660) feeder: frame2jpg OK: 2640 bytes[0m
+[0;32mI (37760) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (37787) feeder: frame2jpg OK: 2627 bytes[0m
+[0;32mI (37887) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (37913) feeder: frame2jpg OK: 2645 bytes[0m
+[0;32mI (38014) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (38040) feeder: frame2jpg OK: 2649 bytes[0m
+[0;32mI (38044) feeder: Sent 100 frames[0m
+[0;32mI (38140) feeder: Frame received: 38400 bytes, format=0, free heap: 7894532[0m
+[0;32mI (38167) feeder: frame2jpg OK: 2639 bytes[0m
+[0;32mI (38267) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (38291) feeder: frame2jpg OK: 2626 bytes[0m
+[0;32mI (38394) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (38420) feeder: frame2jpg OK: 2646 bytes[0m
+[0;32mI (38520) feeder: Frame received: 38400 bytes, format=0, free heap: 7894540[0m
+[0;32mI (38547) feeder: frame2jpg OK: 2637 bytes[0m
+[0;32mI (38647) feeder: Frame received: 38400 bytes, format=0, free heap: 7897628[0m
+[0;32mI (38673) feeder: frame2jpg OK: 2634 bytes[0m
+[0;32mI (38774) feeder: Frame received: 38400 bytes, format=0, free heap: 7894512[0m
+[0;32mI (38800) feeder: frame2jpg OK: 2642 bytes[0m
+[0;32mI (38900) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (38927) feeder: frame2jpg OK: 2634 bytes[0m
+[0;32mI (39027) feeder: Frame received: 38400 bytes, format=0, free heap: 7894372[0m
+[0;32mI (39054) feeder: frame2jpg OK: 2632 bytes[0m
+[0;32mI (39154) feeder: Frame received: 38400 bytes, format=0, free heap: 7894504[0m
+[0;32mI (39180) feeder: frame2jpg OK: 2621 bytes[0m
+[0;32mI (39280) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (39307) feeder: frame2jpg OK: 2628 bytes[0m
+[0;32mI (39311) feeder: Sent 110 frames[0m
+[0;32mI (39407) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (39433) feeder: frame2jpg OK: 2631 bytes[0m
+[0;32mI (39534) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (39558) feeder: frame2jpg OK: 2620 bytes[0m
+[0;32mI (39661) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (39685) feeder: frame2jpg OK: 2617 bytes[0m
+[0;32mI (39787) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (39812) feeder: frame2jpg OK: 2605 bytes[0m
+[0;32mI (39914) feeder: Frame received: 38400 bytes, format=0, free heap: 7894360[0m
+[0;32mI (39938) feeder: frame2jpg OK: 2616 bytes[0m
+[0;32mI (40041) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (40065) feeder: frame2jpg OK: 2628 bytes[0m
+[0;32mI (40167) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (40194) feeder: frame2jpg OK: 2621 bytes[0m
+[0;32mI (40294) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (40320) feeder: frame2jpg OK: 2618 bytes[0m
+[0;32mI (40421) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (40447) feeder: frame2jpg OK: 2621 bytes[0m
+[0;32mI (40547) feeder: Frame received: 38400 bytes, format=0, free heap: 7897632[0m
+[0;32mI (40571) feeder: frame2jpg OK: 2618 bytes[0m
+[0;32mI (40576) feeder: Sent 120 frames[0m
+[0;32mI (40674) feeder: Frame received: 38400 bytes, format=0, free heap: 7894556[0m
+[0;32mI (40700) feeder: frame2jpg OK: 2607 bytes[0m
+[0;32mI (40801) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (40828) feeder: frame2jpg OK: 2622 bytes[0m
+[0;32mI (40927) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (40954) feeder: frame2jpg OK: 2616 bytes[0m
+[0;32mI (41054) feeder: Frame received: 38400 bytes, format=0, free heap: 7892932[0m
+[0;32mI (41078) feeder: frame2jpg OK: 2620 bytes[0m
+[0;32mI (41181) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (41205) feeder: frame2jpg OK: 2629 bytes[0m
+[0;32mI (41308) feeder: Frame received: 38400 bytes, format=0, free heap: 7894496[0m
+[0;32mI (41334) feeder: frame2jpg OK: 2631 bytes[0m
+[0;32mI (41434) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (41458) feeder: frame2jpg OK: 2632 bytes[0m
+[0;32mI (41561) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (41587) feeder: frame2jpg OK: 2622 bytes[0m
+[0;32mI (41688) feeder: Frame received: 38400 bytes, format=0, free heap: 7896036[0m
+[0;32mI (41712) feeder: frame2jpg OK: 2622 bytes[0m
+[0;32mI (41814) feeder: Frame received: 38400 bytes, format=0, free heap: 7892916[0m
+[0;32mI (41839) feeder: frame2jpg OK: 2626 bytes[0m
+[0;32mI (41843) feeder: Sent 130 frames[0m
+[0;32mI (41941) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (41966) feeder: frame2jpg OK: 2637 bytes[0m
+[0;32mI (42068) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (42092) feeder: frame2jpg OK: 2624 bytes[0m
+[0;32mI (42194) feeder: Frame received: 38400 bytes, format=0, free heap: 7894520[0m
+[0;32mI (42219) feeder: frame2jpg OK: 2635 bytes[0m
+[0;32mI (42321) feeder: Frame received: 38400 bytes, format=0, free heap: 7894384[0m
+[0;32mI (42347) feeder: frame2jpg OK: 2636 bytes[0m
+[0;32mI (42448) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (42474) feeder: frame2jpg OK: 2617 bytes[0m
+[0;32mI (42574) feeder: Frame received: 38400 bytes, format=0, free heap: 7891380[0m
+[0;32mI (42601) feeder: frame2jpg OK: 2612 bytes[0m
+[0;32mI (42701) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (42725) feeder: frame2jpg OK: 2589 bytes[0m
+[0;32mI (42828) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (42852) feeder: frame2jpg OK: 2600 bytes[0m
+[0;32mI (42954) feeder: Frame received: 38400 bytes, format=0, free heap: 7894520[0m
+[0;32mI (42981) feeder: frame2jpg OK: 2585 bytes[0m
+[0;32mI (43081) feeder: Frame received: 38400 bytes, format=0, free heap: 7892956[0m
+[0;32mI (43108) feeder: frame2jpg OK: 2587 bytes[0m
+[0;32mI (43112) feeder: Sent 140 frames[0m
+[0;32mI (43208) feeder: Frame received: 38400 bytes, format=0, free heap: 7892984[0m
+[0;32mI (43232) feeder: frame2jpg OK: 2581 bytes[0m
+[0;32mI (43335) feeder: Frame received: 38400 bytes, format=0, free heap: 7896080[0m
+[0;32mI (43359) feeder: frame2jpg OK: 2558 bytes[0m
+[0;32mI (43461) feeder: Frame received: 38400 bytes, format=0, free heap: 7894520[0m
+[0;32mI (43488) feeder: frame2jpg OK: 2541 bytes[0m
+[0;32mI (43588) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (43614) feeder: frame2jpg OK: 2572 bytes[0m
+[0;32mI (43715) feeder: Frame received: 38400 bytes, format=0, free heap: 7895924[0m
+[0;32mI (43741) feeder: frame2jpg OK: 2586 bytes[0m
+[0;32mI (43841) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (43867) feeder: frame2jpg OK: 2200 bytes[0m
+[0;32mI (43968) feeder: Frame received: 38400 bytes, format=0, free heap: 7894552[0m
+[0;32mI (43992) feeder: frame2jpg OK: 2203 bytes[0m
+[0;32mI (44095) feeder: Frame received: 38400 bytes, format=0, free heap: 7894556[0m
+[0;32mI (44119) feeder: frame2jpg OK: 2010 bytes[0m
+[0;32mI (44221) feeder: Frame received: 38400 bytes, format=0, free heap: 7896072[0m
+[0;32mI (44247) feeder: frame2jpg OK: 1978 bytes[0m
+[0;32mI (44348) feeder: Frame received: 38400 bytes, format=0, free heap: 7892952[0m
+[0;32mI (44374) feeder: frame2jpg OK: 1999 bytes[0m
+[0;32mI (44378) feeder: Sent 150 frames[0m
+[0;32mI (44475) feeder: Frame received: 38400 bytes, format=0, free heap: 7892952[0m
+[0;32mI (44500) feeder: frame2jpg OK: 1872 bytes[0m
+[0;32mI (44601) feeder: Frame received: 38400 bytes, format=0, free heap: 7896072[0m
+[0;32mI (44627) feeder: frame2jpg OK: 1687 bytes[0m
+[0;32mI (44728) feeder: Frame received: 38400 bytes, format=0, free heap: 7892952[0m
+[0;32mI (44754) feeder: frame2jpg OK: 1495 bytes[0m
+[0;32mI (44823) intercom: Audio WS alive: yes[0m
+[0;32mI (44855) feeder: Frame received: 38400 bytes, format=0, free heap: 7896060[0m
+[0;32mI (44878) feeder: frame2jpg OK: 1533 bytes[0m
+[0;32mI (44982) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (45005) feeder: frame2jpg OK: 1562 bytes[0m
+[0;32mI (45108) feeder: Frame received: 38400 bytes, format=0, free heap: 7896116[0m
+[0;32mI (45134) feeder: frame2jpg OK: 1767 bytes[0m
+[0;32mI (45235) feeder: Frame received: 38400 bytes, format=0, free heap: 7896072[0m
+[0;32mI (45261) feeder: frame2jpg OK: 2259 bytes[0m
+[0;32mI (45362) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (45388) feeder: frame2jpg OK: 2628 bytes[0m
+[0;32mI (45488) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (45515) feeder: frame2jpg OK: 2750 bytes[0m
+[0;32mI (45615) feeder: Frame received: 38400 bytes, format=0, free heap: 7894364[0m
+[0;32mI (45641) feeder: frame2jpg OK: 2736 bytes[0m
+[0;32mI (45646) feeder: Sent 160 frames[0m
+[0;32mI (45742) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (45768) feeder: frame2jpg OK: 2564 bytes[0m
+[0;32mI (45868) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (45894) feeder: frame2jpg OK: 2158 bytes[0m
+[0;32mI (45995) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (46021) feeder: frame2jpg OK: 1790 bytes[0m
+[0;32mI (46122) feeder: Frame received: 38400 bytes, format=0, free heap: 7896060[0m
+[0;32mI (46145) feeder: frame2jpg OK: 1964 bytes[0m
+[0;32mI (46248) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (46274) feeder: frame2jpg OK: 1953 bytes[0m
+[0;32mI (46375) feeder: Frame received: 38400 bytes, format=0, free heap: 7892924[0m
+[0;32mI (46401) feeder: frame2jpg OK: 1911 bytes[0m
+[0;32mI (46502) feeder: Frame received: 38400 bytes, format=0, free heap: 7894476[0m
+[0;32mI (46528) feeder: frame2jpg OK: 1902 bytes[0m
+[0;32mI (46628) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (46655) feeder: frame2jpg OK: 2248 bytes[0m
+[0;32mI (46755) feeder: Frame received: 38400 bytes, format=0, free heap: 7896060[0m
+[0;32mI (46782) feeder: frame2jpg OK: 2613 bytes[0m
+[0;32mI (46882) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (46908) feeder: frame2jpg OK: 2757 bytes[0m
+[0;32mI (46913) feeder: Sent 170 frames[0m
+[0;32mI (47009) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (47033) feeder: frame2jpg OK: 2773 bytes[0m
+[0;32mI (47135) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (47162) feeder: frame2jpg OK: 2682 bytes[0m
+[0;32mI (47262) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (47288) feeder: frame2jpg OK: 2606 bytes[0m
+[0;32mI (47389) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (47415) feeder: frame2jpg OK: 2528 bytes[0m
+[0;32mI (47515) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (47542) feeder: frame2jpg OK: 2421 bytes[0m
+[0;32mI (47642) feeder: Frame received: 38400 bytes, format=0, free heap: 7891368[0m
+[0;32mI (47668) feeder: frame2jpg OK: 2402 bytes[0m
+[0;32mI (47769) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (47793) feeder: frame2jpg OK: 2343 bytes[0m
+[0;32mI (47895) feeder: Frame received: 38400 bytes, format=0, free heap: 7896080[0m
+[0;32mI (47920) feeder: frame2jpg OK: 2594 bytes[0m
+[0;32mI (48022) feeder: Frame received: 38400 bytes, format=0, free heap: 7894516[0m
+[0;32mI (48049) feeder: frame2jpg OK: 2752 bytes[0m
+[0;32mI (48149) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (48175) feeder: frame2jpg OK: 2774 bytes[0m
+[0;32mI (48180) feeder: Sent 180 frames[0m
+[0;32mI (48275) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (48300) feeder: frame2jpg OK: 2750 bytes[0m
+[0;32mI (48402) feeder: Frame received: 38400 bytes, format=0, free heap: 7892960[0m
+[0;32mI (48427) feeder: frame2jpg OK: 2728 bytes[0m
+[0;32mI (48529) feeder: Frame received: 38400 bytes, format=0, free heap: 7892916[0m
+[0;32mI (48555) feeder: frame2jpg OK: 2708 bytes[0m
+[0;32mI (48656) feeder: Frame received: 38400 bytes, format=0, free heap: 7892960[0m
+[0;32mI (48682) feeder: frame2jpg OK: 2717 bytes[0m
+[0;32mI (48782) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (48809) feeder: frame2jpg OK: 2723 bytes[0m
+[0;32mI (48909) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (48935) feeder: frame2jpg OK: 2731 bytes[0m
+[0;32mI (49036) feeder: Frame received: 38400 bytes, format=0, free heap: 7892940[0m
+[0;32mI (49062) feeder: frame2jpg OK: 2730 bytes[0m
+[0;32mI (49162) feeder: Frame received: 38400 bytes, format=0, free heap: 7892916[0m
+[0;32mI (49187) feeder: frame2jpg OK: 2726 bytes[0m
+[0;32mI (49289) feeder: Frame received: 38400 bytes, format=0, free heap: 7889796[0m
+[0;32mI (49314) feeder: frame2jpg OK: 2734 bytes[0m
+[0;32mI (49416) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (49442) feeder: frame2jpg OK: 2728 bytes[0m
+[0;32mI (49446) feeder: Sent 190 frames[0m
+[0;32mI (49542) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (49569) feeder: frame2jpg OK: 2727 bytes[0m
+[0;32mI (49669) feeder: Frame received: 38400 bytes, format=0, free heap: 7894488[0m
+[0;32mI (49696) feeder: frame2jpg OK: 2733 bytes[0m
+[0;32mI (49796) feeder: Frame received: 38400 bytes, format=0, free heap: 7894508[0m
+[0;32mI (49822) feeder: frame2jpg OK: 2733 bytes[0m
+[0;32mI (49922) feeder: Frame received: 38400 bytes, format=0, free heap: 7891384[0m
+[0;32mI (49949) feeder: frame2jpg OK: 2737 bytes[0m
+[0;32mI (50049) feeder: Frame received: 38400 bytes, format=0, free heap: 7894504[0m
+[0;32mI (50073) feeder: frame2jpg OK: 2721 bytes[0m
+[0;32mI (50176) feeder: Frame received: 38400 bytes, format=0, free heap: 7894520[0m
+[0;32mI (50200) feeder: frame2jpg OK: 2737 bytes[0m
+[0;32mI (50302) feeder: Frame received: 38400 bytes, format=0, free heap: 7894512[0m
+[0;32mI (50329) feeder: frame2jpg OK: 2725 bytes[0m
+[0;32mI (50429) feeder: Frame received: 38400 bytes, format=0, free heap: 7894500[0m
+[0;32mI (50453) feeder: frame2jpg OK: 2722 bytes[0m
+[0;32mI (50556) feeder: Frame received: 38400 bytes, format=0, free heap: 7874132[0m
+[0;32mI (50581) feeder: frame2jpg OK: 2729 bytes[0m
+[1;31mE (50583) esp-aes: Failed to allocate memory[0m
+[1;31mE (50583) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (50583) transport_base: esp_tls_conn_write error, errno=Success[0m
+[1;31mE (50588) websocket_client: esp_transport_write() returned -1, transport_error=ESP_ERR_MBEDTLS_SSL_WRITE_FAILED, tls_error_code=1, tls_flags=0, errno=0[0m
+[1;31mE (50601) feeder: Camera WebSocket error[0m
+[0;32mI (50606) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (50609) feeder: Camera WebSocket disconnected[0m
+[1;31mE (50613) feeder: WebSocket send failed: -1[0m
+[0;32mI (50683) feeder: Frame received: 38400 bytes, format=0, free heap: 7893604[0m
+[0;32mI (50707) feeder: frame2jpg OK: 2743 bytes[0m
+[0;33mW (50707) feeder: WS not connected[0m
+[0;32mI (50809) feeder: Frame received: 38400 bytes, format=0, free heap: 7893604[0m
+[0;32mI (50834) feeder: frame2jpg OK: 2752 bytes[0m
+[0;33mW (50834) feeder: WS not connected[0m
+[0;32mI (50936) feeder: Frame received: 38400 bytes, format=0, free heap: 7895936[0m
+[0;32mI (50960) feeder: frame2jpg OK: 2726 bytes[0m
+[0;33mW (50960) feeder: WS not connected[0m
+[0;32mI (51063) feeder: Frame received: 38400 bytes, format=0, free heap: 7895932[0m
+[0;32mI (51087) feeder: frame2jpg OK: 2703 bytes[0m
+[0;33mW (51087) feeder: WS not connected[0m
+[0;32mI (51189) feeder: Frame received: 38400 bytes, format=0, free heap: 7888208[0m
+[0;32mI (51214) feeder: frame2jpg OK: 2727 bytes[0m
+[0;33mW (51214) feeder: WS not connected[0m
+[0;32mI (51316) feeder: Frame received: 38400 bytes, format=0, free heap: 7888248[0m
+[0;32mI (51538) feeder: frame2jpg OK: 2712 bytes[0m
+[0;33mW (51541) feeder: WS not connected[0m
+[0;32mI (51633) feeder: Frame received: 38400 bytes, format=0, free heap: 7882440[0m
+[0;32mI (51657) feeder: frame2jpg OK: 2726 bytes[0m
+[0;33mW (51657) feeder: WS not connected[0m
+[0;32mI (51759) feeder: Frame received: 38400 bytes, format=0, free heap: 7884008[0m
+[0;32mI (51784) feeder: frame2jpg OK: 2726 bytes[0m
+[0;33mW (51784) feeder: WS not connected[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x21 (DOWNLOAD(USB/UART0))
+waiting for download

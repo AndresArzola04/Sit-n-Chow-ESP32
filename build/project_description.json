@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "video_stream_server",
-    "project_version":    "e90f71e-dirty",
+    "project_version":    "57fc0be-dirty",
     "project_path":       "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.1",
     "build_dir":          "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build",
@@ -670,7 +670,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
-            "sources": [ "C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c", "C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c" ],
+            "sources": [ "C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "C:/Espressif/frameworks/esp-idf-v5.5.1/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_eth": {

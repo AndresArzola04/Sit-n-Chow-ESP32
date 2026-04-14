@@ -1,6 +1,6 @@
 Command: ninja flash
 [1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/partition_table/partition-table.bin" "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin""
-video_stream_server.bin binary size 0x14ea00 bytes. Smallest app partition is 0x400000 bytes. 0x2b1600 bytes (67%) free.
+video_stream_server.bin binary size 0x150710 bytes. Smallest app partition is 0x400000 bytes. 0x2af8f0 bytes (67%) free.
 [2/5] Performing build step for 'bootloader'
 [1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/bootloader.bin""
 Bootloader binary size 0x57e0 bytes. 0x2820 bytes (31%) free.
@@ -22,71 +22,71 @@ Changing baud rate to 460800
 Changed.
 Configuring flash size...
 Flash will be erased from 0x00000000 to 0x00005fff...
-Flash will be erased from 0x00010000 to 0x0015efff...
+Flash will be erased from 0x00010000 to 0x00160fff...
 Flash will be erased from 0x00008000 to 0x00008fff...
 SHA digest in image updated
-Compressed 22496 bytes to 14268...
+Compressed 22496 bytes to 14267...
 Writing at 0x00000000... (100 %)
-Wrote 22496 bytes (14268 compressed) at 0x00000000 in 0.5 seconds (effective 348.5 kbit/s)...
+Wrote 22496 bytes (14267 compressed) at 0x00000000 in 0.5 seconds (effective 349.3 kbit/s)...
 Hash of data verified.
-Compressed 1370624 bytes to 837423...
+Compressed 1378064 bytes to 842669...
 Writing at 0x00010000... (1 %)
-Writing at 0x0001d5e2... (3 %)
-Writing at 0x0002a4dc... (5 %)
-Writing at 0x00035ad3... (7 %)
-Writing at 0x0003b0b4... (9 %)
-Writing at 0x00044245... (11 %)
-Writing at 0x0004ef94... (13 %)
-Writing at 0x000553bb... (15 %)
-Writing at 0x0005be97... (17 %)
-Writing at 0x0006206d... (19 %)
-Writing at 0x00068880... (21 %)
-Writing at 0x0006ee97... (23 %)
-Writing at 0x0007508b... (25 %)
-Writing at 0x0007aef1... (26 %)
-Writing at 0x000806e4... (28 %)
-Writing at 0x00086228... (30 %)
-Writing at 0x0008bf81... (32 %)
-Writing at 0x000927cd... (34 %)
-Writing at 0x00099da2... (36 %)
-Writing at 0x000a0579... (38 %)
-Writing at 0x000a61bf... (40 %)
-Writing at 0x000abff4... (42 %)
-Writing at 0x000b1f31... (44 %)
-Writing at 0x000b86e9... (46 %)
-Writing at 0x000be760... (48 %)
-Writing at 0x000c4462... (50 %)
-Writing at 0x000ca1ed... (51 %)
-Writing at 0x000d02df... (53 %)
-Writing at 0x000d6234... (55 %)
-Writing at 0x000db8b6... (57 %)
-Writing at 0x000e0a93... (59 %)
-Writing at 0x000e60e5... (61 %)
-Writing at 0x000eb93a... (63 %)
-Writing at 0x000f0e1e... (65 %)
-Writing at 0x000f61c3... (67 %)
-Writing at 0x000fb776... (69 %)
-Writing at 0x00101693... (71 %)
-Writing at 0x0010700d... (73 %)
-Writing at 0x0010cd6a... (75 %)
-Writing at 0x00112866... (76 %)
-Writing at 0x00117f80... (78 %)
-Writing at 0x0011d3e6... (80 %)
-Writing at 0x00125285... (82 %)
-Writing at 0x0012ed26... (84 %)
-Writing at 0x0013526d... (86 %)
-Writing at 0x0013b40a... (88 %)
-Writing at 0x001410b4... (90 %)
-Writing at 0x0014650f... (92 %)
-Writing at 0x0014c5cf... (94 %)
-Writing at 0x00152ea5... (96 %)
-Writing at 0x001583eb... (98 %)
-Writing at 0x0015dc84... (100 %)
-Wrote 1370624 bytes (837423 compressed) at 0x00010000 in 20.8 seconds (effective 528.3 kbit/s)...
+Writing at 0x0001d613... (3 %)
+Writing at 0x0002a555... (5 %)
+Writing at 0x00035b97... (7 %)
+Writing at 0x0003b39d... (9 %)
+Writing at 0x00043601... (11 %)
+Writing at 0x0004ea0f... (13 %)
+Writing at 0x000552b4... (15 %)
+Writing at 0x0005bc41... (17 %)
+Writing at 0x00061f99... (19 %)
+Writing at 0x00068939... (21 %)
+Writing at 0x0006ed7d... (23 %)
+Writing at 0x00074f05... (25 %)
+Writing at 0x0007ad50... (26 %)
+Writing at 0x0008059d... (28 %)
+Writing at 0x00086094... (30 %)
+Writing at 0x0008bd21... (32 %)
+Writing at 0x00091ee1... (34 %)
+Writing at 0x00099b65... (36 %)
+Writing at 0x000a0289... (38 %)
+Writing at 0x000a6012... (40 %)
+Writing at 0x000abd60... (42 %)
+Writing at 0x000b1d7d... (44 %)
+Writing at 0x000b8312... (46 %)
+Writing at 0x000be54f... (48 %)
+Writing at 0x000c41bd... (50 %)
+Writing at 0x000c9fa3... (51 %)
+Writing at 0x000d0018... (53 %)
+Writing at 0x000d60a6... (55 %)
+Writing at 0x000db825... (57 %)
+Writing at 0x000e0a99... (59 %)
+Writing at 0x000e5e90... (61 %)
+Writing at 0x000eb788... (63 %)
+Writing at 0x000f0d5e... (65 %)
+Writing at 0x000f60cd... (67 %)
+Writing at 0x000fb659... (69 %)
+Writing at 0x001014b4... (71 %)
+Writing at 0x00106e98... (73 %)
+Writing at 0x0010cb49... (75 %)
+Writing at 0x00112460... (76 %)
+Writing at 0x00117c7a... (78 %)
+Writing at 0x0011d3f5... (80 %)
+Writing at 0x00124dc3... (82 %)
+Writing at 0x0012e81d... (84 %)
+Writing at 0x00134ffd... (86 %)
+Writing at 0x0013b315... (88 %)
+Writing at 0x0014119f... (90 %)
+Writing at 0x00146651... (92 %)
+Writing at 0x0014c494... (94 %)
+Writing at 0x00152666... (96 %)
+Writing at 0x00158781... (98 %)
+Writing at 0x0015d814... (100 %)
+Wrote 1378064 bytes (842669 compressed) at 0x00010000 in 20.8 seconds (effective 528.8 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 105...
 Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.0 seconds (effective 763.0 kbit/s)...
+Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.0 seconds (effective 759.2 kbit/s)...
 Hash of data verified.
 
 Leaving...

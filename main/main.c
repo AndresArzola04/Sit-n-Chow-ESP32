@@ -51,6 +51,10 @@
 #include "manual_button.h"
 #include "cJSON.h"
 #include "audio_intercom.h"
+#include "img_converters.h"
+#include "esp_system.h"
+
+#include "driver/i2c.h"
 
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
 // CONFIG_FIREBASE_DEVICE_ID   — unique string that identifies this feeder
@@ -76,37 +80,93 @@ static bool s_identity_ready = false;
 /* ── Feed workflow mutex (prevent concurrent feeds) ──────────────────────── */
 static SemaphoreHandle_t s_feed_mutex = NULL;
 
+// Static task control blocks — placed in .bss at link time, bypass heap
+static StaticTask_t s_ws_task_tcb;
+static StaticTask_t s_cap_task_tcb;
+
 /* ════════════════════════════════════════════════════════════════════════════
  *  Camera / WebSocket helpers  (unchanged from original take_picture.c)
  * ════════════════════════════════════════════════════════════════════════════ */
 
+static void camera_ws_event_handler(void *handler_args, esp_event_base_t base,
+                                     int32_t event_id, void *event_data)
+{
+    if (event_id == WEBSOCKET_EVENT_CONNECTED)
+        ESP_LOGI(TAG, "Camera WebSocket connected to /ingest");
+    else if (event_id == WEBSOCKET_EVENT_DISCONNECTED)
+        ESP_LOGW(TAG, "Camera WebSocket disconnected");
+    else if (event_id == WEBSOCKET_EVENT_ERROR)
+        ESP_LOGE(TAG, "Camera WebSocket error");
+}
+
 void ws_client_init(const char *uri)
 {
     esp_websocket_client_config_t ws_cfg = {
-        .uri                       = uri,
-        .transport                 = WEBSOCKET_TRANSPORT_OVER_SSL,
+        .uri                         = uri,
+        .transport                   = WEBSOCKET_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
-        .cert_pem                  = NULL,
-        .disable_auto_reconnect    = false,
-        .buffer_size               = 1024 * 32,
-        .network_timeout_ms        = 10000,
-        .reconnect_timeout_ms      = 5000,
+        .cert_pem                    = NULL,
+        .disable_auto_reconnect      = false,
+        .buffer_size                 = 1024 * 32,
+        .network_timeout_ms          = 10000,
+        .reconnect_timeout_ms        = 5000,
     };
     ws_client = esp_websocket_client_init(&ws_cfg);
+    esp_websocket_register_events(ws_client, WEBSOCKET_EVENT_ANY,
+                                   camera_ws_event_handler, NULL);
     esp_websocket_client_start(ws_client);
 }
 
 void ws_send_task(void *arg)
 {
     camera_fb_t *frame;
+    int sent = 0;
+
+    ESP_LOGI(TAG, "ws_send_task started, free heap: %lu", esp_get_free_heap_size());
+
     while (true) {
-        if (xQueueReceive(xQueueIFrame, &frame, portMAX_DELAY)) {
-            if (esp_websocket_client_is_connected(ws_client)) {
-                esp_websocket_client_send_bin(ws_client,
-                    (const char *)frame->buf, frame->len,
-                    pdMS_TO_TICKS(5000));
+        if (xQueueReceive(xQueueIFrame, &frame, pdMS_TO_TICKS(2000))) {
+
+            ESP_LOGI(TAG, "Frame received: %u bytes, format=%d, free heap: %lu",
+                     frame->len, frame->format, esp_get_free_heap_size());
+
+            uint8_t *jpg_buf = NULL;
+            size_t   jpg_len = 0;
+            bool converted = false;
+
+            if (frame->format == PIXFORMAT_JPEG) {
+                jpg_buf = frame->buf;
+                jpg_len = frame->len;
+            } else {
+                converted = frame2jpg(frame, 25, &jpg_buf, &jpg_len);
+                if (!converted) {
+                    ESP_LOGE(TAG, "frame2jpg FAILED, free heap: %lu",
+                             esp_get_free_heap_size());
+                    esp_camera_fb_return(frame);
+                    continue;
+                }
+                ESP_LOGI(TAG, "frame2jpg OK: %u bytes", jpg_len);
             }
+
+            if (esp_websocket_client_is_connected(ws_client)) {
+                int result = esp_websocket_client_send_bin(ws_client,
+                    (const char *)jpg_buf, jpg_len,
+                    pdMS_TO_TICKS(5000));
+                if (result < 0) {
+                    ESP_LOGE(TAG, "WebSocket send failed: %d", result);
+                } else {
+                    if (++sent % 10 == 0)
+                        ESP_LOGI(TAG, "Sent %d frames", sent);
+                }
+            } else {
+                ESP_LOGW(TAG, "WS not connected");
+            }
+
+            if (converted) free(jpg_buf);
             esp_camera_fb_return(frame);
+
+        } else {
+            ESP_LOGW(TAG, "No frame received in 2s — queue empty?");
         }
     }
 }
@@ -134,8 +194,8 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         .pin_href      = CAMERA_PIN_HREF,
         .pin_pclk      = CAMERA_PIN_PCLK,
         .xclk_freq_hz  = xclk_freq_hz,
-        .ledc_timer    = LEDC_TIMER_0,
-        .ledc_channel  = LEDC_CHANNEL_0,
+        .ledc_timer    = LEDC_TIMER_1,    // TIMER_1 to avoid audio conflict
+        .ledc_channel  = LEDC_CHANNEL_1,  // CHANNEL_1 to avoid audio conflict
         .pixel_format  = pixel_format,
         .frame_size    = frame_size,
         .jpeg_quality  = 25,
@@ -156,13 +216,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         return ESP_FAIL;
     }
 
-    s->set_reg(s, 0x3035, 0xff, 0x11);
-
-    if (s->id.PID == OV5640_PID) {
-        s->set_vflip(s, 1);
-        s->set_hmirror(s, 0);
-        s->set_quality(s, 10);
-    }
+    s->set_vflip(s, 1);
 
     camera_sensor_info_t *s_info = esp_camera_sensor_get_info(&(s->id));
     if (s_info && pixel_format == PIXFORMAT_JPEG && s_info->support_jpeg) {
@@ -177,7 +231,7 @@ static esp_err_t reinit_camera(void)
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 2);
+    esp_err_t err = init_camera(16000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -451,13 +505,9 @@ static void camera_capture_task(void *arg)
         if (frame) {
             consecutive_failures = 0;
 
-            /* Discard corrupt frames */
-            if (frame->len < 100 ||
-                frame->buf[0] != 0xFF ||
-                frame->buf[1] != 0xD8 ||
-                frame->buf[frame->len - 2] != 0xFF ||
-                frame->buf[frame->len - 1] != 0xD9) {
-                ESP_LOGW(TAG, "Corrupt frame discarded");
+            // No JPEG marker check — we're using RGB565
+            if (frame->len < 100) {
+                ESP_LOGW(TAG, "Suspiciously small frame discarded");
                 esp_camera_fb_return(frame);
                 continue;
             }
@@ -469,7 +519,6 @@ static void camera_capture_task(void *arg)
             consecutive_failures++;
             ESP_LOGW(TAG, "Failed to get frame (%d/%d)",
                      consecutive_failures, MAX_FAILURES);
-
             if (consecutive_failures >= MAX_FAILURES) {
                 consecutive_failures = 0;
                 reinit_camera();
@@ -516,13 +565,15 @@ void app_main(void)
 
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
-    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_HVGA, 2);
+    vTaskDelay(pdMS_TO_TICKS(100));
+    esp_err_t cam_err = init_camera(16000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
     /* 7. WebSocket stream (only if camera working) */
     const bool camera_ok = (cam_err == ESP_OK);
     if (camera_ok) {
         ws_client_init("wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/ingest");
+        ESP_LOGI(TAG, "Camera WebSocket stream connected");
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
     }
@@ -563,9 +614,27 @@ void app_main(void)
     vTaskDelay(pdMS_TO_TICKS(3000));  // give BLE time to release BTDM memory
     xTaskCreate(heartbeat_task,    "heartbeat",  4096, NULL, 3, NULL);
     xTaskCreate(command_poll_task, "cmd_poll",   8192, NULL, 4, NULL);
-    if (camera_ok) {
-        xTaskCreate(ws_send_task,        "ws_send",   16384, NULL, 5, NULL);
-        xTaskCreate(camera_capture_task, "cam_cap",    4096, NULL, 5, NULL);
+    if (camera_ok) {    
+        StackType_t *ws_stack = heap_caps_malloc(
+            16384 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+        StackType_t *cap_stack = heap_caps_malloc(
+            8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+
+        if (ws_stack) {
+            xTaskCreateStaticPinnedToCore(ws_send_task, "ws_send",
+                16384, NULL, 5, ws_stack, &s_ws_task_tcb, 1);
+            ESP_LOGI(TAG, "ws_send_task created");
+        } else {
+            ESP_LOGE(TAG, "ws_send_task stack alloc failed");
+        }
+
+        if (cap_stack) {
+            xTaskCreateStaticPinnedToCore(camera_capture_task, "cam_cap",
+                8192, NULL, 5, cap_stack, &s_cap_task_tcb, 1);
+            ESP_LOGI(TAG, "camera_capture_task created");
+        } else {
+            ESP_LOGE(TAG, "camera_capture_task stack alloc failed");
+        }
     }
 
     ESP_LOGI(TAG, "All tasks started");
