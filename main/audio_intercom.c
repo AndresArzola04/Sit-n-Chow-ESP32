@@ -1,19 +1,16 @@
 /*
- * audio_intercom.c
+ * audio_intercom.c  —  Buffer-and-play intercom
  *
- * Receives audio from the Flutter app via a persistent WebSocket connection
- * to the Cloud Run server (/audio-stream), and plays it through the speaker.
+ * Accumulates all PCM chunks from the Flutter app into a PSRAM buffer while
+ * the mic is open, then plays the entire buffer at once when "stop" arrives.
+ * This avoids the WiFi DMA jitter that disrupts real-time busy-wait playback.
  *
- * The WebSocket event handler never blocks. If a chunk arrives while the
- * speaker is already playing, it is dropped — this keeps the event loop
- * unblocked so the WebSocket client stays healthy and future chunks arrive
- * on time.
- *
- * A dedicated playback task owns the PCM buffer and frees it when done.
+ * Both buffers (PSRAM accumulation + internal-RAM playback) are pre-allocated
+ * at startup so heap fragmentation during WiFi operation cannot cause failures.
  */
 
 #include "audio_intercom.h"
-#include "speaker.h"
+#include "audio_player.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -27,59 +24,80 @@
 
 #include "sdkconfig.h"
 
-#define TAG                  "intercom"
-#define DEVICE_ID_MAX_LEN    64
-#define RECONNECT_DELAY_MS   5000
-#define WS_BUFFER_SIZE       (32 * 1024)
-#define WS_TASK_STACK        (8 * 1024)
+#define TAG                 "intercom"
+#define DEVICE_ID_MAX_LEN   64
+#define RECONNECT_DELAY_MS  5000
+#define WS_BUFFER_SIZE      (64 * 1024)
+#define WS_TASK_STACK       (8 * 1024)
+
+/* 8 seconds max — 8 * 16000 * 2 = 256 KB */
+#define MAX_SESSION_SAMPLES (16000 * 8)
+#define MAX_SESSION_BYTES   (MAX_SESSION_SAMPLES * sizeof(int16_t))
 
 static char s_device_id[DEVICE_ID_MAX_LEN] = {0};
 
-/* ── PCM buffer handed to a playback task ───────────────────────────────── */
+/* PSRAM: accumulates incoming chunks */
+static int16_t  *s_psram_buf     = NULL;
+static uint32_t  s_psram_samples = 0;
 
-typedef struct {
-    int16_t *buf;
-    uint32_t sample_count;
-} play_args_t;
+/* Internal RAM: copy-before-play for glitch-free busy-wait timing.
+ * Pre-allocated at startup when heap is unfragmented.
+ * Falls back to PSRAM if allocation fails. */
+static int16_t  *s_iram_buf      = NULL;   /* internal RAM playback buffer */
+static bool      s_session_open  = false;
 
-static void playback_task(void *arg)
+/* ── Session management ──────────────────────────────────────────────────── */
+
+static void session_reset(void)
 {
-    play_args_t *a = (play_args_t *)arg;
+    /* Stop playback if running and wait for the beep task to finish */
+    if (audio_player_is_playing()) {
+        audio_player_stop();
+        /* Spin-wait — beep task exits within one sample period (~63 µs) */
+        int guard = 100;
+        while (audio_player_is_playing() && guard-- > 0) {
+            vTaskDelay(pdMS_TO_TICKS(2));
+        }
+    }
+    s_psram_samples = 0;
+    s_session_open  = false;
+}
 
-    if (speaker_is_playing()) {
-        /* Speaker still busy from previous chunk — drop this one */
-        ESP_LOGW(TAG, "Speaker busy, dropping chunk of %lu samples",
-                 (unsigned long)a->sample_count);
-        free(a->buf);
-        free(a);
-        vTaskDelete(NULL);
+static void session_play(void)
+{
+    if (s_psram_samples == 0) {
+        ESP_LOGW(TAG, "Nothing to play");
         return;
     }
 
-    speaker_play_pcm(a->buf, a->sample_count);
+    uint32_t play_bytes = s_psram_samples * sizeof(int16_t);
+    ESP_LOGI(TAG, "Playing %.1f s of buffered audio (%lu samples)",
+             (float)s_psram_samples / 16000.0f,
+             (unsigned long)s_psram_samples);
 
-    /* Wait for playback to finish before freeing the buffer.
-     * speaker_play_pcm is non-blocking and holds a pointer to buf. */
-    while (speaker_is_playing()) {
-        vTaskDelay(pdMS_TO_TICKS(20));
+    /* Choose playback buffer: internal RAM preferred, PSRAM fallback */
+    int16_t *play_buf;
+    if (s_iram_buf) {
+        memcpy(s_iram_buf, s_psram_buf, play_bytes);
+        play_buf = s_iram_buf;
+        ESP_LOGI(TAG, "Playback from internal RAM");
+    } else {
+        play_buf = s_psram_buf;
+        ESP_LOGW(TAG, "Playback from PSRAM (internal RAM unavailable)");
     }
 
-    free(a->buf);
-    free(a);
-    ESP_LOGI(TAG, "Playback complete");
-    vTaskDelete(NULL);
+    /* Hand off to audio_player — uses the same proven path as the beep */
+    audio_player_start(play_buf, s_psram_samples);
 }
 
-/* ── Build the WebSocket URL ─────────────────────────────────────────────── */
+/* ── WebSocket URL builder ───────────────────────────────────────────────── */
 
 static void build_ws_url(char *buf, size_t bufsz)
 {
     const char *base = CONFIG_CLOUD_RUN_URL;
     const char *host = base;
-
-    if (strncmp(base, "https://", 8) == 0)       host = base + 8;
-    else if (strncmp(base, "http://", 7) == 0)   host = base + 7;
-
+    if      (strncmp(base, "https://", 8) == 0) host = base + 8;
+    else if (strncmp(base, "http://",  7) == 0) host = base + 7;
     snprintf(buf, bufsz, "wss://%s/audio-stream", host);
 }
 
@@ -100,69 +118,46 @@ static void ws_event_handler(void *handler_args,
 
     case WEBSOCKET_EVENT_DISCONNECTED:
         ESP_LOGW(TAG, "WebSocket disconnected");
-        if (speaker_is_playing()) speaker_stop();
+        session_reset();
         break;
 
     case WEBSOCKET_EVENT_DATA:
         if (data->op_code == 0x02) {
-            /* Binary frame — raw PCM chunk */
-
-            /* Only handle complete frames */
             bool complete = (data->payload_offset + data->data_len
                              >= (size_t)data->payload_len);
-            if (!complete) {
-                ESP_LOGD(TAG, "Partial WS frame (%d/%d bytes)",
-                         data->payload_offset + data->data_len,
-                         data->payload_len);
-                break;
-            }
+            if (!complete) break;
 
             int pcm_bytes = data->payload_len;
-            if (pcm_bytes < 2) break;
+            if (pcm_bytes < 2 || !s_psram_buf) break;
 
-            /* If speaker is already playing, drop this chunk immediately
-             * without allocating memory — keeps the event handler fast */
-            if (speaker_is_playing()) {
-                ESP_LOGW(TAG, "Speaker busy — dropping %d byte chunk", pcm_bytes);
+            if (!s_session_open) {
+                session_reset();   /* clear any leftover from previous session */
+                s_session_open = true;
+                ESP_LOGI(TAG, "Session started");
+            }
+
+            uint32_t new_samples = (uint32_t)(pcm_bytes / 2);
+            if (s_psram_samples + new_samples > MAX_SESSION_SAMPLES) {
+                ESP_LOGW(TAG, "Session buffer full (%d s max)",
+                         MAX_SESSION_SAMPLES / 16000);
                 break;
             }
 
-            /* Allocate in PSRAM */
-            int16_t *pcm_buf = heap_caps_malloc(pcm_bytes, MALLOC_CAP_SPIRAM);
-            if (!pcm_buf) pcm_buf = malloc(pcm_bytes);
-            if (!pcm_buf) {
-                ESP_LOGE(TAG, "Failed to alloc %d bytes for PCM", pcm_bytes);
-                break;
-            }
+            memcpy(s_psram_buf + s_psram_samples, data->data_ptr, pcm_bytes);
+            s_psram_samples += new_samples;
 
-            memcpy(pcm_buf, data->data_ptr, pcm_bytes);
-
-            uint32_t sample_count = (uint32_t)(pcm_bytes / 2);
-            ESP_LOGI(TAG, "Received %d bytes → %lu samples",
-                     pcm_bytes, (unsigned long)sample_count);
-
-            /* Hand off to a dedicated task so this handler returns immediately */
-            play_args_t *args = malloc(sizeof(play_args_t));
-            if (!args) {
-                free(pcm_buf);
-                break;
-            }
-            args->buf          = pcm_buf;
-            args->sample_count = sample_count;
-
-            if (xTaskCreate(playback_task, "pcm_play", 4096, args, 5, NULL)
-                != pdPASS) {
-                ESP_LOGE(TAG, "Failed to create playback task");
-                free(pcm_buf);
-                free(args);
-            }
+            ESP_LOGI(TAG, "Buffered %lu samples total (%.1f s)",
+                     (unsigned long)s_psram_samples,
+                     (float)s_psram_samples / 16000.0f);
 
         } else if (data->op_code == 0x01) {
-            /* Text frame */
             if (data->data_len >= 4 &&
                 strncmp(data->data_ptr, "stop", 4) == 0) {
-                ESP_LOGI(TAG, "Received stop signal");
-                if (speaker_is_playing()) speaker_stop();
+                ESP_LOGI(TAG, "Stop received — playing buffered audio");
+                if (s_session_open) {
+                    session_play();
+                    s_session_open = false;
+                }
             }
         }
         break;
@@ -176,7 +171,7 @@ static void ws_event_handler(void *handler_args,
     }
 }
 
-/* ── Intercom task ───────────────────────────────────────────────────────── */
+/* ── Intercom background task ────────────────────────────────────────────── */
 
 static void intercom_task(void *arg)
 {
@@ -205,7 +200,6 @@ static void intercom_task(void *arg)
 
     esp_websocket_register_events(client, WEBSOCKET_EVENT_ANY,
                                    ws_event_handler, NULL);
-
     esp_websocket_client_start(client);
     ESP_LOGI(TAG, "Audio intercom started (device=%s)", s_device_id);
 
@@ -221,6 +215,24 @@ static void intercom_task(void *arg)
 void audio_intercom_start(const char *device_id)
 {
     strncpy(s_device_id, device_id, DEVICE_ID_MAX_LEN - 1);
+
+    /* Allocate buffers at startup — heap is unfragmented here */
+    s_psram_buf = heap_caps_malloc(MAX_SESSION_BYTES, MALLOC_CAP_SPIRAM);
+    if (!s_psram_buf) {
+        ESP_LOGE(TAG, "PSRAM buffer alloc failed — intercom disabled");
+        return;
+    }
+
+    /* Try to get internal RAM for glitch-free playback timing.
+     * This is the same memory region used by the beep buffer. */
+    s_iram_buf = heap_caps_malloc(MAX_SESSION_BYTES,
+                     MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+    if (!s_iram_buf) {
+        ESP_LOGW(TAG, "Internal RAM unavailable for playback — will use PSRAM");
+    } else {
+        ESP_LOGI(TAG, "Playback buffer: %u bytes internal RAM",
+                 (unsigned)MAX_SESSION_BYTES);
+    }
 
     xTaskCreate(intercom_task, "audio_intercom", 4096, NULL, 4, NULL);
 }

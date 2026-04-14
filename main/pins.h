@@ -8,18 +8,18 @@
 #define CAMERA_PIN_SIOD         GPIO_NUM_7
 #define CAMERA_PIN_SIOC         GPIO_NUM_6
 
-#define CAMERA_PIN_XCLK         GPIO_NUM_4
-#define CAMERA_PIN_D7           GPIO_NUM_5
-#define CAMERA_PIN_D6           GPIO_NUM_15
+#define CAMERA_PIN_XCLK         GPIO_NUM_3
+#define CAMERA_PIN_D7           GPIO_NUM_9
+#define CAMERA_PIN_D6           GPIO_NUM_10
 #define CAMERA_PIN_D5           GPIO_NUM_11
-#define CAMERA_PIN_D4           GPIO_NUM_19
-#define CAMERA_PIN_D3           GPIO_NUM_9
-#define CAMERA_PIN_D2           GPIO_NUM_18
-#define CAMERA_PIN_D1           GPIO_NUM_10
-#define CAMERA_PIN_D0           GPIO_NUM_20
-#define CAMERA_PIN_VSYNC        GPIO_NUM_17
-#define CAMERA_PIN_HREF         GPIO_NUM_3
-#define CAMERA_PIN_PCLK         GPIO_NUM_16
+#define CAMERA_PIN_D4           GPIO_NUM_20
+#define CAMERA_PIN_D3           GPIO_NUM_17
+#define CAMERA_PIN_D2           GPIO_NUM_16
+#define CAMERA_PIN_D1           GPIO_NUM_15
+#define CAMERA_PIN_D0           GPIO_NUM_4
+#define CAMERA_PIN_VSYNC        GPIO_NUM_19
+#define CAMERA_PIN_HREF         GPIO_NUM_5
+#define CAMERA_PIN_PCLK         GPIO_NUM_18
 
 /* ── Ultrasonic (HC-SR04) ────────────────────────────────────────────────── */
 #define PIN_ULTRASONIC_TRIG     GPIO_NUM_45
