@@ -1,0 +1,1165 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 14 2026 17:47:37[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=38a28h (231976) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00048a50 vaddr=3fca8600 size=075c8h ( 30152) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f0b90h (986000) map[0m
+[0;32mI (278) esp_image: segment 3: paddr=00140bb8 vaddr=3fcafbc8 size=0038ch (   908) load[0m
+[0;32mI (278) esp_image: segment 4: paddr=00140f4c vaddr=40378000 size=20528h (132392) load[0m
+[0;32mI (306) esp_image: segment 5: paddr=0016147c vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (319) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (320) boot: Disabling RNG early entropy source...[0m
+[0;32mI (330) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (330) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (341) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (345) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (350) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (355) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (368) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (372) esp_psram: Speed: 40MHz[0m
+[0;32mI (375) cpu_start: Multicore app[0m
+[0;32mI (390) cpu_start: Pro cpu start user code[0m
+[0;32mI (390) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (390) app_init: Application information:[0m
+[0;32mI (390) app_init: Project name:     video_stream_server[0m
+[0;32mI (395) app_init: App version:      6f95409-dirty[0m
+[0;32mI (399) app_init: Compile time:     Apr 14 2026 19:37:42[0m
+[0;32mI (404) app_init: ELF file SHA256:  60ed6845c...[0m
+[0;32mI (409) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (413) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (430) heap_init: At 3FCB93D8 len 00030338 (192 KiB): RAM[0m
+[0;32mI (436) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (441) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (446) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (458) spi_flash: detected chip: generic[0m
+[0;32mI (462) spi_flash: flash io: qio[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (481) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (491) coexist: coexist rom version e7ae62f[0m
+[0;32mI (496) main_task: Started on CPU0[0m
+[0;32mI (499) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (507) main_task: Calling app_main()[0m
+[0;32mI (510) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (514) camera wifi: app_wifi_main start[0m
+[0;32mI (518) camera wifi: nvs_flash_init...[0m
+[0;32mI (538) camera wifi: nvs_flash_init done[0m
+[0;32mI (538) camera wifi: esp_netif_init...[0m
+[0;32mI (538) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (539) camera wifi: wifi init...[0m
+[0;32mI (542) pp: pp rom version: e7ae62f[0m
+[0;32mI (545) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (561) wifi_init: rx ba win: 32[0m
+[0;32mI (561) wifi_init: accept mbox: 6[0m
+[0;32mI (561) wifi_init: tcpip mbox: 64[0m
+[0;32mI (561) wifi_init: udp mbox: 64[0m
+[0;32mI (562) wifi_init: tcp mbox: 64[0m
+[0;32mI (565) wifi_init: tcp tx win: 65535[0m
+[0;32mI (568) wifi_init: tcp rx win: 65535[0m
+[0;32mI (571) wifi_init: tcp mss: 1440[0m
+[0;32mI (574) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (578) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (582) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (586) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (590) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (595) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (600) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3043) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (5447) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (8958) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (8958) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (8958) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (8963) feeder: WiFi connected[0m
+[0;32mI (8966) feeder: Waiting for SNTP sync…[0m
+[0;32mI (13970) feeder: Clock synced: 2026-04-14 19:53:56[0m
+[0;32mI (15202) firebase: Auth token refreshed[0m
+[0;32mI (15202) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (16204) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (18074) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (18074) cam_hal: cam init ok[0m
+[0;32mI (18074) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (18074) sccb: sccb_i2c_port=1[0m
+[0;32mI (18086) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (18088) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (18088) camera: Detected OV5640 camera[0m
+[0;32mI (18088) camera: Detected camera at address=0x3c[0m
+[0;32mI (18789) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (18789) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 12[0m
+[0;32mI (18789) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer:  7680, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (18799) cam_hal: buffer_size: 30720, half_buffer_size: 7680, node_buffer_size: 3840, node_cnt: 8, total_cnt: 5[0m
+[0;32mI (18809) cam_hal: Allocating 38400 Byte frame buffer in PSRAM[0m
+[0;32mI (18815) cam_hal: cam config ok[0m
+[0;32mI (18831) ov5640: Set PLL: bypass: 0, multiplier: 20, sys_div: 1, pre_div: 1, root_2x: 0, pclk_root_div: 1, pclk_manual: 1, pclk_div: 8[0m
+[0;32mI (18832) ov5640: Calculated XVCLK: 16000000 Hz, REFIN: 16000000 Hz, VCO: 320000000 Hz, PLL_CLK: 128000000 Hz, SYSCLK: 32000000 Hz, PCLK: 8000000 Hz[0m
+[0;32mI (18870) feeder: Camera init: ESP_OK[0m
+[0;32mI (18872) websocket_client: Started[0m
+[0;32mI (18872) feeder: Camera WebSocket stream connected[0m
+[0;32mI (18873) audio_player: Initialized: GPIO13, PWM 312500Hz, Sample rate 16000Hz[0m
+[0;32mI (18962) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (20107) feeder: Camera WebSocket connected to /ingest[0m
+[0;33mW (20962) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (20962) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
+[0;32mI (20967) websocket_client: Started[0m
+[0;32mI (20969) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (21475) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (21975) dispenser: Dispenser initialised (10.0 g/rev, 20 RPM)[0m
+[0;32mI (21975) tof: About to install I2C driver on port 0[0m
+[0;32mI (21976) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
+[0;32mI (21980) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (21985) TMF8701: isI2CAddress: device responded at 0x41, val=0x41[0m
+[0;32mI (21990) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (22004) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (22004) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (22007) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (22012) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (22019) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (22052) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (23342) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (23348) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (23349) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (23349) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (23367) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (23367) TMF8701: begin(): APP0 is running[0m
+[0;32mI (23367) TMF8701: begin(): initialization OK[0m
+[0;32mI (23369) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (23375) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (24741) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (24744) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (24745) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (24751) manual_btn: Manual button task started[0m
+[0;32mI (25940) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (27759) feeder: heartbeat_task created[0m
+[0;32mI (27759) feeder: command_poll_task created[0m
+[0;32mI (27760) feeder: ws_send_task created[0m
+[0;32mI (27760) feeder: ws_send_task started, free heap: 7843824[0m
+[0;32mI (27760) feeder: camera_capture_task created[0m
+[0;32mI (27768) feeder: camera_poll_task created[0m
+[0;32mI (27772) feeder: All tasks started[0m
+[0;32mI (27775) main_task: Returned from app_main()[0m
+[0;33mW (29764) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (30952) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (31764) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (33764) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (34240) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (35259) feeder: Polling commands...[0m
+[0;33mW (35764) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (36400) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776210591728","ts":1776210591798}[0m
+[0;32mI (36404) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (37513) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (37749) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (37750) feeder: [1] Beep speaker[0m
+[0;32mI (37750) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;32mI (38347) audio_player: Playback complete.[0m
+[0;33mW (38348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (38362) audio_player: Playback stopped.[0m
+[0;32mI (38362) speaker: Beep complete[0m
+[0;32mI (38362) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (38363) tof: Waiting for presence (threshold=400 mm, timeout=60000ms)[0m
+[0;32mI (38371) tof: Sub-threshold reading 1/5 (18 mm)[0m
+[0;32mI (38461) tof: Sub-threshold reading 2/5 (18 mm)[0m
+[0;32mI (38560) tof: Sub-threshold reading 3/5 (17 mm)[0m
+[0;32mI (38648) tof: Sub-threshold reading 4/5 (17 mm)[0m
+[0;32mI (38747) tof: Sub-threshold reading 5/5 (17 mm)[0m
+[0;32mI (38747) tof: Presence confirmed at 17 mm[0m
+[0;32mI (38747) feeder: [3] Running sitting detector…[0m
+[0;32mI (38749) feeder: Camera streaming started[0m
+[0;32mI (38752) feeder: Camera streaming stopped[0m
+[0;32mI (38756) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (38760) dispenser: Dispensing 25 g → 2.50 revolutions @ 20 RPM[0m
+[0;32mI (38866) dispenser: Rotating 0.62 rev @ 20 RPM (CW) — 1000 steps[0m
+[0;33mW (40348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (42348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (42617) dispenser: Dispense complete[0m
+[0;32mI (42617) feeder: [5] Checking food level…[0m
+[0;32mI (42619) feeder: Food level distance: 2.6 cm (threshold: 20 cm)[0m
+[0;32mI (44165) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (44348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (45302) feeder: === Feed workflow DONE ===[0m
+[0;32mI (45940) sched: Current time: 19:54 day_idx=1[0m
+[0;33mW (46348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (47233) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (48348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (50302) feeder: Polling commands...[0m
+[0;32mI (50308) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (50348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (50975) intercom: Audio WS alive: yes[0m
+[0;33mW (52348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (53501) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (53912) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (53914) feeder: Camera streaming started[0m
+[0;33mW (54348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (56348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (57910) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (58348) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (58348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (58502) feeder: Polling commands...[0m
+[0;32mI (59751) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (60348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (60959) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (62348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (62448) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (64348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (64455) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (64751) feeder: Polling commands...[0m
+[0;32mI (65940) sched: Current time: 19:54 day_idx=1[0m
+[0;32mI (66178) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (66348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (66548) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (66548) feeder: Reinitialising camera…[0m
+[0;32mI (67049) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (67050) cam_hal: cam init ok[0m
+[0;32mI (67050) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (67050) sccb: sccb_i2c_port=1[0m
+[0;32mI (67063) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (67064) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (67065) camera: Detected OV5640 camera[0m
+[0;32mI (67065) camera: Detected camera at address=0x3c[0m
+[0;32mI (67609) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (67769) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (67769) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 12[0m
+[0;32mI (67769) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer:  7680, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (67779) cam_hal: buffer_size: 30720, half_buffer_size: 7680, node_buffer_size: 3840, node_cnt: 8, total_cnt: 5[0m
+[0;32mI (67789) cam_hal: Allocating 38400 Byte frame buffer in PSRAM[0m
+[0;32mI (67795) cam_hal: cam config ok[0m
+[0;32mI (67813) ov5640: Set PLL: bypass: 0, multiplier: 20, sys_div: 1, pre_div: 1, root_2x: 0, pclk_root_div: 1, pclk_manual: 1, pclk_div: 8[0m
+[0;32mI (67813) ov5640: Calculated XVCLK: 16000000 Hz, REFIN: 16000000 Hz, VCO: 320000000 Hz, PLL_CLK: 128000000 Hz, SYSCLK: 32000000 Hz, PCLK: 8000000 Hz[0m
+[0;32mI (67852) feeder: Camera reinit: ESP_OK[0m
+[0;33mW (68348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (70348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (70821) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (71178) feeder: Polling commands...[0m
+[0;33mW (71952) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (72225) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (72348) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (74348) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (74582) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-SIZE: 15360 != 38400
+[0;32mI (77226) feeder: Polling commands...[0m
+[0;32mI (78174) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (78810) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (80185) feeder: Sent 25 frames[0m
+[0;32mI (80975) intercom: Audio WS alive: yes[0m
+[0;32mI (81128) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-OVF
+[0;32mI (83669) feeder: Sent 50 frames[0m
+[0;32mI (83810) feeder: Polling commands...[0m
+[0;32mI (84147) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (85004) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: FB-OVF
+[0;32mI (87172) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (87172) sched: Current time: 19:55 day_idx=1[0m
+[0;32mI (87487) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 7680 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 30720 != 38400
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 3c400h
+cam_ValS NB-OIZ: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+[0;32mI (90004) feeder: Polling commands...[0m
+[0;32mI (90453) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (90963) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 7680 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (91967) feeder: Sent 75 frames[0m
+[0;32mI (93518) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (95963) feeder: Polling commands...[0m
+[0;32mI (96487) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (96799) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (97956) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (99668) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (99931) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (99956) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (101799) feeder: Polling commands...[0m
+[0;33mW (101956) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (102641) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (102805) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (102926) feeder: Sent 100 frames[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (105728) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 384c0m
+cam:hEl:VFYNSIZEF 0 10 38d00ioaa_ ai:sFs-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 7680 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (107172) sched: Current time: 19:55 day_idx=1[0m
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 ca _ha0:
+VaVShNC: VB--I1E0 0d!i i8n00
+iss_sl: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (107641) feeder: Polling commands...[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 384m0acam_haVS FB-OIZ - 000=a38i00
+clmmias:sFB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 7680 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 15360 != 38400
+[0;32mI (109071) feeder: Sent 125 frames[0m
+[0;32mI (109725) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (110471) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (110975) intercom: Audio WS alive: yes[0m
+[0;32mI (112237) feeder: Sent 150 frames[0m
+[0;32mI (112521) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (115404) feeder: Sent 175 frames[0m
+[0;32mI (115471) feeder: Polling commands...[0m
+[0;32mI (115531) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (116204) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (118542) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (118571) feeder: Sent 200 frames[0m
+[0;32mI (121204) feeder: Polling commands...[0m
+[0;32mI (121625) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (121738) feeder: Sent 225 frames[0m
+[0;32mI (122095) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (124458) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (124906) feeder: Sent 250 frames[0m
+[0;32mI (127095) feeder: Polling commands...[0m
+[0;32mI (127172) sched: Current time: 19:55 day_idx=1[0m
+[0;32mI (127470) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (127472) feeder: Camera streaming stopped[0m
+[0;32mI (127838) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776210949976","ts":1776210950034}[0m
+[0;32mI (127842) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (128980) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (128980) feeder: [1] Beep speaker[0m
+[0;32mI (128980) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;32mI (129578) audio_player: Playback complete.[0m
+[0;33mW (129579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (129593) audio_player: Playback stopped.[0m
+[0;32mI (129593) speaker: Beep complete[0m
+[0;32mI (129593) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (129594) tof: Waiting for presence (threshold=400 mm, timeout=60000ms)[0m
+[0;32mI (129602) tof: Sub-threshold reading 1/5 (14 mm)[0m
+[0;32mI (129693) tof: Sub-threshold reading 2/5 (15 mm)[0m
+[0;32mI (129781) tof: Sub-threshold reading 3/5 (15 mm)[0m
+[0;32mI (129880) tof: Sub-threshold reading 4/5 (15 mm)[0m
+[0;32mI (129968) tof: Sub-threshold reading 5/5 (15 mm)[0m
+[0;32mI (129968) tof: Presence confirmed at 15 mm[0m
+[0;32mI (129968) feeder: [3] Running sitting detector…[0m
+[0;32mI (129970) feeder: Camera streaming started[0m
+[0;32mI (129974) feeder: Camera streaming stopped[0m
+[0;32mI (129978) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (129981) dispenser: Dispensing 25 g → 2.50 revolutions @ 20 RPM[0m
+[0;32mI (130087) dispenser: Rotating 0.62 rev @ 20 RPM (CW) — 1000 steps[0m
+[0;33mW (131579) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (133579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (133837) dispenser: Dispense complete[0m
+[0;32mI (133837) feeder: [5] Checking food level…[0m
+[0;33mW (133870) ultrasonic: Echo pulse timeout (waiting for LOW)[0m
+[0;33mW (133870) feeder: Ultrasonic read failed — skipping low food check[0m
+[0;32mI (134001) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (135579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (136354) feeder: === Feed workflow DONE ===[0m
+[0;33mW (137579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (139106) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (139579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (140975) intercom: Audio WS alive: yes[0m
+[0;32mI (141354) feeder: Polling commands...[0m
+[0;33mW (141579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (142569) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (142688) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (143579) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (145579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (145744) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (147579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (147689) feeder: Polling commands...[0m
+[0;33mW (149579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (149632) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (149635) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (149636) sched: Current time: 19:56 day_idx=1[0m
+[0;32mI (150761) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (151579) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (153579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (155113) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (155579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (155761) feeder: Polling commands...[0m
+[0;32mI (157110) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (157579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (158144) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (159579) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (161579) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (162023) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (162024) feeder: Camera streaming started[0m
+[0;32mI (162110) feeder: Polling commands...[0m
+[0;32mI (162725) feeder: Sent 275 frames[0m
+[0;32mI (163072) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 !c m_40l:
+EVmVSaNC FB- I E0 0ad= 3i4n0l
+mas_ea
+ FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;33mW (165103) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (165213) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 3c4m_h
+la Ehal:YFB-SVZE- 100=add4t0o
+aa _ias:sFB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (168072) feeder: Polling commands...[0m
+[0;32mI (168108) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (168231) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (169311) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: FB-SIZE: 30720 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_halcaF_-aI:E: - S= 3-O0F -
+c0m hdli FonSlZm: 0e!=
+38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIcEm 0al= E8-V0YNc-mVF l  0B SdZEt on!l 38s0e
+
+am_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SI IZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+(169636) sched: Current time: 19:56 day_idx=1
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 c=m_h4l0
+caV_YNl-OFF - 1E: addit38n00
+ias_sa
+: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-ScZm:h0l:=E -V40NC
+OaF_- l0  B-SiZi:n0 !mis8es0
+
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (170975) intercom: Audio WS alive: yes[0m
+[0;32mI (171194) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (172135) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (174107) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (174135) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (174311) feeder: Polling commands...[0m
+[0;32mI (174930) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (175345) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (176135) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (177998) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (178135) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (178207) cam_hal: Failed to get frame: timeout[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: am!h 38 E0-VSaNChal: FB10I Ed it!=n38 00ses
+hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 23040 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_ha_:aF:-SVZE:Y0 !=VF 4 100camdhtionFl-mIsEe 
+!= 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+cam_hal: FB-OVF
+[0;32mI (180346) feeder: Polling commands...[0m
+[0;32mI (180848) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (181101) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (183093) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: FB-SIZE: 30720 != 38400
+cam_hal: FB-SIZE: 7680 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+[0;32mI (183311) feeder: Sent 300 frames[0m
+[0;32mI (183586) firebase: streaming_get: received 4 bytes total[0m
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38a00
+l:mEhaV:YNB-SIZE- 100=ad8it0o
+aa _ias:sFB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-SIZE: 0 != 38400
+cam_hal: FB-OVF
+[0;32mI (186101) feeder: Polling commands...[0m
+[0;32mI (186802) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (187750) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (187931) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (189702) sched: Current time: 19:56 day_idx=1[0m
+[0;33mW (189720) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (189750) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (189797) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (191228) feeder: Sent 325 frames[0m
+cam_hal: FB-OVF
+[0;32mI (192931) feeder: Polling commands...[0m
+[0;33mW (193481) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (193693) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (194230) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (195455) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (195481) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (197481) feeder: No frame received in 2s — queue empty?[0m
+[1;31mE (198958) esp-aes: Failed to allocate memory[0m
+[1;31mE (198958) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (198958) transport_base: esp_tls_conn_write error, errno=Success[0m
+[1;31mE (198962) websocket_client: esp_transport_write() returned -1, transport_error=ESP_ERR_MBEDTLS_SSL_WRITE_FAILED, tls_error_code=1, tls_flags=0, errno=0[0m
+[1;31mE (198975) feeder: Camera WebSocket error[0m
+[0;32mI (198980) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (198983) feeder: Camera WebSocket disconnected[0m
+[1;31mE (198987) feeder: WebSocket send failed: -1[0m
+[0;33mW (199082) feeder: WS not connected[0m
+[0;33mW (199209) feeder: WS not connected[0m
+[0;32mI (199230) feeder: Polling commands...[0m
+[0;33mW (199334) feeder: WS not connected[0m
+[0;33mW (199460) feeder: WS not connected[0m
+[0;33mW (199587) feeder: WS not connected[0m
+[0;33mW (199713) feeder: WS not connected[0m
+[0;33mW (199840) feeder: WS not connected[0m
+[0;33mW (199966) feeder: WS not connected[0m
+[0;33mW (200093) feeder: WS not connected[0m
+[0;33mW (200220) feeder: WS not connected[0m
+[0;33mW (200347) feeder: WS not connected[0m
+[0;33mW (200474) feeder: WS not connected[0m
+[0;33mW (200600) feeder: WS not connected[0m
+[0;33mW (200727) feeder: WS not connected[0m
+[0;33mW (200854) feeder: WS not connected[0m
+[0;32mI (200975) intercom: Audio WS alive: yes[0m
+[0;33mW (200980) feeder: WS not connected[0m
+cam_hal: FB-OVF
+[0;33mW (202981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (203595) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (203782) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (203784) feeder: Camera streaming stopped[0m
+[0;33mW (204956) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (204981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (206777) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (206981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (208595) feeder: Polling commands...[0m
+[0;33mW (208981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (209901) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (209977) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (210227) feeder: Camera WebSocket connected to /ingest[0m
+[0;33mW (210981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (211943) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (211944) sched: Current time: 19:57 day_idx=1[0m
+[0;33mW (212981) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (214056) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (214902) feeder: Polling commands...[0m
+[0;33mW (214981) feeder: No frame received in 2s — queue empty?[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download

@@ -84,6 +84,11 @@ static SemaphoreHandle_t s_feed_mutex = NULL;
 static StaticTask_t s_ws_task_tcb;
 static StaticTask_t s_cap_task_tcb;
 
+static StaticTask_t s_cmd_poll_tcb;
+static StaticTask_t s_heartbeat_tcb;
+
+static StaticTask_t s_cam_poll_tcb;
+
 /* ════════════════════════════════════════════════════════════════════════════
  *  Camera / WebSocket helpers  (unchanged from original take_picture.c)
  * ════════════════════════════════════════════════════════════════════════════ */
@@ -389,11 +394,11 @@ static void do_feed_workflow(int grams, const char *source)
     uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
     bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
 
-    if (!pet_detected) {
-        ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
-        xSemaphoreGive(s_feed_mutex);
-        return;
-    }
+    // if (!pet_detected) {
+    //     ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
+    //     xSemaphoreGive(s_feed_mutex);
+    //     return;
+    // }
 
     /* ── Step 4: Camera sitting detection ────────────────────────────────── */
     ESP_LOGI(TAG, "[3] Running sitting detector…");
@@ -486,10 +491,14 @@ static void command_poll_task(void *arg)
              CONFIG_FIREBASE_DEVICE_ID);
 
     while (true) {
-        vTaskDelay(pdMS_TO_TICKS(5000));   /* poll every 5 s */
+        vTaskDelay(pdMS_TO_TICKS(5000));
 
+        ESP_LOGI(TAG, "Polling commands...");
         cJSON *cmd = NULL;
         esp_err_t err = firebase_get(path, &cmd);
+        ESP_LOGI(TAG, "Command poll result: %s, cmd=%s",
+                 esp_err_to_name(err),
+                 cmd ? cJSON_PrintUnformatted(cmd) : "NULL");
 
         if (err == ESP_OK && cmd != NULL) {
             handle_pending_command(cmd);
@@ -557,10 +566,11 @@ static void camera_poll_task(void *arg)
     bool last_state = false;
 
     while (true) {
-        vTaskDelay(pdMS_TO_TICKS(2000));  // poll every 2s
+        vTaskDelay(pdMS_TO_TICKS(2000));
 
         cJSON *val = NULL;
-        esp_err_t err = firebase_get(path, &val);
+        // Uses dedicated mutex — never blocks command_poll_task
+        esp_err_t err = firebase_get_camera_poll(path, &val);
 
         if (err == ESP_OK && val != NULL) {
             bool active = cJSON_IsTrue(val);
@@ -661,8 +671,26 @@ void app_main(void)
 
     /* 10. Background tasks */
     vTaskDelay(pdMS_TO_TICKS(3000));  // give BLE time to release BTDM memory
-    xTaskCreate(heartbeat_task,    "heartbeat",  4096, NULL, 3, NULL);
-    xTaskCreate(command_poll_task, "cmd_poll",   8192, NULL, 4, NULL);
+    StackType_t *heartbeat_stack = heap_caps_malloc(
+        4096 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+    StackType_t *cmd_poll_stack = heap_caps_malloc(
+        8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+
+    if (heartbeat_stack) {
+        xTaskCreateStaticPinnedToCore(heartbeat_task, "heartbeat",
+            4096, NULL, 3, heartbeat_stack, &s_heartbeat_tcb, 0);
+        ESP_LOGI(TAG, "heartbeat_task created");
+    } else {
+        ESP_LOGE(TAG, "heartbeat_task stack alloc failed");
+    }
+
+    if (cmd_poll_stack) {
+        xTaskCreateStaticPinnedToCore(command_poll_task, "cmd_poll",
+            8192, NULL, 4, cmd_poll_stack, &s_cmd_poll_tcb, 0);
+        ESP_LOGI(TAG, "command_poll_task created");
+    } else {
+        ESP_LOGE(TAG, "command_poll_task stack alloc failed");
+    }
     if (camera_ok) {    
         StackType_t *ws_stack = heap_caps_malloc(
             16384 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
@@ -685,7 +713,17 @@ void app_main(void)
             ESP_LOGE(TAG, "camera_capture_task stack alloc failed");
         }
     }
-    xTaskCreate(camera_poll_task, "cam_poll", 4096, NULL, 3, NULL);
+
+    StackType_t *cam_poll_stack = heap_caps_malloc(
+        4096 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+
+    if (cam_poll_stack) {
+        xTaskCreateStaticPinnedToCore(camera_poll_task, "cam_poll",
+            4096, NULL, 3, cam_poll_stack, &s_cam_poll_tcb, 0);
+        ESP_LOGI(TAG, "camera_poll_task created");
+    } else {
+        ESP_LOGE(TAG, "camera_poll_task stack alloc failed");
+    }
 
     ESP_LOGI(TAG, "All tasks started");
     /* app_main returns; FreeRTOS scheduler keeps everything running */

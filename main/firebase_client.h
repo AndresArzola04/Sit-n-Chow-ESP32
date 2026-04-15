@@ -64,6 +64,8 @@ esp_err_t firebase_delete(const char *path);
 
 esp_err_t firebase_get_intercom(const char *path, cJSON **out_json);
 
+esp_err_t firebase_get_camera_poll(const char *path, cJSON **out_json);
+
 #ifdef __cplusplus
 }
 #endif

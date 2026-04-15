@@ -127,10 +127,10 @@ static void stepper_rotate(float revolutions, uint32_t rpm, bool clockwise)
     uint32_t target_period_us = (uint32_t)(60000000ULL / denom);
     if (target_period_us < MIN_STEP_PERIOD_US) target_period_us = MIN_STEP_PERIOD_US;
 
-    uint32_t start_period_us = target_period_us * 4;  /* start at 1/4 speed */
+    uint32_t start_period_us = target_period_us * 2;  /* start at 1/4 speed */
 
-    uint32_t ramp_steps = 1600;
-    if (total_steps < 6000) ramp_steps = total_steps / 3;
+    uint32_t ramp_steps = 400;
+    if (total_steps < 1200) ramp_steps = total_steps / 3;
 
     ESP_LOGI(TAG, "Rotating %.2f rev @ %lu RPM (%s) — %lu steps",
              revolutions, (unsigned long)rpm,

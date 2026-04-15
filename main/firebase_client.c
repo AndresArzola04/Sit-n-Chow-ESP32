@@ -58,6 +58,7 @@ static SemaphoreHandle_t  s_token_mutex               = NULL;
 static SemaphoreHandle_t  s_http_mutex                = NULL;
 static SemaphoreHandle_t  s_intercom_mutex            = NULL;  /* dedicated for intercom */
 static esp_timer_handle_t s_refresh_timer             = NULL;
+static SemaphoreHandle_t s_camera_poll_mutex          = NULL;
 
 /* ── Response accumulator used by the HTTP event handler ─────────────────── */
 
@@ -385,6 +386,9 @@ esp_err_t firebase_client_init(void)
     s_intercom_mutex = xSemaphoreCreateMutex();
     configASSERT(s_intercom_mutex);
 
+    s_camera_poll_mutex = xSemaphoreCreateMutex();
+    configASSERT(s_camera_poll_mutex);
+
     /* Fetch initial token — retry up to 5 times */
     esp_err_t err = ESP_FAIL;
     for (int i = 0; i < 5; i++) {
@@ -461,6 +465,16 @@ esp_err_t firebase_get_intercom(const char *path, cJSON **out_json)
     ESP_LOGD(TAG, "firebase_get_intercom: polling %s", path);
 
     esp_err_t err = streaming_get(url, s_intercom_mutex, out_json);
+    free(url);
+    return err;
+}
+
+esp_err_t firebase_get_camera_poll(const char *path, cJSON **out_json)
+{
+    char *url = malloc(URL_BUF_SIZE);
+    if (!url) return ESP_ERR_NO_MEM;
+    build_url(url, URL_BUF_SIZE, path);
+    esp_err_t err = streaming_get(url, s_camera_poll_mutex, out_json);
     free(url);
     return err;
 }
