@@ -19,6 +19,7 @@
 #include "driver/ledc.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "driver/gpio.h"
 
 static const char *TAG = "audio_player";
 
@@ -32,20 +33,35 @@ static SemaphoreHandle_t s_play_sem = NULL;
 static const int16_t *s_samples      = NULL;
 static uint32_t       s_sample_count = 0;
 
-#define LEDC_TIMER      LEDC_TIMER_1
-#define LEDC_CHANNEL    LEDC_CHANNEL_1
+#define LEDC_TIMER      LEDC_TIMER_0
+#define LEDC_CHANNEL    LEDC_CHANNEL_0
 #define LEDC_SPEED_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_RESOLUTION LEDC_TIMER_8_BIT
+
+static void ledc_mute(void); // forward declaration — mute on init and after playback
 
 static void ledc_mute(void)
 {
     ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, 0);
     ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
-    ledc_timer_pause(LEDC_SPEED_MODE, LEDC_TIMER);
+    ledc_stop(LEDC_SPEED_MODE, LEDC_CHANNEL, 0); // idles LEDC output at 0
+    gpio_set_direction(s_gpio_pin, GPIO_MODE_OUTPUT);
+    gpio_set_level(s_gpio_pin, 0); // hard-drive LOW — LM386 input starved
 }
 
 static void ledc_unmute(void)
 {
+    // Re-attach GPIO to LEDC before resuming — ledc_stop() released it
+    ledc_channel_config_t channel_cfg = {
+        .speed_mode = LEDC_SPEED_MODE,
+        .channel    = LEDC_CHANNEL,
+        .timer_sel  = LEDC_TIMER,
+        .intr_type  = LEDC_INTR_DISABLE,
+        .gpio_num   = s_gpio_pin,
+        .duty       = 0,
+        .hpoint     = 0,
+    };
+    ledc_channel_config(&channel_cfg);
     ledc_timer_resume(LEDC_SPEED_MODE, LEDC_TIMER);
 }
 
@@ -113,6 +129,7 @@ void audio_player_init(int gpio_pin, uint32_t pwm_freq_hz, uint32_t sample_rate_
     xTaskCreatePinnedToCore(audio_playback_task, "audio_beep", 4096, NULL,
                              configMAX_PRIORITIES - 1, &s_task, 1);
 
+    ledc_mute(); // silence immediately — prevents noise on boot
     ESP_LOGI(TAG, "Initialized: GPIO%d, PWM %luHz, Sample rate %luHz",
              gpio_pin, (unsigned long)pwm_freq_hz, (unsigned long)sample_rate_hz);
 }

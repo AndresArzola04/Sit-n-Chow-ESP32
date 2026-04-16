@@ -394,11 +394,11 @@ static void do_feed_workflow(int grams, const char *source)
     uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
     bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
 
-    // if (!pet_detected) {
-    //     ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
-    //     xSemaphoreGive(s_feed_mutex);
-    //     return;
-    // }
+    if (!pet_detected) {
+        ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
+        xSemaphoreGive(s_feed_mutex);
+        return;
+    }
 
     /* ── Step 4: Camera sitting detection ────────────────────────────────── */
     ESP_LOGI(TAG, "[3] Running sitting detector…");

@@ -31,7 +31,7 @@
 #define WS_TASK_STACK       (8 * 1024)
 
 /* 8 seconds max — 8 * 16000 * 2 = 256 KB */
-#define MAX_SESSION_SAMPLES (16000 * 8)
+#define MAX_SESSION_SAMPLES (16000 * 20)
 #define MAX_SESSION_BYTES   (MAX_SESSION_SAMPLES * sizeof(int16_t))
 
 static char s_device_id[DEVICE_ID_MAX_LEN] = {0};
@@ -88,6 +88,12 @@ static void session_play(void)
 
     /* Hand off to audio_player — uses the same proven path as the beep */
     audio_player_start(play_buf, s_psram_samples);
+}
+
+static void session_play_task(void *arg)
+{
+    session_play();
+    vTaskDelete(NULL);
 }
 
 /* ── WebSocket URL builder ───────────────────────────────────────────────── */
@@ -163,7 +169,9 @@ static void ws_event_handler(void *handler_args,
                 strncmp(data->data_ptr, "stop", 4) == 0) {
                 ESP_LOGI(TAG, "Stop received — playing buffered audio");
                 if (s_session_open) {
-                    session_play();
+                    // instead of calling session_play() directly in the WS event handler:
+                    xTaskCreatePinnedToCore(session_play_task, "intercom_play", 4096, NULL, 
+                         configMAX_PRIORITIES - 2, NULL, 1); // CPU1, high priority
                     s_session_open = false;
                 }
             }
@@ -242,5 +250,5 @@ void audio_intercom_start(const char *device_id)
                  (unsigned)MAX_SESSION_BYTES);
     }
 
-    xTaskCreate(intercom_task, "audio_intercom", 4096, NULL, 4, NULL);
+    xTaskCreate(intercom_task, "audio_intercom", 8192, NULL, 7, NULL);
 }

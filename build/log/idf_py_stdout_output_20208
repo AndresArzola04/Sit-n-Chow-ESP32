@@ -1,162 +1,93 @@
-Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
-ESP-ROM:esp32s3-20210327
-Build:Mar 27 2021
-rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
-SPIWP:0xee
-mode:DIO, clock div:1
-load:0x3fce2820,len:0x1700
-load:0x403c8700,len:0xec0
-load:0x403cb700,len:0x31c0
-entry 0x403c894c
-[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
-[0;32mI (25) boot: compile time Apr 13 2026 23:52:44[0m
-[0;32mI (25) boot: Multicore bootloader[0m
-[0;32mI (25) boot: chip revision: v0.2[0m
-[0;32mI (28) boot: efuse block revision: v1.4[0m
-[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
-[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
-[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
-[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
-[0;32mI (47) boot: Enabling RNG early entropy source...[0m
-[0;32mI (52) boot: Partition Table:[0m
-[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
-[0;32mI (80) boot: End of partition table[0m
-[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c0f0020 size=377f8h (227320) map[0m
-[0;32mI (125) esp_image: segment 1: paddr=00047820 vaddr=3fca8500 size=07984h ( 31108) load[0m
-[0;32mI (130) esp_image: segment 2: paddr=0004f1ac vaddr=40378000 size=00e6ch (  3692) load[0m
-[0;32mI (132) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=ef388h (979848) map[0m
-[0;32mI (281) esp_image: segment 4: paddr=0013f3b0 vaddr=40378e6c size=1f614h (128532) load[0m
-[0;32mI (306) esp_image: segment 5: paddr=0015e9cc vaddr=50000000 size=00020h (    32) load[0m
-[0;32mI (319) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (319) boot: Disabling RNG early entropy source...[0m
-[0;32mI (329) octal_psram: vendor id    : 0x0d (AP)[0m
-[0;32mI (329) octal_psram: dev id       : 0x02 (generation 3)[0m
-[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
-[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
-[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
-[0;32mI (340) octal_psram: VCC          : 0x01 (3V)[0m
-[0;32mI (344) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
-[0;32mI (349) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
-[0;32mI (354) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
-[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
-[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
-[0;32mI (368) esp_psram: Found 8MB PSRAM device[0m
-[0;32mI (372) esp_psram: Speed: 40MHz[0m
-[0;32mI (375) cpu_start: Multicore app[0m
-[0;32mI (389) cpu_start: Pro cpu start user code[0m
-[0;32mI (389) cpu_start: cpu freq: 240000000 Hz[0m
-[0;32mI (389) app_init: Application information:[0m
-[0;32mI (390) app_init: Project name:     video_stream_server[0m
-[0;32mI (394) app_init: App version:      57fc0be-dirty[0m
-[0;32mI (399) app_init: Compile time:     Apr 13 2026 23:52:35[0m
-[0;32mI (404) app_init: ELF file SHA256:  b911adc53...[0m
-[0;32mI (408) app_init: ESP-IDF:          v5.5.1[0m
-[0;32mI (412) efuse_init: Min chip rev:     v0.0[0m
-[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
-[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
-[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (430) heap_init: At 3FCB6D28 len 000329E8 (202 KiB): RAM[0m
-[0;32mI (435) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
-[0;32mI (440) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
-[0;32mI (446) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
-[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
-[0;32mI (458) spi_flash: detected chip: generic[0m
-[0;32mI (461) spi_flash: flash io: qio[0m
-[0;33mW (464) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
-[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
-[0;32mI (480) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
-[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
-[0;32mI (501) coexist: coexist rom version e7ae62f[0m
-[0;32mI (501) main_task: Started on CPU0[0m
-[0;32mI (502) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
-[0;32mI (505) main_task: Calling app_main()[0m
-[0;32mI (509) feeder: === Sitnchow Feeder booting ===[0m
-[0;32mI (513) camera wifi: app_wifi_main start[0m
-[0;32mI (517) camera wifi: nvs_flash_init...[0m
-[0;32mI (537) camera wifi: nvs_flash_init done[0m
-[0;32mI (537) camera wifi: esp_netif_init...[0m
-[0;32mI (537) camera wifi: esp_event_loop_create_default...[0m
-[0;32mI (538) camera wifi: wifi init...[0m
-[0;32mI (541) pp: pp rom version: e7ae62f[0m
-[0;32mI (544) net80211: net80211 rom version: e7ae62f[0m
-[0;32mI (560) wifi_init: rx ba win: 32[0m
-[0;32mI (560) wifi_init: accept mbox: 6[0m
-[0;32mI (561) wifi_init: tcpip mbox: 64[0m
-[0;32mI (561) wifi_init: udp mbox: 64[0m
-[0;32mI (561) wifi_init: tcp mbox: 64[0m
-[0;32mI (564) wifi_init: tcp tx win: 65535[0m
-[0;32mI (567) wifi_init: tcp rx win: 65535[0m
-[0;32mI (571) wifi_init: tcp mss: 1440[0m
-[0;32mI (574) wifi_init: WiFi IRAM OP enabled[0m
-[0;32mI (577) wifi_init: WiFi RX IRAM OP enabled[0m
-[0;32mI (581) wifi_init: LWIP IRAM OP enabled[0m
-[0;32mI (585) wifi_prov_scheme_ble: BT memory released[0m
-[0;32mI (589) camera wifi: Already provisioned, connecting to WiFi[0m
-[0;32mI (594) wifi_prov_scheme_ble: BTDM memory released[0m
-[0;32mI (599) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
-[0;32mI (4625) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
-[0;32mI (4625) camera wifi: Got IP: 172.20.10.5[0m
-[0;32mI (4625) camera wifi: WiFi connected, continuing...[0m
-[0;32mI (4630) feeder: WiFi connected[0m
-[0;32mI (4633) feeder: Waiting for SNTP sync…[0m
-[0;32mI (8637) feeder: Clock synced: 2026-04-14 00:03:01[0m
-[0;32mI (9599) firebase: Auth token refreshed[0m
-[0;32mI (9599) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
-[0;32mI (10615) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
-[0;32mI (12050) s3 ll_cam: DMA Channel=1[0m
-[0;32mI (12050) cam_hal: cam init ok[0m
-[0;32mI (12050) sccb: pin_sda 7 pin_scl 6[0m
-[0;32mI (12050) sccb: sccb_i2c_port=1[0m
-[0;32mI (12062) ov3660: Mismatch PID=0x5640[0m
-[0;32mI (12064) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
-[0;32mI (12064) camera: Detected OV5640 camera[0m
-[0;32mI (12064) camera: Detected camera at address=0x3c[0m
-[0;32mI (12764) cam_hal: PSRAM DMA mode disabled[0m
-[0;32mI (12764) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 30[0m
-[0;32mI (12814) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
-[0;32mI (12814) cam_hal: Allocating 30720 Byte frame buffer in PSRAM[0m
-[0;32mI (12814) cam_hal: cam config ok[0m
-[0;32mI (12831) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
-[0;32mI (12832) ov5640: Calculated XVCLK: 10000000 Hz, REFIN: 5000000 Hz, VCO: 900000000 Hz, PLL_CLK: 90000000 Hz, SYSCLK: 22500000 Hz, PCLK: 5625000 Hz[0m
-[0;32mI (12876) feeder: Camera init: ESP_OK[0m
-[0;32mI (12879) websocket_client: Started[0m
-[0;32mI (12879) audio_player: Initialized: GPIO13, PWM 312500Hz, Sample rate 16000Hz[0m
-cam_hal: NO-SOI - JPEG start marker missing
-cam_hal: NO-SOI - JPEG start marker missing
-[0;32mI (12971) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
-[0;33mW (15001) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
-[0;32mI (15005) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
-[0;32mI (15047) websocket_client: Started[0m
-[0;32mI (15047) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
-[0;32mI (15548) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
-[0;32mI (16067) dispenser: Dispenser initialised (10.0 g/rev, 20 RPM)[0m
-[0;32mI (16088) tof: About to install I2C driver on port 0[0m
-[0;32mI (16088) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
-[0;33mW (16128) tof: No I2C device at 0x41 — ToF disabled[0m
-[0;33mW (16168) feeder: ToF sensor not detected — presence detection disabled[0m
-[0;32mI (16210) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
-[0;32mI (16288) manual_btn: Manual override button active (GPIO40)[0m
-[0;32mI (16289) manual_btn: Manual button task started[0m
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-[0;32mI (19328) feeder: All tasks started[0m
-[0;32mI (19329) main_task: Returned from app_main()[0m
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-[0;32mI (21774) intercom: WebSocket connected to audio-stream[0m
-[0;32mI (22278) sched: Loaded 1 active schedule(s) for this device[0m
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
-ESP-ROM:esp32s3-20210327
-Build:Mar 27 2021
-rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
-waiting for download
+Command: ninja flash
+[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/partition_table/partition-table.bin" "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin""
+video_stream_server.bin binary size 0x1515e0 bytes. Smallest app partition is 0x400000 bytes. 0x2aea20 bytes (67%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/bootloader.bin""
+Bootloader binary size 0x57e0 bytes. 0x2820 bytes (31%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.5.1\components\esptool_py && C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.5.1 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.5.1/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D "WORKING_DIRECTORY=C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build" -P C:/Espressif/frameworks/esp-idf-v5.5.1/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32s3 -p COM7 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB 0x0 bootloader/bootloader.bin 0x10000 video_stream_server.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.10.0
+Serial port COM7
+Connecting...
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 44:1b:f6:d1:19:1c
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00010000 to 0x00161fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 22496 bytes to 14267...
+Writing at 0x00000000... (100 %)
+Wrote 22496 bytes (14267 compressed) at 0x00000000 in 0.5 seconds (effective 348.2 kbit/s)...
+Hash of data verified.
+Compressed 1381856 bytes to 844755...
+Writing at 0x00010000... (1 %)
+Writing at 0x0001d71b... (3 %)
+Writing at 0x0002a5a4... (5 %)
+Writing at 0x00035d7b... (7 %)
+Writing at 0x0003b647... (9 %)
+Writing at 0x00043778... (11 %)
+Writing at 0x0004ec0a... (13 %)
+Writing at 0x00055330... (15 %)
+Writing at 0x0005bcf0... (17 %)
+Writing at 0x00061fc7... (19 %)
+Writing at 0x00068878... (21 %)
+Writing at 0x0006ee79... (23 %)
+Writing at 0x00075086... (25 %)
+Writing at 0x0007aedc... (26 %)
+Writing at 0x000806d3... (28 %)
+Writing at 0x00086225... (30 %)
+Writing at 0x0008be8b... (32 %)
+Writing at 0x00092004... (34 %)
+Writing at 0x00099b3d... (36 %)
+Writing at 0x000a0411... (38 %)
+Writing at 0x000a616c... (40 %)
+Writing at 0x000abf22... (42 %)
+Writing at 0x000b1e99... (44 %)
+Writing at 0x000b8394... (46 %)
+Writing at 0x000be6c2... (48 %)
+Writing at 0x000c43bc... (50 %)
+Writing at 0x000ca101... (51 %)
+Writing at 0x000d019a... (53 %)
+Writing at 0x000d62d9... (55 %)
+Writing at 0x000dbafe... (57 %)
+Writing at 0x000e0d48... (59 %)
+Writing at 0x000e605f... (61 %)
+Writing at 0x000eb900... (63 %)
+Writing at 0x000f0ee1... (65 %)
+Writing at 0x000f62f9... (67 %)
+Writing at 0x000fb87f... (69 %)
+Writing at 0x0010175b... (71 %)
+Writing at 0x001070e0... (73 %)
+Writing at 0x0010cd48... (75 %)
+Writing at 0x00112687... (76 %)
+Writing at 0x00117dc7... (78 %)
+Writing at 0x0011d630... (80 %)
+Writing at 0x001245d8... (82 %)
+Writing at 0x0012e81a... (84 %)
+Writing at 0x00135305... (86 %)
+Writing at 0x0013b55f... (88 %)
+Writing at 0x0014146f... (90 %)
+Writing at 0x00146ae8... (92 %)
+Writing at 0x0014c5ec... (94 %)
+Writing at 0x0015267d... (96 %)
+Writing at 0x00158add... (98 %)
+Writing at 0x0015dcb1... (100 %)
+Wrote 1381856 bytes (844755 compressed) at 0x00010000 in 21.1 seconds (effective 524.7 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 105...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.0 seconds (effective 694.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
