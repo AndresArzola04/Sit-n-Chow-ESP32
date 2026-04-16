@@ -1,0 +1,3 @@
+Command: ninja all
+warning: TOF_SAMPLES_TO_CONFIRM (defined at C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/Kconfig.projbuild:104) defined with more than one help text -- only the last one will be used
+C:\Users\Lapatopa\AppData\Local\Temp\kconfgen_tmph6hjy69v:20: warning: ignoring malformed line 'CONFIG_SPIRAM_IGNORE_NOTFOUND'

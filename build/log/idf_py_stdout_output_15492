@@ -1,0 +1,308 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=38a48h (232008) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00048a70 vaddr=3fca8600 size=075a8h ( 30120) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f0d30h (986416) map[0m
+[0;32mI (278) esp_image: segment 3: paddr=00140d58 vaddr=3fcafba8 size=003ach (   940) load[0m
+[0;32mI (278) esp_image: segment 4: paddr=0014110c vaddr=40378000 size=20528h (132392) load[0m
+[0;32mI (306) esp_image: segment 5: paddr=0016163c vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (320) boot: Disabling RNG early entropy source...[0m
+[0;32mI (330) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (330) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (330) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (332) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (336) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (341) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (345) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (350) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (355) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (359) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (364) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (369) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (372) esp_psram: Speed: 40MHz[0m
+[0;32mI (375) cpu_start: Multicore app[0m
+[0;32mI (390) cpu_start: Pro cpu start user code[0m
+[0;32mI (390) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (390) app_init: Application information:[0m
+[0;32mI (390) app_init: Project name:     video_stream_server[0m
+[0;32mI (395) app_init: App version:      9b49b75-dirty[0m
+[0;32mI (399) app_init: Compile time:     Apr 16 2026 16:39:46[0m
+[0;32mI (404) app_init: ELF file SHA256:  025646538...[0m
+[0;32mI (409) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (413) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (416) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (424) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (431) heap_init: At 3FCB93D8 len 00030338 (192 KiB): RAM[0m
+[0;32mI (436) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (441) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (446) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (451) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (458) spi_flash: detected chip: generic[0m
+[0;32mI (462) spi_flash: flash io: qio[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (474) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (481) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (487) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (491) coexist: coexist rom version e7ae62f[0m
+[0;32mI (496) main_task: Started on CPU0[0m
+[0;32mI (499) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (507) main_task: Calling app_main()[0m
+[0;32mI (510) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (514) camera wifi: app_wifi_main start[0m
+[0;32mI (518) camera wifi: nvs_flash_init...[0m
+[0;32mI (534) camera wifi: nvs_flash_init done[0m
+[0;32mI (534) camera wifi: esp_netif_init...[0m
+[0;32mI (535) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (535) camera wifi: wifi init...[0m
+[0;32mI (539) pp: pp rom version: e7ae62f[0m
+[0;32mI (541) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (555) wifi_init: rx ba win: 32[0m
+[0;32mI (555) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (557) wifi_init: tcp mbox: 64[0m
+[0;32mI (560) wifi_init: tcp tx win: 65535[0m
+[0;32mI (564) wifi_init: tcp rx win: 65535[0m
+[0;32mI (567) wifi_init: tcp mss: 1440[0m
+[0;32mI (570) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (573) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (577) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (581) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (585) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (591) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (595) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3037) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (6722) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (6722) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (6722) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (6727) feeder: WiFi connected[0m
+[0;32mI (6730) feeder: Waiting for SNTP sync…[0m
+[0;32mI (8734) feeder: Clock synced: 2026-04-16 16:41:44[0m
+[0;32mI (9715) firebase: Auth token refreshed[0m
+[0;32mI (9715) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (11033) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (12873) s3 ll_cam: DMA Channel=1[0m
+[0;32mI (12873) cam_hal: cam init ok[0m
+[0;32mI (12873) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (12873) sccb: sccb_i2c_port=1[0m
+[0;32mI (12885) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (12887) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (12887) camera: Detected OV5640 camera[0m
+[0;32mI (12887) camera: Detected camera at address=0x3c[0m
+[0;32mI (13588) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (13588) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 12[0m
+[0;32mI (13588) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer:  7680, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (13598) cam_hal: buffer_size: 30720, half_buffer_size: 7680, node_buffer_size: 3840, node_cnt: 8, total_cnt: 5[0m
+[0;32mI (13608) cam_hal: Allocating 38400 Byte frame buffer in PSRAM[0m
+[0;32mI (13614) cam_hal: cam config ok[0m
+[0;32mI (13630) ov5640: Set PLL: bypass: 0, multiplier: 20, sys_div: 1, pre_div: 1, root_2x: 0, pclk_root_div: 1, pclk_manual: 1, pclk_div: 8[0m
+[0;32mI (13631) ov5640: Calculated XVCLK: 10000000 Hz, REFIN: 10000000 Hz, VCO: 200000000 Hz, PLL_CLK: 80000000 Hz, SYSCLK: 20000000 Hz, PCLK: 5000000 Hz[0m
+[0;32mI (13668) feeder: Camera init: ESP_OK[0m
+[0;32mI (13671) websocket_client: Started[0m
+[0;32mI (13671) feeder: Camera WebSocket stream connected[0m
+[0;32mI (13672) audio_player: Initialized: GPIO13, PWM 312500Hz, Sample rate 16000Hz[0m
+[0;32mI (13760) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;33mW (15760) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (15760) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
+[0;32mI (15765) websocket_client: Started[0m
+[0;32mI (15767) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (16273) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (16773) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (16773) tof: About to install I2C driver on port 0[0m
+[0;32mI (16774) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
+[0;33mW (16777) tof: No I2C device at 0x41 — ToF disabled[0m
+[0;33mW (16782) feeder: ToF sensor not detected — presence detection disabled[0m
+[0;32mI (16791) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (16797) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (16803) manual_btn: Manual button task started[0m
+[0;32mI (19351) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (19807) feeder: heartbeat_task created[0m
+[0;32mI (19808) feeder: command_poll_task created[0m
+[0;32mI (19809) feeder: ws_send_task started, free heap: 7540140[0m
+[0;32mI (19809) feeder: ws_send_task created[0m
+[0;32mI (19813) feeder: camera_capture_task created[0m
+[0;32mI (19817) feeder: camera_poll_task created[0m
+[0;32mI (19821) feeder: All tasks started[0m
+[0;32mI (19824) main_task: Returned from app_main()[0m
+[0;32mI (21426) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (21436) intercom: WebSocket connected to audio-stream[0m
+[0;33mW (21809) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (23809) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (24838) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (25809) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (27308) feeder: Polling commands...[0m
+[0;33mW (27809) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (28890) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (28892) feeder: Camera streaming started[0m
+[0;32mI (29239) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (32458) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (33497) intercom: Stop received — playing buffered audio[0m
+[0;32mI (33499) intercom: Stop received — playing buffered audio[0m
+[0;32mI (34165) feeder: Sent 25 frames[0m
+[0;32mI (34239) feeder: Polling commands...[0m
+[1;31mE (34569) esp-aes: Failed to allocate memory[0m
+[1;31mE (34569) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (34570) transport_base: esp_tls_conn_write error, errno=Success[0m
+[1;31mE (34573) websocket_client: esp_transport_write() returned -1, transport_error=ESP_ERR_MBEDTLS_SSL_WRITE_FAILED, tls_error_code=1, tls_flags=0, errno=0[0m
+[1;31mE (34586) feeder: Camera WebSocket error[0m
+[0;32mI (34591) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (34594) feeder: Camera WebSocket disconnected[0m
+[1;31mE (34598) feeder: WebSocket send failed: -1[0m
+[0;33mW (34770) feeder: WS not connected[0m
+[0;33mW (34972) feeder: WS not connected[0m
+[0;33mW (35175) feeder: WS not connected[0m
+[0;33mW (35377) feeder: WS not connected[0m
+[0;32mI (35544) intercom: Session started[0m
+[0;32mI (35547) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;33mW (35580) feeder: WS not connected[0m
+[0;32mI (35629) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;33mW (35783) feeder: WS not connected[0m
+[0;32mI (35799) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (35892) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (35897) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (35899) intercom: Stop received — playing buffered audio[0m
+[0;32mI (35899) intercom: Playing 0.4 s of buffered audio (6400 samples)[0m
+[0;33mW (35902) intercom: Playback from PSRAM (internal RAM unavailable)[0m
+[0;33mW (35908) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;33mW (35987) feeder: WS not connected[0m
+[0;32mI (36125) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (36189) feeder: WS not connected[0m
+[0;32mI (36311) audio_player: Playback complete.[0m
+[0;32mI (36314) intercom: Stop received — playing buffered audio[0m
+[0;33mW (36391) feeder: WS not connected[0m
+[0;33mW (36593) feeder: WS not connected[0m
+[0;33mW (36796) feeder: WS not connected[0m
+[0;33mW (36999) feeder: WS not connected[0m
+[0;33mW (37201) feeder: WS not connected[0m
+[0;33mW (37404) feeder: WS not connected[0m
+[0;33mW (37607) feeder: WS not connected[0m
+[0;33mW (37809) feeder: WS not connected[0m
+[0;33mW (38012) feeder: WS not connected[0m
+[0;33mW (38215) feeder: WS not connected[0m
+[0;33mW (38420) feeder: WS not connected[0m
+[0;33mW (38622) feeder: WS not connected[0m
+[0;33mW (38823) feeder: WS not connected[0m
+[0;33mW (39026) feeder: WS not connected[0m
+[0;33mW (39229) feeder: WS not connected[0m
+[0;33mW (39432) feeder: WS not connected[0m
+[0;32mI (39518) intercom: Session started[0m
+[0;32mI (39520) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (39585) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;33mW (39634) feeder: WS not connected[0m
+[0;33mW (39837) feeder: WS not connected[0m
+[0;32mI (39987) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (39993) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (39999) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (40005) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;33mW (40040) feeder: WS not connected[0m
+[0;32mI (40106) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (40181) intercom: Stop received — playing buffered audio[0m
+[0;32mI (40181) intercom: Playing 0.7 s of buffered audio (11200 samples)[0m
+[0;33mW (40181) intercom: Playback from PSRAM (internal RAM unavailable)[0m
+[0;33mW (40187) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;33mW (40243) feeder: WS not connected[0m
+[0;33mW (40446) feeder: WS not connected[0m
+[0;32mI (40629) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (40654) feeder: WS not connected[0m
+[0;32mI (40799) feeder: Polling commands...[0m
+[0;33mW (40851) feeder: WS not connected[0m
+[0;32mI (40887) audio_player: Playback complete.[0m
+[0;32mI (40890) intercom: Stop received — playing buffered audio[0m
+[0;33mW (41055) feeder: WS not connected[0m
+[0;33mW (41259) feeder: WS not connected[0m
+[0;32mI (41427) sched: Current time: 16:42 day_idx=3[0m
+[0;33mW (41458) feeder: WS not connected[0m
+[0;33mW (41662) feeder: WS not connected[0m
+[0;33mW (41864) feeder: WS not connected[0m
+[0;33mW (42067) feeder: WS not connected[0m
+[0;33mW (42270) feeder: WS not connected[0m
+[0;33mW (42472) feeder: WS not connected[0m
+[0;33mW (42677) feeder: WS not connected[0m
+[0;33mW (42880) feeder: WS not connected[0m
+[0;33mW (43082) feeder: WS not connected[0m
+[0;33mW (43285) feeder: WS not connected[0m
+[0;33mW (43488) feeder: WS not connected[0m
+[0;33mW (43691) feeder: WS not connected[0m
+[0;33mW (43893) feeder: WS not connected[0m
+[0;33mW (44096) feeder: WS not connected[0m
+[0;33mW (44298) feeder: WS not connected[0m
+[0;33mW (44501) feeder: WS not connected[0m
+[1;31mE (44610) esp-aes: Failed to allocate memory[0m
+[1;31mE (44610) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (44610) transport_base: esp_tls_conn_write error, errno=Connection already in progress[0m
+[1;31mE (44615) HTTP_CLIENT: Error write request[0m
+[1;31mE (44620) firebase: streaming_get open failed: ESP_ERR_HTTP_WRITE_DATA[0m
+[0;33mW (44705) feeder: WS not connected[0m
+[0;33mW (44908) feeder: WS not connected[0m
+[0;33mW (45107) feeder: WS not connected[0m
+[0;33mW (45310) feeder: WS not connected[0m
+[0;32mI (45383) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (45512) feeder: WS not connected[0m
+[0;33mW (45715) feeder: WS not connected[0m
+[0;32mI (45773) intercom: Audio WS alive: yes[0m
+[0;33mW (45918) feeder: WS not connected[0m
+[0;33mW (46120) feeder: WS not connected[0m
+[0;33mW (46323) feeder: WS not connected[0m
+[0;32mI (46329) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (47385) intercom: Stop received — playing buffered audio[0m
+[0;32mI (47387) intercom: Stop received — playing buffered audio[0m
+[1;31mE (48353) esp-aes: Failed to allocate memory[0m
+[1;31mE (48353) esp-tls-mbedtls: write error :-0x0001[0m
+[1;31mE (48354) transport_base: esp_tls_conn_write error, errno=Success[0m
+[1;31mE (48357) websocket_client: esp_transport_write() returned -1, transport_error=ESP_ERR_MBEDTLS_SSL_WRITE_FAILED, tls_error_code=1, tls_flags=0, errno=0[0m
+[1;31mE (48370) feeder: Camera WebSocket error[0m
+[0;32mI (48375) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (48378) feeder: Camera WebSocket disconnected[0m
+[1;31mE (48382) feeder: WebSocket send failed: -1[0m
+[0;33mW (48553) feeder: WS not connected[0m
+[0;33mW (48756) feeder: WS not connected[0m
+[0;33mW (48959) feeder: WS not connected[0m
+[0;33mW (49161) feeder: WS not connected[0m
+[0;33mW (49364) feeder: WS not connected[0m
+[0;33mW (49568) feeder: WS not connected[0m
+[0;33mW (49770) feeder: WS not connected[0m
+[0;33mW (49972) feeder: WS not connected[0m
+[0;32mI (49985) firebase: streaming_get: received 4 bytes total[0m
+[0;33mW (50175) feeder: WS not connected[0m
+[0;33mW (50377) feeder: WS not connected[0m
+[0;32mI (50384) feeder: Polling commands...[0m
+[0;33mW (50580) feeder: WS not connected[0m
+[0;33mW (50783) feeder: WS not connected[0m
+[0;33mW (50987) feeder: WS not connected[0m
+[0;33mW (51189) feeder: WS not connected[0m
+[0;33mW (51391) feeder: WS not connected[0m
+[0;33mW (51595) feeder: WS not connected[0m
+[0;33mW (51797) feeder: WS not connected[0m
+[0;33mW (52001) feeder: WS not connected[0m
+[0;32mI (52152) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (52202) feeder: WS not connected[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x21 (DOWNLOAD(USB/UART0))
+waiting for download

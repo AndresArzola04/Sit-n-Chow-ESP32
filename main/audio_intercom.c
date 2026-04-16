@@ -27,7 +27,7 @@
 #define TAG                 "intercom"
 #define DEVICE_ID_MAX_LEN   64
 #define RECONNECT_DELAY_MS  5000
-#define WS_BUFFER_SIZE      (64 * 1024)
+#define WS_BUFFER_SIZE      (8 * 1024)
 #define WS_TASK_STACK       (8 * 1024)
 
 /* 8 seconds max — 8 * 16000 * 2 = 256 KB */
@@ -250,5 +250,5 @@ void audio_intercom_start(const char *device_id)
                  (unsigned)MAX_SESSION_BYTES);
     }
 
-    xTaskCreate(intercom_task, "audio_intercom", 8192, NULL, 7, NULL);
+    xTaskCreatePinnedToCore(intercom_task, "audio_intercom", 8192, NULL, 7, NULL, 0);
 }

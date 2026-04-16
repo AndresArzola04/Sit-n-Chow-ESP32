@@ -253,7 +253,7 @@ static esp_err_t reinit_camera(void)
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(16000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
+    esp_err_t err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -622,7 +622,7 @@ void app_main(void)
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
     vTaskDelay(pdMS_TO_TICKS(100));
-    esp_err_t cam_err = init_camera(16000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
+    esp_err_t cam_err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
     /* 7. WebSocket stream (only if camera working) */
@@ -699,7 +699,7 @@ void app_main(void)
 
         if (ws_stack) {
             xTaskCreateStaticPinnedToCore(ws_send_task, "ws_send",
-                16384, NULL, 5, ws_stack, &s_ws_task_tcb, 1);
+                16384, NULL, 5, ws_stack, &s_ws_task_tcb, 0);
             ESP_LOGI(TAG, "ws_send_task created");
         } else {
             ESP_LOGE(TAG, "ws_send_task stack alloc failed");
@@ -707,7 +707,7 @@ void app_main(void)
 
         if (cap_stack) {
             xTaskCreateStaticPinnedToCore(camera_capture_task, "cam_cap",
-                8192, NULL, 5, cap_stack, &s_cap_task_tcb, 1);
+                8192, NULL, 5, cap_stack, &s_cap_task_tcb, 0);
             ESP_LOGI(TAG, "camera_capture_task created");
         } else {
             ESP_LOGE(TAG, "camera_capture_task stack alloc failed");
