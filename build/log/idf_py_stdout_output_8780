@@ -1,0 +1,370 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a658h (239192) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a680 vaddr=3fca8500 size=05998h ( 22936) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2b48h (994120) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142b70 vaddr=3fcade98 size=01f6ch (  8044) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144ae4 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00164f18 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (369) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      7220577-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 16 2026 17:32:05[0m
+[0;32mI (405) app_init: ELF file SHA256:  a8545608c...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (413) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (431) heap_init: At 3FCB93B0 len 00030360 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (462) spi_flash: flash io: qio[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3041) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (6794) esp_netif_handlers: sta ip: 172.20.10.5, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (6794) camera wifi: Got IP: 172.20.10.5[0m
+[0;32mI (6794) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (6799) feeder: WiFi connected[0m
+[0;32mI (6802) feeder: Waiting for SNTP sync…[0m
+[0;32mI (7806) feeder: Clock synced: 2026-04-16 17:43:15[0m
+[0;32mI (9081) firebase: Auth token refreshed[0m
+[0;32mI (9081) firebase: Firebase client ready (DB: sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (10376) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (10885) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (10885) cam_hal: cam init ok[0m
+[0;32mI (10885) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (10885) sccb: sccb_i2c_port=1[0m
+[0;32mI (10898) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (10899) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (10899) camera: Detected OV5640 camera[0m
+[0;32mI (10899) camera: Detected camera at address=0x3c[0m
+[0;32mI (11604) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (11604) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 12[0m
+[0;32mI (11604) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer:  7680, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (11614) cam_hal: buffer_size: 30720, half_buffer_size: 7680, node_buffer_size: 3840, node_cnt: 8, total_cnt: 5[0m
+[0;32mI (11624) cam_hal: Allocating 38400 Byte frame buffer in PSRAM[0m
+[0;32mI (11630) cam_hal: cam config ok[0m
+[0;32mI (11647) ov5640: Set PLL: bypass: 0, multiplier: 20, sys_div: 1, pre_div: 1, root_2x: 0, pclk_root_div: 1, pclk_manual: 1, pclk_div: 8[0m
+[0;32mI (11648) ov5640: Calculated XVCLK: 10000000 Hz, REFIN: 10000000 Hz, VCO: 200000000 Hz, PLL_CLK: 80000000 Hz, SYSCLK: 20000000 Hz, PCLK: 5000000 Hz[0m
+[0;32mI (11687) feeder: Camera init: ESP_OK[0m
+[0;32mI (11689) websocket_client: Started[0m
+[0;32mI (11690) feeder: Camera WebSocket stream connected[0m
+[0;32mI (11690) audio_player: Initialized: GPIO13, PWM 312500Hz, Sample rate 16000Hz[0m
+[0;32mI (11778) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;33mW (13779) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (13779) intercom: Audio stream URL: wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/audio-stream[0m
+[0;32mI (13784) websocket_client: Started[0m
+[0;32mI (13786) intercom: Audio intercom started (device=SIT_N_CHOW_D1191C)[0m
+[0;32mI (14285) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (14688) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (14785) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (14785) tof: About to install I2C driver on port 0[0m
+[0;32mI (14786) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
+[0;32mI (14790) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (14795) TMF8701: isI2CAddress: device responded at 0x41, val=0x41[0m
+[0;32mI (14800) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (14814) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (14814) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (14817) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (14822) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (14829) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (16120) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (16126) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (16127) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (16127) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (16144) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (16144) TMF8701: begin(): APP0 is running[0m
+[0;32mI (16145) TMF8701: begin(): initialization OK[0m
+[0;32mI (16146) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (16152) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (16210) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (17519) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (17524) sched: Schedule runner started (device=SIT_N_CHOW_D1191C uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (17525) manual_btn: Manual button task started[0m
+[0;32mI (17804) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (20536) feeder: heartbeat_task created[0m
+[0;32mI (20536) feeder: command_poll_task created[0m
+[0;32mI (20537) feeder: ws_send_task started, free heap: 7522348[0m
+[0;32mI (20537) feeder: ws_send_task created[0m
+[0;32mI (20541) feeder: camera_capture_task created[0m
+[0;32mI (20545) feeder: camera_poll_task created[0m
+[0;32mI (20549) feeder: All tasks started[0m
+[0;32mI (20552) main_task: Returned from app_main()[0m
+[0;33mW (22537) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (24206) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (24208) feeder: Camera streaming started[0m
+[0;33mW (24537) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (27770) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (28036) feeder: Polling commands...[0m
+[0;32mI (28372) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (29451) feeder: Sent 25 frames[0m
+[0;32mI (30931) intercom: Stop received — playing buffered audio[0m
+[0;32mI (31596) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (32857) intercom: Session started[0m
+[0;32mI (32865) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (32948) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (33047) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (33204) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (33217) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (33332) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (33372) feeder: Polling commands...[0m
+[0;32mI (33433) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (33500) intercom: Stop received — playing buffered audio[0m
+[0;33mW (33500) intercom: Playing 0.7 s from PSRAM[0m
+[0;33mW (33500) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (33920) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (34198) audio_player: Playback complete.[0m
+[0;32mI (34203) intercom: Stop received — playing buffered audio[0m
+[0;32mI (34517) feeder: Sent 50 frames[0m
+[0;32mI (35372) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (36468) intercom: Session started[0m
+[0;32mI (36475) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (36575) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (37014) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (37176) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (37633) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (37804) sched: Current time: 17:43 day_idx=3[0m
+[0;32mI (38406) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (38418) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (38920) feeder: Polling commands...[0m
+[0;32mI (39026) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (39041) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (39586) feeder: Sent 75 frames[0m
+[0;32mI (42688) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (43792) intercom: Audio WS alive: yes[0m
+[0;32mI (43916) intercom: Buffered 12800 samples total (0.8 s)[0m
+[0;32mI (44045) feeder: Polling commands...[0m
+[0;32mI (44339) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (44347) intercom: Buffered 14400 samples total (0.9 s)[0m
+[0;32mI (44347) intercom: Stop received — playing buffered audio[0m
+[0;33mW (44347) intercom: Playing 0.9 s from PSRAM[0m
+[0;33mW (44350) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (44657) feeder: Sent 100 frames[0m
+[0;32mI (45249) audio_player: Playback complete.[0m
+[0;32mI (45305) intercom: Stop received — playing buffered audio[0m
+[0;32mI (45860) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (45900) intercom: Stop received — playing buffered audio[0m
+[0;32mI (45900) intercom: Stop received — playing buffered audio[0m
+[0;32mI (49277) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (49339) feeder: Polling commands...[0m
+[0;32mI (49547) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (49822) feeder: Sent 125 frames[0m
+[0;32mI (52284) intercom: Session started[0m
+[0;32mI (52294) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (52659) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (52851) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (52922) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (52985) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (53126) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (53146) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (53245) intercom: Buffered 12800 samples total (0.8 s)[0m
+[0;32mI (53263) intercom: Buffered 14400 samples total (0.9 s)[0m
+[0;32mI (53418) intercom: Buffered 16000 samples total (1.0 s)[0m
+[0;32mI (53419) intercom: Stop received — playing buffered audio[0m
+[0;33mW (53419) intercom: Playing 1.0 s from PSRAM[0m
+[0;33mW (53422) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (54420) audio_player: Playback complete.[0m
+[0;32mI (54424) intercom: Stop received — playing buffered audio[0m
+[0;32mI (54548) feeder: Polling commands...[0m
+[0;32mI (54890) feeder: Sent 150 frames[0m
+[0;32mI (54900) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (55053) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (57799) intercom: Session started[0m
+[0;32mI (57804) sched: Current time: 17:44 day_idx=3[0m
+[0;32mI (57806) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (57909) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (58148) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (58217) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (58226) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (58237) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (58402) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (58411) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (58636) intercom: Buffered 12800 samples total (0.8 s)[0m
+[0;32mI (58648) intercom: Buffered 14400 samples total (0.9 s)[0m
+[0;32mI (58786) intercom: Buffered 16000 samples total (1.0 s)[0m
+[0;32mI (58866) intercom: Buffered 17600 samples total (1.1 s)[0m
+[0;32mI (58941) intercom: Buffered 19200 samples total (1.2 s)[0m
+[0;32mI (59178) intercom: Buffered 20800 samples total (1.3 s)[0m
+[0;32mI (59178) intercom: Stop received — playing buffered audio[0m
+[0;33mW (59178) intercom: Playing 1.3 s from PSRAM[0m
+[0;33mW (59181) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (59901) feeder: Polling commands...[0m
+[0;32mI (59959) feeder: Sent 175 frames[0m
+[0;32mI (60165) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (60477) audio_player: Playback complete.[0m
+[0;32mI (60479) intercom: Stop received — playing buffered audio[0m
+[0;32mI (60998) intercom: Stop received — playing buffered audio[0m
+[0;32mI (61000) intercom: Stop received — playing buffered audio[0m
+[0;32mI (61382) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (63940) intercom: Session started[0m
+[0;32mI (63948) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (64014) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (64247) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (64259) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (64330) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (64628) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (65025) feeder: Sent 200 frames[0m
+[0;32mI (65165) feeder: Polling commands...[0m
+[0;32mI (65269) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (65278) intercom: Buffered 12800 samples total (0.8 s)[0m
+[0;32mI (65290) intercom: Buffered 14400 samples total (0.9 s)[0m
+[0;32mI (65302) intercom: Buffered 16000 samples total (1.0 s)[0m
+[0;32mI (65391) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (65392) intercom: Buffered 17600 samples total (1.1 s)[0m
+[0;32mI (65405) intercom: Buffered 19200 samples total (1.2 s)[0m
+[0;32mI (65407) intercom: Stop received — playing buffered audio[0m
+[0;33mW (65407) intercom: Playing 1.2 s from PSRAM[0m
+[0;33mW (65409) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (66467) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (66605) audio_player: Playback complete.[0m
+[0;32mI (66608) intercom: Stop received — playing buffered audio[0m
+[0;32mI (69472) intercom: Session started[0m
+[0;32mI (69480) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (69495) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (69742) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (69751) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (69782) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (69796) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (69981) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (70029) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (70082) intercom: Stop received — playing buffered audio[0m
+[0;33mW (70082) intercom: Playing 0.7 s from PSRAM[0m
+[0;33mW (70082) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (70094) feeder: Sent 225 frames[0m
+[0;32mI (70392) feeder: Polling commands...[0m
+[0;32mI (70527) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (70781) audio_player: Playback complete.[0m
+[0;32mI (70783) intercom: Stop received — playing buffered audio[0m
+[0;32mI (72849) intercom: Session started[0m
+[0;32mI (72857) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (72945) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (72953) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (73067) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (73174) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (73258) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (73383) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (73393) intercom: Stop received — playing buffered audio[0m
+[0;33mW (73393) intercom: Playing 0.6 s from PSRAM[0m
+[0;33mW (73393) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (73792) intercom: Audio WS alive: yes[0m
+[0;32mI (73992) audio_player: Playback complete.[0m
+[0;32mI (73994) intercom: Stop received — playing buffered audio[0m
+[0;32mI (75160) feeder: Sent 250 frames[0m
+[0;32mI (75527) feeder: Polling commands...[0m
+[0;32mI (75783) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (75931) intercom: Stop received — playing buffered audio[0m
+[0;32mI (75933) intercom: Stop received — playing buffered audio[0m
+[0;32mI (75935) intercom: Stop received — playing buffered audio[0m
+[0;32mI (76080) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (77945) sched: Loaded 1 active schedule(s) for this device[0m
+[0;32mI (77946) sched: Current time: 17:44 day_idx=3[0m
+[0;32mI (78404) intercom: Session started[0m
+[0;32mI (78411) intercom: Buffered 1600 samples total (0.1 s)[0m
+[0;32mI (78668) intercom: Buffered 3200 samples total (0.2 s)[0m
+[0;32mI (78676) intercom: Buffered 4800 samples total (0.3 s)[0m
+[0;32mI (78689) intercom: Buffered 6400 samples total (0.4 s)[0m
+[0;32mI (78745) intercom: Buffered 8000 samples total (0.5 s)[0m
+[0;32mI (78877) intercom: Buffered 9600 samples total (0.6 s)[0m
+[0;32mI (78951) intercom: Buffered 11200 samples total (0.7 s)[0m
+[0;32mI (79035) intercom: Buffered 12800 samples total (0.8 s)[0m
+[0;32mI (79055) intercom: Stop received — playing buffered audio[0m
+[0;33mW (79055) intercom: Playing 0.8 s from PSRAM[0m
+[0;33mW (79055) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (79065) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (79853) audio_player: Playback complete.[0m
+[0;32mI (79853) intercom: Stop received — playing buffered audio[0m
+[0;32mI (80229) feeder: Sent 275 frames[0m
+[0;32mI (80783) feeder: Polling commands...[0m
+[0;32mI (80919) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (82176) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (85296) feeder: Sent 300 frames[0m
+[0;32mI (85303) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (85919) feeder: Polling commands...[0m
+[0;32mI (86255) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (88557) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (90364) feeder: Sent 325 frames[0m
+[0;32mI (90908) intercom: Stop received — playing buffered audio[0m
+[0;32mI (91255) feeder: Polling commands...[0m
+[0;32mI (91397) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (91502) firebase: streaming_get: received 4 bytes total[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download

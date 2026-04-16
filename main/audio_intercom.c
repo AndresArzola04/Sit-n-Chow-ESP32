@@ -21,6 +21,7 @@
 #include "esp_log.h"
 #include "esp_heap_caps.h"
 #include "esp_websocket_client.h"
+#include "freertos/idf_additions.h"
 
 #include "sdkconfig.h"
 
@@ -28,13 +29,17 @@
 #define DEVICE_ID_MAX_LEN   64
 #define RECONNECT_DELAY_MS  5000
 #define WS_BUFFER_SIZE      (8 * 1024)
-#define WS_TASK_STACK       (8 * 1024)
+#define WS_TASK_STACK       (4 * 1024)
 
-/* 8 seconds max — 8 * 16000 * 2 = 256 KB */
+#define MAX_IRAM_SAMPLES  (16000 * 4)                       
+#define MAX_IRAM_BYTES    (MAX_IRAM_SAMPLES * sizeof(int16_t))
+
 #define MAX_SESSION_SAMPLES (16000 * 20)
 #define MAX_SESSION_BYTES   (MAX_SESSION_SAMPLES * sizeof(int16_t))
 
 static char s_device_id[DEVICE_ID_MAX_LEN] = {0};
+
+static SemaphoreHandle_t s_play_trigger = NULL;
 
 /* PSRAM: accumulates incoming chunks */
 static int16_t  *s_psram_buf     = NULL;
@@ -70,30 +75,34 @@ static void session_play(void)
         return;
     }
 
-    uint32_t play_bytes = s_psram_samples * sizeof(int16_t);
-    ESP_LOGI(TAG, "Playing %.1f s of buffered audio (%lu samples)",
-             (float)s_psram_samples / 16000.0f,
-             (unsigned long)s_psram_samples);
-
-    /* Choose playback buffer: internal RAM preferred, PSRAM fallback */
+    uint32_t play_count;
     int16_t *play_buf;
+
     if (s_iram_buf) {
-        memcpy(s_iram_buf, s_psram_buf, play_bytes);
+        play_count = (s_psram_samples < MAX_IRAM_SAMPLES)
+                   ? s_psram_samples : MAX_IRAM_SAMPLES;
+        memcpy(s_iram_buf, s_psram_buf, play_count * sizeof(int16_t));
         play_buf = s_iram_buf;
-        ESP_LOGI(TAG, "Playback from internal RAM");
+        ESP_LOGI(TAG, "Playing %.1f s from internal RAM",
+                 (float)play_count / 16000.0f);
     } else {
-        play_buf = s_psram_buf;
-        ESP_LOGW(TAG, "Playback from PSRAM (internal RAM unavailable)");
+        play_count = s_psram_samples;
+        play_buf   = s_psram_buf;
+        ESP_LOGW(TAG, "Playing %.1f s from PSRAM",
+                 (float)play_count / 16000.0f);
     }
 
-    /* Hand off to audio_player — uses the same proven path as the beep */
-    audio_player_start(play_buf, s_psram_samples);
+    audio_player_start(play_buf, play_count);
+    // audio_playback_task (CPU1, max priority) preempts us here and runs the
+    // busy-wait loop. By the time we return, playback is done or was stopped.
 }
 
 static void session_play_task(void *arg)
 {
+while (true) {
+    xSemaphoreTake(s_play_trigger, portMAX_DELAY);
     session_play();
-    vTaskDelete(NULL);
+}
 }
 
 /* ── WebSocket URL builder ───────────────────────────────────────────────── */
@@ -169,10 +178,8 @@ static void ws_event_handler(void *handler_args,
                 strncmp(data->data_ptr, "stop", 4) == 0) {
                 ESP_LOGI(TAG, "Stop received — playing buffered audio");
                 if (s_session_open) {
-                    // instead of calling session_play() directly in the WS event handler:
-                    xTaskCreatePinnedToCore(session_play_task, "intercom_play", 4096, NULL, 
-                         configMAX_PRIORITIES - 2, NULL, 1); // CPU1, high priority
-                    s_session_open = false;
+                    s_session_open = false;          // ← clear FIRST: kills duplicate triggers
+                    xSemaphoreGive(s_play_trigger);  // ← signal persistent task
                 }
             }
         }
@@ -232,23 +239,28 @@ void audio_intercom_start(const char *device_id)
 {
     strncpy(s_device_id, device_id, DEVICE_ID_MAX_LEN - 1);
 
-    /* Allocate buffers at startup — heap is unfragmented here */
     s_psram_buf = heap_caps_malloc(MAX_SESSION_BYTES, MALLOC_CAP_SPIRAM);
     if (!s_psram_buf) {
         ESP_LOGE(TAG, "PSRAM buffer alloc failed — intercom disabled");
         return;
     }
 
-    /* Try to get internal RAM for glitch-free playback timing.
-     * This is the same memory region used by the beep buffer. */
-    s_iram_buf = heap_caps_malloc(MAX_SESSION_BYTES,
+    // Realistic size — 4 s = 128 KB. Likely succeeds at boot before fragmentation.
+    s_iram_buf = heap_caps_malloc(MAX_IRAM_BYTES,
                      MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
     if (!s_iram_buf) {
         ESP_LOGW(TAG, "Internal RAM unavailable for playback — will use PSRAM");
     } else {
-        ESP_LOGI(TAG, "Playback buffer: %u bytes internal RAM",
-                 (unsigned)MAX_SESSION_BYTES);
+        ESP_LOGI(TAG, "Playback buffer: %u bytes internal RAM", (unsigned)MAX_IRAM_BYTES);
     }
 
-    xTaskCreatePinnedToCore(intercom_task, "audio_intercom", 8192, NULL, 7, NULL, 0);
+    // Create the play task once at startup — never at runtime
+    s_play_trigger = xSemaphoreCreateBinary();
+    configASSERT(s_play_trigger);
+    xTaskCreatePinnedToCoreWithCaps(session_play_task, "intercom_play", 4096, NULL,
+        configMAX_PRIORITIES - 2, NULL, 1,
+        MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+
+    xTaskCreateWithCaps(intercom_task, "audio_intercom", 8192, NULL, 7, NULL,
+        MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 }

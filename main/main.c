@@ -253,7 +253,7 @@ static esp_err_t reinit_camera(void)
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
+    esp_err_t err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_HQVGA, 2);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -622,7 +622,7 @@ void app_main(void)
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
     vTaskDelay(pdMS_TO_TICKS(100));
-    esp_err_t cam_err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_QQVGA, 1);
+    esp_err_t cam_err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_HQVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
     /* 7. WebSocket stream (only if camera working) */

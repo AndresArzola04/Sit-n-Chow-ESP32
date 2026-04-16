@@ -44,9 +44,10 @@ static void ledc_mute(void)
 {
     ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, 0);
     ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
-    ledc_stop(LEDC_SPEED_MODE, LEDC_CHANNEL, 0); // idles LEDC output at 0
+    ledc_stop(LEDC_SPEED_MODE, LEDC_CHANNEL, 0);
+    ledc_timer_pause(LEDC_SPEED_MODE, LEDC_TIMER);  // ← stops the clock entirely
     gpio_set_direction(s_gpio_pin, GPIO_MODE_OUTPUT);
-    gpio_set_level(s_gpio_pin, 0); // hard-drive LOW — LM386 input starved
+    gpio_set_level(s_gpio_pin, 0);
 }
 
 static void ledc_unmute(void)
@@ -81,6 +82,7 @@ static inline void play_samples(const int16_t *samples, uint32_t count)
 
 static void audio_playback_task(void *arg)
 {
+    ESP_LOGI(TAG, "Playback started.");
     while (true) {
         xSemaphoreTake(s_play_sem, portMAX_DELAY);
 

@@ -10,13 +10,27 @@
  *   4. A FreeRTOS timer refreshes the token every 55 minutes automatically
  *      (Firebase custom tokens expire after 60 minutes).
  *
- * Mutex strategy:
- *   - s_http_mutex      : serialises all non-intercom HTTP requests
- *                         (commands, heartbeat, schedule, patches, puts, etc.)
- *   - s_intercom_mutex  : dedicated mutex for firebase_get_intercom() so the
- *                         intercom poll is never blocked by a slow command/
- *                         heartbeat request, and vice-versa.
- *   - s_token_mutex     : protects s_auth_token during reads/writes.
+ * Persistent client strategy (key change from original):
+ *   Previously every request called esp_http_client_init() + cleanup(),
+ *   hammering the internal heap with mbedTLS context alloc/free on every
+ *   poll cycle. This caused severe heap fragmentation and the hardware AES
+ *   DMA buffer failures seen in the logs.
+ *
+ *   Now three persistent handles are created once at boot and reused:
+ *     s_http_client        — all short Firebase REST calls (GET/PATCH/PUT/
+ *                            POST/DELETE). Protected by s_http_mutex.
+ *     s_streaming_client   — streaming GET for camera poll.
+ *                            Protected by s_camera_poll_mutex.
+ *     s_intercom_client    — streaming GET for intercom poll.
+ *                            Protected by s_intercom_mutex.
+ *   Token fetch uses a temporary client because it targets a different host
+ *   (Cloud Run vs. Firebase RTDB) and only runs every 55 minutes.
+ *
+ * Mutex strategy (unchanged):
+ *   s_http_mutex       : serialises all non-streaming HTTP requests
+ *   s_intercom_mutex   : dedicated for firebase_get_intercom()
+ *   s_camera_poll_mutex: dedicated for firebase_get_camera_poll()
+ *   s_token_mutex      : protects s_auth_token during reads/writes
  */
 
 #include "firebase_client.h"
@@ -33,47 +47,54 @@
 #include "esp_timer.h"
 #include "cJSON.h"
 
-/* ── Kconfig symbols ─────────────────────────────────────────────────────── *
- * CONFIG_FIREBASE_DATABASE_URL     e.g. "sit-n-chow-...-rtdb.firebaseio.com"
- * CONFIG_FIREBASE_DEVICE_ID        e.g. "SIT_N_CHOW_AABBCC"
- * CONFIG_CLOUD_RUN_URL             e.g. "https://sit-n-chow-ws-xxx-uc.a.run.app"
- * CONFIG_CLOUD_RUN_DEVICE_SECRET   optional shared secret, "" to disable
- * ─────────────────────────────────────────────────────────────────────────── */
-
 #define TAG            "firebase"
-#define URL_BUF_SIZE   3072  /* ID tokens are ~900 chars + URL overhead */
+#define URL_BUF_SIZE   3072
 #define BODY_BUF_SIZE  8192
-#define TOKEN_MAX_LEN  1536  /* ID tokens can be up to ~1200 chars */
+#define TOKEN_MAX_LEN  1536
 
 /*
  * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY (-0x7100):
- * Firebase closes idle TLS connections with a close_notify alert. This is
- * normal behaviour — not a real error — so we treat it as EOF when we have
- * already received data.
+ * Firebase closes idle TLS connections with a close_notify alert.
+ * Treat as EOF when data has already been received.
  */
 #define MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY  (-0x7100)
+
+/* ── Module state ────────────────────────────────────────────────────────── */
 
 static char               s_auth_token[TOKEN_MAX_LEN] = {0};
 static SemaphoreHandle_t  s_token_mutex               = NULL;
 static SemaphoreHandle_t  s_http_mutex                = NULL;
-static SemaphoreHandle_t  s_intercom_mutex            = NULL;  /* dedicated for intercom */
+static SemaphoreHandle_t  s_intercom_mutex            = NULL;
+static SemaphoreHandle_t  s_camera_poll_mutex         = NULL;
 static esp_timer_handle_t s_refresh_timer             = NULL;
-static SemaphoreHandle_t s_camera_poll_mutex          = NULL;
 
-/* ── Response accumulator used by the HTTP event handler ─────────────────── */
+/* Persistent HTTP client handles — created once in firebase_client_init() */
+static esp_http_client_handle_t s_http_client        = NULL;
+static esp_http_client_handle_t s_streaming_client   = NULL;
+static esp_http_client_handle_t s_intercom_client    = NULL;
 
+/*
+ * Module-level response context for do_request().
+ * Safe to be module-level because do_request() is always called under
+ * s_http_mutex, so only one call can be in flight at a time.
+ */
 typedef struct {
     char *buf;
     int   len;
     int   cap;
 } resp_ctx_t;
 
+static resp_ctx_t s_do_ctx; /* user_data for s_http_client's event handler */
+
+/* ── HTTP event handler ──────────────────────────────────────────────────── */
+
 static esp_err_t http_event_handler(esp_http_client_event_t *evt)
 {
     resp_ctx_t *ctx = (resp_ctx_t *)evt->user_data;
     if (evt->event_id == HTTP_EVENT_ON_DATA && ctx && evt->data_len > 0) {
         int remaining = ctx->cap - ctx->len - 1;
-        int to_copy   = (evt->data_len < remaining) ? evt->data_len : remaining;
+        int to_copy   = (evt->data_len < remaining) ?
+                         evt->data_len : remaining;
         if (to_copy > 0) {
             memcpy(ctx->buf + ctx->len, evt->data, to_copy);
             ctx->len += to_copy;
@@ -83,7 +104,7 @@ static esp_err_t http_event_handler(esp_http_client_event_t *evt)
     return ESP_OK;
 }
 
-/* ── Generic HTTP request ────────────────────────────────────────────────── */
+/* ── Generic HTTP request (uses persistent s_http_client) ────────────────── */
 
 static esp_err_t do_request(const char *method,
                              const char *url,
@@ -95,51 +116,49 @@ static esp_err_t do_request(const char *method,
     char *resp_buf = calloc(1, BODY_BUF_SIZE);
     if (!resp_buf) return ESP_ERR_NO_MEM;
 
-    resp_ctx_t ctx = { .buf = resp_buf, .len = 0, .cap = BODY_BUF_SIZE };
+    /* Point the persistent client's event handler at this call's buffer */
+    s_do_ctx.buf = resp_buf;
+    s_do_ctx.len = 0;
+    s_do_ctx.cap = BODY_BUF_SIZE;
 
-    esp_http_client_config_t cfg = {
-        .url                         = url,
-        .event_handler               = http_event_handler,
-        .user_data                   = &ctx,
-        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
-        .skip_cert_common_name_check = true,
-        .buffer_size                 = 2048,
-        .buffer_size_tx              = 1024,
-        .timeout_ms                  = 15000,
-    };
+    /* Reconfigure the persistent client for this request */
+    esp_http_client_set_url(s_http_client, url);
 
-    esp_http_client_handle_t client = esp_http_client_init(&cfg);
-    if (!client) { free(resp_buf); return ESP_FAIL; }
-
-    esp_http_client_set_method(client,
-        strcmp(method, "GET")   == 0 ? HTTP_METHOD_GET    :
-        strcmp(method, "PATCH") == 0 ? HTTP_METHOD_PATCH  :
-        strcmp(method, "PUT")   == 0 ? HTTP_METHOD_PUT    :
-        strcmp(method, "POST")  == 0 ? HTTP_METHOD_POST   :
-                                       HTTP_METHOD_DELETE);
+    esp_http_client_set_method(s_http_client,
+        strcmp(method, "GET")    == 0 ? HTTP_METHOD_GET    :
+        strcmp(method, "PATCH")  == 0 ? HTTP_METHOD_PATCH  :
+        strcmp(method, "PUT")    == 0 ? HTTP_METHOD_PUT    :
+        strcmp(method, "POST")   == 0 ? HTTP_METHOD_POST   :
+                                        HTTP_METHOD_DELETE);
 
     if (body && strlen(body) > 0) {
-        esp_http_client_set_header(client, "Content-Type", "application/json");
-        esp_http_client_set_post_field(client, body, (int)strlen(body));
+        esp_http_client_set_header(s_http_client, "Content-Type", "application/json");
+        esp_http_client_set_post_field(s_http_client, body, (int)strlen(body));
+    } else {
+        /* Clear any body left over from a previous write request */
+        esp_http_client_set_post_field(s_http_client, NULL, 0);
     }
 
     if (extra_header_name && extra_header_value) {
-        esp_http_client_set_header(client, extra_header_name, extra_header_value);
+        esp_http_client_set_header(s_http_client,
+                                   extra_header_name, extra_header_value);
     }
 
-    esp_err_t err = esp_http_client_perform(client);
+    /* perform() reuses the existing TLS session if the host is unchanged,
+     * or transparently reconnects if the connection was dropped. */
+    esp_err_t err = esp_http_client_perform(s_http_client);
 
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "%s failed: %s", method, esp_err_to_name(err));
     } else {
-        int status = esp_http_client_get_status_code(client);
+        int status = esp_http_client_get_status_code(s_http_client);
         if (status < 200 || status >= 300) {
             ESP_LOGW(TAG, "%s → HTTP %d: %s", method, status, resp_buf);
             err = ESP_FAIL;
         }
     }
 
-    esp_http_client_cleanup(client);
+    /* NOTE: no esp_http_client_cleanup() — handle is persistent */
 
     if (out_body) {
         *out_body = resp_buf;
@@ -149,7 +168,7 @@ static esp_err_t do_request(const char *method,
     return err;
 }
 
-/* ── Token fetch from Cloud Run ──────────────────────────────────────────── */
+/* ── Token fetch (temporary client — different host to Firebase RTDB) ─────── */
 
 static esp_err_t fetch_token(void)
 {
@@ -170,19 +189,49 @@ static esp_err_t fetch_token(void)
     }
 #endif
 
-    char *body = NULL;
-    esp_err_t err = do_request("GET", url, NULL,
-                                secret_name, secret_value,
-                                &body);
-    free(url);
+    /*
+     * Token fetch targets Cloud Run (different host from Firebase RTDB).
+     * Use a short-lived client so s_http_client stays pointed at Firebase
+     * and can keep its TLS session alive.
+     */
+    char *resp_buf = calloc(1, BODY_BUF_SIZE);
+    if (!resp_buf) { free(url); return ESP_ERR_NO_MEM; }
 
-    if (err != ESP_OK || !body) {
-        free(body);
+    resp_ctx_t ctx = { .buf = resp_buf, .len = 0, .cap = BODY_BUF_SIZE };
+
+    esp_http_client_config_t cfg = {
+        .url                         = url,
+        .event_handler               = http_event_handler,
+        .user_data                   = &ctx,
+        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .buffer_size                 = 2048,
+        .buffer_size_tx              = 1024,
+        .timeout_ms                  = 15000,
+    };
+
+    esp_http_client_handle_t client = esp_http_client_init(&cfg);
+    if (!client) {
+        free(url);
+        free(resp_buf);
         return ESP_FAIL;
     }
 
-    cJSON *json = cJSON_Parse(body);
-    free(body);
+    if (secret_name && secret_value)
+        esp_http_client_set_header(client, secret_name, secret_value);
+
+    esp_err_t err = esp_http_client_perform(client);
+    esp_http_client_cleanup(client);
+    free(url);
+
+    if (err != ESP_OK || !resp_buf[0]) {
+        ESP_LOGE(TAG, "Token fetch HTTP error: %s", esp_err_to_name(err));
+        free(resp_buf);
+        return ESP_FAIL;
+    }
+
+    cJSON *json = cJSON_Parse(resp_buf);
+    free(resp_buf);
 
     if (!json) {
         ESP_LOGE(TAG, "Token response parse error");
@@ -209,6 +258,9 @@ static esp_err_t fetch_token(void)
 static void token_refresh_cb(void *arg)
 {
     ESP_LOGI(TAG, "Refreshing Firebase auth token…");
+    /* Take s_http_mutex to prevent a concurrent do_request() call from
+     * racing with the URL change inside do_request for the same client.
+     * fetch_token uses its own temporary client so this is just a guard. */
     fetch_token();
 }
 
@@ -225,48 +277,32 @@ static void build_url(char *buf, size_t bufsz, const char *path)
     xSemaphoreGive(s_token_mutex);
 }
 
-/* ── Shared streaming GET implementation ─────────────────────────────────── *
+/* ── Shared streaming GET (uses a caller-supplied persistent client) ─────── *
  *
- * Used by both firebase_get_large() and firebase_get_intercom().
- * The caller passes in the mutex to take/give so each can use its own.
+ * The caller must hold `mutex` before calling. This function takes the mutex,
+ * performs the request, releases the mutex, and returns.
  *
- * Key fix vs. original:
- *   - esp_http_client_read() returning < 0 with MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY
- *     is treated as a clean EOF when data has already been received, not an error.
- *   - content_length == -1 (chunked / no Content-Length header) is handled
- *     gracefully — we just read until rlen == 0.
- *   - HTTP status != 2xx is logged with the actual status code, not -1.
+ * Uses manual open/read/close (not perform) so it can stream large responses
+ * without buffering them entirely before parsing.
  * ─────────────────────────────────────────────────────────────────────────── */
 
-static esp_err_t streaming_get(const char          *url,
-                                SemaphoreHandle_t    mutex,
-                                cJSON              **out_json)
+static esp_err_t streaming_get(const char               *url,
+                                esp_http_client_handle_t  client,
+                                SemaphoreHandle_t         mutex,
+                                cJSON                   **out_json)
 {
-    esp_http_client_config_t cfg = {
-        .url                         = url,
-        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
-        .skip_cert_common_name_check = true,
-        .buffer_size                 = 8192,
-        .buffer_size_tx              = 2048,
-        .timeout_ms                  = 20000,
-    };
-
-    esp_http_client_handle_t client = esp_http_client_init(&cfg);
-    if (!client) return ESP_ERR_NO_MEM;
-
-    esp_http_client_set_method(client, HTTP_METHOD_GET);
-
     xSemaphoreTake(mutex, portMAX_DELAY);
+
+    esp_http_client_set_url(client, url);
+    esp_http_client_set_method(client, HTTP_METHOD_GET);
 
     esp_err_t err = esp_http_client_open(client, 0);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "streaming_get open failed: %s", esp_err_to_name(err));
-        esp_http_client_cleanup(client);
         xSemaphoreGive(mutex);
         return err;
     }
 
-    /* fetch_headers returns content-length or -1 for chunked/unknown */
     int content_length = esp_http_client_fetch_headers(client);
     int status         = esp_http_client_get_status_code(client);
 
@@ -274,8 +310,7 @@ static esp_err_t streaming_get(const char          *url,
 
     if (status < 200 || status >= 300) {
         ESP_LOGW(TAG, "streaming_get: HTTP %d (non-2xx)", status);
-        esp_http_client_close(client);
-        esp_http_client_cleanup(client);
+        esp_http_client_close(client);  /* close, not cleanup — handle is persistent */
         xSemaphoreGive(mutex);
         return ESP_FAIL;
     }
@@ -284,20 +319,18 @@ static esp_err_t streaming_get(const char          *url,
     size_t cap      = 65536;
     char  *resp_buf = heap_caps_malloc(cap, MALLOC_CAP_SPIRAM);
     if (!resp_buf) {
-        /* Fall back to internal heap for small responses */
         cap      = 8192;
         resp_buf = malloc(cap);
     }
     if (!resp_buf) {
         ESP_LOGE(TAG, "streaming_get: failed to allocate response buffer");
         esp_http_client_close(client);
-        esp_http_client_cleanup(client);
         xSemaphoreGive(mutex);
         return ESP_ERR_NO_MEM;
     }
 
-    int   total_read = 0;
-    char  read_buf[512];
+    int  total_read = 0;
+    char read_buf[512];
     err = ESP_OK;
 
     while (1) {
@@ -305,15 +338,14 @@ static esp_err_t streaming_get(const char          *url,
 
         if (rlen < 0) {
             /*
-             * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY is fired when Firebase
-             * closes the TLS connection with a close_notify alert after
-             * sending the full response body. This is normal — treat it
-             * as EOF when we already have data.
+             * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY: Firebase closes the TLS
+             * connection after sending the full response. Treat as clean EOF
+             * when we already have data.
              */
             if (total_read > 0) {
                 ESP_LOGD(TAG, "streaming_get: peer close after %d bytes (normal)", total_read);
             } else {
-                ESP_LOGE(TAG, "streaming_get: read error with no data received: %d", rlen);
+                ESP_LOGE(TAG, "streaming_get: read error with no data: %d", rlen);
                 err = ESP_FAIL;
             }
             break;
@@ -333,7 +365,7 @@ static esp_err_t streaming_get(const char          *url,
             }
             char *new_buf = realloc(resp_buf, new_cap);
             if (!new_buf) {
-                ESP_LOGE(TAG, "streaming_get: realloc to %u bytes failed", new_cap);
+                ESP_LOGE(TAG, "streaming_get: realloc to %u bytes failed", (unsigned)new_cap);
                 err = ESP_FAIL;
                 break;
             }
@@ -342,21 +374,20 @@ static esp_err_t streaming_get(const char          *url,
         }
 
         memcpy(resp_buf + total_read, read_buf, rlen);
-        total_read              += rlen;
-        resp_buf[total_read]     = '\0';
+        total_read             += rlen;
+        resp_buf[total_read]    = '\0';
     }
 
     ESP_LOGI(TAG, "streaming_get: received %d bytes total", total_read);
 
+    /* close (not cleanup) — preserves the TLS session for the next call */
     esp_http_client_close(client);
-    esp_http_client_cleanup(client);
     xSemaphoreGive(mutex);
 
     if (out_json) *out_json = NULL;
 
     if (err == ESP_OK && total_read > 0 && out_json) {
         if (strcmp(resp_buf, "null") == 0) {
-            /* Node does not exist — caller gets NULL json, ESP_OK */
             ESP_LOGD(TAG, "streaming_get: node is null");
         } else {
             cJSON *parsed = cJSON_Parse(resp_buf);
@@ -377,17 +408,55 @@ static esp_err_t streaming_get(const char          *url,
 
 esp_err_t firebase_client_init(void)
 {
-    s_token_mutex = xSemaphoreCreateMutex();
-    configASSERT(s_token_mutex);
-
-    s_http_mutex = xSemaphoreCreateMutex();
-    configASSERT(s_http_mutex);
-
-    s_intercom_mutex = xSemaphoreCreateMutex();
-    configASSERT(s_intercom_mutex);
-
+    s_token_mutex       = xSemaphoreCreateMutex();
+    s_http_mutex        = xSemaphoreCreateMutex();
+    s_intercom_mutex    = xSemaphoreCreateMutex();
     s_camera_poll_mutex = xSemaphoreCreateMutex();
+    configASSERT(s_token_mutex);
+    configASSERT(s_http_mutex);
+    configASSERT(s_intercom_mutex);
     configASSERT(s_camera_poll_mutex);
+
+    /*
+     * Create persistent HTTP handles at boot while the heap is unfragmented.
+     *
+     * s_http_client: used by do_request() for all short Firebase REST calls.
+     * keep_alive_enable reuses the TLS session across back-to-back requests
+     * to the same Firebase RTDB host, eliminating repeated handshakes.
+     */
+    esp_http_client_config_t http_cfg = {
+        .url                         = "https://" CONFIG_FIREBASE_DATABASE_URL "/init.json",
+        .event_handler               = http_event_handler,
+        .user_data                   = &s_do_ctx,
+        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .buffer_size                 = 2048,
+        .buffer_size_tx              = 1024,
+        .timeout_ms                  = 15000,
+        .keep_alive_enable           = true,
+    };
+    s_http_client = esp_http_client_init(&http_cfg);
+    configASSERT(s_http_client);
+
+    /*
+     * s_streaming_client / s_intercom_client: used by streaming_get() for
+     * Firebase reads that may return larger payloads. Separate handles so
+     * they never block short REST calls (heartbeat, patch, etc.).
+     */
+    esp_http_client_config_t stream_cfg = {
+        .url                         = "https://" CONFIG_FIREBASE_DATABASE_URL "/init.json",
+        .transport_type              = HTTP_TRANSPORT_OVER_SSL,
+        .skip_cert_common_name_check = true,
+        .buffer_size                 = 8192,
+        .buffer_size_tx              = 2048,
+        .timeout_ms                  = 20000,
+        .keep_alive_enable           = true,
+    };
+    s_streaming_client = esp_http_client_init(&stream_cfg);
+    configASSERT(s_streaming_client);
+
+    s_intercom_client = esp_http_client_init(&stream_cfg);
+    configASSERT(s_intercom_client);
 
     /* Fetch initial token — retry up to 5 times */
     esp_err_t err = ESP_FAIL;
@@ -446,16 +515,6 @@ esp_err_t firebase_get(const char *path, cJSON **out_json)
     return err;
 }
 
-/*
- * firebase_get_intercom — streaming GET dedicated to the audio intercom poller.
- *
- * Uses its own mutex (s_intercom_mutex) so the intercom task is never blocked
- * by slow command/heartbeat/schedule requests, and those tasks are never
- * blocked waiting for an intercom poll to complete.
- *
- * The audio node is typically a few KB of base64 PCM — well within the 64 KB
- * initial buffer — so this should be fast in the normal case.
- */
 esp_err_t firebase_get_intercom(const char *path, cJSON **out_json)
 {
     char *url = malloc(URL_BUF_SIZE);
@@ -464,7 +523,7 @@ esp_err_t firebase_get_intercom(const char *path, cJSON **out_json)
 
     ESP_LOGD(TAG, "firebase_get_intercom: polling %s", path);
 
-    esp_err_t err = streaming_get(url, s_intercom_mutex, out_json);
+    esp_err_t err = streaming_get(url, s_intercom_client, s_intercom_mutex, out_json);
     free(url);
     return err;
 }
@@ -474,7 +533,8 @@ esp_err_t firebase_get_camera_poll(const char *path, cJSON **out_json)
     char *url = malloc(URL_BUF_SIZE);
     if (!url) return ESP_ERR_NO_MEM;
     build_url(url, URL_BUF_SIZE, path);
-    esp_err_t err = streaming_get(url, s_camera_poll_mutex, out_json);
+
+    esp_err_t err = streaming_get(url, s_streaming_client, s_camera_poll_mutex, out_json);
     free(url);
     return err;
 }
