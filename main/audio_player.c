@@ -36,7 +36,7 @@ static uint32_t       s_sample_count = 0;
 #define LEDC_TIMER      LEDC_TIMER_0
 #define LEDC_CHANNEL    LEDC_CHANNEL_0
 #define LEDC_SPEED_MODE LEDC_LOW_SPEED_MODE
-#define LEDC_RESOLUTION LEDC_TIMER_8_BIT
+#define LEDC_RESOLUTION LEDC_TIMER_10_BIT   
 
 static void ledc_mute(void); // forward declaration — mute on init and after playback
 
@@ -72,7 +72,7 @@ static inline void play_samples(const int16_t *samples, uint32_t count)
     int64_t  next_time = esp_timer_get_time();
 
     for (uint32_t i = 0; i < count && s_playing; i++) {
-        uint32_t duty = ((int32_t)samples[i] + 32768) >> 8;
+        uint32_t duty = (uint32_t)(((int32_t)samples[i] + 32768) >> 6);
         ledc_set_duty(LEDC_SPEED_MODE, LEDC_CHANNEL, duty);
         ledc_update_duty(LEDC_SPEED_MODE, LEDC_CHANNEL);
         next_time += period_us;

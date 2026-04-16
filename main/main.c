@@ -222,7 +222,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         .frame_size    = frame_size,
         .jpeg_quality  = 25,
         .fb_count      = fb_count,
-        .grab_mode     = CAMERA_GRAB_LATEST,
+        .grab_mode     = CAMERA_GRAB_WHEN_EMPTY,
         .fb_location   = CAMERA_FB_IN_PSRAM,
     };
 
@@ -590,6 +590,12 @@ static void camera_poll_task(void *arg)
 
 void app_main(void)
 {
+    /* ── Silence LM386 input immediately ─────────────────────────────────
+     * GPIO13 floats from reset until speaker_init() ~15s later.
+     * A floating input gets amplified as noise. Drive it LOW now. */
+    gpio_set_direction(PIN_SPEAKER, GPIO_MODE_OUTPUT);
+    gpio_set_level(PIN_SPEAKER, 0);
+    
     ESP_LOGI(TAG, "=== Sitnchow Feeder booting ===");
 
     /* 1. WiFi */

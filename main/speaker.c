@@ -13,7 +13,7 @@
 
 #define TAG            "speaker"
 #define SPEAKER_GPIO   PIN_SPEAKER
-#define PWM_FREQ_HZ    312500
+#define PWM_FREQ_HZ    78125
 #define SAMPLE_RATE_HZ 16000
 
 #define BEEP_FREQ_HZ       880
