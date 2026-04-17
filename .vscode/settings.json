@@ -13,5 +13,5 @@
   ],
   "idf.flashType": "UART",
   "idf.portWin": "COM6",
-  "idf.currentSetup": "C:\\Users\\Lapatopa\\esp\\v5.5.1\\esp-idf"
+  "idf.currentSetup": "C:\\esp\\v6.0\\esp-idf"
 }
