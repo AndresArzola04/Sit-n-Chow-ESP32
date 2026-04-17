@@ -483,6 +483,7 @@
 #define CONFIG_FIREBASE_DEVICE_ID "SIT_N_CHOW_D1191C"
 #define CONFIG_CLOUD_RUN_URL "https://sit-n-chow-ws-5jph4zpsja-uc.a.run.app"
 #define CONFIG_CLOUD_RUN_DEVICE_SECRET ""
+#define CONFIG_WS_INGEST_URL "wss://your-websocket-service-url.run.app/ingest"
 #define CONFIG_TOF_THRESHOLD_MM 400
 #define CONFIG_TOF_SAMPLES_TO_CONFIRM 5
 #define CONFIG_DISPENSER_GRAMS_PER_REV 5

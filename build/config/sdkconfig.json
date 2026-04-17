@@ -1752,6 +1752,7 @@
     "WL_SECTOR_SIZE_512": false,
     "WS_BUFFER_SIZE": 1024,
     "WS_DYNAMIC_BUFFER": false,
+    "WS_INGEST_URL": "wss://your-websocket-service-url.run.app/ingest",
     "WS_TRANSPORT": true,
     "XTAL_FREQ": 40,
     "XTAL_FREQ_40": true

@@ -82,7 +82,7 @@ menu "Firebase Configuration"
         default "https://your-service-url.run.app"
         help
             Base URL of your Cloud Run service — no trailing slash.
-            Example: https://sit-n-chow-ws-96817124249-uc.a.run.app
+            Example: https://sit-n-chow-websocket-810978717979.us-central1.run.app
 
     config CLOUD_RUN_DEVICE_SECRET
         string "Cloud Run device shared secret"

@@ -6950,6 +6950,16 @@
                 "range": null,
                 "title": "Cloud Run device shared secret",
                 "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "Full websocket URL for camera frame ingest.\nExample: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest",
+                "id": "WS_INGEST_URL",
+                "name": "WS_INGEST_URL",
+                "range": null,
+                "title": "WebSocket ingest URL",
+                "type": "string"
             }
         ],
         "depends_on": null,
