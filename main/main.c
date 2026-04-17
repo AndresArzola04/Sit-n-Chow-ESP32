@@ -72,6 +72,32 @@ static bool              auto_jpeg_support = false;
 static QueueHandle_t     xQueueIFrame      = NULL;
 static esp_websocket_client_handle_t ws_client = NULL;
 
+// Device that is on sends "hello" and its deviceID when it connects to the websocket
+static void ws_send_hello(void)
+{
+    if (!ws_client || !esp_websocket_client_is_connected(ws_client)) {
+        return;
+    }
+
+    char hello[128];
+    snprintf(hello, sizeof(hello),
+             "{\"type\":\"hello\",\"deviceId\":\"%s\"}",
+             CONFIG_FIREBASE_DEVICE_ID);
+
+    int ret = esp_websocket_client_send_text(
+        ws_client,
+        hello,
+        strlen(hello),
+        pdMS_TO_TICKS(3000)
+    );
+
+    if (ret < 0) {
+        ESP_LOGE(TAG, "Failed to send websocket hello");
+    } else {
+        ESP_LOGI(TAG, "Sent websocket hello for device %s", CONFIG_FIREBASE_DEVICE_ID);
+    }
+}
+
 /* ── Device identity (fetched from Firebase at boot) ─────────────────────── */
 
 static char s_owner_uid[64] = {0};     /* fetched from devices/<id>/ownerUid */
@@ -114,11 +140,14 @@ void camera_streaming_stop(void)
     }
 }
 
+// Added ws_send_hello function
 static void camera_ws_event_handler(void *handler_args, esp_event_base_t base,
                                      int32_t event_id, void *event_data)
 {
-    if (event_id == WEBSOCKET_EVENT_CONNECTED)
+    if (event_id == WEBSOCKET_EVENT_CONNECTED){
         ESP_LOGI(TAG, "Camera WebSocket connected to /ingest");
+        ws_send_hello();
+    }
     else if (event_id == WEBSOCKET_EVENT_DISCONNECTED)
         ESP_LOGW(TAG, "Camera WebSocket disconnected");
     else if (event_id == WEBSOCKET_EVENT_ERROR)
@@ -161,7 +190,7 @@ void ws_send_task(void *arg)
                 jpg_buf = frame->buf;
                 jpg_len = frame->len;
             } else {
-                converted = frame2jpg(frame, 25, &jpg_buf, &jpg_len);
+                converted = frame2jpg(frame, 25, &jpg_buf, &jpg_len); // Change camera quality here
                 if (!converted) {
                     ESP_LOGE(TAG, "frame2jpg FAILED, free heap: %lu",
                              esp_get_free_heap_size());
@@ -634,7 +663,7 @@ void app_main(void)
     /* 7. WebSocket stream (only if camera working) */
     const bool camera_ok = (cam_err == ESP_OK);
     if (camera_ok) {
-        ws_client_init("wss://sit-n-chow-ws-5jph4zpsja-uc.a.run.app/ingest");
+        ws_client_init("wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest"); // Changed to new websocket url
         ESP_LOGI(TAG, "Camera WebSocket stream connected");
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");

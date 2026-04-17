@@ -93,6 +93,13 @@ menu "Firebase Configuration"
             environment variable on your Cloud Run service.
             Leave blank to disable the check during development.
 
+        config WS_INGEST_URL
+        string "WebSocket ingest URL"
+        default "wss://your-websocket-service-url.run.app/ingest"
+        help
+            Full websocket URL for camera frame ingest.
+            Example: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest
+
 endmenu
 
 menu "Feeder Hardware Configuration"
