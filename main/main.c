@@ -41,6 +41,7 @@
 #include "app_wifi.h"
 #include "esp_camera.h"
 #include "esp_websocket_client.h"
+#include "firebase_client.h"
 
 #include "firebase_client.h"
 #include "schedule_runner.h"
@@ -56,8 +57,9 @@
 
 #include "driver/i2c.h"
 
+
 /* ── Build-time config (set in idf.py menuconfig) ───────────────────────── */
-// CONFIG_FIREBASE_DEVICE_ID   — unique string that identifies this feeder
+// firebase_client_get_device_id()   — unique string that identifies this feeder
 // CONFIG_FIREBASE_DATABASE_URL
 // CONFIG_FIREBASE_DB_SECRET
 
@@ -82,7 +84,7 @@ static void ws_send_hello(void)
     char hello[128];
     snprintf(hello, sizeof(hello),
              "{\"type\":\"hello\",\"deviceId\":\"%s\"}",
-             CONFIG_FIREBASE_DEVICE_ID);
+             firebase_client_get_device_id());
 
     int ret = esp_websocket_client_send_text(
         ws_client,
@@ -94,7 +96,7 @@ static void ws_send_hello(void)
     if (ret < 0) {
         ESP_LOGE(TAG, "Failed to send websocket hello");
     } else {
-        ESP_LOGI(TAG, "Sent websocket hello for device %s", CONFIG_FIREBASE_DEVICE_ID);
+        ESP_LOGI(TAG, "Sent websocket hello for device %s", firebase_client_get_device_id());
     }
 }
 
@@ -325,7 +327,7 @@ static void report_online(void)
     cJSON_AddStringToObject(status, "fw",       "1.0.0");
 
     char path[128];
-    snprintf(path, sizeof(path), "devices/%s/status", CONFIG_FIREBASE_DEVICE_ID);
+    snprintf(path, sizeof(path), "devices/%s/status", firebase_client_get_device_id());
     firebase_patch(path, status);
     cJSON_Delete(status);
 }
@@ -334,7 +336,7 @@ static void report_online(void)
 static bool fetch_owner_uid(void)
 {
     char path[128];
-    snprintf(path, sizeof(path), "devices/%s/ownerUid", CONFIG_FIREBASE_DEVICE_ID);
+    snprintf(path, sizeof(path), "devices/%s/ownerUid", firebase_client_get_device_id());
 
     cJSON *json = NULL;
     esp_err_t err = firebase_get(path, &json);
@@ -364,7 +366,7 @@ static void log_feed_event(int grams, const char *source)
     cJSON_AddStringToObject(event, "by",     "device");
 
     char path[128];
-    snprintf(path, sizeof(path), "feedEvents/%s", CONFIG_FIREBASE_DEVICE_ID);
+    snprintf(path, sizeof(path), "feedEvents/%s", firebase_client_get_device_id());
     firebase_push(path, event);
     cJSON_Delete(event);
 }
@@ -382,7 +384,7 @@ static void push_notification(const char *title, const char *body)
     cJSON_AddStringToObject(notif, "title", title);
     cJSON_AddStringToObject(notif, "body",  body);
     cJSON_AddNumberToObject(notif, "ts",    (double)time(NULL) * 1000.0);
-    cJSON_AddStringToObject(notif, "deviceId", CONFIG_FIREBASE_DEVICE_ID);
+    cJSON_AddStringToObject(notif, "deviceId", firebase_client_get_device_id());
 
     char path[128];
     snprintf(path, sizeof(path), "notifications/%s", s_owner_uid);
@@ -472,7 +474,7 @@ static void do_feed_workflow(int grams, const char *source)
         /* Also write a flag to Firebase so the app can show a badge */
         char path[128];
         snprintf(path, sizeof(path), "devices/%s/inventory/lowFood",
-                 CONFIG_FIREBASE_DEVICE_ID);
+                 firebase_client_get_device_id());
         cJSON *flag = cJSON_CreateTrue();
         firebase_put(path, flag);
         cJSON_Delete(flag);
@@ -501,7 +503,7 @@ static void handle_pending_command(cJSON *cmd)
         /* Acknowledge by deleting the pending command before running workflow */
         char ack_path[128];
         snprintf(ack_path, sizeof(ack_path), "commands/%s/pending",
-                 CONFIG_FIREBASE_DEVICE_ID);
+                 firebase_client_get_device_id());
         firebase_delete(ack_path);
 
         /* Run workflow directly — blocking the poll task is intentional
@@ -517,7 +519,7 @@ static void command_poll_task(void *arg)
     
     char path[128];
     snprintf(path, sizeof(path), "commands/%s/pending",
-             CONFIG_FIREBASE_DEVICE_ID);
+             firebase_client_get_device_id());
 
     while (true) {
         vTaskDelay(pdMS_TO_TICKS(5000));
@@ -590,7 +592,7 @@ static void camera_poll_task(void *arg)
 {
     char path[128];
     snprintf(path, sizeof(path), "devices/%s/cameraActive",
-             CONFIG_FIREBASE_DEVICE_ID);
+             firebase_client_get_device_id());
 
     bool last_state = false;
 
@@ -672,7 +674,7 @@ void app_main(void)
     /* 7b. Sensors & actuators */
     speaker_init();
     vTaskDelay(pdMS_TO_TICKS(2000));   // let WiFi/Firebase settle
-    audio_intercom_start(CONFIG_FIREBASE_DEVICE_ID);
+    audio_intercom_start(firebase_client_get_device_id());
     vTaskDelay(pdMS_TO_TICKS(500));
     ultrasonic_init();
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -694,7 +696,7 @@ void app_main(void)
 
     /* 9. Schedule runner */
     if (s_identity_ready) {
-        schedule_runner_start(CONFIG_FIREBASE_DEVICE_ID,
+        schedule_runner_start(firebase_client_get_device_id(),
                               s_owner_uid,
                               do_feed_workflow);
     } else {

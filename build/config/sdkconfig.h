@@ -480,7 +480,7 @@
 #define CONFIG_ESP_MAXIMUM_RETRY 5
 #define CONFIG_FIREBASE_DATABASE_URL "sit-n-chow-v1-default-rtdb.firebaseio.com"
 #define CONFIG_FIREBASE_DB_SECRET ""
-#define CONFIG_FIREBASE_DEVICE_ID "SIT_N_CHOW_D1191C"
+#define CONFIG_FIREBASE_DEVICE_ID ""
 #define CONFIG_CLOUD_RUN_URL "https://sit-n-chow-websocket-810978717979.us-central1.run.app"
 #define CONFIG_CLOUD_RUN_DEVICE_SECRET ""
 #define CONFIG_WS_INGEST_URL "wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest"

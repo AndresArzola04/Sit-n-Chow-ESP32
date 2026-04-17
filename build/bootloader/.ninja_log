@@ -48,7 +48,7 @@
 748	1434	7980744726696546	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj	58dbaad73e14af14
 491	1117	7980744724128055	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_time.c.obj	744d9bd09c69efe7
 713	1186	7980744726340726	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj	92873a702ee05e2c
-16	8300	7981559551765221	build.ninja	4199dcbd36b8ca12
+7	11638	7981664184676010	build.ninja	4199dcbd36b8ca12
 2001	2242	7980744739222437	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/adc_periph.c.obj	254b53450ddc6893
 659	1197	7980744725796566	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_utility.c.obj	83d5c89a8f788552
 449	1208	7980744723698117	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_init.c.obj	b6b04390d545a151
@@ -124,14 +124,8 @@
 3912	4157	7980744758334308	bootloader.elf	db0663e6da2868ed
 4157	4463	7980744763751715	.bin_timestamp	c8e4cef1f0247eda
 4157	4463	7980744763751715	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/.bin_timestamp	c8e4cef1f0247eda
-14	100	7980819021239477	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-14	100	7980819021239477	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-24	22586	7981559551765221	build.ninja	4199dcbd36b8ca12
-115	406	7981559553922808	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-115	406	7981559553922808	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-25	163	7981569724456576	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-25	163	7981569724456576	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-32	185	7981596824128227	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-32	185	7981596824128227	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-17	99	7981607715718041	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
-17	99	7981607715718041	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
+17	95	7981663266535943	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
+17	95	7981663266535943	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
+8	7669	7981664184676010	build.ninja	4199dcbd36b8ca12
+20	96	7981664185136193	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc
+20	96	7981664185136193	C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	50bed6f2658568fc

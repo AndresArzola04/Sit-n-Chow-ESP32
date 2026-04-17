@@ -46,6 +46,7 @@
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "cJSON.h"
+#include "esp_mac.h"
 
 #define TAG            "firebase"
 #define URL_BUF_SIZE   3072
@@ -58,6 +59,9 @@
  * Treat as EOF when data has already been received.
  */
 #define MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY  (-0x7100)
+
+#define DEVICE_ID_LEN  20
+static char s_device_id[DEVICE_ID_LEN] = {0};
 
 /* ── Module state ────────────────────────────────────────────────────────── */
 
@@ -177,7 +181,7 @@ static esp_err_t fetch_token(void)
     snprintf(url, URL_BUF_SIZE,
              "%s/esp-token?device=%s",
              CONFIG_CLOUD_RUN_URL,
-             CONFIG_FIREBASE_DEVICE_ID);
+             s_device_id);
 
     const char *secret_name  = NULL;
     const char *secret_value = NULL;
@@ -262,6 +266,11 @@ static void token_refresh_cb(void *arg)
      * racing with the URL change inside do_request for the same client.
      * fetch_token uses its own temporary client so this is just a guard. */
     fetch_token();
+}
+
+const char *firebase_client_get_device_id(void)
+{
+    return s_device_id;
 }
 
 /* ── URL builder with auth token ─────────────────────────────────────────── */
@@ -408,6 +417,13 @@ static esp_err_t streaming_get(const char               *url,
 
 esp_err_t firebase_client_init(void)
 {
+    uint8_t mac[6];
+    esp_read_mac(mac, ESP_MAC_WIFI_STA);
+    snprintf(s_device_id, sizeof(s_device_id),
+                "SIT_N_CHOW_%02X%02X%02X",
+                mac[3], mac[4], mac[5]);
+    ESP_LOGI(TAG, "Device ID: %s", s_device_id);
+
     s_token_mutex       = xSemaphoreCreateMutex();
     s_http_mutex        = xSemaphoreCreateMutex();
     s_intercom_mutex    = xSemaphoreCreateMutex();
@@ -481,7 +497,8 @@ esp_err_t firebase_client_init(void)
     ESP_ERROR_CHECK(esp_timer_start_periodic(s_refresh_timer,
                                              (uint64_t)55 * 60 * 1000000ULL));
 
-    ESP_LOGI(TAG, "Firebase client ready (DB: %s)", CONFIG_FIREBASE_DATABASE_URL);
+        ESP_LOGI(TAG, "Firebase client ready (device=%s, DB=%s)",
+        s_device_id, CONFIG_FIREBASE_DATABASE_URL);
     return ESP_OK;
 }
 

@@ -32,6 +32,19 @@ extern "C" {
 esp_err_t firebase_client_init(void);
 
 /**
+ * @brief Return the device ID generated at init time.
+ *
+ *        Format: "SIT_N_CHOW_AABBCC" where AABBCC are the last three
+ *        octets of the WiFi station MAC address in upper-case hex.
+ *
+ *        Valid only after firebase_client_init() returns ESP_OK.
+ *        The returned pointer is to a static buffer — do not free it.
+ *
+ * @return Pointer to null-terminated device ID string.
+ */
+const char *firebase_client_get_device_id(void);
+
+/**
  * @brief HTTP GET a path from RTDB.
  *
  * @param path      RTDB path (e.g. "devices/abc/commands/pending")
