@@ -49,9 +49,9 @@
 #include "esp_mac.h"
 
 #define TAG            "firebase"
-#define URL_BUF_SIZE   3072
+#define URL_BUF_SIZE   4092
 #define BODY_BUF_SIZE  8192
-#define TOKEN_MAX_LEN  1536
+#define TOKEN_MAX_LEN  2048
 
 /*
  * MBEDTLS_ERR_SSL_PEER_CLOSE_NOTIFY (-0x7100):
@@ -209,8 +209,8 @@ static esp_err_t fetch_token(void)
         .user_data                   = &ctx,
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
-        .buffer_size                 = 2048,
-        .buffer_size_tx              = 1024,
+        .buffer_size                 = 8192,
+        .buffer_size_tx              = 8192,
         .timeout_ms                  = 15000,
     };
 
@@ -446,8 +446,8 @@ esp_err_t firebase_client_init(void)
         .user_data                   = &s_do_ctx,
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
-        .buffer_size                 = 2048,
-        .buffer_size_tx              = 1024,
+        .buffer_size                 = 8192,
+        .buffer_size_tx              = 8192,
         .timeout_ms                  = 15000,
         .keep_alive_enable           = true,
     };
@@ -464,7 +464,7 @@ esp_err_t firebase_client_init(void)
         .transport_type              = HTTP_TRANSPORT_OVER_SSL,
         .skip_cert_common_name_check = true,
         .buffer_size                 = 8192,
-        .buffer_size_tx              = 2048,
+        .buffer_size_tx              = 8192,
         .timeout_ms                  = 20000,
         .keep_alive_enable           = true,
     };

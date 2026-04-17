@@ -16,4 +16,4 @@ Merged 2 ELF sections
 Successfully created esp32s3 image.
 Generated C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin
 [9/9] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/partition_table/partition-table.bin" "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin""
-video_stream_server.bin binary size 0x155170 bytes. Smallest app partition is 0x400000 bytes. 0x2aae90 bytes (67%) free.
+video_stream_server.bin binary size 0x155160 bytes. Smallest app partition is 0x400000 bytes. 0x2aaea0 bytes (67%) free.
