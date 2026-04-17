@@ -296,7 +296,7 @@
     "CAMERA_TASK_STACK_SIZE": 4096,
     "CAM_CTLR_DVP_CAM_ISR_CACHE_SAFE": false,
     "CLOUD_RUN_DEVICE_SECRET": "",
-    "CLOUD_RUN_URL": "https://sit-n-chow-ws-5jph4zpsja-uc.a.run.app",
+    "CLOUD_RUN_URL": "https://sit-n-chow-websocket-810978717979.us-central1.run.app",
     "COMPILER_ASSERT_NDEBUG_EVALUATE": true,
     "COMPILER_CXX_EXCEPTIONS": false,
     "COMPILER_CXX_RTTI": false,
@@ -1752,7 +1752,7 @@
     "WL_SECTOR_SIZE_512": false,
     "WS_BUFFER_SIZE": 1024,
     "WS_DYNAMIC_BUFFER": false,
-    "WS_INGEST_URL": "wss://your-websocket-service-url.run.app/ingest",
+    "WS_INGEST_URL": "wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest",
     "WS_TRANSPORT": true,
     "XTAL_FREQ": 40,
     "XTAL_FREQ_40": true

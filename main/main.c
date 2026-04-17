@@ -663,7 +663,7 @@ void app_main(void)
     /* 7. WebSocket stream (only if camera working) */
     const bool camera_ok = (cam_err == ESP_OK);
     if (camera_ok) {
-        ws_client_init("wss://sit-n-chow-websocket-810978717979.us-central1.run.app/ingest"); // Changed to new websocket url
+        ws_client_init(CONFIG_WS_INGEST_URL); // Changed to new websocket url
         ESP_LOGI(TAG, "Camera WebSocket stream connected");
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");

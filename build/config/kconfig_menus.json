@@ -6934,7 +6934,7 @@
             {
                 "children": [],
                 "depends_on": null,
-                "help": "Base URL of your Cloud Run service \u2014 no trailing slash.\nExample: https://sit-n-chow-ws-96817124249-uc.a.run.app",
+                "help": "Base URL of your Cloud Run service \u2014 no trailing slash.\nExample: https://sit-n-chow-websocket-810978717979.us-central1.run.app",
                 "id": "CLOUD_RUN_URL",
                 "name": "CLOUD_RUN_URL",
                 "range": null,
