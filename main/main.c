@@ -192,7 +192,7 @@ void ws_send_task(void *arg)
                 jpg_buf = frame->buf;
                 jpg_len = frame->len;
             } else {
-                converted = frame2jpg(frame, 25, &jpg_buf, &jpg_len); // Change camera quality here
+                converted = frame2jpg(frame, 30, &jpg_buf, &jpg_len); // Change camera quality here
                 if (!converted) {
                     ESP_LOGE(TAG, "frame2jpg FAILED, free heap: %lu",
                              esp_get_free_heap_size());
@@ -251,7 +251,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         .ledc_channel  = LEDC_CHANNEL_1,  // CHANNEL_1 to avoid audio conflict
         .pixel_format  = pixel_format,
         .frame_size    = frame_size,
-        .jpeg_quality  = 18,
+        .jpeg_quality  = 12,
         .fb_count      = fb_count,
         .grab_mode     = CAMERA_GRAB_WHEN_EMPTY,
         .fb_location   = CAMERA_FB_IN_PSRAM,
@@ -270,6 +270,9 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
     }
 
     s->set_vflip(s, 1);
+    s->set_lenc(s, 1);
+    s->set_raw_gma(s, 1);
+    s->set_aec2(s, 1);
 
     camera_sensor_info_t *s_info = esp_camera_sensor_get_info(&(s->id));
     if (s_info && pixel_format == PIXFORMAT_JPEG && s_info->support_jpeg) {
@@ -284,7 +287,7 @@ static esp_err_t reinit_camera(void)
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_QVGA, 2);
+    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_SVGA, 2);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -657,9 +660,9 @@ void app_main(void)
     report_online();
 
     /* 6. Camera */
-    xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
+    xQueueIFrame = xQueueCreate(4, sizeof(camera_fb_t *));
     vTaskDelay(pdMS_TO_TICKS(100));
-    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_QVGA, 2);
+    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_SVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
     /* 7. WebSocket stream (only if camera working) */
@@ -709,13 +712,13 @@ void app_main(void)
     /* 10. Background tasks */
     vTaskDelay(pdMS_TO_TICKS(3000));  // give BLE time to release BTDM memory
     StackType_t *heartbeat_stack = heap_caps_malloc(
-        4096 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+        8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
     StackType_t *cmd_poll_stack = heap_caps_malloc(
         8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 
     if (heartbeat_stack) {
         xTaskCreateStaticPinnedToCore(heartbeat_task, "heartbeat",
-            4096, NULL, 3, heartbeat_stack, &s_heartbeat_tcb, 0);
+            8192, NULL, 3, heartbeat_stack, &s_heartbeat_tcb, 0);
         ESP_LOGI(TAG, "heartbeat_task created");
     } else {
         ESP_LOGE(TAG, "heartbeat_task stack alloc failed");
@@ -732,7 +735,7 @@ void app_main(void)
         StackType_t *ws_stack = heap_caps_malloc(
             16384 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
         StackType_t *cap_stack = heap_caps_malloc(
-            8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+            16384 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 
         if (ws_stack) {
             xTaskCreateStaticPinnedToCore(ws_send_task, "ws_send",
@@ -744,7 +747,7 @@ void app_main(void)
 
         if (cap_stack) {
             xTaskCreateStaticPinnedToCore(camera_capture_task, "cam_cap",
-                8192, NULL, 5, cap_stack, &s_cap_task_tcb, 0);
+                16384, NULL, 5, cap_stack, &s_cap_task_tcb, 0);
             ESP_LOGI(TAG, "camera_capture_task created");
         } else {
             ESP_LOGE(TAG, "camera_capture_task stack alloc failed");
@@ -752,11 +755,11 @@ void app_main(void)
     }
 
     StackType_t *cam_poll_stack = heap_caps_malloc(
-        4096 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+        8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 
     if (cam_poll_stack) {
         xTaskCreateStaticPinnedToCore(camera_poll_task, "cam_poll",
-            4096, NULL, 3, cam_poll_stack, &s_cam_poll_tcb, 0);
+            8192, NULL, 3, cam_poll_stack, &s_cam_poll_tcb, 0);
         ESP_LOGI(TAG, "camera_poll_task created");
     } else {
         ESP_LOGE(TAG, "camera_poll_task stack alloc failed");
