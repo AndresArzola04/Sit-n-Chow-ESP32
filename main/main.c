@@ -251,7 +251,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         .ledc_channel  = LEDC_CHANNEL_1,  // CHANNEL_1 to avoid audio conflict
         .pixel_format  = pixel_format,
         .frame_size    = frame_size,
-        .jpeg_quality  = 25,
+        .jpeg_quality  = 18,
         .fb_count      = fb_count,
         .grab_mode     = CAMERA_GRAB_WHEN_EMPTY,
         .fb_location   = CAMERA_FB_IN_PSRAM,
@@ -284,7 +284,7 @@ static esp_err_t reinit_camera(void)
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
     vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_HQVGA, 2);
+    esp_err_t err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_QVGA, 2);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -659,7 +659,7 @@ void app_main(void)
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(2, sizeof(camera_fb_t *));
     vTaskDelay(pdMS_TO_TICKS(100));
-    esp_err_t cam_err = init_camera(10000000, PIXFORMAT_RGB565, FRAMESIZE_HQVGA, 2);
+    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_QVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
     /* 7. WebSocket stream (only if camera working) */

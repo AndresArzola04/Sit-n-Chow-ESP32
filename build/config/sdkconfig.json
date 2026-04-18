@@ -293,7 +293,7 @@
     "CAMERA_JPEG_MODE_FRAME_SIZE_CUSTOM": false,
     "CAMERA_NO_AFFINITY": false,
     "CAMERA_PSRAM_DMA": false,
-    "CAMERA_TASK_STACK_SIZE": 4096,
+    "CAMERA_TASK_STACK_SIZE": 8192,
     "CAM_CTLR_DVP_CAM_ISR_CACHE_SAFE": false,
     "CLOUD_RUN_DEVICE_SECRET": "",
     "CLOUD_RUN_URL": "https://sit-n-chow-websocket-810978717979.us-central1.run.app",
