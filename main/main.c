@@ -395,6 +395,88 @@ static void push_notification(const char *title, const char *body)
     cJSON_Delete(notif);
 }
 
+/**
+ * Blocks until the ML service writes status="finished" to Firebase,
+ * or until timeout_ms elapses.
+ *
+ * Returns true  if the ML result indicates sitting was confirmed.
+ * Returns false if sitting was not confirmed OR timeout was reached.
+ *
+ * The workflow continues either way — we never starve the pet.
+ */
+static bool sitting_detector_run(uint32_t timeout_ms)
+{
+    const uint32_t POLL_INTERVAL_MS = 500;
+    uint32_t       elapsed_ms       = 0;
+
+    char updated_at_path[128];
+    snprintf(updated_at_path, sizeof(updated_at_path),
+             "final_output/%s/updatedAt", firebase_client_get_device_id());
+
+    char posture_path[128];
+    snprintf(posture_path, sizeof(posture_path),
+             "final_output/%s/posture", firebase_client_get_device_id());
+
+    /* ── Snapshot the current updatedAt value before ML starts ────────── */
+    double baseline_updated_at = 0.0;
+    cJSON *baseline_val = NULL;
+    esp_err_t err = firebase_get(updated_at_path, &baseline_val);
+    if (err == ESP_OK && baseline_val != NULL && cJSON_IsNumber(baseline_val)) {
+        baseline_updated_at = baseline_val->valuedouble;
+        ESP_LOGI(TAG, "[sitting_detector] Baseline updatedAt=%.0f", baseline_updated_at);
+    } else {
+        ESP_LOGW(TAG, "[sitting_detector] Could not read baseline updatedAt — will trigger on any value");
+    }
+    if (baseline_val) cJSON_Delete(baseline_val);
+
+    ESP_LOGI(TAG, "[sitting_detector] Waiting for updatedAt to change (timeout=%lu ms)…", timeout_ms);
+
+    /* ── Poll until updatedAt changes ─────────────────────────────────── */
+    while (elapsed_ms < timeout_ms) {
+        vTaskDelay(pdMS_TO_TICKS(POLL_INTERVAL_MS));
+        elapsed_ms += POLL_INTERVAL_MS;
+
+        cJSON *current_val = NULL;
+        err = firebase_get(updated_at_path, &current_val);
+
+        if (err != ESP_OK || current_val == NULL || !cJSON_IsNumber(current_val)) {
+            if (current_val) cJSON_Delete(current_val);
+            continue;
+        }
+
+        double current_updated_at = current_val->valuedouble;
+        cJSON_Delete(current_val);
+
+        if (current_updated_at <= baseline_updated_at) {
+            continue;   /* No change yet */
+        }
+
+        /* ── updatedAt changed — ML result is ready ───────────────────── */
+        ESP_LOGI(TAG, "[sitting_detector] updatedAt changed (%.0f → %.0f) after %lu ms",
+                 baseline_updated_at, current_updated_at, elapsed_ms);
+
+        cJSON *posture_val = NULL;
+        err = firebase_get(posture_path, &posture_val);
+
+        bool sitting = false;
+        const char *posture_str = "unknown";
+
+        if (err == ESP_OK && posture_val != NULL && cJSON_IsString(posture_val)) {
+            posture_str = posture_val->valuestring;
+            sitting = (strcmp(posture_str, "sitting") == 0);
+        }
+
+        ESP_LOGI(TAG, "[sitting_detector] posture=\"%s\" → sitting=%s",
+                 posture_str, sitting ? "YES" : "NO");
+
+        if (posture_val) cJSON_Delete(posture_val);
+        return sitting;
+    }
+
+    ESP_LOGW(TAG, "[sitting_detector] Timed out after %lu ms — proceeding anyway", timeout_ms);
+    return false;
+}
+
 /* ════════════════════════════════════════════════════════════════════════════
  *  Feed workflow
  * ════════════════════════════════════════════════════════════════════════════
@@ -428,22 +510,27 @@ static void do_feed_workflow(int grams, const char *source)
     uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
     bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
 
-    if (!pet_detected) {
-        ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
-        xSemaphoreGive(s_feed_mutex);
-        return;
-    }
+    // if (!pet_detected) {
+    //     ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
+    //     xSemaphoreGive(s_feed_mutex);
+    //     return;
+    // }
 
     /* ── Step 4: Camera sitting detection ────────────────────────────────── */
     ESP_LOGI(TAG, "[3] Running sitting detector…");
     camera_streaming_start();  // turn on for ML
+    
+    // bool sitting_confirmed = sitting_detector_run(
+    //     (uint32_t)CONFIG_SITTING_DETECT_TIMEOUT_S * 1000   /* e.g. 180 s */
+    // );
+
     bool sitting_confirmed = false;
-    // TODO: sitting_confirmed = sitting_detector_run(timeout_ms=180000);
-    sitting_confirmed = true;  /* placeholder */
-    camera_streaming_stop();   // turn off after ML
+
+
+    camera_streaming_stop();
 
     if (!sitting_confirmed) {
-        ESP_LOGW(TAG, "Pet not sitting after 3 min — dispensing anyway");
+        ESP_LOGW(TAG, "Pet not confirmed sitting — dispensing anyway");
     }
 
     /* ── Step 5: Dispense ────────────────────────────────────────────────── */

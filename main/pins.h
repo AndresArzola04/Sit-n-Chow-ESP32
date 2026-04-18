@@ -31,7 +31,7 @@
 #define PIN_STEPPER_EN          GPIO_NUM_48
 #define PIN_STEPPER_SLP         GPIO_NUM_2
 #define PIN_STEPPER_RST         GPIO_NUM_42
-// M0, M1, M2 removed — motor hardwired to full step
+// M0, M1, M2 removed — motor hardwired to 1/8 step
 
 /* ── ToF sensor (TMF8701) ────────────────────────────────────────────────── */
 #define PIN_TOF_SDA             GPIO_NUM_14   // was 37 (PSRAM), now M0 pin

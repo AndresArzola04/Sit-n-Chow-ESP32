@@ -1,0 +1,1215 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a8c8h (239816) map[0m
+[0;32mI (127) esp_image: segment 1: paddr=0004a8f0 vaddr=3fca8500 size=05728h ( 22312) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2e10h (994832) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142e38 vaddr=3fcadc28 size=021dch (  8668) load[0m
+[0;32mI (281) esp_image: segment 4: paddr=0014501c vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165450 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (321) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      e11e4fb-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 14:57:06[0m
+[0;32mI (405) app_init: ELF file SHA256:  01a248990...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (453) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (460) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (535) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (539) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (555) wifi_init: rx ba win: 32[0m
+[0;32mI (555) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (564) wifi_init: tcp rx win: 65535[0m
+[0;32mI (567) wifi_init: tcp mss: 1440[0m
+[0;32mI (570) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (591) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (4361) esp_netif_handlers: sta ip: 172.20.10.7, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (4361) camera wifi: Got IP: 172.20.10.7[0m
+[0;32mI (4361) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (4366) feeder: WiFi connected[0m
+[0;32mI (4369) feeder: Waiting for SNTP sync…[0m
+[0;32mI (9373) feeder: Clock synced: 2026-04-18 16:01:58[0m
+[0;32mI (9373) firebase: Device ID: SIT_N_CHOW_EA2984[0m
+[0;32mI (10322) firebase: Auth token refreshed[0m
+[0;32mI (10322) firebase: Firebase client ready (device=SIT_N_CHOW_EA2984, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (11750) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (12465) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (12465) cam_hal: cam init ok[0m
+[0;32mI (12465) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (12465) sccb: sccb_i2c_port=1[0m
+[0;32mI (12478) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (12479) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (12479) camera: Detected OV5640 camera[0m
+[0;32mI (12479) camera: Detected camera at address=0x3c[0m
+[0;32mI (13184) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (13184) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (13186) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (13192) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (13198) cam_hal: cam config ok[0m
+[0;32mI (13216) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (13216) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (13261) feeder: Camera init: ESP_OK[0m
+[0;32mI (13264) websocket_client: Started[0m
+[0;32mI (13264) feeder: Camera WebSocket stream connected[0m
+[0;32mI (13265) audio_player: Playback started.[0m
+[0;32mI (13265) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (13272) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (13363) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (14520) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (14523) feeder: Sent websocket hello for device SIT_N_CHOW_EA2984[0m
+[0;33mW (15364) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (15365) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_EA2984[0m
+[0;32mI (15372) websocket_client: Started[0m
+[0;32mI (15374) intercom: Audio intercom started (device=SIT_N_CHOW_EA2984)[0m
+[0;32mI (15874) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (16155) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (16374) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (16374) tof: About to install I2C driver on port 0[0m
+[0;32mI (16375) tof: I2C initialised on port 0 (SDA=14 SCL=38)[0m
+[0;33mW (16378) tof: No I2C device at 0x41 — ToF disabled[0m
+[0;33mW (16383) feeder: ToF sensor not detected — presence detection disabled[0m
+[0;32mI (16390) sched: Schedule runner started (device=SIT_N_CHOW_EA2984 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (16398) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (16404) manual_btn: Manual button task started[0m
+[0;32mI (19416) feeder: heartbeat_task created[0m
+[0;32mI (19417) feeder: command_poll_task created[0m
+[0;32mI (19417) feeder: ws_send_task started, free heap: 7486196[0m
+[0;32mI (19418) feeder: ws_send_task created[0m
+[0;32mI (19422) feeder: camera_capture_task created[0m
+[0;32mI (19426) feeder: camera_poll_task created[0m
+[0;32mI (19429) feeder: All tasks started[0m
+[0;32mI (19432) main_task: Returned from app_main()[0m
+[0;33mW (21418) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (22709) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (23418) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (25418) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (25784) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (26917) feeder: Polling commands...[0m
+[0;32mI (27216) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776542528313","ts":1776542528402}[0m
+[0;32mI (27220) feeder: Command: dispense 25 g (manual)[0m
+[0;33mW (27418) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (27419) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (27420) feeder: [1] Beep speaker[0m
+[0;32mI (27421) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (27426) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (28027) audio_player: Playback complete.[0m
+[0;32mI (28036) audio_player: Playback stopped.[0m
+[0;32mI (28036) speaker: Beep complete[0m
+[0;32mI (28036) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;33mW (28037) tof: ToF not initialised — skipping presence check[0m
+[0;32mI (28042) feeder: [3] Running sitting detector…[0m
+[0;32mI (28047) feeder: Camera streaming started[0m
+[0;32mI (28051) feeder: [sitting_detector] Waiting for ML result (timeout=180000 ms)…[0m
+[0;32mI (28854) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (31842) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (35409) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (39012) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (42316) feeder: Sent 25 frames[0m
+[0;32mI (43397) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (45381) intercom: Audio WS alive: yes[0m
+[0;32mI (46964) feeder: Sent 50 frames[0m
+[0;32mI (47791) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (51740) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (51817) feeder: Sent 75 frames[0m
+[0;32mI (56264) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (56381) feeder: Sent 100 frames[0m
+[0;32mI (61522) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (64473) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (65196) feeder: Sent 125 frames[0m
+[0;32mI (69404) feeder: Sent 150 frames[0m
+[0;32mI (70197) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (73614) feeder: Sent 175 frames[0m
+[0;32mI (75381) intercom: Audio WS alive: yes[0m
+[0;32mI (75538) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (78444) feeder: Sent 200 frames[0m
+[0;32mI (80044) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (83031) feeder: Sent 225 frames[0m
+[0;32mI (84633) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (87655) feeder: Sent 250 frames[0m
+[0;32mI (87759) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (91643) feeder: Sent 275 frames[0m
+[0;32mI (94092) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (98305) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (98948) feeder: Sent 300 frames[0m
+[0;32mI (103155) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (105381) intercom: Audio WS alive: yes[0m
+[0;32mI (106557) feeder: Sent 325 frames[0m
+[0;32mI (108815) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (112678) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (113463) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (118342) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (121322) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (121543) firebase: streaming_get: received 5 bytes total[0m
+[1;31mE (122899) transport_ws: Error transport_poll_write(0)[0m
+[1;31mE (122899) websocket_client: esp_transport_write() returned 0, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=0[0m
+[1;31mE (122904) feeder: Camera WebSocket error[0m
+[0;32mI (122909) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (122912) feeder: Camera WebSocket disconnected[0m
+[0;33mW (122916) feeder: WS not connected[0m
+[0;33mW (123052) feeder: WS not connected[0m
+[0;33mW (123151) feeder: WS not connected[0m
+[0;33mW (123249) feeder: WS not connected[0m
+[0;33mW (123348) feeder: WS not connected[0m
+[0;33mW (123447) feeder: WS not connected[0m
+[0;33mW (123546) feeder: WS not connected[0m
+[0;33mW (123644) feeder: WS not connected[0m
+[0;33mW (123743) feeder: WS not connected[0m
+[0;33mW (123842) feeder: WS not connected[0m
+[0;33mW (123941) feeder: WS not connected[0m
+[0;33mW (124039) feeder: WS not connected[0m
+[0;33mW (124138) feeder: WS not connected[0m
+[0;33mW (124237) feeder: WS not connected[0m
+[0;33mW (124336) feeder: WS not connected[0m
+[0;33mW (124435) feeder: WS not connected[0m
+[0;33mW (124533) feeder: WS not connected[0m
+[0;33mW (124632) feeder: WS not connected[0m
+[0;33mW (124731) feeder: WS not connected[0m
+[0;33mW (124830) feeder: WS not connected[0m
+[0;33mW (124929) feeder: WS not connected[0m
+[0;33mW (125027) feeder: WS not connected[0m
+[0;33mW (125126) feeder: WS not connected[0m
+[0;33mW (125225) feeder: WS not connected[0m
+[0;33mW (125324) feeder: WS not connected[0m
+[0;33mW (125423) feeder: WS not connected[0m
+[0;33mW (125521) feeder: WS not connected[0m
+[0;33mW (125620) feeder: WS not connected[0m
+[0;33mW (125719) feeder: WS not connected[0m
+[0;33mW (125818) feeder: WS not connected[0m
+[0;33mW (125916) feeder: WS not connected[0m
+[0;33mW (126015) feeder: WS not connected[0m
+[0;33mW (126114) feeder: WS not connected[0m
+[0;33mW (126213) feeder: WS not connected[0m
+[0;33mW (126312) feeder: WS not connected[0m
+[0;33mW (126410) feeder: WS not connected[0m
+[0;33mW (126509) feeder: WS not connected[0m
+[0;33mW (126608) feeder: WS not connected[0m
+[0;33mW (126707) feeder: WS not connected[0m
+[0;33mW (126806) feeder: WS not connected[0m
+[0;32mI (126853) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (126856) feeder: WS not connected[0m
+[0;33mW (126904) feeder: WS not connected[0m
+[0;33mW (126960) feeder: WS not connected[0m
+[0;33mW (127003) feeder: WS not connected[0m
+[0;33mW (127102) feeder: WS not connected[0m
+[0;33mW (127201) feeder: WS not connected[0m
+[0;33mW (127250) feeder: WS not connected[0m
+[0;33mW (127349) feeder: WS not connected[0m
+[0;33mW (127448) feeder: WS not connected[0m
+[0;33mW (127546) feeder: WS not connected[0m
+[0;33mW (127596) feeder: WS not connected[0m
+[0;33mW (127645) feeder: WS not connected[0m
+[0;33mW (127695) feeder: WS not connected[0m
+[0;33mW (127744) feeder: WS not connected[0m
+[0;33mW (127793) feeder: WS not connected[0m
+[0;33mW (127892) feeder: WS not connected[0m
+[0;33mW (127991) feeder: WS not connected[0m
+[0;33mW (128040) feeder: WS not connected[0m
+[0;33mW (128139) feeder: WS not connected[0m
+[0;33mW (128189) feeder: WS not connected[0m
+[0;33mW (128238) feeder: WS not connected[0m
+[0;33mW (128288) feeder: WS not connected[0m
+[0;33mW (128337) feeder: WS not connected[0m
+[0;33mW (128386) feeder: WS not connected[0m
+[0;33mW (128436) feeder: WS not connected[0m
+[0;33mW (128485) feeder: WS not connected[0m
+[0;33mW (128534) feeder: WS not connected[0m
+[0;33mW (128584) feeder: WS not connected[0m
+[0;33mW (128633) feeder: WS not connected[0m
+[0;33mW (128683) feeder: WS not connected[0m
+[0;33mW (128732) feeder: WS not connected[0m
+[0;33mW (128782) feeder: WS not connected[0m
+[0;33mW (128831) feeder: WS not connected[0m
+[0;33mW (128880) feeder: WS not connected[0m
+[0;33mW (128930) feeder: WS not connected[0m
+[0;33mW (128979) feeder: WS not connected[0m
+[0;33mW (129028) feeder: WS not connected[0m
+[0;33mW (129078) feeder: WS not connected[0m
+[0;33mW (129127) feeder: WS not connected[0m
+[0;33mW (129177) feeder: WS not connected[0m
+[0;33mW (129226) feeder: WS not connected[0m
+[0;33mW (129275) feeder: WS not connected[0m
+[0;33mW (129325) feeder: WS not connected[0m
+[0;33mW (129374) feeder: WS not connected[0m
+[0;32mI (129410) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (129414) feeder: Sent websocket hello for device SIT_N_CHOW_EA2984[0m
+[0;32mI (130861) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (134066) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (134371) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (135381) intercom: Audio WS alive: yes[0m
+[0;32mI (139975) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (145722) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (152242) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (152907) firebase: streaming_get: received 5 bytes total[0m
+[1;31mE (154018) transport_ws: Error transport_poll_write(0)[0m
+[1;31mE (154018) websocket_client: esp_transport_write() returned 0, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=0[0m
+[1;31mE (154023) feeder: Camera WebSocket error[0m
+[0;32mI (154028) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (154031) feeder: Camera WebSocket disconnected[0m
+[0;33mW (154035) feeder: WS not connected[0m
+[0;33mW (154169) feeder: WS not connected[0m
+[0;33mW (154268) feeder: WS not connected[0m
+[0;33mW (154367) feeder: WS not connected[0m
+[0;33mW (154466) feeder: WS not connected[0m
+[0;33mW (154564) feeder: WS not connected[0m
+[0;33mW (154663) feeder: WS not connected[0m
+[0;33mW (154762) feeder: WS not connected[0m
+[0;33mW (154861) feeder: WS not connected[0m
+[0;33mW (154960) feeder: WS not connected[0m
+[0;33mW (155058) feeder: WS not connected[0m
+[0;33mW (155157) feeder: WS not connected[0m
+[0;33mW (155256) feeder: WS not connected[0m
+[0;33mW (155355) feeder: WS not connected[0m
+[0;33mW (155453) feeder: WS not connected[0m
+[0;33mW (155552) feeder: WS not connected[0m
+[0;33mW (155651) feeder: WS not connected[0m
+[0;33mW (155750) feeder: WS not connected[0m
+[0;33mW (155849) feeder: WS not connected[0m
+[0;33mW (155947) feeder: WS not connected[0m
+[0;33mW (156046) feeder: WS not connected[0m
+[0;33mW (156096) feeder: WS not connected[0m
+[0;32mI (156135) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (156145) feeder: WS not connected[0m
+[0;33mW (156194) feeder: WS not connected[0m
+[0;33mW (156244) feeder: WS not connected[0m
+[0;33mW (156293) feeder: WS not connected[0m
+[0;33mW (156343) feeder: WS not connected[0m
+[0;33mW (156392) feeder: WS not connected[0m
+[0;33mW (156441) feeder: WS not connected[0m
+[0;33mW (156491) feeder: WS not connected[0m
+[0;33mW (156540) feeder: WS not connected[0m
+[0;33mW (156590) feeder: WS not connected[0m
+[0;33mW (156639) feeder: WS not connected[0m
+[0;33mW (156688) feeder: WS not connected[0m
+[0;33mW (156738) feeder: WS not connected[0m
+[0;33mW (156787) feeder: WS not connected[0m
+[0;33mW (156837) feeder: WS not connected[0m
+[0;33mW (156886) feeder: WS not connected[0m
+[0;33mW (156935) feeder: WS not connected[0m
+[0;33mW (156985) feeder: WS not connected[0m
+[0;33mW (157034) feeder: WS not connected[0m
+[0;33mW (157084) feeder: WS not connected[0m
+[0;33mW (157133) feeder: WS not connected[0m
+[0;33mW (157182) feeder: WS not connected[0m
+[0;33mW (157232) feeder: WS not connected[0m
+[0;33mW (157281) feeder: WS not connected[0m
+[0;33mW (157330) feeder: WS not connected[0m
+[0;33mW (157380) feeder: WS not connected[0m
+[0;33mW (157429) feeder: WS not connected[0m
+[0;33mW (157479) feeder: WS not connected[0m
+[0;33mW (157528) feeder: WS not connected[0m
+[0;33mW (157577) feeder: WS not connected[0m
+[0;33mW (157627) feeder: WS not connected[0m
+[0;33mW (157676) feeder: WS not connected[0m
+[0;33mW (157726) feeder: WS not connected[0m
+[0;33mW (157775) feeder: WS not connected[0m
+[0;33mW (157824) feeder: WS not connected[0m
+[0;33mW (157874) feeder: WS not connected[0m
+[0;33mW (157923) feeder: WS not connected[0m
+[0;33mW (157973) feeder: WS not connected[0m
+[0;33mW (158022) feeder: WS not connected[0m
+[0;33mW (158071) feeder: WS not connected[0m
+[0;33mW (158121) feeder: WS not connected[0m
+[0;33mW (158170) feeder: WS not connected[0m
+[0;33mW (158220) feeder: WS not connected[0m
+[0;33mW (158269) feeder: WS not connected[0m
+[0;33mW (158318) feeder: WS not connected[0m
+[0;33mW (158368) feeder: WS not connected[0m
+[0;33mW (158417) feeder: WS not connected[0m
+[0;33mW (158467) feeder: WS not connected[0m
+[0;33mW (158516) feeder: WS not connected[0m
+[0;33mW (158565) feeder: WS not connected[0m
+[0;33mW (158615) feeder: WS not connected[0m
+[0;33mW (158664) feeder: WS not connected[0m
+[0;33mW (158714) feeder: WS not connected[0m
+[0;33mW (158763) feeder: WS not connected[0m
+[0;33mW (158812) feeder: WS not connected[0m
+[0;33mW (158862) feeder: WS not connected[0m
+[0;33mW (158911) feeder: WS not connected[0m
+[0;33mW (158960) feeder: WS not connected[0m
+[0;33mW (159010) feeder: WS not connected[0m
+[0;32mI (159043) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (159059) feeder: WS not connected[0m
+[0;33mW (159109) feeder: WS not connected[0m
+[0;33mW (159158) feeder: WS not connected[0m
+[0;33mW (159208) feeder: WS not connected[0m
+[0;33mW (159257) feeder: WS not connected[0m
+[0;33mW (159306) feeder: WS not connected[0m
+[0;33mW (159356) feeder: WS not connected[0m
+[0;33mW (159408) feeder: WS not connected[0m
+[0;33mW (159454) feeder: WS not connected[0m
+[0;33mW (159504) feeder: WS not connected[0m
+[0;33mW (159553) feeder: WS not connected[0m
+[0;33mW (159603) feeder: WS not connected[0m
+[0;33mW (159652) feeder: WS not connected[0m
+[0;33mW (159701) feeder: WS not connected[0m
+[0;33mW (159751) feeder: WS not connected[0m
+[0;33mW (159800) feeder: WS not connected[0m
+[0;33mW (159850) feeder: WS not connected[0m
+[0;33mW (159899) feeder: WS not connected[0m
+[0;32mI (159925) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (159929) feeder: Sent websocket hello for device SIT_N_CHOW_EA2984[0m
+[0;32mI (162174) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (165381) intercom: Audio WS alive: yes[0m
+[0;32mI (166082) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (167573) feeder: Sent 350 frames[0m
+[0;32mI (170124) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (174802) feeder: Sent 375 frames[0m
+[0;32mI (176168) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (179594) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (184539) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (187192) feeder: Sent 400 frames[0m
+[0;33mW (193783) cam_hal: Failed to get frame: timeout[0m
+[1;31mE (194787) transport_ws: Error transport_poll_write(0)[0m
+[1;31mE (194787) websocket_client: esp_transport_write() returned 0, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=0[0m
+[1;31mE (194792) feeder: Camera WebSocket error[0m
+[0;32mI (194797) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (194800) feeder: Camera WebSocket disconnected[0m
+[0;33mW (194804) feeder: WS not connected[0m
+[0;33mW (194968) feeder: WS not connected[0m
+[0;33mW (195067) feeder: WS not connected[0m
+[0;33mW (195165) feeder: WS not connected[0m
+[0;33mW (195264) feeder: WS not connected[0m
+[0;33mW (195363) feeder: WS not connected[0m
+[0;32mI (195381) intercom: Audio WS alive: yes[0m
+[0;33mW (195462) feeder: WS not connected[0m
+[0;33mW (195561) feeder: WS not connected[0m
+[0;33mW (195659) feeder: WS not connected[0m
+[0;33mW (195758) feeder: WS not connected[0m
+[0;33mW (195857) feeder: WS not connected[0m
+[0;33mW (195956) feeder: WS not connected[0m
+[0;33mW (196055) feeder: WS not connected[0m
+[0;33mW (196153) feeder: WS not connected[0m
+[0;33mW (196252) feeder: WS not connected[0m
+[0;33mW (196351) feeder: WS not connected[0m
+[0;33mW (196450) feeder: WS not connected[0m
+[0;33mW (196549) feeder: WS not connected[0m
+[0;33mW (196647) feeder: WS not connected[0m
+[0;33mW (196746) feeder: WS not connected[0m
+[0;33mW (196845) feeder: WS not connected[0m
+[0;33mW (196944) feeder: WS not connected[0m
+[0;33mW (197042) feeder: WS not connected[0m
+[0;33mW (197141) feeder: WS not connected[0m
+[0;33mW (197240) feeder: WS not connected[0m
+[0;33mW (197339) feeder: WS not connected[0m
+[0;33mW (197438) feeder: WS not connected[0m
+[0;33mW (197536) feeder: WS not connected[0m
+[0;33mW (197635) feeder: WS not connected[0m
+[0;33mW (197734) feeder: WS not connected[0m
+[0;33mW (197833) feeder: WS not connected[0m
+[0;33mW (197932) feeder: WS not connected[0m
+[0;33mW (198030) feeder: WS not connected[0m
+[0;33mW (198129) feeder: WS not connected[0m
+[0;33mW (198228) feeder: WS not connected[0m
+[0;33mW (198327) feeder: WS not connected[0m
+[0;33mW (198426) feeder: WS not connected[0m
+[0;33mW (198524) feeder: WS not connected[0m
+[0;33mW (198623) feeder: WS not connected[0m
+[0;33mW (198722) feeder: WS not connected[0m
+[0;33mW (198821) feeder: WS not connected[0m
+[0;33mW (198919) feeder: WS not connected[0m
+[0;33mW (199018) feeder: WS not connected[0m
+[0;33mW (199117) feeder: WS not connected[0m
+[0;33mW (199216) feeder: WS not connected[0m
+[0;33mW (199315) feeder: WS not connected[0m
+[0;33mW (199413) feeder: WS not connected[0m
+[0;33mW (199512) feeder: WS not connected[0m
+[0;33mW (199611) feeder: WS not connected[0m
+[0;33mW (199710) feeder: WS not connected[0m
+[0;33mW (199809) feeder: WS not connected[0m
+[0;33mW (199907) feeder: WS not connected[0m
+[0;33mW (200006) feeder: WS not connected[0m
+[0;33mW (200105) feeder: WS not connected[0m
+[0;33mW (200204) feeder: WS not connected[0m
+[0;33mW (200302) feeder: WS not connected[0m
+[0;33mW (200401) feeder: WS not connected[0m
+[0;33mW (200500) feeder: WS not connected[0m
+[0;33mW (200599) feeder: WS not connected[0m
+[0;33mW (200698) feeder: WS not connected[0m
+[0;33mW (200796) feeder: WS not connected[0m
+[0;33mW (200895) feeder: WS not connected[0m
+[0;33mW (200994) feeder: WS not connected[0m
+[0;33mW (201093) feeder: WS not connected[0m
+[0;33mW (201192) feeder: WS not connected[0m
+[0;33mW (201290) feeder: WS not connected[0m
+[0;33mW (201389) feeder: WS not connected[0m
+[0;33mW (201488) feeder: WS not connected[0m
+[0;33mW (201587) feeder: WS not connected[0m
+[0;33mW (201685) feeder: WS not connected[0m
+[0;33mW (201784) feeder: WS not connected[0m
+[0;33mW (201883) feeder: WS not connected[0m
+[0;33mW (201982) feeder: WS not connected[0m
+[0;33mW (202081) feeder: WS not connected[0m
+[0;33mW (202179) feeder: WS not connected[0m
+[0;33mW (202278) feeder: WS not connected[0m
+[0;33mW (202377) feeder: WS not connected[0m
+[0;33mW (202476) feeder: WS not connected[0m
+[0;33mW (202575) feeder: WS not connected[0m
+[0;33mW (202673) feeder: WS not connected[0m
+[0;33mW (202772) feeder: WS not connected[0m
+[0;33mW (202871) feeder: WS not connected[0m
+[0;33mW (202970) feeder: WS not connected[0m
+[0;33mW (203068) feeder: WS not connected[0m
+[0;33mW (203167) feeder: WS not connected[0m
+[0;33mW (203266) feeder: WS not connected[0m
+[0;33mW (203365) feeder: WS not connected[0m
+[0;33mW (203464) feeder: WS not connected[0m
+[0;33mW (203562) feeder: WS not connected[0m
+[0;33mW (203661) feeder: WS not connected[0m
+[0;33mW (203760) feeder: WS not connected[0m
+[0;33mW (203859) feeder: WS not connected[0m
+[0;33mW (203957) feeder: WS not connected[0m
+[0;33mW (204056) feeder: WS not connected[0m
+[0;33mW (204155) feeder: WS not connected[0m
+[0;33mW (204254) feeder: WS not connected[0m
+[0;33mW (204353) feeder: WS not connected[0m
+[0;33mW (204451) feeder: WS not connected[0m
+[0;33mW (204550) feeder: WS not connected[0m
+[0;33mW (204649) feeder: WS not connected[0m
+[0;33mW (204748) feeder: WS not connected[0m
+[0;33mW (204847) feeder: WS not connected[0m
+[0;33mW (204945) feeder: WS not connected[0m
+[0;33mW (205044) feeder: WS not connected[0m
+[0;33mW (205143) feeder: WS not connected[0m
+[0;33mW (205242) feeder: WS not connected[0m
+[0;33mW (205341) feeder: WS not connected[0m
+[0;33mW (205439) feeder: WS not connected[0m
+[0;33mW (205538) feeder: WS not connected[0m
+[0;33mW (205637) feeder: WS not connected[0m
+[0;33mW (205736) feeder: WS not connected[0m
+[0;33mW (205834) feeder: WS not connected[0m
+[0;33mW (205933) feeder: WS not connected[0m
+[0;33mW (206032) feeder: WS not connected[0m
+[0;33mW (206131) feeder: WS not connected[0m
+[0;33mW (206230) feeder: WS not connected[0m
+[0;33mW (206328) feeder: WS not connected[0m
+[0;33mW (206427) feeder: WS not connected[0m
+[0;33mW (206526) feeder: WS not connected[0m
+[0;33mW (206625) feeder: WS not connected[0m
+[0;33mW (206724) feeder: WS not connected[0m
+[0;33mW (206822) feeder: WS not connected[0m
+[0;33mW (206921) feeder: WS not connected[0m
+[0;33mW (207020) feeder: WS not connected[0m
+[0;33mW (207119) feeder: WS not connected[0m
+[0;33mW (207217) feeder: WS not connected[0m
+[0;33mW (207316) feeder: WS not connected[0m
+[0;33mW (207415) feeder: WS not connected[0m
+[0;33mW (207514) feeder: WS not connected[0m
+[0;33mW (207613) feeder: WS not connected[0m
+[0;33mW (207711) feeder: WS not connected[0m
+[0;33mW (207810) feeder: WS not connected[0m
+[0;33mW (207909) feeder: WS not connected[0m
+[0;33mW (208008) feeder: WS not connected[0m
+[1;31mE (208051) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (208051) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (208051) transport_base: esp_tls_conn_read error, errno=Software caused connection abort[0m
+[1;31mE (208057) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;32mI (208053) camera wifi: Disconnected, reconnecting...[0m
+[1;31mE (208068) esp-tls: [sock=51] delayed connect error: Software caused connection abort[0m
+[1;31mE (208068) transport_base: poll_read select error 113, errno = Software caused connection abort, fd = 50[0m
+[1;31mE (208075) esp-tls: Failed to open new connection[0m
+[1;31mE (208084) websocket_client: esp_transport_poll_read() returned -1, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=119[0m
+[1;31mE (208088) transport_base: Failed to open a new connection[0m
+[1;31mE (208100) intercom: WebSocket error[0m
+[1;31mE (208105) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[0;32mI (208112) websocket_client: Reconnect after 5000 ms[0m
+[1;31mE (208118) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=119[0m
+[0;33mW (208123) intercom: WebSocket disconnected[0m
+[1;31mE (208140) feeder: Camera WebSocket error[0m
+[0;33mW (208107) feeder: WS not connected[0m
+[0;32mI (208148) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (208156) feeder: Camera WebSocket disconnected[0m
+[1;31mE (208070) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (208165) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (208169) transport_base: esp_tls_conn_read error, errno=Software caused connection abort[0m
+[1;31mE (208177) firebase: PATCH failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[1;31mE (208069) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (208188) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x004C[0m
+[1;31mE (208194) esp-tls: Failed to open new connection[0m
+[1;31mE (208198) transport_base: Failed to open a new connection[0m
+[0;33mW (208205) feeder: WS not connected[0m
+[1;31mE (208207) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (208211) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (208304) feeder: WS not connected[0m
+[0;33mW (208403) feeder: WS not connected[0m
+[0;33mW (208502) feeder: WS not connected[0m
+[1;31mE (208563) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (208564) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (208564) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (208569) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (208601) feeder: WS not connected[0m
+[0;33mW (208699) feeder: WS not connected[0m
+[0;33mW (208798) feeder: WS not connected[0m
+[0;33mW (208897) feeder: WS not connected[0m
+[0;33mW (208996) feeder: WS not connected[0m
+[1;31mE (209075) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (209076) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (209076) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (209081) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (209095) feeder: WS not connected[0m
+[0;33mW (209193) feeder: WS not connected[0m
+[0;33mW (209292) feeder: WS not connected[0m
+[0;33mW (209391) feeder: WS not connected[0m
+[0;33mW (209490) feeder: WS not connected[0m
+[1;31mE (209587) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (209588) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (209588) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (209593) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (209599) feeder: WS not connected[0m
+[0;33mW (209687) feeder: WS not connected[0m
+[0;33mW (209786) feeder: WS not connected[0m
+[0;33mW (209885) feeder: WS not connected[0m
+[0;33mW (209984) feeder: WS not connected[0m
+[0;33mW (210082) feeder: WS not connected[0m
+[1;31mE (210100) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (210100) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (210100) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (210106) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (210181) feeder: WS not connected[0m
+[1;31mE (210218) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (210219) esp-tls: Failed to open new connection[0m
+[1;31mE (210219) transport_base: Failed to open a new connection[0m
+[1;31mE (210223) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (210227) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (210280) feeder: WS not connected[0m
+[0;33mW (210379) feeder: WS not connected[0m
+[0;32mI (210474) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (210478) feeder: WS not connected[0m
+[0;33mW (210576) feeder: WS not connected[0m
+[1;31mE (210612) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (210612) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (210613) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (210618) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (210675) feeder: WS not connected[0m
+[0;33mW (210774) feeder: WS not connected[0m
+[0;33mW (210873) feeder: WS not connected[0m
+[0;33mW (210971) feeder: WS not connected[0m
+[0;33mW (211070) feeder: WS not connected[0m
+[1;31mE (211124) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (211124) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (211124) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (211130) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (211169) feeder: WS not connected[0m
+[0;33mW (211219) feeder: WS not connected[0m
+[0;33mW (211268) feeder: WS not connected[0m
+[0;33mW (211367) feeder: WS not connected[0m
+[0;33mW (211466) feeder: WS not connected[0m
+[0;33mW (211515) feeder: WS not connected[0m
+[0;33mW (211564) feeder: WS not connected[0m
+[1;31mE (211636) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (211637) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (211637) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (211642) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (211663) feeder: WS not connected[0m
+[0;33mW (211762) feeder: WS not connected[0m
+[0;33mW (211811) feeder: WS not connected[0m
+[0;33mW (211910) feeder: WS not connected[0m
+[0;33mW (212009) feeder: WS not connected[0m
+[0;33mW (212058) feeder: WS not connected[0m
+[0;33mW (212108) feeder: WS not connected[0m
+[1;31mE (212148) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (212149) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (212149) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (212154) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (212160) feeder: WS not connected[0m
+[1;31mE (212234) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (212235) esp-tls: Failed to open new connection[0m
+[1;31mE (212235) transport_base: Failed to open a new connection[0m
+[1;31mE (212239) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (212244) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (212256) feeder: WS not connected[0m
+[0;33mW (212305) feeder: WS not connected[0m
+[0;33mW (212354) feeder: WS not connected[0m
+[0;33mW (212404) feeder: WS not connected[0m
+[0;33mW (212503) feeder: WS not connected[0m
+[0;33mW (212602) feeder: WS not connected[0m
+[0;33mW (212651) feeder: WS not connected[0m
+[1;31mE (212660) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (212661) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (212661) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (212666) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (212700) feeder: WS not connected[0m
+[0;33mW (212750) feeder: WS not connected[0m
+[0;33mW (212799) feeder: WS not connected[0m
+[0;32mI (212881) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (212898) feeder: WS not connected[0m
+[0;33mW (212996) feeder: WS not connected[0m
+[0;33mW (213095) feeder: WS not connected[0m
+[1;31mE (213145) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[0;33mW (213145) feeder: WS not connected[0m
+[1;31mE (213146) esp-tls: Failed to open new connection[0m
+[1;31mE (213148) transport_base: Failed to open a new connection[0m
+[1;31mE (213153) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (213160) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (213163) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (213172) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (213186) intercom: WebSocket error[0m
+[1;31mE (213191) esp-tls-mbedtls: read error :-0x004C[0m
+[0;32mI (213194) websocket_client: Reconnect after 5000 ms[0m
+[1;31mE (213198) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[0;33mW (213203) intercom: WebSocket disconnected[0m
+[1;31mE (213210) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[1;31mE (213168) esp-tls: Failed to open new connection[0m
+[0;33mW (213198) feeder: WS not connected[0m
+[1;31mE (213224) transport_base: Failed to open a new connection[0m
+[1;31mE (213232) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (213242) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (213259) feeder: Camera WebSocket error[0m
+[0;32mI (213263) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (213268) feeder: Camera WebSocket disconnected[0m
+[0;33mW (213293) feeder: WS not connected[0m
+[0;33mW (213342) feeder: WS not connected[0m
+[0;33mW (213441) feeder: WS not connected[0m
+[0;33mW (213491) feeder: WS not connected[0m
+[0;33mW (213540) feeder: WS not connected[0m
+[0;33mW (213589) feeder: WS not connected[0m
+[0;33mW (213688) feeder: WS not connected[0m
+[1;31mE (213720) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (213720) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (213721) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (213726) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (213787) feeder: WS not connected[0m
+[0;33mW (213886) feeder: WS not connected[0m
+[0;33mW (213935) feeder: WS not connected[0m
+[0;33mW (213985) feeder: WS not connected[0m
+[0;33mW (214034) feeder: WS not connected[0m
+[0;33mW (214083) feeder: WS not connected[0m
+[0;33mW (214133) feeder: WS not connected[0m
+[0;33mW (214182) feeder: WS not connected[0m
+[1;31mE (214232) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (214233) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (214233) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (214238) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (214244) feeder: WS not connected[0m
+[1;31mE (214251) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (214253) esp-tls: Failed to open new connection[0m
+[1;31mE (214257) transport_base: Failed to open a new connection[0m
+[1;31mE (214262) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (214267) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (214281) feeder: WS not connected[0m
+[0;33mW (214330) feeder: WS not connected[0m
+[0;33mW (214380) feeder: WS not connected[0m
+[0;33mW (214429) feeder: WS not connected[0m
+[0;33mW (214478) feeder: WS not connected[0m
+[0;33mW (214528) feeder: WS not connected[0m
+[0;33mW (214577) feeder: WS not connected[0m
+[0;33mW (214627) feeder: WS not connected[0m
+[0;33mW (214676) feeder: WS not connected[0m
+[0;33mW (214725) feeder: WS not connected[0m
+[1;31mE (214744) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (214745) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (214745) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (214750) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (214775) feeder: WS not connected[0m
+[0;33mW (214824) feeder: WS not connected[0m
+[0;33mW (214874) feeder: WS not connected[0m
+[0;33mW (214923) feeder: WS not connected[0m
+[0;33mW (215022) feeder: WS not connected[0m
+[0;33mW (215120) feeder: WS not connected[0m
+[0;33mW (215219) feeder: WS not connected[0m
+[1;31mE (215256) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (215256) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (215256) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (215262) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;32mI (215288) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (215318) feeder: WS not connected[0m
+[0;33mW (215417) feeder: WS not connected[0m
+[0;33mW (215516) feeder: WS not connected[0m
+[0;33mW (215614) feeder: WS not connected[0m
+[0;33mW (215713) feeder: WS not connected[0m
+[1;31mE (215768) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (215769) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (215769) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (215774) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (215812) feeder: WS not connected[0m
+[0;33mW (215911) feeder: WS not connected[0m
+[0;33mW (215960) feeder: WS not connected[0m
+[0;33mW (216010) feeder: WS not connected[0m
+[0;33mW (216059) feeder: WS not connected[0m
+[0;33mW (216108) feeder: WS not connected[0m
+[0;33mW (216158) feeder: WS not connected[0m
+[0;33mW (216207) feeder: WS not connected[0m
+[0;33mW (216257) feeder: WS not connected[0m
+[1;31mE (216274) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (216275) esp-tls: Failed to open new connection[0m
+[1;31mE (216275) transport_base: Failed to open a new connection[0m
+[1;31mE (216280) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (216284) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[1;31mE (216280) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (216295) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (216299) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (216306) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (216312) feeder: WS not connected[0m
+[0;33mW (216355) feeder: WS not connected[0m
+[0;33mW (216405) feeder: WS not connected[0m
+[0;33mW (216454) feeder: WS not connected[0m
+[0;33mW (216503) feeder: WS not connected[0m
+[0;33mW (216602) feeder: WS not connected[0m
+[0;33mW (216701) feeder: WS not connected[0m
+[0;33mW (216751) feeder: WS not connected[0m
+[0;33mW (216800) feeder: WS not connected[0m
+[1;31mE (216813) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (216814) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (216814) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (216819) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (216849) feeder: WS not connected[0m
+[0;33mW (216899) feeder: WS not connected[0m
+[0;33mW (216948) feeder: WS not connected[0m
+[0;33mW (216997) feeder: WS not connected[0m
+[0;33mW (217047) feeder: WS not connected[0m
+[0;33mW (217096) feeder: WS not connected[0m
+[0;33mW (217146) feeder: WS not connected[0m
+[0;33mW (217195) feeder: WS not connected[0m
+[0;33mW (217244) feeder: WS not connected[0m
+[0;33mW (217294) feeder: WS not connected[0m
+[1;31mE (217325) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (217326) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (217326) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (217331) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (217343) feeder: WS not connected[0m
+[0;33mW (217393) feeder: WS not connected[0m
+[0;33mW (217442) feeder: WS not connected[0m
+[0;33mW (217491) feeder: WS not connected[0m
+[0;33mW (217541) feeder: WS not connected[0m
+[0;33mW (217590) feeder: WS not connected[0m
+[0;33mW (217640) feeder: WS not connected[0m
+[0;33mW (217689) feeder: WS not connected[0m
+[0;32mI (217695) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (217738) feeder: WS not connected[0m
+[0;33mW (217788) feeder: WS not connected[0m
+[1;31mE (217838) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (217838) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (217838) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (217843) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (217849) feeder: WS not connected[0m
+[0;33mW (217936) feeder: WS not connected[0m
+[0;33mW (217985) feeder: WS not connected[0m
+[0;33mW (218035) feeder: WS not connected[0m
+[0;33mW (218084) feeder: WS not connected[0m
+[0;33mW (218133) feeder: WS not connected[0m
+[0;33mW (218183) feeder: WS not connected[0m
+[1;31mE (218214) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (218215) esp-tls: Failed to open new connection[0m
+[1;31mE (218215) transport_base: Failed to open a new connection[0m
+[1;31mE (218219) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (218229) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[0;33mW (218232) feeder: WS not connected[0m
+[1;31mE (218246) intercom: WebSocket error[0m
+[0;32mI (218252) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (218257) intercom: WebSocket disconnected[0m
+[1;31mE (218272) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (218272) esp-tls: Failed to open new connection[0m
+[1;31mE (218272) transport_base: Failed to open a new connection[0m
+[1;31mE (218277) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (218286) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (218304) feeder: Camera WebSocket error[0m
+[0;32mI (218307) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (218312) feeder: Camera WebSocket disconnected[0m
+[1;31mE (218316) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (218322) esp-tls: Failed to open new connection[0m
+[1;31mE (218327) transport_base: Failed to open a new connection[0m
+[1;31mE (218332) HTTP_CLIENT: Connection failed, sock < 0[0m
+[0;33mW (218331) feeder: WS not connected[0m
+[1;31mE (218336) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[1;31mE (218349) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (218351) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (218355) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (218362) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (218380) feeder: WS not connected[0m
+[0;33mW (218430) feeder: WS not connected[0m
+[0;33mW (218479) feeder: WS not connected[0m
+[0;33mW (218529) feeder: WS not connected[0m
+[0;33mW (218578) feeder: WS not connected[0m
+[0;33mW (218627) feeder: WS not connected[0m
+[0;33mW (218677) feeder: WS not connected[0m
+[0;33mW (218726) feeder: WS not connected[0m
+[0;33mW (218776) feeder: WS not connected[0m
+[0;33mW (218825) feeder: WS not connected[0m
+[1;31mE (218868) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (218869) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (218869) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (218874) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (218880) feeder: WS not connected[0m
+[0;33mW (218924) feeder: WS not connected[0m
+[0;33mW (218973) feeder: WS not connected[0m
+[0;33mW (219023) feeder: WS not connected[0m
+[0;33mW (219072) feeder: WS not connected[0m
+[0;33mW (219121) feeder: WS not connected[0m
+[0;33mW (219171) feeder: WS not connected[0m
+[0;33mW (219220) feeder: WS not connected[0m
+[0;33mW (219269) feeder: WS not connected[0m
+[0;33mW (219368) feeder: WS not connected[0m
+[1;31mE (219380) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (219381) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (219381) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (219386) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (219418) feeder: WS not connected[0m
+[0;33mW (219467) feeder: WS not connected[0m
+[0;33mW (219516) feeder: WS not connected[0m
+[0;33mW (219615) feeder: WS not connected[0m
+[0;33mW (219714) feeder: WS not connected[0m
+[0;33mW (219813) feeder: WS not connected[0m
+[1;31mE (219892) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (219893) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (219893) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (219898) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (219911) feeder: WS not connected[0m
+[0;33mW (220010) feeder: WS not connected[0m
+[0;32mI (220102) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (220109) feeder: WS not connected[0m
+[0;33mW (220208) feeder: WS not connected[0m
+[0;33mW (220307) feeder: WS not connected[0m
+[1;31mE (220347) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (220348) esp-tls: Failed to open new connection[0m
+[1;31mE (220348) transport_base: Failed to open a new connection[0m
+[1;31mE (220352) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (220357) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[1;31mE (220404) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (220404) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (220405) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (220410) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (220416) feeder: WS not connected[0m
+[0;33mW (220504) feeder: WS not connected[0m
+[0;33mW (220603) feeder: WS not connected[0m
+[0;33mW (220702) feeder: WS not connected[0m
+[0;33mW (220801) feeder: WS not connected[0m
+[0;33mW (220899) feeder: WS not connected[0m
+[1;31mE (220916) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (220916) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (220916) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (220922) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (220998) feeder: WS not connected[0m
+[0;33mW (221097) feeder: WS not connected[0m
+[0;33mW (221196) feeder: WS not connected[0m
+[0;33mW (221295) feeder: WS not connected[0m
+[0;33mW (221393) feeder: WS not connected[0m
+[1;31mE (221429) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (221429) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (221429) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (221434) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (221492) feeder: WS not connected[0m
+[0;33mW (221542) feeder: WS not connected[0m
+[0;33mW (221591) feeder: WS not connected[0m
+[0;33mW (221640) feeder: WS not connected[0m
+[0;33mW (221690) feeder: WS not connected[0m
+[0;33mW (221739) feeder: WS not connected[0m
+[0;33mW (221789) feeder: WS not connected[0m
+[1;31mE (221940) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (221940) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (221940) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (221946) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (221986) feeder: WS not connected[0m
+[0;33mW (222035) feeder: WS not connected[0m
+[0;33mW (222085) feeder: WS not connected[0m
+[0;33mW (222134) feeder: WS not connected[0m
+[0;33mW (222184) feeder: WS not connected[0m
+[0;33mW (222233) feeder: WS not connected[0m
+[0;33mW (222282) feeder: WS not connected[0m
+[0;33mW (222332) feeder: WS not connected[0m
+[1;31mE (222364) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (222365) esp-tls: Failed to open new connection[0m
+[1;31mE (222365) transport_base: Failed to open a new connection[0m
+[1;31mE (222369) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (222374) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (222381) feeder: WS not connected[0m
+[0;33mW (222431) feeder: WS not connected[0m
+[1;31mE (222452) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (222452) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (222453) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (222458) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (222480) feeder: WS not connected[0m
+[0;32mI (222509) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (222529) feeder: WS not connected[0m
+[0;33mW (222579) feeder: WS not connected[0m
+[0;33mW (222628) feeder: WS not connected[0m
+[0;33mW (222678) feeder: WS not connected[0m
+[0;33mW (222727) feeder: WS not connected[0m
+[0;33mW (222776) feeder: WS not connected[0m
+[0;33mW (222826) feeder: WS not connected[0m
+[0;33mW (222875) feeder: WS not connected[0m
+[0;33mW (222924) feeder: WS not connected[0m
+[1;31mE (222964) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (222965) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (222965) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (222970) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (222976) feeder: WS not connected[0m
+[0;33mW (223023) feeder: WS not connected[0m
+[0;33mW (223073) feeder: WS not connected[0m
+[0;33mW (223122) feeder: WS not connected[0m
+[0;33mW (223172) feeder: WS not connected[0m
+[0;33mW (223221) feeder: WS not connected[0m
+[1;31mE (223261) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (223262) esp-tls: Failed to open new connection[0m
+[1;31mE (223262) transport_base: Failed to open a new connection[0m
+[1;31mE (223266) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[0;33mW (223270) feeder: WS not connected[0m
+[1;31mE (223276) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (223296) intercom: WebSocket error[0m
+[0;32mI (223299) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (223304) intercom: WebSocket disconnected[0m
+[1;31mE (223316) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (223316) esp-tls: Failed to open new connection[0m
+[1;31mE (223318) transport_base: Failed to open a new connection[0m
+[0;33mW (223320) feeder: WS not connected[0m
+[1;31mE (223324) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (223336) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (223354) feeder: Camera WebSocket error[0m
+[0;32mI (223357) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (223362) feeder: Camera WebSocket disconnected[0m
+[0;33mW (223369) feeder: WS not connected[0m
+[0;33mW (223419) feeder: WS not connected[0m
+[0;33mW (223468) feeder: WS not connected[0m
+[1;31mE (223477) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (223477) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (223477) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (223482) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (223517) feeder: WS not connected[0m
+[0;33mW (223567) feeder: WS not connected[0m
+[0;33mW (223665) feeder: WS not connected[0m
+[0;33mW (223715) feeder: WS not connected[0m
+[0;33mW (223813) feeder: WS not connected[0m
+[0;33mW (223912) feeder: WS not connected[0m
+[1;31mE (223988) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (223989) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (223989) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (223994) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (224011) feeder: WS not connected[0m
+[0;33mW (224110) feeder: WS not connected[0m
+[0;33mW (224209) feeder: WS not connected[0m
+[0;33mW (224307) feeder: WS not connected[0m
+[1;31mE (224381) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (224382) esp-tls: Failed to open new connection[0m
+[1;31mE (224382) transport_base: Failed to open a new connection[0m
+[1;31mE (224386) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (224391) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (224406) feeder: WS not connected[0m
+[1;31mE (224500) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (224500) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (224501) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (224506) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (224512) feeder: WS not connected[0m
+[0;33mW (224604) feeder: WS not connected[0m
+[0;33mW (224703) feeder: WS not connected[0m
+[0;33mW (224801) feeder: WS not connected[0m
+[0;33mW (224900) feeder: WS not connected[0m
+[0;32mI (224916) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (224950) feeder: WS not connected[0m
+[0;33mW (224999) feeder: WS not connected[0m
+[1;31mE (225012) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (225012) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (225013) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (225018) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (225098) feeder: WS not connected[0m
+[0;33mW (225196) feeder: WS not connected[0m
+[0;33mW (225295) feeder: WS not connected[0m
+[0;32mI (225381) intercom: Audio WS alive: reconnecting…[0m
+[0;33mW (225394) feeder: WS not connected[0m
+[0;33mW (225493) feeder: WS not connected[0m
+[1;31mE (225524) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (225524) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (225524) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (225530) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (225592) feeder: WS not connected[0m
+[0;33mW (225691) feeder: WS not connected[0m
+[0;33mW (225740) feeder: WS not connected[0m
+[0;33mW (225789) feeder: WS not connected[0m
+[0;33mW (225888) feeder: WS not connected[0m
+[0;33mW (225987) feeder: WS not connected[0m
+[1;31mE (226036) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (226036) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (226037) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (226042) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (226086) feeder: WS not connected[0m
+[0;33mW (226185) feeder: WS not connected[0m
+[0;33mW (226234) feeder: WS not connected[0m
+[0;33mW (226283) feeder: WS not connected[0m
+[0;33mW (226333) feeder: WS not connected[0m
+[0;33mW (226382) feeder: WS not connected[0m
+[1;31mE (226398) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (226399) esp-tls: Failed to open new connection[0m
+[1;31mE (226399) transport_base: Failed to open a new connection[0m
+[1;31mE (226403) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (226408) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (226431) feeder: WS not connected[0m
+[0;33mW (226481) feeder: WS not connected[0m
+[1;31mE (226548) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (226548) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (226549) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (226554) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (226580) feeder: WS not connected[0m
+[0;33mW (226629) feeder: WS not connected[0m
+[0;33mW (226678) feeder: WS not connected[0m
+[0;33mW (226728) feeder: WS not connected[0m
+[0;33mW (226777) feeder: WS not connected[0m
+[0;33mW (226876) feeder: WS not connected[0m
+[0;33mW (226925) feeder: WS not connected[0m
+[0;33mW (226975) feeder: WS not connected[0m
+[0;33mW (227024) feeder: WS not connected[0m
+[1;31mE (227060) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (227060) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (227060) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (227066) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (227123) feeder: WS not connected[0m
+[0;33mW (227172) feeder: WS not connected[0m
+[0;33mW (227271) feeder: WS not connected[0m
+[0;32mI (227323) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (227370) feeder: WS not connected[0m
+[0;33mW (227469) feeder: WS not connected[0m
+[0;33mW (227567) feeder: WS not connected[0m
+[1;31mE (227572) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (227572) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (227573) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (227578) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (227617) feeder: WS not connected[0m
+[0;33mW (227666) feeder: WS not connected[0m
+[0;33mW (227716) feeder: WS not connected[0m
+[0;33mW (227814) feeder: WS not connected[0m
+[0;33mW (227864) feeder: WS not connected[0m
+[0;33mW (227963) feeder: WS not connected[0m
+[0;33mW (228012) feeder: WS not connected[0m
+[0;33mW (228061) feeder: WS not connected[0m
+[1;31mE (228084) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (228085) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (228085) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (228090) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (228111) feeder: WS not connected[0m
+[0;33mW (228210) feeder: WS not connected[0m
+[1;31mE (228309) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[0;33mW (228309) feeder: WS not connected[0m
+[1;31mE (228309) esp-tls: Failed to open new connection[0m
+[1;31mE (228311) transport_base: Failed to open a new connection[0m
+[1;31mE (228316) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (228326) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (228343) intercom: WebSocket error[0m
+[0;32mI (228347) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (228351) intercom: WebSocket disconnected[0m
+[1;31mE (228366) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (228366) esp-tls: Failed to open new connection[0m
+[1;31mE (228367) transport_base: Failed to open a new connection[0m
+[1;31mE (228371) transport_ws: Error connecting to host sit-n-chow-websocket-810978717979.us-central1.run.app:443[0m
+[1;31mE (228380) websocket_client: esp_transport_connect() failed with -1, transport_error=ESP_ERR_ESP_TLS_FAILED_CONNECT_TO_HOST, tls_error_code=0, tls_flags=0, esp_ws_handshake_status_code=101, errno=118[0m
+[1;31mE (228398) feeder: Camera WebSocket error[0m
+[0;32mI (228401) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (228406) feeder: Camera WebSocket disconnected[0m
+[0;33mW (228408) feeder: WS not connected[0m
+[1;31mE (228415) esp-tls: [sock=49] connect() error: Host is unreachable[0m
+[1;31mE (228420) esp-tls: Failed to open new connection[0m
+[1;31mE (228424) transport_base: Failed to open a new connection[0m
+[1;31mE (228429) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (228434) firebase: streaming_get open failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (228506) feeder: WS not connected[0m
+[1;31mE (228596) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (228597) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (228597) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (228602) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (228608) feeder: WS not connected[0m
+[0;33mW (228703) feeder: WS not connected[0m
+[0;33mW (228802) feeder: WS not connected[0m
+[0;33mW (228852) feeder: WS not connected[0m
+[0;33mW (228950) feeder: WS not connected[0m
+[0;33mW (229049) feeder: WS not connected[0m
+[1;31mE (229108) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (229108) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (229109) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (229114) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (229148) feeder: WS not connected[0m
+[0;33mW (229197) feeder: WS not connected[0m
+[0;33mW (229247) feeder: WS not connected[0m
+[0;33mW (229296) feeder: WS not connected[0m
+[0;33mW (229395) feeder: WS not connected[0m
+[0;33mW (229444) feeder: WS not connected[0m
+[0;33mW (229494) feeder: WS not connected[0m
+[0;33mW (229543) feeder: WS not connected[0m
+[0;33mW (229593) feeder: WS not connected[0m
+[1;31mE (229620) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (229620) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (229621) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (229626) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (229642) feeder: WS not connected[0m
+[0;33mW (229691) feeder: WS not connected[0m
+[0;32mI (229730) camera wifi: Disconnected, reconnecting...[0m
+[0;33mW (229741) feeder: WS not connected[0m
+[0;33mW (229839) feeder: WS not connected[0m
+[0;33mW (229938) feeder: WS not connected[0m
+[0;33mW (230037) feeder: WS not connected[0m
+[1;31mE (230133) Dynamic Impl: mbedtls_ssl_fetch_input error=76[0m
+[1;31mE (230133) esp-tls-mbedtls: read error :-0x004C[0m
+[1;31mE (230133) transport_base: esp_tls_conn_read error, errno=Socket is not connected[0m
+[1;31mE (230138) firebase: GET failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (230144) feeder: WS not connected[0m
+[0;33mW (230235) feeder: WS not connected[0m
+[0;33mW (230334) feeder: WS not connected[0m
+[0;33mW (230383) feeder: WS not connected[0m
