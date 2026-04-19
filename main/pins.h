@@ -34,8 +34,8 @@
 // M0, M1, M2 removed — motor hardwired to 1/8 step
 
 /* ── ToF sensor (TMF8701) ────────────────────────────────────────────────── */
-#define PIN_TOF_SDA             GPIO_NUM_14   // was 37 (PSRAM), now M0 pin
-#define PIN_TOF_SCL             GPIO_NUM_38   // was 36 (PSRAM), now M1 pin
+#define PIN_TOF_SDA             GPIO_NUM_38   // was 37 (PSRAM), now M0 pin
+#define PIN_TOF_SCL             GPIO_NUM_14   // was 36 (PSRAM), now M1 pin
  
 /* ── Speaker (LM386 via LEDC PWM) ───────────────────────────────────────── */
 #define PIN_SPEAKER             GPIO_NUM_13
