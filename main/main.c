@@ -49,7 +49,6 @@
 #include "dispenser.h"
 #include "tof.h"
 #include "speaker.h"
-#include "manual_button.h"
 #include "cJSON.h"
 #include "audio_intercom.h"
 #include "img_converters.h"
@@ -748,7 +747,7 @@ void app_main(void)
 
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(4, sizeof(camera_fb_t *));
-    vTaskDelay(pdMS_TO_TICKS(100));
+    vTaskDelay(pdMS_TO_TICKS(2000));
     esp_err_t cam_err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_SVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
 
@@ -793,10 +792,7 @@ void app_main(void)
         ESP_LOGW(TAG, "Identity not ready — schedule runner skipped");
     }
 
-    /* 9b. Manual override button */
-    manual_button_start();
-
-    /* 10. Background tasks */
+    /* 9. Background tasks */
     vTaskDelay(pdMS_TO_TICKS(3000));  // give BLE time to release BTDM memory
     StackType_t *heartbeat_stack = heap_caps_malloc(
         8192 * sizeof(StackType_t), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);

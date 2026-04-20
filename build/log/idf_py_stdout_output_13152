@@ -1,0 +1,24 @@
+Command: ninja all
+[1/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/dispenser.c.obj
+[2/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/tof.c.obj
+[3/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/manual_button.c.obj
+[4/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/speaker.c.obj
+[5/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/ultrasonic.c.obj
+[6/14] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/bootloader/bootloader.bin""
+Bootloader binary size 0x57e0 bytes. 0x2820 bytes (31%) free.
+[7/14] No install step for 'bootloader'
+[8/14] Completed 'bootloader'
+[9/14] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[10/14] Linking C static library esp-idf\main\libmain.a
+[11/14] Generating esp-idf/esp_system/ld/sections.ld
+warning: TOF_SAMPLES_TO_CONFIRM (defined at C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/main/Kconfig.projbuild:111) defined with more than one help text -- only the last one will be used
+[12/14] Linking CXX executable video_stream_server.elf
+[13/14] Generating binary image from built executable
+esptool.py v4.10.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin
+[14/14] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\esp-idf\esptool_py" && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/partition_table/partition-table.bin" "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build/video_stream_server.bin""
+video_stream_server.bin binary size 0x155360 bytes. Smallest app partition is 0x400000 bytes. 0x2aaca0 bytes (67%) free.

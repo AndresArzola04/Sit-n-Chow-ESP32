@@ -1,0 +1,2422 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (527) camera wifi: nvs_flash_init done[0m
+[0;32mI (527) camera wifi: esp_netif_init...[0m
+[0;32mI (530) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (534) camera wifi: wifi init...[0m
+[0;32mI (538) pp: pp rom version: e7ae62f[0m
+[0;32mI (541) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (550) wifi_init: rx ba win: 32[0m
+[0;32mI (550) wifi_init: accept mbox: 6[0m
+[0;32mI (551) wifi_init: tcpip mbox: 64[0m
+[0;32mI (554) wifi_init: udp mbox: 64[0m
+[0;32mI (557) wifi_init: tcp mbox: 64[0m
+[0;32mI (560) wifi_init: tcp tx win: 65535[0m
+[0;32mI (563) wifi_init: tcp rx win: 65535[0m
+[0;32mI (566) wifi_init: tcp mss: 1440[0m
+[0;32mI (569) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (573) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (576) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (580) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (584) camera wifi: Starting BLE provisioning[0m
+[0;32mI (589) camera wifi: BLE device name: SIT_N_CHOW_D11908[0m
+[0;32mI (594) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;33mW (599) phy_init: failed to load RF calibration data (0x1102), falling back to full calibration[0m
+[0;32mI (634) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(2)[0m
+[0;32mI (644) BLE_INIT: BT controller compile version [2edb0b0][0m
+[0;32mI (644) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (644) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (651) BLE_INIT: Bluetooth MAC: 44:1b:f6:d1:19:0a[0m
+[0;32mI (657) protocomm_nimble: BLE Host Task Started[0m
+[0;32mI (661) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (665) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (669) NimBLE: disc_mode=2[0m
+[0;32mI (672) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=256 adv_itvl_max=256[0m
+[0;32mI (681) NimBLE: [0m
+
+[0;32mI (684) wifi_prov_mgr: Provisioning started with service name : SIT_N_CHOW_D11908 [0m
+[0;32mI (690) camera wifi: Provisioning started[0m
+[0;32mI (25824) protocomm_nimble: mtu update event; conn_handle=1 cid=4 mtu=256[0m
+[0;32mI (32545) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (32545) NimBLE: disc_mode=2[0m
+[0;32mI (32545) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=256 adv_itvl_max=256[0m
+[0;32mI (32551) NimBLE: [0m
+
+[0;32mI (43854) protocomm_nimble: mtu update event; conn_handle=1 cid=4 mtu=256[0m
+[0;33mW (44904) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (44918) camera wifi: Received credentials - SSID: Andres Arzola[0m
+[0;32mI (52090) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (52090) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (52091) wifi_prov_mgr: STA Got IP[0m
+[0;32mI (52094) camera wifi: Provisioning successful[0m
+[0;32mI (52098) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (52103) feeder: WiFi connected[0m
+[0;32mI (52106) feeder: Waiting for SNTP sync…[0m
+[0;32mI (55109) feeder: Clock synced: 2026-04-19 10:10:35[0m
+[0;32mI (55109) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (56255) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (56256) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (56256) NimBLE: GAP procedure initiated: terminate connection; conn_handle=1 hci_reason=19[0m
+
+[1;31mE (56275) protocomm_nimble: Error setting advertisement data; rc = 30[0m
+[0;32mI (56277) wifi_prov_mgr: Provisioning stopped[0m
+[0;32mI (56277) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (58765) firebase: Auth token refreshed[0m
+[0;32mI (58766) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (59886) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (60396) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (60396) cam_hal: cam init ok[0m
+[0;32mI (60396) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (60396) sccb: sccb_i2c_port=1[0m
+[0;32mI (60408) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (60410) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (60410) camera: Detected OV5640 camera[0m
+[0;32mI (60410) camera: Detected camera at address=0x3c[0m
+[0;32mI (61111) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (61111) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (61113) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (61119) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (61125) cam_hal: cam config ok[0m
+[0;32mI (61142) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (61143) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (61186) feeder: Camera init: ESP_OK[0m
+[0;32mI (61188) websocket_client: Started[0m
+[0;32mI (61188) feeder: Camera WebSocket stream connected[0m
+[0;32mI (61189) audio_player: Playback started.[0m
+[0;32mI (61189) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;32mI (61282) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;33mW (63282) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (63283) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (63290) websocket_client: Started[0m
+[0;32mI (63293) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (63792) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (64292) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (64292) tof: About to install I2C driver on port 0[0m
+[0;32mI (64293) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (64296) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (64302) TMF8701: isI2CAddress: device responded at 0x41, val=0x00[0m
+[0;32mI (64307) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (64321) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (64321) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (64324) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (64329) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (64336) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (65668) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (65674) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (65675) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (65675) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (65693) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (65693) TMF8701: begin(): APP0 is running[0m
+[0;32mI (65694) TMF8701: begin(): initialization OK[0m
+[0;32mI (65695) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (65701) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (67067) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (67073) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (67074) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (67077) manual_btn: Manual button task started[0m
+[0;32mI (67486) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (70089) feeder: heartbeat_task created[0m
+[0;32mI (70090) feeder: command_poll_task created[0m
+[0;32mI (70091) feeder: ws_send_task started, free heap: 7476284[0m
+[0;32mI (70091) feeder: ws_send_task created[0m
+[0;32mI (70095) feeder: camera_capture_task created[0m
+[0;32mI (70099) feeder: camera_poll_task created[0m
+[0;32mI (70103) feeder: All tasks started[0m
+[0;32mI (70106) main_task: Returned from app_main()[0m
+[0;32mI (70870) intercom: WebSocket connected to audio-stream[0m
+[0;33mW (72091) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (74091) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (76091) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (77102) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (77104) feeder: Camera streaming started[0m
+[0;32mI (77590) feeder: Polling commands...[0m
+[0;33mW (77596) feeder: WS not connected[0m
+[0;33mW (77597) feeder: WS not connected[0m
+[0;32mI (77602) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (77605) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;32mI (77906) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (80727) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (82907) feeder: Polling commands...[0m
+[0;32mI (83086) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (83539) feeder: Sent 25 frames[0m
+[0;32mI (87486) sched: Current time: 10:11 day_idx=6[0m
+[0;32mI (88086) feeder: Polling commands...[0m
+[0;33mW (88788) cam_hal: Failed to get frame: timeout[0m
+[1;31mE (89724) transport_ws: Error transport_poll_write(0)[0m
+[1;31mE (89724) websocket_client: esp_transport_write() returned 0, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=0[0m
+[1;31mE (89728) feeder: Camera WebSocket error[0m
+[0;32mI (89734) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (89737) feeder: Camera WebSocket disconnected[0m
+[0;33mW (89741) feeder: WS not connected[0m
+[0;33mW (89924) feeder: WS not connected[0m
+[0;33mW (90023) feeder: WS not connected[0m
+[0;33mW (90122) feeder: WS not connected[0m
+[0;33mW (90221) feeder: WS not connected[0m
+[0;33mW (90320) feeder: WS not connected[0m
+[0;33mW (90418) feeder: WS not connected[0m
+[0;33mW (90517) feeder: WS not connected[0m
+[0;33mW (90616) feeder: WS not connected[0m
+[0;32mI (90709) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (90715) feeder: WS not connected[0m
+[0;33mW (90814) feeder: WS not connected[0m
+[0;33mW (90912) feeder: WS not connected[0m
+[0;33mW (91011) feeder: WS not connected[0m
+[0;33mW (91110) feeder: WS not connected[0m
+[0;33mW (91209) feeder: WS not connected[0m
+[0;33mW (91307) feeder: WS not connected[0m
+[0;33mW (91406) feeder: WS not connected[0m
+[0;33mW (91505) feeder: WS not connected[0m
+[0;33mW (91604) feeder: WS not connected[0m
+[0;33mW (91703) feeder: WS not connected[0m
+[0;33mW (91801) feeder: WS not connected[0m
+[0;33mW (91900) feeder: WS not connected[0m
+[0;33mW (91950) feeder: WS not connected[0m
+[0;33mW (92048) feeder: WS not connected[0m
+[0;33mW (92147) feeder: WS not connected[0m
+[0;33mW (92246) feeder: WS not connected[0m
+[0;33mW (92345) feeder: WS not connected[0m
+[0;33mW (92444) feeder: WS not connected[0m
+[0;33mW (92542) feeder: WS not connected[0m
+[0;33mW (92641) feeder: WS not connected[0m
+cam_hal: NO-EOI - JPEG end marker missing
+[0;33mW (92839) feeder: WS not connected[0m
+[0;33mW (92937) feeder: WS not connected[0m
+[0;33mW (93036) feeder: WS not connected[0m
+[0;33mW (93135) feeder: WS not connected[0m
+[0;33mW (93184) feeder: WS not connected[0m
+[0;33mW (93283) feeder: WS not connected[0m
+[0;32mI (93299) intercom: Audio WS alive: yes[0m
+[0;33mW (93333) feeder: WS not connected[0m
+[0;33mW (93431) feeder: WS not connected[0m
+[0;33mW (93481) feeder: WS not connected[0m
+[0;33mW (93530) feeder: WS not connected[0m
+[0;33mW (93580) feeder: WS not connected[0m
+[0;33mW (93629) feeder: WS not connected[0m
+[0;33mW (93678) feeder: WS not connected[0m
+[0;33mW (93728) feeder: WS not connected[0m
+[0;33mW (93777) feeder: WS not connected[0m
+[0;33mW (93827) feeder: WS not connected[0m
+[0;33mW (93876) feeder: WS not connected[0m
+[0;33mW (93925) feeder: WS not connected[0m
+[0;33mW (93975) feeder: WS not connected[0m
+[0;33mW (94024) feeder: WS not connected[0m
+[0;33mW (94074) feeder: WS not connected[0m
+[0;33mW (94123) feeder: WS not connected[0m
+[0;33mW (94172) feeder: WS not connected[0m
+[0;33mW (94222) feeder: WS not connected[0m
+[0;33mW (94321) feeder: WS not connected[0m
+[0;33mW (94370) feeder: WS not connected[0m
+[0;33mW (94419) feeder: WS not connected[0m
+[0;33mW (94469) feeder: WS not connected[0m
+[0;33mW (94567) feeder: WS not connected[0m
+[0;33mW (94666) feeder: WS not connected[0m
+[0;33mW (94765) feeder: WS not connected[0m
+[0;33mW (94864) feeder: WS not connected[0m
+[0;33mW (94963) feeder: WS not connected[0m
+[0;33mW (95061) feeder: WS not connected[0m
+[0;33mW (95160) feeder: WS not connected[0m
+[0;33mW (95259) feeder: WS not connected[0m
+[0;33mW (95308) feeder: WS not connected[0m
+[0;33mW (95408) feeder: WS not connected[0m
+[0;32mI (95422) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (95424) feeder: Camera streaming stopped[0m
+[0;33mW (95456) feeder: WS not connected[0m
+[0;32mI (95709) feeder: Polling commands...[0m
+[0;32mI (96390) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (96391) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (96393) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;33mW (97457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (98900) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (99457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (101391) feeder: Polling commands...[0m
+[0;33mW (101457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (101768) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776607878120","ts":1776607878182}[0m
+[0;32mI (101773) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (102286) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (102286) feeder: [1] Beep speaker[0m
+[0;32mI (102286) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (102289) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (102485) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (102890) audio_player: Playback complete.[0m
+[0;32mI (102899) audio_player: Playback stopped.[0m
+[0;32mI (102899) speaker: Beep complete[0m
+[0;32mI (102899) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (102900) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (102908) tof: Sub-threshold reading 1/5 (14 mm)[0m
+[0;32mI (102999) tof: Sub-threshold reading 2/5 (14 mm)[0m
+[0;32mI (103098) tof: Sub-threshold reading 3/5 (14 mm)[0m
+[0;32mI (103186) tof: Sub-threshold reading 4/5 (14 mm)[0m
+[0;32mI (103285) tof: Sub-threshold reading 5/5 (14 mm)[0m
+[0;32mI (103285) tof: Presence confirmed at 14 mm[0m
+[0;32mI (103285) feeder: [3] Running sitting detector…[0m
+[0;32mI (103287) feeder: Camera streaming started[0m
+[0;32mI (103291) feeder: Camera streaming stopped[0m
+[0;33mW (103295) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (103301) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (103304) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;32mI (103410) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;33mW (103457) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (105457) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (107457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (107486) sched: Current time: 10:11 day_idx=6[0m
+[0;33mW (109457) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (111457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (112415) dispenser: Dispense complete[0m
+[0;32mI (112415) feeder: [5] Checking food level…[0m
+[0;32mI (112418) feeder: Food level distance: 1.6 cm (threshold: 20 cm)[0m
+[0;33mW (113457) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (115457) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (117457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (119373) feeder: === Feed workflow DONE ===[0m
+[0;33mW (119457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (119542) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (121457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (122563) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (123299) intercom: Audio WS alive: yes[0m
+[0;33mW (123457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (124373) feeder: Polling commands...[0m
+[0;32mI (124542) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (125457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (125732) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (127457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (127681) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (127682) sched: Current time: 10:11 day_idx=6[0m
+[0;32mI (128916) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (129457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (129542) feeder: Polling commands...[0m
+[0;32mI (129825) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (131457) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (132194) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (132195) feeder: Camera streaming started[0m
+[0;32mI (134825) feeder: Polling commands...[0m
+[0;32mI (135627) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (135684) feeder: Sent 50 frames[0m
+[0;32mI (137183) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (140554) feeder: Sent 75 frames[0m
+[0;32mI (140665) feeder: Polling commands...[0m
+[0;32mI (140846) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (142457) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (145846) feeder: Polling commands...[0m
+[0;32mI (146229) feeder: Sent 100 frames[0m
+[0;32mI (146965) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (147682) sched: Current time: 10:12 day_idx=6[0m
+[0;32mI (148395) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (148397) feeder: Camera streaming stopped[0m
+[0;33mW (150659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (151258) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (151966) feeder: Polling commands...[0m
+[0;32mI (152147) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (152659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (153299) intercom: Audio WS alive: yes[0m
+[0;32mI (154621) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (154659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (156659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (157148) feeder: Polling commands...[0m
+[0;32mI (157401) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (157693) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (158659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (160659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (160782) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (162401) feeder: Polling commands...[0m
+[0;32mI (162614) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (162659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (163821) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (164659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (166659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (167002) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (167614) feeder: Polling commands...[0m
+[0;32mI (167683) sched: Current time: 10:12 day_idx=6[0m
+[0;32mI (167815) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (168659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (170171) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (170659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (172659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (172815) feeder: Polling commands...[0m
+[0;32mI (173045) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (173243) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (174659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (176346) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (176659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (178045) feeder: Polling commands...[0m
+[0;32mI (178267) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (178659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (179288) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (180659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (182358) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (182659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (183267) feeder: Polling commands...[0m
+[0;32mI (183299) intercom: Audio WS alive: yes[0m
+[0;32mI (183483) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (184659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (185439) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (186659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (187795) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (187796) sched: Current time: 10:12 day_idx=6[0m
+[0;32mI (188406) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (188483) feeder: Polling commands...[0m
+[0;33mW (188659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (188708) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (190659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (191281) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (192659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (193708) feeder: Polling commands...[0m
+[0;32mI (194134) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (194443) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (194659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (196659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (197644) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (198659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (199134) feeder: Polling commands...[0m
+[0;32mI (199377) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (200587) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (200659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (202659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (203719) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (204378) feeder: Polling commands...[0m
+[0;32mI (204585) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (204659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (206659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (206736) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (207796) sched: Current time: 10:13 day_idx=6[0m
+[0;33mW (208659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (209585) feeder: Polling commands...[0m
+[0;32mI (209749) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (210062) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (210659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (212659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (213299) intercom: Audio WS alive: yes[0m
+[0;32mI (213454) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (214659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (214749) feeder: Polling commands...[0m
+[0;32mI (214931) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (216477) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (216659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (218659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (219627) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (219931) feeder: Polling commands...[0m
+[0;32mI (220062) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (220659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (222659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (222723) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (224659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (225062) feeder: Polling commands...[0m
+[0;32mI (225386) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (225681) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (226659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (227796) sched: Current time: 10:13 day_idx=6[0m
+[0;33mW (228659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (229256) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (230387) feeder: Polling commands...[0m
+[0;32mI (230532) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (230659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (232565) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (232659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (234659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (235532) feeder: Polling commands...[0m
+[0;32mI (235658) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (235726) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (236659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (238659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (239186) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (240659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (240659) feeder: Polling commands...[0m
+[0;32mI (241054) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (242473) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (242659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (243299) intercom: Audio WS alive: yes[0m
+[0;33mW (244659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (245967) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (246054) feeder: Polling commands...[0m
+[0;32mI (246169) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (246659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (247999) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (248000) sched: Current time: 10:13 day_idx=6[0m
+[0;33mW (248659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (249379) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (250659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (251169) feeder: Polling commands...[0m
+[0;32mI (251338) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776608030304","ts":1776608030380}[0m
+[0;32mI (251342) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (251500) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (251500) feeder: [1] Beep speaker[0m
+[0;32mI (251500) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (251503) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (252104) audio_player: Playback complete.[0m
+[0;32mI (252163) audio_player: Playback stopped.[0m
+[0;32mI (252163) speaker: Beep complete[0m
+[0;32mI (252163) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (252164) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (252173) tof: Sub-threshold reading 1/5 (15 mm)[0m
+[0;32mI (252241) tof: Sub-threshold reading 2/5 (15 mm)[0m
+[0;32mI (252340) tof: Sub-threshold reading 3/5 (15 mm)[0m
+[0;32mI (252428) tof: Sub-threshold reading 4/5 (15 mm)[0m
+[0;32mI (252534) tof: Sub-threshold reading 5/5 (15 mm)[0m
+[0;32mI (252534) tof: Presence confirmed at 15 mm[0m
+[0;32mI (252534) feeder: [3] Running sitting detector…[0m
+[0;32mI (252536) feeder: Camera streaming started[0m
+[0;32mI (252540) feeder: Camera streaming stopped[0m
+[0;33mW (252544) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (252549) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (252553) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;33mW (252659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (252659) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;32mI (253104) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (254659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (256659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (258659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (260659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (261664) dispenser: Dispense complete[0m
+[0;32mI (261664) feeder: [5] Checking food level…[0m
+[0;32mI (261667) feeder: Food level distance: 1.7 cm (threshold: 20 cm)[0m
+[0;33mW (262659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (263074) feeder: === Feed workflow DONE ===[0m
+[0;32mI (263382) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (264659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (266659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (266683) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (268000) sched: Current time: 10:14 day_idx=6[0m
+[0;32mI (268074) feeder: Polling commands...[0m
+[0;32mI (268433) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (268659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (269957) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (270659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (272659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (273093) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (273299) intercom: Audio WS alive: yes[0m
+[0;32mI (273433) feeder: Polling commands...[0m
+[0;32mI (273682) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (274659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (276659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (276879) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (278659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (278682) feeder: Polling commands...[0m
+[0;32mI (278901) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (279960) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (280659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (282659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (282948) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (283902) feeder: Polling commands...[0m
+[0;32mI (284394) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (284659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (286496) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (286659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (288000) sched: Current time: 10:14 day_idx=6[0m
+[0;33mW (288659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (289394) feeder: Polling commands...[0m
+[0;32mI (289744) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (289746) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (290659) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (292659) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (294410) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (294412) feeder: Camera streaming started[0m
+[0;32mI (294744) feeder: Polling commands...[0m
+[0;32mI (297416) feeder: Sent 125 frames[0m
+[0;32mI (298912) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (301579) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (301580) feeder: Camera streaming stopped[0m
+[0;32mI (303299) intercom: Audio WS alive: yes[0m
+[0;32mI (303912) feeder: Polling commands...[0m
+[0;33mW (304014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (304030) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (305042) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (306014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (308014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (308072) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (308233) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (308234) sched: Current time: 10:14 day_idx=6[0m
+[0;32mI (309030) feeder: Polling commands...[0m
+[0;32mI (309230) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (310014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (311543) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (312014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (314014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (314230) feeder: Polling commands...[0m
+[0;32mI (314456) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (314717) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (316014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (317854) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (318014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (319456) feeder: Polling commands...[0m
+[0;32mI (319679) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (320014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (321180) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (322014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (324014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (324660) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (324679) feeder: Polling commands...[0m
+[0;32mI (324813) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (326014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (327974) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (328014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (328234) sched: Current time: 10:15 day_idx=6[0m
+[0;32mI (329814) feeder: Polling commands...[0m
+[0;32mI (329978) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (330014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (331564) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (332014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (333299) intercom: Audio WS alive: yes[0m
+[0;33mW (334014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (334979) feeder: Polling commands...[0m
+[0;32mI (335220) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (335239) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (336014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (338014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (338556) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (340014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (340239) feeder: Polling commands...[0m
+[0;32mI (340376) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776608116172","ts":1776608116215}[0m
+[0;32mI (340380) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (340986) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (340986) feeder: [1] Beep speaker[0m
+[0;32mI (340986) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (340989) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (341590) audio_player: Playback complete.[0m
+[0;32mI (341599) audio_player: Playback stopped.[0m
+[0;32mI (341599) speaker: Beep complete[0m
+[0;32mI (341599) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (341600) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (341608) tof: Sub-threshold reading 1/5 (15 mm)[0m
+[0;32mI (341644) tof: Sub-threshold reading 2/5 (16 mm)[0m
+[0;32mI (341743) tof: Sub-threshold reading 3/5 (15 mm)[0m
+[0;32mI (341831) tof: Sub-threshold reading 4/5 (15 mm)[0m
+[0;32mI (341930) tof: Sub-threshold reading 5/5 (15 mm)[0m
+[0;32mI (341930) tof: Presence confirmed at 15 mm[0m
+[0;32mI (341930) feeder: [3] Running sitting detector…[0m
+[0;32mI (341932) feeder: Camera streaming started[0m
+[0;32mI (341936) feeder: Camera streaming stopped[0m
+[0;33mW (341940) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (341946) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (341949) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;33mW (342014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (342055) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;33mW (344014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (346014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (348014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (348234) sched: Current time: 10:15 day_idx=6[0m
+[0;33mW (350014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (351058) dispenser: Dispense complete[0m
+[0;32mI (351058) feeder: [5] Checking food level…[0m
+[0;32mI (351061) feeder: Food level distance: 2.0 cm (threshold: 20 cm)[0m
+[0;32mI (351332) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (352014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (352672) feeder: === Feed workflow DONE ===[0m
+[0;33mW (354014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (354412) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (356014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (357672) feeder: Polling commands...[0m
+[0;32mI (357872) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (357874) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (358014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (360014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (361673) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (362014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (362872) feeder: Polling commands...[0m
+[0;32mI (363094) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (363299) intercom: Audio WS alive: yes[0m
+[0;33mW (364014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (364871) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (366014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (368014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (368094) feeder: Polling commands...[0m
+[0;32mI (368232) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (368240) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (368334) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (368335) sched: Current time: 10:15 day_idx=6[0m
+[0;33mW (370014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (371723) firebase: streaming_get: received 5 bytes total[0m
+[1;31mE (371861) transport_ws: Error read data(-1)[0m
+[1;31mE (371862) websocket_client: esp_transport_read() failed with -1, transport_error=ESP_ERR_ESP_TLS_TCP_CLOSED_FIN, tls_error_code=0, tls_flags=0, errno=128[0m
+[1;31mE (371868) intercom: WebSocket error[0m
+[1;31mE (371871) websocket_client: Error receive data[0m
+[0;32mI (371877) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (371880) intercom: WebSocket disconnected[0m
+[0;33mW (372014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (373233) feeder: Polling commands...[0m
+[0;32mI (373466) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (374014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (375166) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (376014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (378014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (378240) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (378467) feeder: Polling commands...[0m
+[0;32mI (378786) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (378787) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (380014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (381837) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (382014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (383786) feeder: Polling commands...[0m
+[0;32mI (383943) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (384014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (385271) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (386014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (388014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (388335) sched: Current time: 10:16 day_idx=6[0m
+[0;32mI (388943) feeder: Polling commands...[0m
+[0;32mI (389006) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (389116) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (390014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (392014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (392923) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (393299) intercom: Audio WS alive: yes[0m
+[0;33mW (394014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (394116) feeder: Polling commands...[0m
+[0;32mI (394345) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (396014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (396731) firebase: streaming_get: received 5 bytes total[0m
+[1;31mE (396826) transport_ws: Error read data(-1)[0m
+[1;31mE (396827) websocket_client: esp_transport_read() failed with -1, transport_error=ESP_ERR_ESP_TLS_TCP_CLOSED_FIN, tls_error_code=0, tls_flags=0, errno=128[0m
+[1;31mE (396833) feeder: Camera WebSocket error[0m
+[1;31mE (396837) websocket_client: Error receive data[0m
+[0;32mI (396843) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (396846) feeder: Camera WebSocket disconnected[0m
+[0;33mW (398014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (399345) feeder: Polling commands...[0m
+[0;32mI (399468) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (399990) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (400014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (402014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (403127) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (403130) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;32mI (403378) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (404014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (404468) feeder: Polling commands...[0m
+[0;32mI (404823) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (406014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (406679) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (408014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (408335) sched: Current time: 10:16 day_idx=6[0m
+[0;32mI (409824) feeder: Polling commands...[0m
+[0;33mW (410014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (410105) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (410242) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (412014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (413367) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (414014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (415106) feeder: Polling commands...[0m
+[0;32mI (415248) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (416014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (416576) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (418014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (420014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (420105) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (420248) feeder: Polling commands...[0m
+[0;32mI (420547) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (422014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (423299) intercom: Audio WS alive: yes[0m
+[0;32mI (423545) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (424014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (425547) feeder: Polling commands...[0m
+[0;32mI (425762) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (426014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (427104) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (428014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (428542) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (428542) sched: Current time: 10:16 day_idx=6[0m
+[0;33mW (430014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (430380) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (430763) feeder: Polling commands...[0m
+[0;32mI (431006) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (432014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (434011) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (434014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (436006) feeder: Polling commands...[0m
+[0;33mW (436014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (436190) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (437493) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (438014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (440014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (440532) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (441190) feeder: Polling commands...[0m
+[0;32mI (441448) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (442014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (443708) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (444014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (446014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (446448) feeder: Polling commands...[0m
+[0;32mI (446674) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (447079) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (448014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (448542) sched: Current time: 10:17 day_idx=6[0m
+[0;33mW (450014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (450463) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (451675) feeder: Polling commands...[0m
+[0;32mI (452009) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (452014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (453299) intercom: Audio WS alive: yes[0m
+[0;32mI (453847) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (454014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (456014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (457009) feeder: Polling commands...[0m
+[0;32mI (457113) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (457195) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (458014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (460014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (460589) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (462014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (462195) feeder: Polling commands...[0m
+[0;32mI (462469) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (464014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (464281) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (466014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (467469) feeder: Polling commands...[0m
+[0;32mI (467593) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (467685) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (468014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (468542) sched: Current time: 10:17 day_idx=6[0m
+[0;33mW (470014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (471236) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (472014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (472686) feeder: Polling commands...[0m
+[0;32mI (473040) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (474014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (474827) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (476014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (478014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (478040) feeder: Polling commands...[0m
+[0;32mI (478091) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (478246) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (480014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (481171) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (482014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (483247) feeder: Polling commands...[0m
+[0;32mI (483299) intercom: Audio WS alive: yes[0m
+[0;32mI (483445) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (484014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (484289) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (486014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (487510) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (488014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (488445) feeder: Polling commands...[0m
+[0;32mI (488662) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (488804) sched: Loaded 0 active schedule(s) for this device[0m
+[0;32mI (488804) sched: Current time: 10:17 day_idx=6[0m
+[0;33mW (490014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (490797) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (492014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (493662) feeder: Polling commands...[0m
+[0;32mI (493774) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (494014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (494067) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (496014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (497713) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (498014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (498774) feeder: Polling commands...[0m
+[0;32mI (499020) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (500014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (501034) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (502014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (504014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (504020) feeder: Polling commands...[0m
+[0;32mI (504287) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (504393) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (506014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (507605) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (508014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (508804) sched: Current time: 10:18 day_idx=6[0m
+[0;32mI (509393) feeder: Polling commands...[0m
+[0;32mI (509616) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (510014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (511132) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (512014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (513299) intercom: Audio WS alive: yes[0m
+[0;33mW (514014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (514460) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (514616) feeder: Polling commands...[0m
+[0;32mI (514808) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (516014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (517777) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (518014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (519808) feeder: Polling commands...[0m
+[0;33mW (520014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (520080) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (520871) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (522014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (524014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (525021) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (525080) feeder: Polling commands...[0m
+[0;32mI (525361) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (526014) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (528014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (528804) sched: Current time: 10:18 day_idx=6[0m
+[0;32mI (529216) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (530014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (530361) feeder: Polling commands...[0m
+[0;32mI (530676) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (532014) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (532493) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (532494) feeder: Camera streaming started[0m
+[0;32mI (534263) feeder: Sent 150 frames[0m
+[0;32mI (535676) feeder: Polling commands...[0m
+[0;32mI (537072) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (537510) feeder: Sent 175 frames[0m
+[0;32mI (538982) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (538984) feeder: Camera streaming stopped[0m
+[0;33mW (541080) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (542072) feeder: Polling commands...[0m
+[0;33mW (543080) feeder: No frame received in 2s — queue empty?[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3039) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (5444) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (7848) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (11466) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (11466) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (11467) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (11471) feeder: WiFi connected[0m
+[0;32mI (11475) feeder: Waiting for SNTP sync…[0m
+[0;32mI (14478) feeder: Clock synced: 2026-04-19 10:36:20[0m
+[0;32mI (14478) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (15672) firebase: Auth token refreshed[0m
+[0;32mI (15672) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (17202) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (17838) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (17838) cam_hal: cam init ok[0m
+[0;32mI (17838) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (17838) sccb: sccb_i2c_port=1[0m
+[0;32mI (17851) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (17852) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (17852) camera: Detected OV5640 camera[0m
+[0;32mI (17852) camera: Detected camera at address=0x3c[0m
+[0;32mI (18557) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (18557) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (18559) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (18565) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (18571) cam_hal: cam config ok[0m
+[0;32mI (18589) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (18590) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (18634) feeder: Camera init: ESP_OK[0m
+[0;32mI (18636) websocket_client: Started[0m
+[0;32mI (18637) feeder: Camera WebSocket stream connected[0m
+[0;32mI (18638) audio_player: Playback started.[0m
+[0;32mI (18638) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (18645) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (18736) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;33mW (20736) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (20737) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (20744) websocket_client: Started[0m
+[0;32mI (20746) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (21259) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (21760) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (21760) tof: About to install I2C driver on port 0[0m
+[0;32mI (21761) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (21765) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (21770) TMF8701: isI2CAddress: device responded at 0x41, val=0x00[0m
+[0;32mI (21775) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (21789) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (21789) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (21792) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (21797) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (21804) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (23145) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (23151) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (23152) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (23152) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (23170) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (23170) TMF8701: begin(): APP0 is running[0m
+[0;32mI (23171) TMF8701: begin(): initialization OK[0m
+[0;32mI (23172) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (23178) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (23217) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (23219) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+cam_hal: EV-VSYNC-OVF
+[0;32mI (24083) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (24544) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (24544) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (24548) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (24551) manual_btn: Manual button task started[0m
+[0;32mI (27566) feeder: heartbeat_task created[0m
+[0;32mI (27566) feeder: command_poll_task created[0m
+[0;32mI (27567) feeder: ws_send_task started, free heap: 7485892[0m
+[0;32mI (27568) feeder: ws_send_task created[0m
+[0;32mI (27572) feeder: camera_capture_task created[0m
+[0;32mI (27576) feeder: camera_poll_task created[0m
+[0;32mI (27579) feeder: All tasks started[0m
+[0;32mI (27582) main_task: Returned from app_main()[0m
+[0;33mW (29568) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (31568) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (33568) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (35066) feeder: Polling commands...[0m
+[0;33mW (35568) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (35588) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (35755) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (35757) feeder: Camera streaming started[0m
+cam_hal: NO-EOI - JPEG end marker missing
+[0;33mW (38132) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (40072) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (40132) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (40394) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (40588) feeder: Polling commands...[0m
+[0;32mI (40716) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (42132) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (44132) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (44172) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (45716) feeder: Polling commands...[0m
+[0;33mW (46132) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (46137) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (48132) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (48272) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (48272) feeder: Reinitialising camera…[0m
+[0;32mI (48772) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (48772) cam_hal: cam init ok[0m
+[0;32mI (48772) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (48772) sccb: sccb_i2c_port=1[0m
+[0;32mI (48785) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (48786) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (48786) camera: Detected OV5640 camera[0m
+[0;32mI (48786) camera: Detected camera at address=0x3c[0m
+[0;32mI (49490) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (49490) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (49492) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (49498) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (49504) cam_hal: cam config ok[0m
+[0;32mI (49522) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (49523) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (49568) feeder: Camera reinit: ESP_OK[0m
+[0;32mI (49811) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (49813) feeder: Camera streaming stopped[0m
+[0;32mI (50753) intercom: Audio WS alive: yes[0m
+[0;32mI (51138) feeder: Polling commands...[0m
+[0;33mW (51904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (53904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (55904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (57904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (59904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (61904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (63904) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (65026) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (65742) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (65904) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (67904) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (68916) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (68918) feeder: Camera streaming started[0m
+[0;32mI (70026) feeder: Polling commands...[0m
+[0;32mI (70142) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (71903) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (72370) feeder: Sent 25 frames[0m
+[0;32mI (75142) feeder: Polling commands...[0m
+[0;32mI (75151) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (75360) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (77408) feeder: Sent 50 frames[0m
+[0;32mI (78102) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (78104) feeder: Camera streaming stopped[0m
+[0;33mW (80198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (80360) feeder: Polling commands...[0m
+[0;32mI (80582) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776609445272","ts":1776609445304}[0m
+[0;32mI (80586) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (80753) intercom: Audio WS alive: yes[0m
+[0;32mI (80898) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (80899) feeder: [1] Beep speaker[0m
+[0;32mI (80899) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (80901) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (81004) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (81502) audio_player: Playback complete.[0m
+[0;32mI (81511) audio_player: Playback stopped.[0m
+[0;32mI (81511) speaker: Beep complete[0m
+[0;32mI (81511) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (81512) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (81520) tof: Sub-threshold reading 1/5 (19 mm)[0m
+[0;32mI (81545) tof: Sub-threshold reading 2/5 (19 mm)[0m
+[0;32mI (81633) tof: Sub-threshold reading 3/5 (19 mm)[0m
+[0;32mI (81732) tof: Sub-threshold reading 4/5 (20 mm)[0m
+[0;32mI (81820) tof: Sub-threshold reading 5/5 (19 mm)[0m
+[0;32mI (81820) tof: Presence confirmed at 19 mm[0m
+[0;32mI (81820) feeder: [3] Running sitting detector…[0m
+[0;32mI (81822) feeder: Camera streaming started[0m
+[0;32mI (81825) feeder: Camera streaming stopped[0m
+[0;33mW (81829) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (81835) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (81839) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;32mI (81945) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;33mW (82198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (84198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (86198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (88198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (90198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (90949) dispenser: Dispense complete[0m
+[0;32mI (90949) feeder: [5] Checking food level…[0m
+[0;32mI (90951) feeder: Food level distance: 2.0 cm (threshold: 20 cm)[0m
+[0;32mI (91551) feeder: === Feed workflow DONE ===[0m
+[0;32mI (91955) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (92198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (94198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (95028) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (96198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (96551) feeder: Polling commands...[0m
+[0;32mI (96768) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (98099) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (98198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (100198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (101089) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (101768) feeder: Polling commands...[0m
+[0;32mI (101990) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (102198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (104141) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (104198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (106198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (106990) feeder: Polling commands...[0m
+[0;32mI (107213) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (107215) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (108198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (110198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (110401) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (110753) intercom: Audio WS alive: yes[0m
+[0;33mW (112198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (112213) feeder: Polling commands...[0m
+[0;32mI (112367) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (113565) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (114198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (116198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (116634) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (117368) feeder: Polling commands...[0m
+[0;32mI (117556) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (118198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (119911) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (120198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (122198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (122556) feeder: Polling commands...[0m
+[0;32mI (122778) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (122984) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (124198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (126056) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (126198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (127779) feeder: Polling commands...[0m
+[0;32mI (128000) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (128198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (129127) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (130198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (132198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (132199) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (133000) feeder: Polling commands...[0m
+[0;32mI (133224) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (134198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (135476) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (136198) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (138198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (138224) feeder: Polling commands...[0m
+[0;32mI (138447) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (138602) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (140198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (140753) intercom: Audio WS alive: yes[0m
+[0;32mI (141654) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (142198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (143447) feeder: Polling commands...[0m
+[0;32mI (143756) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (144198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (144794) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (146198) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;33mW (148198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (148380) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (148756) feeder: Polling commands...[0m
+[0;32mI (148906) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;33mW (150198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (151552) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (152198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (153907) feeder: Polling commands...[0m
+[0;32mI (154062) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (154198) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (154931) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (154932) feeder: Camera streaming started[0m
+[0;33mW (157201) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (158242) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (159062) feeder: Polling commands...[0m
+[0;33mW (159160) cam_hal: Failed to get frame: timeout[0m
+[0;33mW (159201) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (159215) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (161201) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (162217) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (162218) feeder: Camera streaming stopped[0m
+cam_hal: NO-SOI - JPEG start marker missing
+cam_hal: NO-SOI - JPEG start marker missing
+[0;33mW (163201) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (163260) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (164215) feeder: Polling commands...[0m
+[0;32mI (164382) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (165201) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;32mI (165597) firebase: streaming_get: received 5 bytes total[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;33mW (167202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+[0;32mI (168780) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (169202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (169382) feeder: Polling commands...[0m
+[0;32mI (169588) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (170753) intercom: Audio WS alive: yes[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+[0;33mW (171202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;32mI (172253) firebase: streaming_get: received 5 bytes total[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+[0;33mW (173202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: EV-EOF-OVF - 100 additional misses
+[0;32mI (174589) feeder: Polling commands...[0m
+[0;32mI (174725) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+[0;33mW (175202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (175719) firebase: streaming_get: received 5 bytes total[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: EV-EOF-OVF - 100 additional misses
+[0;33mW (177202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;32mI (178996) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (179202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (179725) feeder: Polling commands...[0m
+[0;32mI (179871) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;33mW (181202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+[0;32mI (181967) firebase: streaming_get: received 5 bytes total[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: EV-EOF-OVF - 100 additional misses
+[0;33mW (183202) feeder: No frame received in 2s — queue empty?[0m
+cam_hal: EV-VSYNC-OVF - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+cam_hal: NO-SOI - JPEG start marker missing - 100 additional misses
+[0;32mI (184872) feeder: Polling commands...[0m
+[0;32mI (185068) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+cam_hal: EV-EOF-OVF - 100 additional misses
+[0;33mW (185202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (185554) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (187202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (188827) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (189202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (190068) feeder: Polling commands...[0m
+[0;33mW (191202) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (191654) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (320) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (4165) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (4165) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (4165) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (4170) feeder: WiFi connected[0m
+[0;32mI (4173) feeder: Waiting for SNTP sync…[0m
+[0;32mI (8177) feeder: Clock synced: 2026-04-19 10:39:26[0m
+[0;32mI (8177) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (9191) firebase: Auth token refreshed[0m
+[0;32mI (9191) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (10415) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (11128) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (11128) cam_hal: cam init ok[0m
+[0;32mI (11128) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (11128) sccb: sccb_i2c_port=1[0m
+[0;32mI (11141) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (11142) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (11142) camera: Detected OV5640 camera[0m
+[0;32mI (11142) camera: Detected camera at address=0x3c[0m
+[0;32mI (11847) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (11847) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (11849) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (11855) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (11861) cam_hal: cam config ok[0m
+[0;32mI (11879) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (11880) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (11924) feeder: Camera init: ESP_OK[0m
+[0;32mI (11926) websocket_client: Started[0m
+[0;32mI (11927) feeder: Camera WebSocket stream connected[0m
+[0;32mI (11928) audio_player: Playback started.[0m
+[0;32mI (11928) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (11935) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (12026) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (12975) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (12977) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;33mW (14026) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (14027) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (14034) websocket_client: Started[0m
+[0;32mI (14036) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (14536) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (15024) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (15036) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (15036) tof: About to install I2C driver on port 0[0m
+[0;32mI (15037) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (15040) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (15046) TMF8701: isI2CAddress: device responded at 0x41, val=0x41[0m
+[0;32mI (15051) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (15065) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (15065) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (15068) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (15073) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (15080) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (16419) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (16424) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (16425) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (16425) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (16443) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (16444) TMF8701: begin(): APP0 is running[0m
+[0;32mI (16444) TMF8701: begin(): initialization OK[0m
+[0;32mI (16445) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (16451) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (17817) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (17817) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (17821) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (17827) manual_btn: Manual button task started[0m
+[0;32mI (20839) feeder: heartbeat_task created[0m
+[0;32mI (20839) feeder: command_poll_task created[0m
+[0;32mI (20840) feeder: ws_send_task started, free heap: 7485812[0m
+[0;32mI (20841) feeder: ws_send_task created[0m
+[0;32mI (20845) feeder: camera_capture_task created[0m
+[0;32mI (20849) feeder: camera_poll_task created[0m
+[0;32mI (20852) feeder: All tasks started[0m
+[0;32mI (20855) main_task: Returned from app_main()[0m
+[0;33mW (22841) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (24033) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (24841) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (26841) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (27107) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (27108) feeder: Camera streaming started[0m
+cam_hal: NO-EOI - JPEG end marker missing
+[0;32mI (28354) feeder: Polling commands...[0m
+[0;32mI (28507) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (30280) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (32404) feeder: Sent 25 frames[0m
+[0;32mI (33447) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (33507) feeder: Polling commands...[0m
+[0;32mI (33645) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (34973) feeder: Sent 50 frames[0m
+[0;32mI (36648) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (36651) feeder: Camera streaming stopped[0m
+[0;32mI (38646) feeder: Polling commands...[0m
+[0;33mW (38703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (38781) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (39600) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (40703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (42583) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (42703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (43782) feeder: Polling commands...[0m
+[0;32mI (43942) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (44043) intercom: Audio WS alive: yes[0m
+[0;33mW (44703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (45846) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (46703) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (48703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (48942) feeder: Polling commands...[0m
+[0;32mI (48993) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (49099) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (50703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (52064) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (52703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (54099) feeder: Polling commands...[0m
+[0;32mI (54345) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (54703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (55165) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (56703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (58238) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (58703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (59345) feeder: Polling commands...[0m
+[0;32mI (59875) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (60703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (61412) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (62703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (64585) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (64703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (64876) feeder: Polling commands...[0m
+[0;32mI (65044) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (66703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (67760) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (68703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (70044) feeder: Polling commands...[0m
+[0;32mI (70173) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (70703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (70831) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (72703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (73904) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (74043) intercom: Audio WS alive: yes[0m
+[0;33mW (74703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (75173) feeder: Polling commands...[0m
+[0;32mI (75337) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (76703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (77181) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (78703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (80337) feeder: Polling commands...[0m
+[0;33mW (80703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (80909) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (81277) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (82703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (84451) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (84703) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (85909) feeder: Polling commands...[0m
+[0;32mI (86091) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (86703) feeder: No frame received in 2s — queue empty?[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (321) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (535) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (536) camera wifi: wifi init...[0m
+[0;32mI (539) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (555) wifi_init: rx ba win: 32[0m
+[0;32mI (555) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (564) wifi_init: tcp rx win: 65535[0m
+[0;32mI (567) wifi_init: tcp mss: 1440[0m
+[0;32mI (570) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (582) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (591) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (21) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (21) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (22) boot: Multicore bootloader[0m
+[0;32mI (22) boot: chip revision: v0.2[0m
+[0;32mI (25) boot: efuse block revision: v1.4[0m
+[0;32mI (28) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (32) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (36) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (40) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (48) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (70) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (80) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (123) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (127) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (275) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (277) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (304) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (317) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (317) boot: Disabling RNG early entropy source...[0m
+[0;32mI (328) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (328) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (328) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (330) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (334) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (338) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (342) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (347) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (352) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (357) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (362) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (366) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (370) esp_psram: Speed: 40MHz[0m
+[0;32mI (373) cpu_start: Multicore app[0m
+[0;32mI (388) cpu_start: Pro cpu start user code[0m
+[0;32mI (393) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (393) app_init: Application information:[0m
+[0;32mI (393) app_init: Project name:     video_stream_server[0m
+[0;32mI (398) app_init: App version:      797fe61-dirty[0m
+[0;32mI (402) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (407) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (411) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (415) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (419) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (423) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (427) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (433) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (438) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (443) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (449) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (454) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (461) spi_flash: detected chip: generic[0m
+[0;32mI (464) spi_flash: flash io: qio[0m
+[0;33mW (467) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (477) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (483) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (490) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (494) coexist: coexist rom version e7ae62f[0m
+[0;32mI (498) main_task: Started on CPU0[0m
+[0;32mI (501) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (509) main_task: Calling app_main()[0m
+[0;32mI (512) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (516) camera wifi: app_wifi_main start[0m
+[0;32mI (520) camera wifi: nvs_flash_init...[0m
+[0;32mI (536) camera wifi: nvs_flash_init done[0m
+[0;32mI (536) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (537) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (543) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (559) wifi_init: tcp mbox: 64[0m
+[0;32mI (562) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (575) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (579) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (583) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (587) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (597) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (21) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (21) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (22) boot: Multicore bootloader[0m
+[0;32mI (22) boot: chip revision: v0.2[0m
+[0;32mI (25) boot: efuse block revision: v1.4[0m
+[0;32mI (28) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (32) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (36) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (40) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (48) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (70) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (80) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (123) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (127) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (275) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (277) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (304) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (317) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (317) boot: Disabling RNG early entropy source...[0m
+[0;32mI (328) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (328) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (328) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (330) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (334) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (338) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (342) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (347) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (352) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (357) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (362) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (366) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (370) esp_psram: Speed: 40MHz[0m
+[0;32mI (373) cpu_start: Multicore app[0m
+[0;32mI (388) cpu_start: Pro cpu start user code[0m
+[0;32mI (393) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (393) app_init: Application information:[0m
+[0;32mI (393) app_init: Project name:     video_stream_server[0m
+[0;32mI (398) app_init: App version:      797fe61-dirty[0m
+[0;32mI (402) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (407) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (411) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (415) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (419) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (423) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (427) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (433) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (438) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (443) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (449) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (454) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (461) spi_flash: detected chip: generic[0m
+[0;32mI (464) spi_flash: flash io: qio[0m
+[0;33mW (467) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (477) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (483) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (490) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (494) coexist: coexist rom version e7ae62f[0m
+[0;32mI (498) main_task: Started on CPU0[0m
+[0;32mI (501) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (509) main_task: Calling app_main()[0m
+[0;32mI (512) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (516) camera wifi: app_wifi_main start[0m
+[0;32mI (520) camera wifi: nvs_flash_init...[0m
+[0;32mI (536) camera wifi: nvs_flash_init done[0m
+[0;32mI (536) camera wifi: esp_netif_init...[0m
+[0;32mI (536) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (537) camera wifi: wifi init...[0m
+[0;32mI (540) pp: pp rom version: e7ae62f[0m
+[0;32mI (543) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (556) wifi_init: rx ba win: 32[0m
+[0;32mI (556) wifi_init: accept mbox: 6[0m
+[0;32mI (556) wifi_init: tcpip mbox: 64[0m
+[0;32mI (556) wifi_init: udp mbox: 64[0m
+[0;32mI (559) wifi_init: tcp mbox: 64[0m
+[0;32mI (562) wifi_init: tcp tx win: 65535[0m
+[0;32mI (565) wifi_init: tcp rx win: 65535[0m
+[0;32mI (568) wifi_init: tcp mss: 1440[0m
+[0;32mI (571) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (575) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (579) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (583) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (587) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (592) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (597) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3038) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (6791) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (6791) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (6792) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (6796) feeder: WiFi connected[0m
+[0;32mI (6799) feeder: Waiting for SNTP sync…[0m
+[0;32mI (8803) feeder: Clock synced: 2026-04-19 10:49:17[0m
+[0;32mI (8803) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (10182) firebase: Auth token refreshed[0m
+[0;32mI (10182) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (11302) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (11812) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (11812) cam_hal: cam init ok[0m
+[0;32mI (11812) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (11812) sccb: sccb_i2c_port=1[0m
+[0;32mI (11825) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (11826) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (11826) camera: Detected OV5640 camera[0m
+[0;32mI (11826) camera: Detected camera at address=0x3c[0m
+[0;32mI (12531) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (12531) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (12533) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (12539) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (12545) cam_hal: cam config ok[0m
+[0;32mI (12563) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (12564) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (12608) feeder: Camera init: ESP_OK[0m
+[0;32mI (12611) websocket_client: Started[0m
+[0;32mI (12611) feeder: Camera WebSocket stream connected[0m
+[0;32mI (12612) audio_player: Playback started.[0m
+[0;32mI (12612) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (12619) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (12711) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;33mW (14711) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (14712) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (14719) websocket_client: Started[0m
+[0;32mI (14722) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (15221) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (15721) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (15721) tof: About to install I2C driver on port 0[0m
+[0;32mI (15722) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (15726) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (15731) TMF8701: isI2CAddress: device responded at 0x41, val=0x00[0m
+[0;32mI (15736) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (15750) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (15750) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (15753) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (15758) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (15765) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (17106) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (17111) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (17112) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (17112) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (17130) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (17131) TMF8701: begin(): APP0 is running[0m
+[0;32mI (17131) TMF8701: begin(): initialization OK[0m
+[0;32mI (17132) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (17138) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (17678) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (17680) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;32mI (18504) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (18504) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (18508) manual_btn: Manual override button active (GPIO40)[0m
+[0;32mI (18514) manual_btn: Manual button task started[0m
+[0;32mI (21526) feeder: heartbeat_task created[0m
+[0;32mI (21526) feeder: command_poll_task created[0m
+[0;32mI (21527) feeder: ws_send_task started, free heap: 7484352[0m
+[0;32mI (21527) feeder: ws_send_task created[0m
+[0;32mI (21532) feeder: camera_capture_task created[0m
+[0;32mI (21535) feeder: camera_poll_task created[0m
+[0;32mI (21539) feeder: All tasks started[0m
+[0;32mI (21542) main_task: Returned from app_main()[0m
+[0;32mI (21686) intercom: WebSocket connected to audio-stream[0m
+[0;33mW (23527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (25527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (27527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (28805) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (29026) feeder: Polling commands...[0m
+[0;33mW (29527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (30311) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (31527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (33527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (35311) feeder: Polling commands...[0m
+[0;33mW (35527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (37527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (38008) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776610180046","ts":1776610180127}[0m
+[0;32mI (38012) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (38153) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (38154) feeder: [1] Beep speaker[0m
+[0;32mI (38154) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (38156) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;32mI (38387) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (38757) audio_player: Playback complete.[0m
+[0;32mI (38766) audio_player: Playback stopped.[0m
+[0;32mI (38766) speaker: Beep complete[0m
+[0;32mI (38766) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (38767) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (38775) tof: Sub-threshold reading 1/5 (14 mm)[0m
+[0;32mI (38800) tof: Sub-threshold reading 2/5 (14 mm)[0m
+[0;32mI (38888) tof: Sub-threshold reading 3/5 (14 mm)[0m
+[0;32mI (38987) tof: Sub-threshold reading 4/5 (14 mm)[0m
+[0;32mI (39075) tof: Sub-threshold reading 5/5 (13 mm)[0m
+[0;32mI (39075) tof: Presence confirmed at 13 mm[0m
+[0;32mI (39075) feeder: [3] Running sitting detector…[0m
+[0;32mI (39077) feeder: Camera streaming started[0m
+[0;32mI (39080) feeder: Camera streaming stopped[0m
+[0;33mW (39084) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (39090) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (39094) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;32mI (39200) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;33mW (39527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (41527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (43527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (44728) intercom: Audio WS alive: yes[0m
+[0;33mW (45527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (47527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (48204) dispenser: Dispense complete[0m
+[0;32mI (48204) feeder: [5] Checking food level…[0m
+[0;32mI (48207) feeder: Food level distance: 16.6 cm (threshold: 20 cm)[0m
+[0;33mW (49527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (50193) feeder: === Feed workflow DONE ===[0m
+[0;33mW (51527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (53527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (53940) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (55193) feeder: Polling commands...[0m
+[0;33mW (55527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (55960) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (57527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (59527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (60960) feeder: Polling commands...[0m
+[0;32mI (61073) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (61527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (63454) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (63527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (65527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (66074) feeder: Polling commands...[0m
+[0;32mI (66793) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (67527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (68439) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (69527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (71527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (71793) feeder: Polling commands...[0m
+[0;32mI (73058) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (73527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (74728) intercom: Audio WS alive: yes[0m
+[0;33mW (75527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (77527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (78058) feeder: Polling commands...[0m
+[0;32mI (78501) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (79527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (81527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (81885) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (83501) feeder: Polling commands...[0m
+[0;33mW (83527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (84242) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (85527) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (87527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (89242) feeder: Polling commands...[0m
+[0;33mW (89527) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (89765) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (89960) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (89961) feeder: Camera streaming started[0m
+cam_hal: NO-EOI - JPEG end marker missing
+[0;33mW (94640) cam_hal: Failed to get frame: timeout[0m
+[0;32mI (94766) feeder: Polling commands...[0m
+[1;31mE (95546) transport_ws: Error transport_poll_write(0)[0m
+[1;31mE (95546) websocket_client: esp_transport_write() returned 0, transport_error=ESP_OK, tls_error_code=0, tls_flags=0, errno=0[0m
+[1;31mE (95550) feeder: Camera WebSocket error[0m
+[0;32mI (95556) websocket_client: Reconnect after 5000 ms[0m
+[0;33mW (95559) feeder: Camera WebSocket disconnected[0m
+[0;33mW (95563) feeder: WS not connected[0m
+[0;33mW (95678) feeder: WS not connected[0m
+[0;33mW (96172) feeder: WS not connected[0m
+[0;32mI (96242) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (96271) feeder: WS not connected[0m
+[0;33mW (96666) feeder: WS not connected[0m
+[0;33mW (96962) feeder: WS not connected[0m
+[0;33mW (97061) feeder: WS not connected[0m
+[0;33mW (97160) feeder: WS not connected[0m
+[0;32mI (97267) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (97269) feeder: Camera streaming stopped[0m
+[0;33mW (97950) feeder: WS not connected[0m
+[0;33mW (99950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (101242) feeder: Polling commands...[0m
+[0;32mI (101487) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (101950) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (103950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (104728) intercom: Audio WS alive: yes[0m
+[0;33mW (105950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (106487) feeder: Polling commands...[0m
+[0;32mI (107281) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (107385) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (107490) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (107493) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;33mW (107950) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (109950) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (111950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (112385) feeder: Polling commands...[0m
+[0;32mI (112675) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (113950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (114741) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (115950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (117675) feeder: Polling commands...[0m
+[0;33mW (117950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (118037) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (119822) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (119950) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (121950) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (123020) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (123022) feeder: Camera streaming started[0m
+[0;32mI (123037) feeder: Polling commands...[0m
+[0;32mI (123244) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (126460) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (128245) feeder: Polling commands...[0m
+[0;32mI (128399) feeder: Sent 25 frames[0m
+[0;32mI (128440) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (130088) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (130090) feeder: Camera streaming stopped[0m
+[0;33mW (132365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (133260) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (133441) feeder: Polling commands...[0m
+[0;32mI (133539) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (134365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (134728) intercom: Audio WS alive: yes[0m
+[0;32mI (136332) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (136365) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (138365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (138539) feeder: Polling commands...[0m
+[0;32mI (138688) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (139234) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (140365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (142278) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (142365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (143688) feeder: Polling commands...[0m
+[0;32mI (144012) feeder: Command poll result: ESP_OK, cmd={"action":"dispense","by":"88jdGoedlMSUT19uGLSnlQTwxIo1","grams":25,"id":"cmd_1776610292631","ts":1776610292683}[0m
+[0;32mI (144016) feeder: Command: dispense 25 g (manual)[0m
+[0;32mI (144219) feeder: === Feed workflow START (25 g, source=manual) ===[0m
+[0;32mI (144219) feeder: [1] Beep speaker[0m
+[0;32mI (144219) speaker: Playing beep (880 Hz, 2x 250 ms)[0m
+[0;33mW (144222) ledc: GPIO 13 is not usable, maybe conflict with others[0m
+[0;33mW (144365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (144823) audio_player: Playback complete.[0m
+[0;32mI (144832) audio_player: Playback stopped.[0m
+[0;32mI (144832) speaker: Beep complete[0m
+[0;32mI (144832) feeder: [2] Activating ToF sensor, waiting for pet…[0m
+[0;32mI (144833) tof: Waiting for presence (threshold=400 mm, timeout=180000ms)[0m
+[0;32mI (144841) tof: Sub-threshold reading 1/5 (14 mm)[0m
+[0;32mI (144888) tof: Sub-threshold reading 2/5 (14 mm)[0m
+[0;32mI (144976) tof: Sub-threshold reading 3/5 (14 mm)[0m
+[0;32mI (145075) tof: Sub-threshold reading 4/5 (14 mm)[0m
+[0;32mI (145163) tof: Sub-threshold reading 5/5 (14 mm)[0m
+[0;32mI (145163) tof: Presence confirmed at 14 mm[0m
+[0;32mI (145163) feeder: [3] Running sitting detector…[0m
+[0;32mI (145165) feeder: Camera streaming started[0m
+[0;32mI (145169) feeder: Camera streaming stopped[0m
+[0;33mW (145173) feeder: Pet not confirmed sitting — dispensing anyway[0m
+[0;32mI (145179) feeder: [4] Dispensing 25 g…[0m
+[0;32mI (145182) dispenser: Dispensing 25 g → 5.00 revolutions @ 10 RPM[0m
+[0;32mI (145288) dispenser: Rotating 1.25 rev @ 10 RPM (CW) — 2000 steps[0m
+[0;33mW (146365) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (148365) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (150365) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (152365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (154294) dispenser: Dispense complete[0m
+[0;32mI (154294) feeder: [5] Checking food level…[0m
+[0;32mI (154298) feeder: Food level distance: 16.6 cm (threshold: 20 cm)[0m
+[0;33mW (154365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (154466) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (155888) feeder: === Feed workflow DONE ===[0m
+[0;33mW (156365) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (158365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (158496) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (160365) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (160888) feeder: Polling commands...[0m
+[0;32mI (161161) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (162365) feeder: No frame received in 2s — queue empty?[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a728h (239400) map[0m
+[0;32mI (126) esp_image: segment 1: paddr=0004a750 vaddr=3fca8500 size=058c8h ( 22728) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2c64h (994404) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142c8c vaddr=3fcaddc8 size=0203ch (  8252) load[0m
+[0;32mI (280) esp_image: segment 4: paddr=00144cd0 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165104 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (321) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      797fe61-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 18 2026 23:23:22[0m
+[0;32mI (405) app_init: ELF file SHA256:  f19735656...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (452) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (535) camera wifi: nvs_flash_init done[0m
+[0;32mI (535) camera wifi: esp_netif_init...[0m
+[0;32mI (535) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (535) camera wifi: wifi init...[0m
+[0;32mI (539) pp: pp rom version: e7ae62f[0m
+[0;32mI (542) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (555) wifi_init: rx ba win: 32[0m
+[0;32mI (555) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (558) wifi_init: tcp mbox: 64[0m
+[0;32mI (561) wifi_init: tcp tx win: 65535[0m
+[0;32mI (564) wifi_init: tcp rx win: 65535[0m
+[0;32mI (567) wifi_init: tcp mss: 1440[0m
+[0;32mI (570) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (574) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (578) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (581) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (586) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (591) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (596) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x21 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download

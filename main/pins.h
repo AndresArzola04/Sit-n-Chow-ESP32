@@ -26,8 +26,8 @@
 #define PIN_ULTRASONIC_ECHO     GPIO_NUM_41   // was 35 (PSRAM), now M2 pin
 
 /* ── Stepper motor (DRV8825) ─────────────────────────────────────────────── */
-#define PIN_STEPPER_STEP        GPIO_NUM_1
-#define PIN_STEPPER_DIR         GPIO_NUM_39
+#define PIN_STEPPER_STEP        GPIO_NUM_39
+#define PIN_STEPPER_DIR         GPIO_NUM_1
 #define PIN_STEPPER_EN          GPIO_NUM_48
 #define PIN_STEPPER_SLP         GPIO_NUM_2
 #define PIN_STEPPER_RST         GPIO_NUM_42
