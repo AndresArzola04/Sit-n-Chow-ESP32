@@ -587,7 +587,7 @@ static void handle_pending_command(cJSON *cmd)
         int grams = (grams_j && cJSON_IsNumber(grams_j))
                     ? (int)grams_j->valuedouble : 25;
 
-        ESP_LOGI(TAG, "Command: dispense %d g (manual)", grams);
+        ESP_LOGI(TAG, "Command: dispense %d g", grams);
 
         /* Acknowledge by deleting the pending command before running workflow */
         char ack_path[128];
@@ -600,7 +600,13 @@ static void handle_pending_command(cJSON *cmd)
         // In handle_pending_command:
         cJSON *force_j = cJSON_GetObjectItem(cmd, "force");
         bool force = (force_j && cJSON_IsTrue(force_j));
-        do_feed_workflow(grams, "manual", force);
+
+        if(force) {
+            do_feed_workflow(grams, "Quick Feed", force);
+        } else {
+            do_feed_workflow(grams, "Scheduled Feed", force);
+        }
+        
     }
     /* Future commands: refill_alert_ack, firmware_update, etc. */
 }

@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "video_stream_server",
-    "project_version":    "11768ac-dirty",
+    "project_version":    "3eeedf8-dirty",
     "project_path":       "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.1",
     "build_dir":          "C:/Users/Lapatopa/Documents/SCHOOL_WORK/Senior Design/ESP32/Sit_n_Chow_Main/build",
