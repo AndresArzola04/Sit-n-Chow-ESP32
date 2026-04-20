@@ -207,7 +207,7 @@ static void check_and_fire(void)
         xSemaphoreGive(s_mutex);
 
         if (s_on_feed) {
-            s_on_feed(s->grams, "schedule");
+            s_on_feed(s->grams, "schedule", false);
         }
 
         return;  /* only one schedule fires per minute */

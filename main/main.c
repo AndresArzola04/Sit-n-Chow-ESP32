@@ -490,7 +490,7 @@ static bool sitting_detector_run(uint32_t timeout_ms)
  *   7. Log event + notify user
  */
 
-static void do_feed_workflow(int grams, const char *source)
+static void do_feed_workflow(int grams, const char *source, bool force)
 {
     /* Guard: only one feed at a time */
     if (xSemaphoreTake(s_feed_mutex, 0) != pdTRUE) {
@@ -504,29 +504,29 @@ static void do_feed_workflow(int grams, const char *source)
     ESP_LOGI(TAG, "[1] Beep speaker");
     speaker_beep();
 
-    /* ── Step 2 & 3: ToF — wait for pet to approach ─────────────────────── */
-    ESP_LOGI(TAG, "[2] Activating ToF sensor, waiting for pet…");
-    uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
-    bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
-
-    // if (!pet_detected) {
-    //     ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
-    //     xSemaphoreGive(s_feed_mutex);
-    //     return;
-    // }
-
-    /* ── Step 4: Camera sitting detection ────────────────────────────────── */
-    ESP_LOGI(TAG, "[3] Running sitting detector…");
-    camera_streaming_start();  // turn on for ML
-    
-    // bool sitting_confirmed = sitting_detector_run(
-    //     (uint32_t)CONFIG_SITTING_DETECT_TIMEOUT_S * 1000   /* e.g. 180 s */
-    // );
-
     bool sitting_confirmed = false;
+    if (!force) {
+        /* ── Step 2 & 3: ToF — wait for pet to approach ─────────────────────── */
+        ESP_LOGI(TAG, "[2] Activating ToF sensor, waiting for pet…");
+        uint32_t tof_timeout_ms = (uint32_t)CONFIG_PET_APPROACH_TIMEOUT_S * 1000;
+        bool pet_detected = tof_wait_for_presence(CONFIG_TOF_THRESHOLD_MM, tof_timeout_ms);
 
+        if (!pet_detected) {
+            ESP_LOGW(TAG, "No pet detected within timeout — aborting feed");
+            xSemaphoreGive(s_feed_mutex);
+            return;
+        }
 
-    camera_streaming_stop();
+        /* ── Step 4: Camera sitting detection ────────────────────────────────── */
+        ESP_LOGI(TAG, "[3] Running sitting detector…");
+        camera_streaming_start();  // turn on for ML
+        
+        sitting_confirmed = sitting_detector_run(
+            (uint32_t)CONFIG_SITTING_DETECT_TIMEOUT_S * 1000   /* e.g. 180 s */
+        );
+
+        camera_streaming_stop();
+    }
 
     if (!sitting_confirmed) {
         ESP_LOGW(TAG, "Pet not confirmed sitting — dispensing anyway");
@@ -597,7 +597,10 @@ static void handle_pending_command(cJSON *cmd)
 
         /* Run workflow directly — blocking the poll task is intentional
          * since overlapping feeds must not happen. */
-        do_feed_workflow(grams, "manual");
+        // In handle_pending_command:
+        cJSON *force_j = cJSON_GetObjectItem(cmd, "force");
+        bool force = (force_j && cJSON_IsTrue(force_j));
+        do_feed_workflow(grams, "manual", force);
     }
     /* Future commands: refill_alert_ack, firmware_update, etc. */
 }

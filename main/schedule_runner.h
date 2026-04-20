@@ -25,7 +25,7 @@ extern "C" {
  * @param grams   Amount of food to dispense (from the schedule).
  * @param source  Human-readable trigger string, e.g. "schedule".
  */
-typedef void (*feed_callback_t)(int grams, const char *source);
+typedef void (*feed_callback_t)(int grams, const char *source, bool force);
 
 /**
  * @brief Start the schedule runner background task.
