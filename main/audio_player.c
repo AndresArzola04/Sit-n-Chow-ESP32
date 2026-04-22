@@ -33,8 +33,8 @@ static SemaphoreHandle_t s_play_sem = NULL;
 static const int16_t *s_samples      = NULL;
 static uint32_t       s_sample_count = 0;
 
-#define LEDC_TIMER      LEDC_TIMER_0
-#define LEDC_CHANNEL    LEDC_CHANNEL_0
+#define LEDC_TIMER      LEDC_TIMER_1
+#define LEDC_CHANNEL    LEDC_CHANNEL_1
 #define LEDC_SPEED_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_RESOLUTION LEDC_TIMER_10_BIT   
 

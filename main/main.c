@@ -53,7 +53,6 @@
 #include "audio_intercom.h"
 #include "img_converters.h"
 #include "esp_system.h"
-
 #include "driver/i2c.h"
 
 
@@ -268,10 +267,7 @@ static esp_err_t init_camera(uint32_t xclk_freq_hz,
         return ESP_FAIL;
     }
 
-    s->set_vflip(s, 1);
-    s->set_lenc(s, 1);
-    s->set_raw_gma(s, 1);
-    s->set_aec2(s, 1);
+    s->set_vflip(s,1);
 
     camera_sensor_info_t *s_info = esp_camera_sensor_get_info(&(s->id));
     if (s_info && pixel_format == PIXFORMAT_JPEG && s_info->support_jpeg) {
@@ -285,8 +281,8 @@ static esp_err_t reinit_camera(void)
 {
     ESP_LOGW(TAG, "Reinitialising camera…");
     esp_camera_deinit();
-    vTaskDelay(pdMS_TO_TICKS(500));
-    esp_err_t err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_SVGA, 2);
+    vTaskDelay(pdMS_TO_TICKS(500)); 
+    esp_err_t err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_HVGA, 2);
     ESP_LOGI(TAG, "Camera reinit: %s", esp_err_to_name(err));
     return err;
 }
@@ -359,13 +355,14 @@ static bool fetch_owner_uid(void)
  * Log a completed feed event to Firebase:
  *   feedEvents/<deviceId>/<pushKey>
  */
-static void log_feed_event(int grams, const char *source)
+static void log_feed_event(int grams, const char *source, bool food_low)
 {
     cJSON *event = cJSON_CreateObject();
     cJSON_AddNumberToObject(event, "ts",     (double)time(NULL) * 1000.0);
     cJSON_AddNumberToObject(event, "grams",  grams);
     cJSON_AddStringToObject(event, "source", source);
     cJSON_AddStringToObject(event, "by",     "device");
+    cJSON_AddBoolToObject(event,   "foodLow", food_low);   // ← new
 
     char path[128];
     snprintf(path, sizeof(path), "feedEvents/%s", firebase_client_get_device_id());
@@ -549,7 +546,7 @@ static void do_feed_workflow(int grams, const char *source, bool force)
     }
 
     /* ── Step 7: Log event + notifications ───────────────────────────────── */
-    log_feed_event(grams, source);
+    log_feed_event(grams, source, food_low);
 
     push_notification("🐾 Feeding complete",
                       sitting_confirmed
@@ -726,6 +723,10 @@ void app_main(void)
     gpio_set_level(PIN_SPEAKER, 0);
     
     ESP_LOGI(TAG, "=== Sitnchow Feeder booting ===");
+    
+    ESP_LOGI(TAG, "Free heap: %lu internal, %lu PSRAM",
+    heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+    heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
     /* 1. WiFi */
     app_wifi_main();
@@ -757,17 +758,26 @@ void app_main(void)
     /* 6. Camera */
     xQueueIFrame = xQueueCreate(4, sizeof(camera_fb_t *));
     vTaskDelay(pdMS_TO_TICKS(2000));
-    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_JPEG, FRAMESIZE_SVGA, 2);
+    esp_err_t cam_err = init_camera(20000000, PIXFORMAT_RGB565, FRAMESIZE_HVGA, 2);
     ESP_LOGI(TAG, "Camera init: %s", esp_err_to_name(cam_err));
+
+    ESP_LOGI(TAG, "Free heap: %lu internal, %lu PSRAM",
+    heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+    heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
     /* 7. WebSocket stream (only if camera working) */
     const bool camera_ok = (cam_err == ESP_OK);
     if (camera_ok) {
+        vTaskDelay(pdMS_TO_TICKS(1000));
         ws_client_init(CONFIG_WS_INGEST_URL); // Changed to new websocket url
         ESP_LOGI(TAG, "Camera WebSocket stream connected");
     } else {
         ESP_LOGW(TAG, "Camera not available — skipping WebSocket stream");
     }
+
+    ESP_LOGI(TAG, "Free heap: %lu internal, %lu PSRAM",
+    heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+    heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
     /* 7b. Sensors & actuators */
     speaker_init();
@@ -782,6 +792,10 @@ void app_main(void)
     if (tof_err != ESP_OK) {
         ESP_LOGW(TAG, "ToF sensor not detected — presence detection disabled");
     }
+
+    ESP_LOGI(TAG, "Free heap: %lu internal, %lu PSRAM",
+    heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+    heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
     
 
@@ -858,5 +872,9 @@ void app_main(void)
     }
 
     ESP_LOGI(TAG, "All tasks started");
+
+    ESP_LOGI(TAG, "Free heap: %lu internal, %lu PSRAM",
+    heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+    heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
     /* app_main returns; FreeRTOS scheduler keeps everything running */
 }

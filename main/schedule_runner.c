@@ -32,7 +32,7 @@
 
 #define TAG              "sched"
 #define REFRESH_INTERVAL_S  60    /* re-fetch schedules from Firebase every 5 min */
-#define CHECK_INTERVAL_MS   20000  /* check time every 30 s */
+#define CHECK_INTERVAL_MS   10000  /* check time every 30 s */
 #define MAX_SCHEDULES       32
 
 #define UID_MAX_LEN         64

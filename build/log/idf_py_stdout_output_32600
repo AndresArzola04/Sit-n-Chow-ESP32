@@ -1,0 +1,792 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.1\tools/idf_monitor.py -p COM7 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\video_stream_server.elf C:\Users\Lapatopa\Documents\SCHOOL_WORK\Senior Design\ESP32\Sit_n_Chow_Main\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.1\tools\idf.py'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a8f8h (239864) map[0m
+[0;32mI (127) esp_image: segment 1: paddr=0004a920 vaddr=3fca8500 size=056f8h ( 22264) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2df8h (994808) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142e20 vaddr=3fcadbf8 size=0220ch (  8716) load[0m
+[0;32mI (281) esp_image: segment 4: paddr=00145034 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165468 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (321) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      7f6a269-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 20 2026 14:44:18[0m
+[0;32mI (405) app_init: ELF file SHA256:  347e05691...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (453) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (533) camera wifi: nvs_flash_init done[0m
+[0;32mI (533) camera wifi: esp_netif_init...[0m
+[0;32mI (534) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (534) camera wifi: wifi init...[0m
+[0;32mI (538) pp: pp rom version: e7ae62f[0m
+[0;32mI (541) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (554) wifi_init: rx ba win: 32[0m
+[0;32mI (554) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (557) wifi_init: tcp mbox: 64[0m
+[0;32mI (560) wifi_init: tcp tx win: 65535[0m
+[0;32mI (563) wifi_init: tcp rx win: 65535[0m
+[0;32mI (566) wifi_init: tcp mss: 1440[0m
+[0;32mI (569) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (573) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (576) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (580) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (584) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (590) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (595) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (4309) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (4309) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (4309) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (4314) feeder: WiFi connected[0m
+[0;32mI (4317) feeder: Waiting for SNTP sync…[0m
+[0;32mI (9321) feeder: Clock synced: 2026-04-20 16:57:22[0m
+[0;32mI (9321) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (10270) firebase: Auth token refreshed[0m
+[0;32mI (10270) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (11084) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (13390) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (13390) cam_hal: cam init ok[0m
+[0;32mI (13390) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (13390) sccb: sccb_i2c_port=1[0m
+[0;32mI (13403) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (13404) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (13404) camera: Detected OV5640 camera[0m
+[0;32mI (13404) camera: Detected camera at address=0x3c[0m
+[0;32mI (14108) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (14108) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (14110) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (14116) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (14122) cam_hal: cam config ok[0m
+[0;32mI (14140) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (14141) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (14197) feeder: Camera init: ESP_OK[0m
+cam_hal: NO-SOI - JPEG start marker missing
+cam_hal: NO-SOI - JPEG start marker missing
+[0;32mI (15198) websocket_client: Started[0m
+[0;32mI (15199) feeder: Camera WebSocket stream connected[0m
+[0;32mI (15200) audio_player: Playback started.[0m
+[0;32mI (15200) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (15206) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (15299) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (16204) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (16207) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;33mW (17300) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (17301) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (17308) websocket_client: Started[0m
+[0;32mI (17310) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (17810) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (18310) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (18310) tof: About to install I2C driver on port 0[0m
+[0;32mI (18311) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (18315) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (18320) TMF8701: isI2CAddress: device responded at 0x41, val=0x01[0m
+[0;32mI (18325) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (18339) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (18339) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (18342) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (18347) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (18354) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (18464) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (19695) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (19700) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (19701) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (19701) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (19719) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (19719) TMF8701: begin(): APP0 is running[0m
+[0;32mI (19720) TMF8701: begin(): initialization OK[0m
+[0;32mI (19721) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (19727) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (21093) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (21093) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (24105) feeder: heartbeat_task created[0m
+[0;32mI (24106) feeder: command_poll_task created[0m
+[0;32mI (24107) feeder: ws_send_task started, free heap: 7489944[0m
+[0;32mI (24107) feeder: ws_send_task created[0m
+[0;32mI (24111) feeder: camera_capture_task created[0m
+[0;32mI (24115) feeder: camera_poll_task created[0m
+[0;32mI (24118) feeder: All tasks started[0m
+[0;32mI (24122) main_task: Returned from app_main()[0m
+[0;33mW (26107) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (27265) firebase: streaming_get: received 5 bytes total[0m
+[0;33mW (28107) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (30107) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (30438) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (30440) feeder: Camera streaming started[0m
+[0;32mI (30611) feeder: Frame captured: 24844 bytes[0m
+[0;32mI (30623) feeder: Frame captured: 24737 bytes[0m
+[0;32mI (30820) feeder: Frame captured: 24802 bytes[0m
+[0;32mI (30870) feeder: Frame captured: 24718 bytes[0m
+[0;32mI (31314) feeder: Frame captured: 24883 bytes[0m
+[0;32mI (31512) feeder: Frame captured: 24903 bytes[0m
+[0;32mI (31606) feeder: Polling commands...[0m
+[0;32mI (31610) feeder: Frame captured: 24888 bytes[0m
+[0;32mI (31709) feeder: Frame captured: 24895 bytes[0m
+[0;32mI (31808) feeder: Frame captured: 24900 bytes[0m
+[0;32mI (31907) feeder: Frame captured: 25021 bytes[0m
+[0;32mI (31920) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (32104) feeder: Frame captured: 24970 bytes[0m
+[0;32mI (32401) feeder: Frame captured: 24976 bytes[0m
+[0;32mI (32499) feeder: Frame captured: 25031 bytes[0m
+[0;32mI (32598) feeder: Frame captured: 24955 bytes[0m
+[0;32mI (32697) feeder: Frame captured: 25006 bytes[0m
+[0;32mI (32796) feeder: Frame captured: 24881 bytes[0m
+[0;32mI (33093) feeder: Frame captured: 24990 bytes[0m
+[0;32mI (33191) feeder: Frame captured: 24888 bytes[0m
+[0;32mI (33290) feeder: Frame captured: 24903 bytes[0m
+[0;32mI (33389) feeder: Frame captured: 24870 bytes[0m
+[0;32mI (33586) feeder: Frame captured: 24951 bytes[0m
+[0;32mI (33685) feeder: Frame captured: 24962 bytes[0m
+[0;32mI (33784) feeder: Frame captured: 24869 bytes[0m
+[0;32mI (33882) feeder: Frame captured: 24815 bytes[0m
+[0;32mI (33932) feeder: Frame captured: 24926 bytes[0m
+[0;32mI (34222) feeder: Sent 25 frames[0m
+[0;32mI (34277) feeder: Frame captured: 24904 bytes[0m
+[0;32mI (34376) feeder: Frame captured: 24933 bytes[0m
+[0;32mI (34475) feeder: Frame captured: 24896 bytes[0m
+[0;32mI (34598) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (34673) feeder: Frame captured: 24855 bytes[0m
+[0;32mI (34771) feeder: Frame captured: 24835 bytes[0m
+[0;32mI (34822) feeder: Frame captured: 24911 bytes[0m
+[0;32mI (35018) feeder: Frame captured: 24903 bytes[0m
+[0;32mI (35117) feeder: Frame captured: 24970 bytes[0m
+[0;32mI (35413) feeder: Frame captured: 24948 bytes[0m
+[0;32mI (35512) feeder: Frame captured: 24929 bytes[0m
+[0;32mI (35611) feeder: Frame captured: 24974 bytes[0m
+[0;32mI (35710) feeder: Frame captured: 24937 bytes[0m
+[0;32mI (35808) feeder: Frame captured: 24874 bytes[0m
+[0;32mI (36105) feeder: Frame captured: 25109 bytes[0m
+[0;32mI (36204) feeder: Frame captured: 24950 bytes[0m
+[0;32mI (36302) feeder: Frame captured: 24748 bytes[0m
+[0;32mI (36648) feeder: Frame captured: 24932 bytes[0m
+[0;32mI (36747) feeder: Frame captured: 25049 bytes[0m
+[0;32mI (36920) feeder: Polling commands...[0m
+[0;32mI (37891) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (38034) feeder: Frame captured: 24965 bytes[0m
+[0;32mI (38229) feeder: Frame captured: 24837 bytes[0m
+[0;32mI (38327) feeder: Frame captured: 24984 bytes[0m
+I (38430) feeder: Frame captured: 24950 bytes
+[0;32mI (38624) feeder: Frame captured: 24964 bytes[0m
+[0;32mI (38772) feeder: Frame captured: 24895 bytes[0m
+[0;32mI (38969) feeder: Frame captured: 25001 bytes[0m
+[0;32mI (39049) feeder: Sent 50 frames[0m
+[0;32mI (39068) feeder: Frame captured: 24924 bytes[0m
+[0;32mI (39150) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (39167) feeder: Frame captured: 24935 bytes[0m
+[0;32mI (39267) feeder: Frame captured: 24999 bytes[0m
+[0;32mI (39414) feeder: Frame captured: 25053 bytes[0m
+[0;32mI (39513) feeder: Frame captured: 24974 bytes[0m
+[0;32mI (39809) feeder: Frame captured: 24939 bytes[0m
+[0;32mI (39908) feeder: Frame captured: 24913 bytes[0m
+[0;32mI (40204) feeder: Frame captured: 24915 bytes[0m
+[0;32mI (40303) feeder: Frame captured: 24871 bytes[0m
+[0;32mI (40599) feeder: Frame captured: 24896 bytes[0m
+[0;32mI (40698) feeder: Frame captured: 24891 bytes[0m
+[0;32mI (40797) feeder: Frame captured: 24943 bytes[0m
+[0;32mI (40995) feeder: Frame captured: 24907 bytes[0m
+[0;32mI (41143) feeder: Frame captured: 24835 bytes[0m
+[0;32mI (41340) feeder: Frame captured: 25003 bytes[0m
+[0;32mI (41439) feeder: Frame captured: 24925 bytes[0m
+[0;32mI (41538) feeder: Frame captured: 24879 bytes[0m
+[0;32mI (41636) feeder: Frame captured: 24973 bytes[0m
+[0;32mI (41834) feeder: Frame captured: 24824 bytes[0m
+[0;32mI (41883) feeder: Frame captured: 24983 bytes[0m
+[0;32mI (42180) feeder: Frame captured: 24757 bytes[0m
+[0;32mI (42328) feeder: Frame captured: 24898 bytes[0m
+[0;32mI (42427) feeder: Frame captured: 24952 bytes[0m
+[0;32mI (42822) feeder: Frame captured: 24866 bytes[0m
+[0;32mI (42904) feeder: Polling commands...[0m
+[0;32mI (42921) feeder: Frame captured: 24970 bytes[0m
+[0;32mI (43004) feeder: Sent 75 frames[0m
+[0;32mI (43007) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (43019) feeder: Frame captured: 24943 bytes[0m
+[0;32mI (43113) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (43118) feeder: Frame captured: 24781 bytes[0m
+[0;32mI (43168) feeder: Frame captured: 25014 bytes[0m
+[0;32mI (43464) feeder: Frame captured: 24932 bytes[0m
+[0;32mI (43563) feeder: Frame captured: 24775 bytes[0m
+[0;32mI (43612) feeder: Frame captured: 25032 bytes[0m
+[0;32mI (43810) feeder: Frame captured: 24843 bytes[0m
+[0;32mI (43908) feeder: Frame captured: 24855 bytes[0m
+[0;32mI (44155) feeder: Frame captured: 24898 bytes[0m
+[0;32mI (44254) feeder: Frame captured: 24765 bytes[0m
+[0;32mI (45978) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (45983) feeder: Frame captured: 24794 bytes[0m
+[0;32mI (46032) feeder: Frame captured: 24700 bytes[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x9 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+[0;32mI (25) boot: ESP-IDF v5.5.1 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Apr 16 2026 16:27:53[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.4[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (61) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (74) boot:  2 factory          factory app      00 00 00010000 00400000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (84) esp_image: segment 0: paddr=00010020 vaddr=3c100020 size=3a8f8h (239864) map[0m
+[0;32mI (127) esp_image: segment 1: paddr=0004a920 vaddr=3fca8500 size=056f8h ( 22264) load[0m
+[0;32mI (131) esp_image: segment 2: paddr=00050020 vaddr=42000020 size=f2df8h (994808) map[0m
+[0;32mI (279) esp_image: segment 3: paddr=00142e20 vaddr=3fcadbf8 size=0220ch (  8716) load[0m
+[0;32mI (281) esp_image: segment 4: paddr=00145034 vaddr=40378000 size=2042ch (132140) load[0m
+[0;32mI (307) esp_image: segment 5: paddr=00165468 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (321) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (321) boot: Disabling RNG early entropy source...[0m
+[0;32mI (331) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (331) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (331) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (333) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (337) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (342) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (346) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (351) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (356) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (360) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (365) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (370) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (373) esp_psram: Speed: 40MHz[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (391) cpu_start: Pro cpu start user code[0m
+[0;32mI (391) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (391) app_init: Application information:[0m
+[0;32mI (391) app_init: Project name:     video_stream_server[0m
+[0;32mI (396) app_init: App version:      7f6a269-dirty[0m
+[0;32mI (400) app_init: Compile time:     Apr 20 2026 14:44:18[0m
+[0;32mI (405) app_init: ELF file SHA256:  347e05691...[0m
+[0;32mI (410) app_init: ESP-IDF:          v5.5.1[0m
+[0;32mI (414) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (417) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (421) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (432) heap_init: At 3FCB95C0 len 00030150 (192 KiB): RAM[0m
+[0;32mI (437) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (442) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (447) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (453) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (459) spi_flash: detected chip: generic[0m
+[0;32mI (463) spi_flash: flash io: qio[0m
+[0;33mW (466) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (482) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (488) coexist: coex firmware version: b0bcc39[0m
+[0;32mI (492) coexist: coexist rom version e7ae62f[0m
+[0;32mI (497) main_task: Started on CPU0[0m
+[0;32mI (500) esp_psram: Reserving pool of 48K of internal memory for DMA/internal allocations[0m
+[0;32mI (508) main_task: Calling app_main()[0m
+[0;32mI (511) feeder: === Sitnchow Feeder booting ===[0m
+[0;32mI (515) camera wifi: app_wifi_main start[0m
+[0;32mI (519) camera wifi: nvs_flash_init...[0m
+[0;32mI (533) camera wifi: nvs_flash_init done[0m
+[0;32mI (534) camera wifi: esp_netif_init...[0m
+[0;32mI (534) camera wifi: esp_event_loop_create_default...[0m
+[0;32mI (534) camera wifi: wifi init...[0m
+[0;32mI (538) pp: pp rom version: e7ae62f[0m
+[0;32mI (541) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (554) wifi_init: rx ba win: 32[0m
+[0;32mI (554) wifi_init: accept mbox: 6[0m
+[0;32mI (555) wifi_init: tcpip mbox: 64[0m
+[0;32mI (555) wifi_init: udp mbox: 64[0m
+[0;32mI (557) wifi_init: tcp mbox: 64[0m
+[0;32mI (560) wifi_init: tcp tx win: 65535[0m
+[0;32mI (563) wifi_init: tcp rx win: 65535[0m
+[0;32mI (566) wifi_init: tcp mss: 1440[0m
+[0;32mI (569) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (573) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (576) wifi_init: LWIP IRAM OP enabled[0m
+[0;32mI (580) wifi_prov_scheme_ble: BT memory released[0m
+[0;32mI (584) camera wifi: Already provisioned, connecting to WiFi[0m
+[0;32mI (590) wifi_prov_scheme_ble: BTDM memory released[0m
+[0;32mI (595) phy_init: phy_version 701,f4f1da3a,Mar  3 2025,15:50:10[0m
+[0;32mI (3037) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (5442) camera wifi: Disconnected, reconnecting...[0m
+[0;32mI (9140) esp_netif_handlers: sta ip: 172.20.10.8, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (9140) camera wifi: Got IP: 172.20.10.8[0m
+[0;32mI (9140) camera wifi: WiFi connected, continuing...[0m
+[0;32mI (9145) feeder: WiFi connected[0m
+[0;32mI (9148) feeder: Waiting for SNTP sync…[0m
+[0;32mI (12152) feeder: Clock synced: 2026-04-20 17:07:13[0m
+[0;32mI (12152) firebase: Device ID: SIT_N_CHOW_D11908[0m
+[0;32mI (13591) firebase: Auth token refreshed[0m
+[0;32mI (13591) firebase: Firebase client ready (device=SIT_N_CHOW_D11908, DB=sit-n-chow-v1-default-rtdb.firebaseio.com)[0m
+[0;32mI (15622) feeder: Owner UID: 88jdGoedlMSUT19uGLSnlQTwxIo1[0m
+[0;32mI (18017) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (18017) cam_hal: cam init ok[0m
+[0;32mI (18017) sccb: pin_sda 7 pin_scl 6[0m
+[0;32mI (18017) sccb: sccb_i2c_port=1[0m
+[0;32mI (18030) ov3660: Mismatch PID=0x5640[0m
+[0;32mI (18031) camera: Camera PID=0x5640 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (18031) camera: Detected OV5640 camera[0m
+[0;32mI (18031) camera: Detected camera at address=0x3c[0m
+[0;32mI (18736) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (18736) cam_hal: buffer_size: 16384, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 16, total_cnt: 93[0m
+[0;32mI (18738) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (18744) cam_hal: Allocating 96000 Byte frame buffer in PSRAM[0m
+[0;32mI (18750) cam_hal: cam config ok[0m
+[0;32mI (18768) ov5640: Set PLL: bypass: 0, multiplier: 180, sys_div: 4, pre_div: 2, root_2x: 0, pclk_root_div: 2, pclk_manual: 1, pclk_div: 4[0m
+[0;32mI (18769) ov5640: Calculated XVCLK: 20000000 Hz, REFIN: 10000000 Hz, VCO: 1800000000 Hz, PLL_CLK: 180000000 Hz, SYSCLK: 45000000 Hz, PCLK: 11250000 Hz[0m
+[0;32mI (18825) feeder: Camera init: ESP_OK[0m
+[0;32mI (19826) websocket_client: Started[0m
+[0;32mI (19827) feeder: Camera WebSocket stream connected[0m
+[0;32mI (19828) audio_player: Playback started.[0m
+[0;32mI (19828) audio_player: Initialized: GPIO13, PWM 78125Hz, Sample rate 16000Hz[0m
+[0;33mW (19834) speaker: Internal alloc failed (19200 bytes), trying PSRAM[0m
+[0;32mI (19925) speaker: Speaker initialised (GPIO13, 19200 bytes, PSRAM)[0m
+[0;32mI (21377) feeder: Camera WebSocket connected to /ingest[0m
+[0;32mI (21381) feeder: Sent websocket hello for device SIT_N_CHOW_D11908[0m
+[0;33mW (21926) intercom: Internal RAM unavailable for playback — will use PSRAM[0m
+[0;32mI (21927) intercom: Audio stream URL: wss://sit-n-chow-websocket-810978717979.us-central1.run.app/audio-stream?device=SIT_N_CHOW_D11908[0m
+[0;32mI (21934) websocket_client: Started[0m
+[0;32mI (21937) intercom: Audio intercom started (device=SIT_N_CHOW_D11908)[0m
+[0;32mI (22436) ultrasonic: Ultrasonic sensor initialised (TRIG=45 ECHO=41)[0m
+[0;32mI (22936) dispenser: Dispenser initialised (5.0 g/rev, 10 RPM)[0m
+[0;32mI (22936) tof: About to install I2C driver on port 0[0m
+[0;32mI (22937) tof: I2C initialised on port 0 (SDA=38 SCL=14)[0m
+[0;32mI (22941) TMF8701: begin(): probing addr=0x41 on port=0[0m
+[0;32mI (22946) TMF8701: isI2CAddress: device responded at 0x41, val=0x01[0m
+[0;32mI (22951) TMF8701: begin(): I2C device found, sending sleep() then enable[0m
+[0;32mI (22965) TMF8701: begin(): initial appId=0x80[0m
+[0;32mI (22965) TMF8701: begin(): in bootloader, downloading RAM patch...[0m
+[0;32mI (22968) TMF8701: downloadRamPatch: enter, appId=0x80[0m
+[0;32mI (22973) TMF8701: downloadRamPatch: sending init CMD (0x14,0x01,0x29)[0m
+[0;32mI (22980) TMF8701: downloadRamPatch: sending config CMD (0x43,0x02,0x00,0x00)[0m
+[0;32mI (23298) intercom: WebSocket connected to audio-stream[0m
+[0;32mI (24327) TMF8701: downloadRamPatch: all blocks sent, sending reset CMD[0m
+[0;32mI (24333) TMF8701: downloadRamPatch: waitForCpuReady() -> true[0m
+[0;32mI (24334) TMF8701: begin(): appId after patch=0x80[0m
+[0;33mW (24334) TMF8701: begin(): APP0 not running after patch, requesting application load[0m
+[0;32mI (24352) TMF8701: begin(): appId after loadApplication=0xC0[0m
+[0;32mI (24352) TMF8701: begin(): APP0 is running[0m
+[0;32mI (24353) TMF8701: begin(): initialization OK[0m
+[0;32mI (24354) TMF8701: startMeasurement(): calibMode=0, distMode=2[0m
+[0;32mI (24360) TMF8701: setCaibrationMode(): mode=0[0m
+[0;32mI (25726) tof: TMF8701 ready (threshold set per workflow, 5 confirm samples)[0m
+[0;32mI (25726) sched: Schedule runner started (device=SIT_N_CHOW_D11908 uid=88jdGoedlMSUT19uGLSnlQTwxIo1)[0m
+[0;32mI (28739) feeder: heartbeat_task created[0m
+[0;32mI (28739) feeder: command_poll_task created[0m
+[0;32mI (28740) feeder: ws_send_task started, free heap: 7489916[0m
+[0;32mI (28740) feeder: ws_send_task created[0m
+[0;32mI (28745) feeder: camera_capture_task created[0m
+[0;32mI (28748) feeder: camera_poll_task created[0m
+[0;32mI (28752) feeder: All tasks started[0m
+[0;32mI (28755) main_task: Returned from app_main()[0m
+[0;33mW (30740) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (31892) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (31894) feeder: Camera streaming started[0m
+[0;32mI (32245) feeder: Frame captured: 23016 bytes[0m
+[0;32mI (32284) feeder: Frame captured: 23063 bytes[0m
+[0;32mI (32481) feeder: Frame captured: 23007 bytes[0m
+[0;32mI (32580) feeder: Frame captured: 23067 bytes[0m
+[0;32mI (32678) feeder: Frame captured: 22985 bytes[0m
+[0;32mI (32777) feeder: Frame captured: 23058 bytes[0m
+[0;32mI (32876) feeder: Frame captured: 23079 bytes[0m
+[0;32mI (32975) feeder: Frame captured: 23010 bytes[0m
+[0;32mI (33074) feeder: Frame captured: 23079 bytes[0m
+[0;32mI (33172) feeder: Frame captured: 23087 bytes[0m
+[0;32mI (33271) feeder: Frame captured: 23046 bytes[0m
+[0;32mI (33370) feeder: Frame captured: 23039 bytes[0m
+[0;32mI (33469) feeder: Frame captured: 23072 bytes[0m
+[0;32mI (33568) feeder: Frame captured: 23031 bytes[0m
+[0;32mI (33666) feeder: Frame captured: 23102 bytes[0m
+[0;32mI (33765) feeder: Frame captured: 23045 bytes[0m
+[0;32mI (33864) feeder: Frame captured: 23056 bytes[0m
+[0;32mI (33963) feeder: Frame captured: 23164 bytes[0m
+[0;32mI (34062) feeder: Frame captured: 23041 bytes[0m
+[0;32mI (34160) feeder: Frame captured: 23055 bytes[0m
+[0;32mI (34259) feeder: Frame captured: 23073 bytes[0m
+[0;32mI (34358) feeder: Frame captured: 23049 bytes[0m
+[0;32mI (34457) feeder: Frame captured: 23103 bytes[0m
+[0;32mI (34555) feeder: Frame captured: 23070 bytes[0m
+[0;32mI (34654) feeder: Frame captured: 23020 bytes[0m
+[0;32mI (34730) feeder: Sent 25 frames[0m
+[0;32mI (34753) feeder: Frame captured: 23096 bytes[0m
+[0;32mI (34852) feeder: Frame captured: 23064 bytes[0m
+[0;32mI (34951) feeder: Frame captured: 23104 bytes[0m
+[0;32mI (35049) feeder: Frame captured: 23108 bytes[0m
+[0;32mI (35148) feeder: Frame captured: 23131 bytes[0m
+[0;32mI (35247) feeder: Frame captured: 23148 bytes[0m
+[0;32mI (35346) feeder: Frame captured: 23137 bytes[0m
+[0;32mI (35438) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (35444) feeder: Frame captured: 23159 bytes[0m
+[0;32mI (35543) feeder: Frame captured: 23129 bytes[0m
+[0;32mI (35643) feeder: Frame captured: 23076 bytes[0m
+[0;32mI (35741) feeder: Frame captured: 23036 bytes[0m
+[0;32mI (35840) feeder: Frame captured: 23038 bytes[0m
+[0;32mI (35938) feeder: Frame captured: 23057 bytes[0m
+[0;32mI (36037) feeder: Frame captured: 23051 bytes[0m
+[0;32mI (36136) feeder: Frame captured: 22931 bytes[0m
+[0;32mI (36235) feeder: Frame captured: 22986 bytes[0m
+[0;32mI (36312) feeder: Polling commands...[0m
+[0;32mI (36334) feeder: Frame captured: 22988 bytes[0m
+[0;32mI (36432) feeder: Frame captured: 22967 bytes[0m
+[0;32mI (36511) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (36531) feeder: Frame captured: 22954 bytes[0m
+[0;32mI (36630) feeder: Frame captured: 22975 bytes[0m
+[0;32mI (36729) feeder: Frame captured: 22951 bytes[0m
+[0;32mI (36827) feeder: Frame captured: 22926 bytes[0m
+[0;32mI (36926) feeder: Frame captured: 22777 bytes[0m
+[0;32mI (37025) feeder: Frame captured: 22489 bytes[0m
+[0;32mI (37124) feeder: Frame captured: 23640 bytes[0m
+[0;32mI (37173) feeder: Frame captured: 23881 bytes[0m
+[0;32mI (37286) feeder: Sent 50 frames[0m
+[0;32mI (37420) feeder: Frame captured: 24994 bytes[0m
+[0;32mI (37519) feeder: Frame captured: 25412 bytes[0m
+[0;32mI (37619) feeder: Frame captured: 25489 bytes[0m
+[0;32mI (37815) feeder: Frame captured: 25727 bytes[0m
+[0;32mI (37866) feeder: Frame captured: 25826 bytes[0m
+[0;32mI (38062) feeder: Frame captured: 26394 bytes[0m
+[0;32mI (38161) feeder: Frame captured: 26649 bytes[0m
+[0;32mI (38211) feeder: Frame captured: 26662 bytes[0m
+[0;32mI (38311) feeder: Frame captured: 26605 bytes[0m
+[0;32mI (38458) feeder: Frame captured: 26885 bytes[0m
+[0;32mI (38655) feeder: Frame captured: 26668 bytes[0m
+[0;32mI (38705) feeder: Frame captured: 26477 bytes[0m
+[0;32mI (38902) feeder: Frame captured: 26651 bytes[0m
+[0;32mI (38952) feeder: Frame captured: 26822 bytes[0m
+[0;32mI (39081) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (39149) feeder: Frame captured: 27522 bytes[0m
+[0;32mI (39248) feeder: Frame captured: 26743 bytes[0m
+[0;32mI (39300) feeder: Frame captured: 26839 bytes[0m
+[0;32mI (39445) feeder: Frame captured: 26461 bytes[0m
+[0;32mI (39544) feeder: Frame captured: 22246 bytes[0m
+[0;32mI (39643) feeder: Frame captured: 22249 bytes[0m
+[0;32mI (39742) feeder: Frame captured: 22261 bytes[0m
+[0;32mI (39840) feeder: Frame captured: 22351 bytes[0m
+[0;32mI (39939) feeder: Frame captured: 22828 bytes[0m
+[0;32mI (40038) feeder: Frame captured: 26442 bytes[0m
+[0;32mI (40125) feeder: Sent 75 frames[0m
+[0;32mI (40137) feeder: Frame captured: 26790 bytes[0m
+[0;32mI (40187) feeder: Frame captured: 27192 bytes[0m
+[0;32mI (40384) feeder: Frame captured: 28550 bytes[0m
+[0;32mI (40483) feeder: Frame captured: 28861 bytes[0m
+[0;32mI (40532) feeder: Frame captured: 26271 bytes[0m
+[0;32mI (40729) feeder: Frame captured: 18259 bytes[0m
+[0;32mI (40828) feeder: Frame captured: 26251 bytes[0m
+[0;32mI (40927) feeder: Frame captured: 27663 bytes[0m
+[0;32mI (40977) feeder: Frame captured: 27499 bytes[0m
+[0;32mI (41125) feeder: Frame captured: 27741 bytes[0m
+[0;32mI (41174) feeder: Frame captured: 27777 bytes[0m
+[0;32mI (41323) feeder: Frame captured: 23614 bytes[0m
+[0;32mI (41473) feeder: Frame captured: 22588 bytes[0m
+[0;32mI (41620) feeder: Frame captured: 23020 bytes[0m
+[0;32mI (41757) feeder: Polling commands...[0m
+[0;32mI (41816) feeder: Frame captured: 23143 bytes[0m
+[0;32mI (41895) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (41915) feeder: Frame captured: 23202 bytes[0m
+[0;32mI (42014) feeder: Frame captured: 23187 bytes[0m
+[0;32mI (42094) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (42112) feeder: Frame captured: 23174 bytes[0m
+[0;32mI (42211) feeder: Frame captured: 23160 bytes[0m
+[0;32mI (42310) feeder: Frame captured: 23265 bytes[0m
+[0;32mI (42409) feeder: Frame captured: 23162 bytes[0m
+[0;32mI (42508) feeder: Frame captured: 23163 bytes[0m
+[0;32mI (42606) feeder: Frame captured: 23123 bytes[0m
+[0;32mI (42705) feeder: Frame captured: 23191 bytes[0m
+[0;32mI (42805) feeder: Frame captured: 23075 bytes[0m
+[0;32mI (42881) feeder: Sent 100 frames[0m
+[0;32mI (42903) feeder: Frame captured: 23083 bytes[0m
+[0;32mI (43002) feeder: Frame captured: 23170 bytes[0m
+[0;32mI (43100) feeder: Frame captured: 23117 bytes[0m
+[0;32mI (43199) feeder: Frame captured: 23040 bytes[0m
+[0;32mI (43299) feeder: Frame captured: 23096 bytes[0m
+[0;32mI (43397) feeder: Frame captured: 23040 bytes[0m
+[0;32mI (43495) feeder: Frame captured: 23054 bytes[0m
+[0;32mI (43594) feeder: Frame captured: 23060 bytes[0m
+[0;32mI (43693) feeder: Frame captured: 23064 bytes[0m
+[0;32mI (43792) feeder: Frame captured: 23027 bytes[0m
+[0;32mI (43891) feeder: Frame captured: 23054 bytes[0m
+[0;32mI (43989) feeder: Frame captured: 23026 bytes[0m
+[0;32mI (44088) feeder: Frame captured: 23057 bytes[0m
+[0;32mI (44187) feeder: Frame captured: 23061 bytes[0m
+[0;32mI (44286) feeder: Frame captured: 23056 bytes[0m
+[0;32mI (44384) feeder: Frame captured: 23054 bytes[0m
+[0;32mI (44681) feeder: Frame captured: 23005 bytes[0m
+[0;32mI (44780) feeder: Frame captured: 23049 bytes[0m
+[0;32mI (44879) feeder: Frame captured: 23061 bytes[0m
+[0;32mI (44977) feeder: Frame captured: 23104 bytes[0m
+[0;32mI (45076) feeder: Frame captured: 23051 bytes[0m
+[0;32mI (45175) feeder: Frame captured: 23063 bytes[0m
+[0;32mI (45274) feeder: Frame captured: 23077 bytes[0m
+[0;32mI (45373) feeder: Frame captured: 23086 bytes[0m
+[0;32mI (45471) feeder: Frame captured: 23015 bytes[0m
+[0;32mI (45547) feeder: Sent 125 frames[0m
+[0;32mI (45570) feeder: Frame captured: 23012 bytes[0m
+[0;32mI (45669) feeder: Frame captured: 23060 bytes[0m
+[0;32mI (45768) feeder: Frame captured: 23092 bytes[0m
+[0;32mI (45866) feeder: Frame captured: 23059 bytes[0m
+[0;32mI (45965) feeder: Frame captured: 23077 bytes[0m
+[0;32mI (46064) feeder: Frame captured: 23112 bytes[0m
+[0;32mI (46163) feeder: Frame captured: 23004 bytes[0m
+[0;32mI (46389) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (46459) feeder: Frame captured: 23154 bytes[0m
+[0;32mI (46558) feeder: Frame captured: 23056 bytes[0m
+[0;32mI (46755) feeder: Frame captured: 23077 bytes[0m
+[0;32mI (46854) feeder: Frame captured: 23061 bytes[0m
+[0;32mI (46930) feeder: Polling commands...[0m
+[0;32mI (46953) feeder: Frame captured: 23109 bytes[0m
+[0;32mI (47052) feeder: Frame captured: 23096 bytes[0m
+[0;32mI (47131) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (47151) feeder: Frame captured: 23132 bytes[0m
+[0;32mI (47249) feeder: Frame captured: 23072 bytes[0m
+[0;32mI (47348) feeder: Frame captured: 23101 bytes[0m
+[0;32mI (47447) feeder: Frame captured: 22992 bytes[0m
+[0;32mI (47546) feeder: Frame captured: 23030 bytes[0m
+[0;32mI (47644) feeder: Frame captured: 23110 bytes[0m
+[0;32mI (47743) feeder: Frame captured: 23058 bytes[0m
+[0;32mI (47842) feeder: Frame captured: 23079 bytes[0m
+[0;32mI (47941) feeder: Frame captured: 23063 bytes[0m
+[0;32mI (48040) feeder: Frame captured: 23096 bytes[0m
+[0;32mI (48138) feeder: Frame captured: 23078 bytes[0m
+[0;32mI (48237) feeder: Frame captured: 23060 bytes[0m
+[0;32mI (48312) feeder: Sent 150 frames[0m
+[0;32mI (48336) feeder: Frame captured: 23129 bytes[0m
+[0;32mI (48435) feeder: Frame captured: 23153 bytes[0m
+[0;32mI (48534) feeder: Frame captured: 23121 bytes[0m
+[0;32mI (48632) feeder: Frame captured: 23129 bytes[0m
+[0;32mI (48731) feeder: Frame captured: 22990 bytes[0m
+[0;32mI (48830) feeder: Frame captured: 23077 bytes[0m
+[0;32mI (48929) feeder: Frame captured: 23116 bytes[0m
+[0;32mI (49027) feeder: Frame captured: 23056 bytes[0m
+[0;32mI (49126) feeder: Frame captured: 23099 bytes[0m
+[0;32mI (49225) feeder: Frame captured: 23114 bytes[0m
+[0;32mI (49324) feeder: Frame captured: 23102 bytes[0m
+[0;32mI (49423) feeder: Frame captured: 23058 bytes[0m
+[0;32mI (49521) feeder: Frame captured: 23163 bytes[0m
+[0;32mI (49620) feeder: Frame captured: 23099 bytes[0m
+[0;32mI (49719) feeder: Frame captured: 23133 bytes[0m
+[0;32mI (49818) feeder: Frame captured: 23099 bytes[0m
+[0;32mI (49917) feeder: Frame captured: 23022 bytes[0m
+[0;32mI (50014) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (50015) feeder: Frame captured: 23110 bytes[0m
+[0;32mI (50114) feeder: Frame captured: 23087 bytes[0m
+[0;32mI (50213) feeder: Frame captured: 23076 bytes[0m
+[0;32mI (50312) feeder: Frame captured: 23108 bytes[0m
+[0;32mI (50410) feeder: Frame captured: 23120 bytes[0m
+[0;32mI (50509) feeder: Frame captured: 23099 bytes[0m
+[0;32mI (50608) feeder: Frame captured: 23108 bytes[0m
+[0;32mI (50707) feeder: Frame captured: 23099 bytes[0m
+[0;32mI (50783) feeder: Sent 175 frames[0m
+[0;32mI (50806) feeder: Frame captured: 23121 bytes[0m
+[0;32mI (50904) feeder: Frame captured: 23153 bytes[0m
+[0;32mI (51003) feeder: Frame captured: 23061 bytes[0m
+[0;32mI (51102) feeder: Frame captured: 23100 bytes[0m
+[0;32mI (51201) feeder: Frame captured: 23121 bytes[0m
+[0;32mI (51300) feeder: Frame captured: 23094 bytes[0m
+[0;32mI (51398) feeder: Frame captured: 23111 bytes[0m
+[0;32mI (51497) feeder: Frame captured: 23118 bytes[0m
+[0;32mI (51596) feeder: Frame captured: 23148 bytes[0m
+[0;32mI (51695) feeder: Frame captured: 23161 bytes[0m
+[0;32mI (51793) feeder: Frame captured: 23154 bytes[0m
+[0;32mI (51892) feeder: Frame captured: 23118 bytes[0m
+[0;32mI (51943) intercom: Audio WS alive: yes[0m
+[0;32mI (51991) feeder: Frame captured: 23104 bytes[0m
+[0;32mI (52090) feeder: Frame captured: 23144 bytes[0m
+[0;32mI (52166) feeder: Polling commands...[0m
+[0;32mI (52189) feeder: Frame captured: 23103 bytes[0m
+[0;32mI (52272) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (52287) feeder: Frame captured: 23144 bytes[0m
+[0;32mI (52386) feeder: Frame captured: 23131 bytes[0m
+[0;32mI (52485) feeder: Frame captured: 23200 bytes[0m
+[0;32mI (52584) feeder: Frame captured: 23149 bytes[0m
+[0;32mI (52683) feeder: Frame captured: 23153 bytes[0m
+[0;32mI (52781) feeder: Frame captured: 23126 bytes[0m
+[0;32mI (52880) feeder: Frame captured: 23127 bytes[0m
+[0;32mI (52979) feeder: Frame captured: 23116 bytes[0m
+[0;32mI (53078) feeder: Frame captured: 23096 bytes[0m
+[0;32mI (53176) feeder: Frame captured: 23214 bytes[0m
+[0;32mI (53253) feeder: Sent 200 frames[0m
+[0;32mI (53275) feeder: Frame captured: 23155 bytes[0m
+[0;32mI (53374) feeder: Frame captured: 23093 bytes[0m
+[0;32mI (53473) feeder: Frame captured: 23087 bytes[0m
+[0;32mI (53572) feeder: Frame captured: 23203 bytes[0m
+[0;32mI (53659) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (53661) feeder: Camera streaming stopped[0m
+[0;32mI (53670) feeder: Frame captured: 23108 bytes[0m
+[0;33mW (55747) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (56789) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (57272) feeder: Polling commands...[0m
+[0;32mI (57496) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;33mW (57747) feeder: No frame received in 2s — queue empty?[0m
+[0;33mW (59747) feeder: No frame received in 2s — queue empty?[0m
+[0;32mI (59884) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (59886) feeder: Camera streaming started[0m
+[0;32mI (60171) feeder: Frame captured: 23203 bytes[0m
+[0;32mI (60191) feeder: Frame captured: 23209 bytes[0m
+[0;32mI (60388) feeder: Frame captured: 23190 bytes[0m
+[0;32mI (60487) feeder: Frame captured: 23198 bytes[0m
+[0;32mI (60585) feeder: Frame captured: 23138 bytes[0m
+[0;32mI (60684) feeder: Frame captured: 23201 bytes[0m
+[0;32mI (60783) feeder: Frame captured: 23198 bytes[0m
+[0;32mI (60882) feeder: Frame captured: 23250 bytes[0m
+[0;32mI (60980) feeder: Frame captured: 23197 bytes[0m
+[0;32mI (61079) feeder: Frame captured: 23308 bytes[0m
+[0;32mI (61178) feeder: Frame captured: 23268 bytes[0m
+[0;32mI (61277) feeder: Frame captured: 23212 bytes[0m
+[0;32mI (61376) feeder: Frame captured: 23211 bytes[0m
+[0;32mI (61474) feeder: Frame captured: 23265 bytes[0m
+[0;32mI (61573) feeder: Frame captured: 23234 bytes[0m
+[0;32mI (61672) feeder: Frame captured: 23172 bytes[0m
+[0;32mI (61771) feeder: Frame captured: 23244 bytes[0m
+[0;32mI (61870) feeder: Frame captured: 23227 bytes[0m
+[0;32mI (61968) feeder: Frame captured: 23155 bytes[0m
+[0;32mI (62067) feeder: Frame captured: 23236 bytes[0m
+[0;32mI (62144) feeder: Sent 225 frames[0m
+[0;32mI (62166) feeder: Frame captured: 23204 bytes[0m
+[0;32mI (62267) feeder: Frame captured: 23196 bytes[0m
+[0;32mI (62463) feeder: Frame captured: 22814 bytes[0m
+[0;32mI (62562) feeder: Frame captured: 22500 bytes[0m
+[0;32mI (62666) feeder: Polling commands...[0m
+[0;32mI (62759) feeder: Frame captured: 24884 bytes[0m
+[0;32mI (62858) feeder: Frame captured: 25772 bytes[0m
+[0;32mI (62907) feeder: Frame captured: 25850 bytes[0m
+[0;32mI (62954) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (63048) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (63104) feeder: Frame captured: 26302 bytes[0m
+[0;32mI (63205) feeder: Frame captured: 26512 bytes[0m
+[0;32mI (63401) feeder: Frame captured: 26906 bytes[0m
+[0;32mI (63500) feeder: Frame captured: 25899 bytes[0m
+[0;32mI (63648) feeder: Frame captured: 22501 bytes[0m
+[0;32mI (63746) feeder: Frame captured: 22906 bytes[0m
+[0;32mI (64043) feeder: Frame captured: 23284 bytes[0m
+[0;32mI (64240) feeder: Frame captured: 23206 bytes[0m
+[0;32mI (64339) feeder: Frame captured: 23262 bytes[0m
+[0;32mI (64438) feeder: Frame captured: 23271 bytes[0m
+[0;32mI (64537) feeder: Frame captured: 23220 bytes[0m
+[0;32mI (64636) feeder: Frame captured: 23224 bytes[0m
+[0;32mI (64734) feeder: Frame captured: 23244 bytes[0m
+[0;32mI (64833) feeder: Frame captured: 23199 bytes[0m
+[0;32mI (64932) feeder: Frame captured: 23133 bytes[0m
+[0;32mI (65031) feeder: Frame captured: 23192 bytes[0m
+[0;32mI (65129) feeder: Frame captured: 23200 bytes[0m
+[0;32mI (65229) feeder: Frame captured: 23165 bytes[0m
+[0;32mI (65305) feeder: Sent 250 frames[0m
+[0;32mI (65327) feeder: Frame captured: 23180 bytes[0m
+[0;32mI (65426) feeder: Frame captured: 23195 bytes[0m
+[0;32mI (65525) feeder: Frame captured: 23246 bytes[0m
+[0;32mI (65623) feeder: Frame captured: 23219 bytes[0m
+[0;32mI (65920) feeder: Frame captured: 23212 bytes[0m
+[0;32mI (66019) feeder: Frame captured: 23217 bytes[0m
+[0;32mI (66117) feeder: Frame captured: 23198 bytes[0m
+[0;32mI (66217) feeder: Frame captured: 23247 bytes[0m
+[0;32mI (66314) firebase: streaming_get: received 4 bytes total[0m
+[0;32mI (66414) feeder: Frame captured: 23159 bytes[0m
+[0;32mI (66512) feeder: Frame captured: 23239 bytes[0m
+[0;32mI (66611) feeder: Frame captured: 23173 bytes[0m
+[0;32mI (66710) feeder: Frame captured: 23249 bytes[0m
+[0;32mI (66809) feeder: Frame captured: 23313 bytes[0m
+[0;32mI (66908) feeder: Frame captured: 23172 bytes[0m
+[0;32mI (67006) feeder: Frame captured: 23227 bytes[0m
+[0;32mI (67105) feeder: Frame captured: 23283 bytes[0m
+[0;32mI (67204) feeder: Frame captured: 23263 bytes[0m
+[0;32mI (67303) feeder: Frame captured: 23340 bytes[0m
+[0;32mI (67402) feeder: Frame captured: 23264 bytes[0m
+[0;32mI (67500) feeder: Frame captured: 23251 bytes[0m
+[0;32mI (67599) feeder: Frame captured: 23316 bytes[0m
+[0;32mI (67698) feeder: Frame captured: 23276 bytes[0m
+[0;32mI (67797) feeder: Frame captured: 23209 bytes[0m
+[0;32mI (67895) feeder: Frame captured: 23225 bytes[0m
+[0;32mI (67972) feeder: Polling commands...[0m
+[0;32mI (67994) feeder: Frame captured: 23313 bytes[0m
+[0;32mI (68072) feeder: Sent 275 frames[0m
+[0;32mI (68076) feeder: Command poll result: ESP_OK, cmd=NULL[0m
+[0;32mI (68093) feeder: Frame captured: 23292 bytes[0m
+[0;32mI (68192) feeder: Frame captured: 23247 bytes[0m
+[0;32mI (68291) feeder: Frame captured: 23208 bytes[0m
+[0;32mI (68389) feeder: Frame captured: 23311 bytes[0m
+[0;32mI (68488) feeder: Frame captured: 23288 bytes[0m
+[0;32mI (68587) feeder: Frame captured: 23267 bytes[0m
+[0;32mI (68686) feeder: Frame captured: 23283 bytes[0m
+[0;32mI (68785) feeder: Frame captured: 23296 bytes[0m
+[0;32mI (68883) feeder: Frame captured: 23308 bytes[0m
+[0;32mI (68982) feeder: Frame captured: 23274 bytes[0m
+[0;32mI (69081) feeder: Frame captured: 23347 bytes[0m
+[0;32mI (69278) feeder: Frame captured: 23292 bytes[0m
+[0;32mI (69377) feeder: Frame captured: 23202 bytes[0m
+[0;32mI (69476) feeder: Frame captured: 23174 bytes[0m
+[0;32mI (69575) feeder: Frame captured: 23163 bytes[0m
+[0;32mI (69655) firebase: streaming_get: received 5 bytes total[0m
+[0;32mI (69657) feeder: Camera streaming stopped[0m
+[0;32mI (69674) feeder: Frame captured: 23177 bytes[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x1 (DOWNLOAD(USB/UART0))
+waiting for download
